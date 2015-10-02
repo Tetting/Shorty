@@ -118,16 +118,17 @@ if ($_FILES) {
 	  $dat = array();
 	  switch($typ) {
 		case '00':
+			//Detta kall ändras då det är BG som kommer änvändas framöver. Fundera även över hur vi ska lösa så att det går att köra bägge samtidigt.
 			$fileDat['AccountNr'] = substr($line,2,6);
 			$fileDat['AccountName'] = substr($line,8,33);
 			$fileDat['CompanyCodeIS'] = substr($line,41,3);
-			$fileDat['IS-nummer-OCR'] = substr($line,44,3);//Redovisningsenhet=Inbetalningsservicenummer (OCR) - "IS-nummer(OCR)" som redovisas p� samma datamedia till "Servicebyr�n, tilldelas av Nordea.
+			$fileDat['IS-nummer-OCR'] = substr($line,44,3);//Redovisningsenhet=Inbetalningsservicenummer (OCR) - "IS-nummer(OCR)" som redovisas på samma datamedia till "Servicebyrån, tilldelas av Nordea.
 			$fileDat['datamediaTyp']=substr($line,44,2);//Typ av datamedia - Nordeas interna kod.
-			$fileDat['CodeEntity'] = substr($line,46,2);//L�pnummer = en "redovisningsenhet", om servicebyr�n tar emot flera fysiska medier av samma typ.
+			$fileDat['CodeEntity'] = substr($line,46,2);//Löpnummer = en "redovisningsenhet", om servicebyr�n tar emot flera fysiska medier av samma typ.
 			$fileDat['LayoutKod'] = substr($line,48,1);//Layout kod = N
 			$fileDat['Produktionsdatum'] = substr($line,49,6);//Produktionsdatum his Nordea,YYMMDD
 			$fileDat['Reserv'] = substr($line,55,2);//Blanka/Reserv
-			$fileDat['Kompletterings'] = substr($line,65,1);//Kompletteringsregister f�r avtalad rejectregistrering, J eller blank.
+			$fileDat['Kompletterings'] = substr($line,65,1);//Kompletteringsregister för avtalad rejectregistrering, J eller blank.
 			$fileDat['Reserv2'] = substr($line,66,14);//Layout kod = N
 			$dat = $fileDat;
 			$dat['Typ'] = 'Inledningspost';
