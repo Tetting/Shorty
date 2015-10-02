@@ -125,7 +125,7 @@ if ($_FILES) {
 			$fileDat['datamediaTyp']=substr($line,44,2);//Typ av datamedia - Nordeas interna kod.
 			$fileDat['CodeEntity'] = substr($line,46,2);//L�pnummer = en "redovisningsenhet", om servicebyr�n tar emot flera fysiska medier av samma typ.
 			$fileDat['LayoutKod'] = substr($line,48,1);//Layout kod = N
-			$fileDat['Produktionsdatum'] = substr($line,49,6);//Produktionsdatum his Nordea,��MMDD
+			$fileDat['Produktionsdatum'] = substr($line,49,6);//Produktionsdatum his Nordea,YYMMDD
 			$fileDat['Reserv'] = substr($line,55,2);//Blanka/Reserv
 			$fileDat['Kompletterings'] = substr($line,65,1);//Kompletteringsregister f�r avtalad rejectregistrering, J eller blank.
 			$fileDat['Reserv2'] = substr($line,66,14);//Layout kod = N
