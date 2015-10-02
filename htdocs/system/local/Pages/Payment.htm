@@ -1,0 +1,304 @@
+{#ajaxTemplate2#}<div class="EditIcons" style="padding-left: 0px; width: 100%;">
+<center>
+(!@-!)
+if (typeof(dataViews.Payments.curRecordSet.Count) != 'undefined') {
+if (typeof(dataViews.Payments.curRecordSet.start) != 'undefined') {
+if (typeof(dataViews.Payments.curRecordSet.rPos) != 'undefined') {
+if (dataViews.Payments.filterActive) {
+    o.push(dataViews.Payments.curRecordSet.start + dataViews.Payments.curRecordSet.rPos + 1);
+    o.push(' av ');
+    o.push(dataViews.Payments.curRecordSet.filteredCount);
+} else {
+    o.push(dataViews.Payments.curRecordSet.start + dataViews.Payments.curRecordSet.rPos + 1);
+    o.push(' av ');
+    o.push(dataViews.Payments.curRecordSet.Count);
+}
+}
+}
+}
+(!@+!)
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Payments'].firstRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).prop('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'undefined',target:target});
+        }});" title="F&ouml;rsta"><span class="RecordsetFirstIcon EditIcon"> </span></a>
+    
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Payments'].previousRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).prop('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'Payments',target:target});
+        },NoNewPage:function(){
+            $j('#Toolbar(!&ns._ViewId!)').removeClass('ajaxLoading');
+        }});" title="F&ouml;reg&aring;ende"><span class="RecordsetPreviousIcon EditIcon"> </span></a>
+    
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Payments'].nextRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).prop('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'Payments',target:target});
+        },NoNewPage:function() {
+            $j('#Toolbar(!&ns._ViewId!)').removeClass('ajaxLoading');
+        }});" title="N&auml;sta"><span class="RecordsetNextIcon EditIcon"> </span></a>
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Payments'].lastRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).prop('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'Payments',target:target});
+        }});" title="Sista"><span class="RecordsetLastIcon EditIcon"> </span></a>
+    
+    <span style="padding-left: 20px;" id="Toolbar(!&ns._ViewId!)"> </span>
+    <span class="TaskEdit4" task="Project4.Task" component="Generic334"> </span>
+<button onclick="
+/*
+jQuery('input,textarea', document.getElementById('PaymentTab(!&ns._ViewId!)')).each(function(index,elm) {
+    var t = jQuery(elm).prop('type');
+    if (t == 'radio') {
+        jQuery(elm).removeAttr('checked');
+    } else {
+        elm.value = '';
+    }
+});
+jQuery('#Id66(!&ns._ViewId!)').removeAttr('disabled');
+document.getElementById('Id66(!&ns._ViewId!)').enabled = true;
+jQuery('#Action(!&ns._ViewId!)').data('actionName','Search').html('s&ouml;k nu>>');
+*/
+dataViews['Payments'].clearFilter();
+App3.Navigate2('local/Pages/PaymentSearch',{target:'AppPages'});
+" title="Ny s&ouml;kning"><img src="img/icons/search.png"/></button>
+
+<button class="NewBut" onclick="
+document.getElementById('Generic334(!&ns._ViewId!)').click();
+jQuery('#PaymentTab(!&ns._ViewId!) input').each(function(index,elm) {
+    elm.value = '';
+});
+jQuery('#PaymentTab(!&ns._ViewId!) textarea').each(function(index,elm) {
+    elm.value = '';
+});
+jQuery('#Action(!&ns._ViewId!)').data('actionName','New').html('skapa');
+" title="Ny"><img src="img/icons/new.png"/></button>
+
+<button class="CopyBut" onclick="
+    document.getElementById('Generic334(!&ns._ViewId!)').click();
+    var s = String.fromCharCode(39)+'Payment.Id'+String.fromCharCode(39);
+    jQuery('input[data-fieldname='+s+']').val('');
+    jQuery('#Action(!&ns._ViewId!)').data('actionName','New').html('skapa');
+" title="Kopiera"><img src="img/icons/copy.png"/></button>
+
+<button class="ChangeBut(!&ns._ViewId!)" id="Generic334(!&ns._ViewId!)" onclick="
+jQuery('input,textarea',document.getElementById('AppPages')).each(function(index,el){
+switch(el.type) {
+    case 'radio':
+        el.disabled = !el.disabled;
+        break;
+    default:
+        if (el.getAttribute('data-fieldname') == 'Payment.Id') {
+            //never allowed to edit the id
+        } else {
+            if ($j(el).is('.dateEdit')) {
+                el.disabled = !el.disabled;
+            } else {
+                el.readOnly = !el.readOnly;
+            }
+        }
+   }
+});
+
+" title="&Auml;ndra"><img src="img/icons/change.png"/></button>
+<center>
+</div><span class="PaymentsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="PaymentProtoHeader">Betalning</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/PaymentNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/Payments" class="ajaxLink">Lista</a>
+    </span>
+</span><br/>
+(!@-!)if (ns.data) {var r= ns.data;(!@+!)<table class="EditTable" id="PaymentTab(!&ns._ViewId!)">
+<thead><tr><th colspan="7">Betalningar</th></tr></thead>
+<tr>
+<td style="text-align:right">Datum:</td><td>(!@-!)if(r.Date == '0000-00-00') {r.Date = '';}
+(!@+!)<input class="Editable dateEdit" id="Date337(!&ns._ViewId!)" type="text"  onchange="EditInPlace4.quickSave('Payments.Date','(!&r.Id!)',this.value)"  data-fieldName="Payment.Date" value="(!&r.Date!)" size="12"/>
+<script>$j('#Date337(!&ns._ViewId!)').date_input();</script>
+</td>
+<td style="text-align:right">Givare:</td><td><input type="text" id="GiverId338(!&ns._ViewId!)" class="Editable" data-fieldName="Payment.GiverId" value="(!&r['GiverId']||''!)"  /></td>
+<td style="text-align:right">#</td><td><input type="text" id="Id336(!&ns._ViewId!)" class="Editable" data-fieldName="Payment.Id" value="(!&r['Id']||''!)"  disabled='true'  /></td>
+</tr>
+
+<tr>
+<td style="text-align:right">InKrTot:</td><td><input type="text" id="InKrTotal911(!&ns._ViewId!)" class="Editable" data-fieldName="Payment.InKrTotal" value="(!&r['InKrTotal']||''!)"  /></td>
+<td style="text-align:right">OutKr:</td><td><input type="text" id="OutKr342(!&ns._ViewId!)" class="Editable" data-fieldName="Payment.OutKr" value="(!&r['OutKr']||''!)"  /></td>
+<td style="text-align:right">src</td><td><input type="text" id="PaymentSource345(!&ns._ViewId!)" class="Editable" data-fieldName="Payment.PaymentSource" value="(!&r['PaymentSource']||''!)"  /></td>
+</tr>
+
+<tr>
+<td style="text-align:right">AdminKr:</td><td><input type="text" id="AdminCharge347(!&ns._ViewId!)" class="Editable" data-fieldName="Payment.AdminCharge" value="(!&r['AdminCharge']||''!)"  /></td>
+<td style="text-align:right">Projekt/Barn</td><td><input type="text" id="PaymentType343(!&ns._ViewId!)" class="Editable" data-fieldName="Payment.PaymentType" value="(!&r['PaymentType']||''!)"  /></td>
+<td style="text-align:right">SrcId:</td><td><input type="text" id="PaymentSourceId346(!&ns._ViewId!)" class="Editable" data-fieldName="Payment.PaymentSourceId" value="(!&r['PaymentSourceId']||''!)"  /></td>
+</tr>
+<tr>
+<td style="text-align:right">Admin%:</td><td><input type="text" id="AdminPercent348(!&ns._ViewId!)" class="Editable" data-fieldName="Payment.AdminPercent" value="(!&r['AdminPercent']||''!)"  /></td>
+<td style="text-align:right">Projekt/Barn #</td><td><input type="text" id="ProjectId339(!&ns._ViewId!)" class="Editable" data-fieldName="Payment.ProjectId" value="(!&r['ProjectId']||''!)"  /></td>
+<td style="text-align:right">Anv&auml;ndare#:</td><td><input type="text" id="AddedByUserId344(!&ns._ViewId!)" class="Editable" data-fieldName="Payment.AddedByUserId" value="(!&r['AddedByUserId']||''!)"  /></td>
+</tr>
+
+<tr>
+<td style="text-align:right">InKr:</td><td><input type="text" id="InKr341(!&ns._ViewId!)" class="Editable" data-fieldName="Payment.InKr" value="(!&r['InKr']||''!)"  /></td>
+<td style="text-align:right"></td><td></td>
+<td style="text-align:right">Anv&auml;ndareNamn:</td><td><input type="text" id="AddedBy340(!&ns._ViewId!)" class="Editable" data-fieldName="Payment.AddedBy" value="(!&r['AddedBy']||''!)"  /></td>
+</tr>
+</table>
+
+(!@-!)} else {
+    //no data retrieved yet... load it..
+    if(!ns.Id){ns.Id=ns.url.split("/").pop();}(!@+!)
+
+<script>
+dataViews.Payments.getRecord({
+    Id:'(!&ns.Id!)'
+    ,PK:'(!&ns.Id!)'
+    ,OnComplete:function(Record){
+        App3.Navigate2('(!&ns._fullurl!)?Id=(!&ns.Id!)',
+            {target:'(!&ns.target!)',data:Record }
+        );
+    }
+});
+</script><img src="img/ajaxLoading.gif"/>ladda...
+
+
+(!@-!)}(!@+!)
+
+<script>
+jQuery('input,textarea',document.getElementById('AppPages')).each(function(index,el){
+switch(el.type) {
+    case 'radio':
+        el.disabled = true;
+        break;
+    default:
+        if (el.getAttribute('data-fieldname') == 'Payment.Id') {
+            //never allowed to edit the id
+        } else {
+            if ($j(el).is('.dateEdit')) {
+                el.disabled = true;
+            } else {
+                el.readOnly = true;
+            }
+        }
+   }
+});
+</script><center>
+
+<button class="Ta bort" onclick="
+if (confirm('Vill du verkligen ta bort objektet?')) {
+    dataViews.Payments.deleteRecord({Id:'(!&r.Id!)',PK:'(!&r.Id!)',OnComplete:function(){App3.Navigate2('http://local/Pages/Payments',{target:'AppPages' });}});        
+}
+">Ta bort</button>
+<button class="CancelBut" onclick="
+var id = document.getElementById('Id336(!&ns._ViewId!)').value;
+App3.Navigate2('local/Pages/Payment/'+id,{target:'AppPages'}); 
+">Avbryta</button>
+
+<button class="SaveBut" id="Action(!&ns._ViewId!)" onclick="
+var fName;
+var area = document.getElementById('PaymentTab(!&ns._ViewId!)');
+switch(jQuery(this).data('actionName')) {
+    case 'Search':
+        dataViews['Payments'].clearFilter();
+        jQuery('input,textarea', area).each(function(index,elm) {
+            var v = jQuery(elm).val();
+            var t = jQuery(elm).attr('type');
+            fName = jQuery(elm).attr('data-fieldName');
+            if (t == 'radio') {
+                 if (jQuery(elm).attr('checked')) {
+                    dataViews['Payments'].addFilter(fName.split('.').join('|'),'*',jQuery(elm).val());
+                }
+            } else {
+                if (v != '') {
+                    if (fName) {
+                        dataViews['Payments'].addFilter(fName.split('.').join('|'),'*',jQuery(elm).val());
+                    }  
+                }
+            }
+        });
+
+        dataViews['Payments'].firstRow({OnComplete:function() {
+        if (dataViews['Payments'].curRecordSet.Count > 0) {
+            var id = dataViews['Payments'].curRecordSet.Rows[0].Id;
+            App3.Navigate2('local/Pages/Payments/'+id,{target:'AppPages'}); 
+        } else {
+            alert('Ingen tr&auml;ff');
+        }
+        console.dir(dataViews['Payments'].curRecordSet);
+    },NoNewPage:function() {
+        alert('Ingen tr&auml;ff');
+     }
+    });
+    break;
+    case 'New':
+        var rec = {};
+        jQuery('input,textarea',area).each(function(index,elm) {
+            if (elm.value) {
+                fName = jQuery(elm).attr('data-fieldName');
+                if (fName) {
+                    fName = fName.split('.');
+                    if (fName[0] == 'Payment') {
+                        if (fName) {
+                            rec[fName[1]] = jQuery(elm).val();
+                        }
+                    }
+                }  
+            }
+        });
+        dataViews['Payments'].newRecord({
+            NewRecord:rec
+            ,OnComplete:function(response){
+                var r;
+                eval('r='+response);
+                dataViews['Payments'].dataChanged();
+                if (r.Status != 'Created') {
+                    alert('Save Failed');
+                } else {
+                    //App3.Navigate2('local/Pages/Payments/' + r.NewId,{target:'AppPages',forceRead:true });
+                    jQuery('.ChangeBut(!&ns._ViewId!)').click();
+                    jQuery('input[data-fieldname=Payment.Id]').val(r['NewId']);
+                    jQuery('#Action(!&ns._ViewId!)').data('actionName','save').html('Spara');
+                    
+                }
+            }
+        });
+    break;
+    case 'Save':
+    case undefined:
+        var rec = {};
+        jQuery('input,textarea',area).each(function(index,elm) {
+                fName = jQuery(elm).attr('data-fieldName');
+                if (fName) {
+                    fName = fName.split('.');
+                    if (fName[0] == 'Payment') {
+                        rec[fName[1]] = jQuery(elm).val();
+                    } 
+            }
+        });
+    dataViews['Payments'].updateFields(rec,rec['Id'],function(response) {
+        jQuery('.ChangeBut(!&ns._ViewId!)').click();
+        console.info(response);
+    });
+    break; 
+}
+">Spara</button>
+<span component="Generic350" task="Project4.Task" class="TaskEdit4"> </span>
+</center>

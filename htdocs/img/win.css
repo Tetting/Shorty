@@ -1,0 +1,73 @@
+.jqHandle {
+   background: #124384;
+   color:white;
+   height:16px;
+   	
+}
+.jqDrag {
+  width: 100%;
+  cursor: move;
+}
+
+.jqResize {
+   width: 15px;
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   cursor: se-resize;
+   background:url("window_resize.png");
+}
+
+.jqDnR {
+    z-index: 3;
+    position: relative;
+    
+    width: 180px;
+    font-size: 0.77em;
+    color: black;
+   margin: 5px 10px 10px 10px;
+    padding: 0px;
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+}
+.WinFooter {
+	background-color: #EEE;
+ 	position:relative;
+}
+.blankTable th, td{
+	border:0px;
+}
+
+.LiveTree li.closed.hasChildren {
+	padding-left:20px;
+	background-image:url(f.png);
+	background-repeat:no-repeat;
+}
+.LiveTree li.hasChildren {
+	padding-left:20px;
+	background-image:url(fc.png);
+	background-repeat:no-repeat;
+}
+.LiveTree li {
+	list-style-type:none;
+	padding-left:20px;
+	background-image:url(LiveTree-bullet.png);
+	background-repeat:no-repeat;
+}
+
+.LiveTree ul {
+	list-style-type:none;
+	margin:0 0 0 0px;
+	padding:0;
+	margin-left:0px;
+	padding-left:0px;
+}
+.LiveTree li {
+	cursor:pointer;
+}
+h4 {
+padding-top:0px;
+}
+.nicEdit-pane {
+display:'none';
+}

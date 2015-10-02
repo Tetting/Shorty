@@ -1,0 +1,72 @@
+{#ajaxTemplate2#}<span class="ContactsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="ContactNew_ProtoHeader">&Ouml;vriga adresser</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/ContactNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/Contacts" class="ajaxLink">Lista</a>
+    </span>
+</span><br/>
+
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan='2'><center><span class="TaskEdit4" task="Project4.Task" component="ContactNew_fields">Uppgifter</span></center></th></tr>
+</thead>
+<tbody>
+
+<tr><td><label>Namn</label>:</td><td><input id="Contact_Name_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Kontakt</label>:</td><td><input id="Contact_ContactName_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Epost</label>:</td><td><input id="Contact_Email_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Adress</label>:</td><td><input id="Contact_Address_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>PostNr</label>:</td><td><input id="Contact_Zip_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>PostOrt</label>:</td><td><input id="Contact_ZipTown_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Tel</label>:</td><td><input id="Contact_Tel_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+</tbody>
+<tfoot><tr><td colspan="2"><center Task="Project4.Task" Component="ContactNew_fields" class="TaskEdit4">
+
+<input type="button" value="L&auml;gg till" onclick="
+dataViews.Contacts.newRecord({
+NewRecord:{
+Name:document.getElementById('Contact_Name_New(!&ns._ViewId!)').value
+,
+ContactName:document.getElementById('Contact_ContactName_New(!&ns._ViewId!)').value
+,
+Email:document.getElementById('Contact_Email_New(!&ns._ViewId!)').value
+,
+Address:document.getElementById('Contact_Address_New(!&ns._ViewId!)').value
+,
+Zip:document.getElementById('Contact_Zip_New(!&ns._ViewId!)').value
+,
+ZipTown:document.getElementById('Contact_ZipTown_New(!&ns._ViewId!)').value
+,
+Tel:document.getElementById('Contact_Tel_New(!&ns._ViewId!)').value
+
+}
+,OnComplete:function(response){
+
+//document.getElementById('NewContact_Name(!&ns._ViewId!)').value = '';
+//document.getElementById('NewContact_Name(!&ns._ViewId!)').focus();
+dataViews.Contacts.dataChanged();
+App3.Navigate2('local/Pages/Contacts',{target:'(!&ns.target!)',forceRead:true });
+
+}
+});
+"/></center>
+</td></tr></tfoot>
+</table>
+<script>
+try {
+document.getElementById('Contact_Name_New(!&ns._ViewId!)').focus();
+} catch(e) {
+//no problem.
+}
+</script>
+

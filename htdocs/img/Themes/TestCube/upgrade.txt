@@ -1,0 +1,5 @@
+To upgrade to latest jquery I have copied and changed the theme.
+It is then possible to load different js objects.
+
+-App3.js-->App3.2.js updated .attr( to .prop(
+-FootDeps removed hotkeys

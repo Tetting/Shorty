@@ -1,0 +1,250 @@
+{#ajaxTemplate2#}(!@-!)
+var d = {
+    "fieldName":'Name'
+    ,"type":ns.defaultType
+    ,"fontSize":'12'
+    ,"xStart":200
+    ,"xEnd":600
+    ,"y":90
+    ,"align":'left'
+};
+$j.extend(d,ns.data);
+ns.data = d;
+if (ns.data.type == 'cmd') {
+(!@+!)
+<input type="hidden" value="add" name="action">
+<input type="hidden" value="(!&ns.data.id!)" id="addFormId" name="id"/>
+<table class="EditTable">
+    <tr><th colspan=2>cmd #(!&ns.data.id!)</th></tr>
+    <tr><td>cmdName:</td><td><input id=cmdName value="(!&ns.data.cmdName!)"/></td></tr>
+(!@-!)switch(ns.data['cmdName']) {
+    case 'rotate':(!@+!)
+        <tr><td>degrees:</td><td><input id=degrees value="(!&ns.data.degrees!)"/></td></tr>
+    (!@-!)break;
+    case 'font':(!@+!)
+        <tr><td>typeface:</td><td><input id=typeface value="(!&ns.data.typeface!)"/></td></tr>
+        <tr><td>Upload ttf font</td><td><form>
+<input type="file" name="custom"><br>
+<input type="button" onclick="App.fileUpload(this.form,'pdf/custom/uploadFont.php','uploadFont'); return false;" value="upload">
+<div id="uploadFont"></div>
+</form></td></tr>
+    (!@-!)break;
+    case 'color':(!@+!)
+        <tr><td>Color:</td><td><input id=color value="(!&ns.data.color!)"/></td></tr>
+    (!@-!)break;
+    case 'divider':(!@+!)
+        <tr><td>Comment:</td><td><input id=comment value="(!&ns.data.comment!)"/></td></tr>
+    (!@-!)break;
+    case 'extratext':(!@+!)
+        <tr><td>Text:</td><td><input id=extratext value="(!&ns.data.extratext!)"/></td></tr>
+        <tr><td>fontSize:</td><td><input value="(!&ns.data.fontSize!)" name="fontSize" id="fontSize"></td></tr>
+        <tr><td>xStart:</td><td><input value="(!&ns.data.xStart!)" name="xStart" id="xStart"></td></tr>
+        <tr><td>xEnd:</td><td><input value="(!&ns.data.xEnd!)" name="xEnd" id="xEnd"></td></tr>
+        <tr><td>y:</td><td><input value="(!&ns.data.y!)" name="y" id="y"></td></tr>
+        <tr><td>align:</td><td><input value="(!&ns.data.align!)" name="align" id="align" title="left,right,center,wrap"></td></tr>
+    (!@-!)break;
+    case 'subReport':(!@+!)
+        <tr><td>Sub-ReportId:</td><td><input id=subReportId value="(!&ns.data.subReportId!)"/></td></tr>
+        <tr><td>y:</td><td><input value="(!&ns.data.y!)" name="y" id="subReporty"></td></tr>
+        <tr><td>y-size:</td><td><input value="(!&ns.data.ySize!)" name="y" id="subReportySize"></td></tr>
+    (!@-!)break;
+    default:(!@+!)
+        <tr><td>Available Cmds:</td><td>rotate,color,font,divider,extratext,subReport,</td></tr>
+    (!@-!)break;
+    
+}(!@+!)
+
+
+<tr><th colspan=2><center>
+(!@-!)if(ns.data['id']) {(!@+!)
+<button onclick="
+var myDat = {
+    action:'update'
+    ,ReportId:'(!&ns.Id!)'
+    ,type:'cmd'
+    ,cmdName:document.getElementById('cmdName').value
+    ,id:document.getElementById('addFormId').value
+};
+switch('(!&ns.data.cmdName!)') {
+    case 'rotate':
+        myDat['degrees'] = document.getElementById('degrees').value
+    break;
+    case 'color':
+        myDat['color'] = document.getElementById('color').value
+    break;
+    case 'extratext':
+        myDat['extratext'] = document.getElementById('extratext').value
+        myDat['y'] = document.getElementById('y').value
+        myDat['fontSize'] = document.getElementById('fontSize').value
+        myDat['align'] = document.getElementById('align').value
+        myDat['xStart'] = document.getElementById('xStart').value
+        myDat['xEnd'] = document.getElementById('xEnd').value
+    break;
+    case 'subReport':
+        myDat['subReportId'] = document.getElementById('subReportId').value
+        myDat['y'] = document.getElementById('subReporty').value
+        myDat['ySize'] = document.getElementById('subReportySize').value
+    break;
+    case 'font':
+        myDat['typeface'] = document.getElementById('typeface').value
+    break;
+}    
+$j.post('pdf/custom/badGateway.php',myDat,function(response) {
+    var ns = {
+        Id:'(!&ns.Id!)'
+    };
+    eval('ns.data='+response);
+     var out = App3.go.local.Pages.CustomReportTable(ns);
+    $j('#tableView').html(out);
+  });
+">Update</button>
+<button onclick="
+var myDat = {
+    action:'update'
+    ,ReportId:'(!&ns.Id!)'
+    ,type:'cmd'
+    ,cmdName:document.getElementById('cmdName').value
+    ,id:document.getElementById('addFormId').value
+}
+switch('(!&ns.data.cmdName!)') {
+    case 'rotate':
+        myDat['degrees'] = document.getElementById('degrees').value
+    break;
+    case 'color':
+        myDat['color'] = document.getElementById('color').value
+    break;
+    case 'extratext':
+        myDat['extratext'] = document.getElementById('extratext').value
+        myDat['y'] = document.getElementById('y').value
+        myDat['fontSize'] = document.getElementById('fontSize').value
+        myDat['align'] = document.getElementById('align').value
+        myDat['xStart'] = document.getElementById('xStart').value
+        myDat['xEnd'] = document.getElementById('xEnd').value
+    break;
+    case 'subReport':
+        myDat['subReportId'] = document.getElementById('subReportId').value
+        myDat['y'] = document.getElementById('subReporty').value
+        myDat['ySize'] = document.getElementById('subReportySize').value
+    break;
+    case 'font':
+        myDat['typeface'] = document.getElementById('typeface').value
+    break;
+
+} 
+$j.post('pdf/custom/badGateway.php',myDat,function(response) {
+    var ns = {
+        Id:'(!&ns.Id!)'
+    };
+    eval('ns.data='+response);
+     var out = App3.go.local.Pages.CustomReportTable(ns);
+    $j('#tableView').html(out);
+    document.getElementById('viewer').src='pdf/custom.php?id='+document.getElementById('reportObjectId').value+'&CustomText='+App.CustomText(document.getElementById('CustomText').value)+'&ReportId=(!&ns.Id!)&v='+Math.random();
+});
+">Update & View</button>
+
+(!@-!)}else{(!@+!)
+<button onclick="
+$j.post('pdf/custom/badGateway.php',{
+    action:'add'
+    ,ReportId:'(!&ns.Id!)'
+    ,type:'cmd'
+    ,cmdName:document.getElementById('cmdName').value
+    
+},function(response) {
+    var ns = {
+        Id:'(!&ns.Id!)'
+    };
+    eval('ns.data='+response);
+     var out = App3.go.local.Pages.CustomReportTable(ns);
+    $j('#tableView').html(out);
+});
+">Add</button>
+(!@-!)}(!@+!)
+</center></th></tr>
+
+</table>
+(!@-!)
+
+} else {
+(!@+!)
+    <input type="hidden" value="add" name="action">
+    <input type="hidden" value="(!&ns.data.id!)" id="addFormId" name="id"/>
+
+<table class="EditTable">
+    <tr><th colspan=2>text #(!&ns.data.id!)</th></tr>
+    <tr><td>fontSize:</td><td><input value="(!&ns.data.fontSize!)" name="fontSize" id="fontSize"></td></tr>
+    <tr><td>fieldName:</td><td><input value="(!&ns.data.fieldName!)" name="fieldName" id="fieldName"></td></tr>
+    <tr><td>xStart:</td><td><input value="(!&ns.data.xStart!)" name="xStart" id="xStart"></td></tr>
+    <tr><td>xEnd:</td><td><input value="(!&ns.data.xEnd!)" name="xEnd" id="xEnd"></td></tr>
+    <tr><td>y:</td><td><input value="(!&ns.data.y!)" name="y" id="y"></td></tr>
+    <tr><td>align:</td><td><input value="(!&ns.data.align!)" name="align" id="align" title="left,right,center,wrap"></td></tr>
+<tr><th colspan=2><center>
+(!@-!)if(ns.data['id']) {(!@+!)
+<button onclick="
+$j.post('pdf/custom/badGateway.php',{
+    action:'update'
+    ,ReportId:'(!&ns.Id!)'
+    ,fontSize:document.getElementById('fontSize').value
+    ,fieldName:document.getElementById('fieldName').value
+    ,xStart:document.getElementById('xStart').value
+    ,xEnd:document.getElementById('xEnd').value
+    ,y:document.getElementById('y').value
+    ,align:document.getElementById('align').value
+    ,id:document.getElementById('addFormId').value
+},function(response) {
+    var ns = {
+        Id:'(!&ns.Id!)'
+    };
+    eval('ns.data='+response);
+     var out = App3.go.local.Pages.CustomReportTable(ns);
+    $j('#tableView').html(out);
+  });
+">Update</button>
+<button onclick="
+$j.post('pdf/custom/badGateway.php',{
+    action:'update'
+    ,ReportId:'(!&ns.Id!)'
+    ,fontSize:document.getElementById('fontSize').value
+    ,fieldName:document.getElementById('fieldName').value
+    ,xStart:document.getElementById('xStart').value
+    ,xEnd:document.getElementById('xEnd').value
+    ,y:document.getElementById('y').value
+    ,align:document.getElementById('align').value
+    ,id:document.getElementById('addFormId').value
+},function(response) {
+    var ns = {
+        Id:'(!&ns.Id!)'
+    };
+    eval('ns.data='+response);
+     var out = App3.go.local.Pages.CustomReportTable(ns);
+    $j('#tableView').html(out);
+    document.getElementById('viewer').src='pdf/custom.php?id='+document.getElementById('reportObjectId').value+'&CustomText='+App.CustomText(document.getElementById('CustomText').value)+'&ReportId=(!&ns.Id!)&v='+Math.random();
+});
+">Update & View</button>
+
+(!@-!)}else{(!@+!)
+<button onclick="
+$j.post('pdf/custom/badGateway.php',{
+    action:'add'
+    ,ReportId:'(!&ns.Id!)'
+    ,fontSize:document.getElementById('fontSize').value
+    ,fieldName:document.getElementById('fieldName').value
+    ,xStart:document.getElementById('xStart').value
+    ,xEnd:document.getElementById('xEnd').value
+    ,align:document.getElementById('align').value
+    ,y:document.getElementById('y').value
+
+},function(response) {
+    var ns = {
+        Id:'(!&ns.Id!)'
+    };
+    eval('ns.data='+response);
+     var out = App3.go.local.Pages.CustomReportTable(ns);
+    $j('#tableView').html(out);
+});
+">Add</button>
+(!@-!)}(!@+!)
+</center></th></tr>
+</table>
+(!@-!)}(!@+!)
+

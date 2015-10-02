@@ -1,0 +1,382 @@
+{#ajaxTemplate2#}<div class="EditIcons" style="padding-left: 0px; width: 100%;">
+<center>
+(!@-!)
+if (typeof(dataViews.Evangelists.curRecordSet.Count) != 'undefined') {
+if (typeof(dataViews.Evangelists.curRecordSet.start) != 'undefined') {
+if (typeof(dataViews.Evangelists.curRecordSet.rPos) != 'undefined') {
+if (dataViews.Evangelists.filterActive) {
+    o.push(dataViews.Evangelists.curRecordSet.start + dataViews.Evangelists.curRecordSet.rPos + 1);
+    o.push(' av ');
+    o.push(dataViews.Evangelists.curRecordSet.filteredCount);
+} else {
+    o.push(dataViews.Evangelists.curRecordSet.start + dataViews.Evangelists.curRecordSet.rPos + 1);
+    o.push(' av ');
+    o.push(dataViews.Evangelists.curRecordSet.Count);
+}
+}
+}
+}
+(!@+!)
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Evangelists'].firstRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).prop('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'undefined',target:target});
+        }});" title="F&ouml;rsta"><span class="RecordsetFirstIcon EditIcon">&nbsp;</span></a>
+    
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Evangelists'].previousRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).prop('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'Evangelists',target:target});
+        },NoNewPage:function(){
+            $j('#Toolbar(!&ns._ViewId!)').removeClass('ajaxLoading');
+        }});" title="F&ouml;reg&aring;ende"><span class="RecordsetPreviousIcon EditIcon">&nbsp;</span></a>
+    
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Evangelists'].nextRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).prop('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'Evangelists',target:target});
+        },NoNewPage:function() {
+            $j('#Toolbar(!&ns._ViewId!)').removeClass('ajaxLoading');
+        }});" title="N&auml;sta"><span class="RecordsetNextIcon EditIcon">&nbsp;</span></a>
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Evangelists'].lastRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).prop('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'Evangelists',target:target});
+        }});" title="Sista"><span class="RecordsetLastIcon EditIcon">&nbsp;</span></a>
+    
+    <span style="padding-left: 20px;" id="Toolbar(!&ns._ViewId!)">&nbsp;</span>
+    <span class="TaskEdit4" task="Project4.Task" component="Generic409"> </span>
+<button onclick="
+/*
+jQuery('input,textarea', document.getElementById('EvangelistTab(!&ns._ViewId!)')).each(function(index,elm) {
+    var t = jQuery(elm).prop('type');
+    if (t == 'radio') {
+        jQuery(elm).removeAttr('checked');
+    } else {
+        elm.value = '';
+    }
+});
+jQuery('#Id66(!&ns._ViewId!)').removeAttr('disabled');
+document.getElementById('Id66(!&ns._ViewId!)').enabled = true;
+jQuery('#Action(!&ns._ViewId!)').data('actionName','Search').attr('title','s&ouml;k nu>>');
+*/
+dataViews['Evangelists'].clearFilter();
+App3.Navigate2('local/Pages/EvangelistSearch',{target:'AppPages'});
+" class="SearchBut ToolBut" title="Ny s&ouml;kning"><img src="img/icons/search.png"/></button>
+
+<button id="NewBut(!&ns._ViewId!)" class="NewBut" onclick="
+   $('#Id411(!&ns._ViewId!)').data('oldId',$('#Id411(!&ns._ViewId!)').val());
+ document.getElementById('Generic409(!&ns._ViewId!)').click();
+jQuery('#EvangelistTab(!&ns._ViewId!) input').each(function(index,elm) {
+    elm.value = '';
+});
+jQuery('#EvangelistTab(!&ns._ViewId!) textarea').each(function(index,elm) {
+    elm.value = '';
+});
+jQuery('#GiverId88(!&ns._ViewId!)').val('-333333');
+jQuery('#RegDate364(!&ns._ViewId!)').val(App.Today());
+jQuery('#Action(!&ns._ViewId!)').data('actionName','New').attr('title','skapa');
+" title="Ny"><img src="img/icons/new.png"/></button>
+
+<button id="CopyBut(!&ns._ViewId!)" class="CopyBut" onclick="
+    $('#Id411(!&ns._ViewId!)').data('oldId',$('#Id411(!&ns._ViewId!)').val());
+    document.getElementById('Generic409(!&ns._ViewId!)').click();
+    var s = String.fromCharCode(39)+'Evangelist.Id'+String.fromCharCode(39);
+    jQuery('input[data-fieldname='+s+']').val('');
+    jQuery('#Action(!&ns._ViewId!)').data('actionName','New').attr('title','skapa');
+" title="Kopiera"><img src="img/icons/copy.png"/></button>
+
+<button class="ChangeBut(!&ns._ViewId!) EditBut" id="Generic409(!&ns._ViewId!)" onclick="
+jQuery('input,textarea',document.getElementById('AppPages')).each(function(index,el){
+switch(el.type) {
+    case 'radio':
+        el.disabled = !el.disabled;
+        break;
+    default:
+        if (el.getAttribute('data-fieldname') == 'Evangelist.Id') {
+            //never allowed to edit the id
+        } else {
+            if ($j(el).is('.dateEdit')) {
+                el.disabled = !el.disabled;
+            } else {
+                el.readOnly = !el.readOnly;
+            }
+        }
+   }
+});
+$('.tagsinput').each(function(){
+    var id = $(this).attr('id');
+    id = id.substr(0,id.length-10);
+    $j('#'+id).interactiveTags();
+});
+if ($('#Generic409(!&ns._ViewId!)').css('opacity')==0) {
+    $('#NewBut(!&ns._ViewId!)').animate({opacity:1});
+    $('#CopyBut(!&ns._ViewId!)').animate({opacity:1});
+    $('#Generic409(!&ns._ViewId!)').animate({opacity:1});
+    $('.ToolBut').animate({opacity:1});
+    
+    $('#CancelBut(!&ns._ViewId!)').animate({opacity:0});
+    $('#Action(!&ns._ViewId!)').animate({opacity:0});
+    
+} else {
+    $('#CancelBut(!&ns._ViewId!)').animate({opacity:1});
+    $('#Action(!&ns._ViewId!)').animate({opacity:1});
+    
+    $('#NewBut(!&ns._ViewId!)').animate({opacity:0});
+    $('#CopyBut(!&ns._ViewId!)').animate({opacity:0});
+    $('#Generic409(!&ns._ViewId!)').animate({opacity:0});
+    $('.ToolBut').animate({opacity:0});
+    
+}
+" tabindex=1 title="&Auml;ndra"><img src="img/icons/change.png"/></button>
+
+
+<button id="CancelBut(!&ns._ViewId!)" class="CancelBut" style="opacity:0" onclick="
+var id = document.getElementById('Id411(!&ns._ViewId!)').value;
+if (id =='') {
+    id = $('#Id411(!&ns._ViewId!)').data('oldId');
+}
+App3.Navigate2('local/Pages/Evangelist/'+id,{target:'AppPages'}); 
+" title="Avbruta"><img src="img/icons/abort.png"/></button>
+
+<button class="SaveBut" style="opacity:0" tabindex=20 id="Action(!&ns._ViewId!)" onclick="
+var fName;
+var area = document.getElementById('EvangelistTab(!&ns._ViewId!)');
+switch(jQuery(this).data('actionName')) {
+    case 'Search':
+        dataViews['Evangelists'].clearFilter();
+        jQuery('input,textarea', area).each(function(index,elm) {
+            var v = jQuery(elm).val();
+            var t = jQuery(elm).attr('type');
+            fName = jQuery(elm).attr('data-fieldName');
+            if (t == 'radio') {
+                 if (jQuery(elm).attr('checked')) {
+                    dataViews['Evangelists'].addFilter(fName.split('.').join('|'),'*',jQuery(elm).val());
+                }
+            } else {
+                if (v != '') {
+                    if (fName) {
+                        if (jQuery(elm).hasClass('exactSearch')) {
+                            dataViews['Evangelists'].addFilter(fName.split('.').join('|'),'+',jQuery(elm).val());
+                        } else {
+                            dataViews['Evangelists'].addFilter(fName.split('.').join('|'),'*',jQuery(elm).val());
+                        }
+                    }  
+                }
+            }
+        });
+
+        dataViews['Evangelists'].firstRow({OnComplete:function() {
+        if (dataViews['Evangelists'].curRecordSet.Count > 0) {
+            var id = dataViews['Evangelists'].curRecordSet.Rows[0].Id;
+            App3.Navigate2('local/Pages/Evangelists/'+id,{target:'AppPages'}); 
+        } else {
+            alert('Ingen tr&auml;ff');
+        }
+        console.dir(dataViews['Evangelists'].curRecordSet);
+    },NoNewPage:function() {
+        alert('Ingen tr&auml;ff');
+     }
+    });
+    break;
+    case 'New':
+        var rec = {};
+        jQuery('input,textarea',area).each(function(index,elm) {
+            if (elm.value) {
+                fName = jQuery(elm).attr('data-fieldName');
+                if (fName) {
+                    fName = fName.split('.');
+                    if (fName[0] == 'Evangelist') {
+                        if (fName) {
+                            rec[fName[1]] = jQuery(elm).val();
+                        }
+                    }
+                }  
+            }
+        });
+        dataViews['Evangelists'].newRecord({
+            NewRecord:rec
+            ,OnComplete:function(response){
+                var r;
+                eval('r='+response);
+                dataViews['Evangelists'].dataChanged();
+                if (r.Status != 'Created') {
+                    alert('Save Failed');
+                } else {
+                    App3.Navigate2('local/Pages/Evangelist/' + r.NewId,{target:'AppPages',forceRead:true });
+                    //jQuery('.ChangeBut(!&ns._ViewId!)').click();
+                    //jQuery('input[data-fieldname=Evangelist.Id]').val(r['NewId']);
+                    //jQuery('#Action(!&ns._ViewId!)').data('actionName','save').attr('title','Spara');
+                    
+                }
+            }
+        });
+    break;
+    case 'Save':
+    case undefined:
+        var rec = {};
+        jQuery('input,textarea',area).each(function(index,elm) {
+                fName = jQuery(elm).attr('data-fieldName');
+                if (fName) {
+                    fName = fName.split('.');
+                    if (fName[0] == 'Evangelist') {
+                        rec[fName[1]] = jQuery(elm).val();
+                    } 
+            }
+        });
+    dataViews['Evangelists'].updateFields(rec,rec['Id'],function(response) {
+        jQuery('.ChangeBut(!&ns._ViewId!)').click();
+        console.info(response);
+    });
+    break; 
+}
+" title="Spara"><img src="img/icons/save.png"/></button>
+<div style="position:absolute"><div id="reportDropDown(!&ns._ViewId!)" class="dropDown" style="
+    position:relative;
+    left:600px;
+    width:200px;
+    display:none;
+    background: rgb(99, 99, 99);
+background: rgba(99, 99, 99, 0.9);
+">
+Inga rapporter</div>
+</div>
+<button class="ToolBut" onclick="
+$('#reportDropDown(!&ns._ViewId!)').slideToggle();
+" title="Rapport"><img width="32" height="32/" src="img/file_pdf.png"></button>
+<script>
+dataViews.CustomReports.clearFilter();
+dataViews.CustomReports.addFilter('Display','*','E,');
+dataViews.CustomReports.getList({
+    OnComplete:function(data,Recordset,DataView){
+        App3.Navigate2("local/Pages/reportListDropDown"
+            ,{navTarget:'ReportList(!&ns._ViewId!)'
+            ,target:'reportDropDown(!&ns._ViewId!)'
+            ,entityId:'(!&ns.Id!)',data:data,Recordset:Recordset,DataView:DataView
+        });
+    }
+});
+</script>
+
+<span component="Generic409" task="Project4.Task" class="TaskEdit4"> </span>
+</center>
+</div><span class="EvangelistsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="EvangelistProtoHeader">Evangelist</span> 
+
+<span class="EditIcons">    <span class="ListIcon EditIcon">
+        <a href="Pages/Evangelists" class="ajaxLink">Lista</a>
+    </span>
+</span><script>
+    document.title = $('<div/>').html("Evangelist (!&ns.data['Name']!)").text();
+</script><br/>
+(!@-!)if (ns.data) {var r= ns.data;(!@+!)<table class="EditTable" id="EvangelistTab(!&ns._ViewId!)">
+<tr><th colspan="5">Uppgifter</th></tr>
+<tr><td>Nummer</td><td><input type="text" id="Id411(!&ns._ViewId!)" class="Editable" data-fieldName="Evangelist.Id" value="(!&r['Id']||''!)"  /></td><td></td><td></td><td rowspan="7" valign="top">Noteringar:<br/><text(!&'area'!) wrap='on'  class="Editable" tabindex=16 cols="54" rows="9" id="Notes421(!&ns._ViewId!)"  data-fieldName="Evangelist.Notes">(!&r.Notes!)</text(!&'area'!)></td></tr>
+<tr><td>Namn</td><td colspan="3"><input type="text" id="Name412(!&ns._ViewId!)" class="Editable" data-fieldName="Evangelist.Name" value="(!&r['Name']||''!)" size=60 tabindex=3 /></td></tr>
+<tr><td>Omr&aring;de#:</td><td><input type="text" id="Area1417(!&ns._ViewId!)" class="Editable" data-fieldName="Evangelist.Area1" value="(!&r['Area1']||''!)" tabindex=5 /></td><td>Omr&aring;de:</td><td><input type="text" id="Area418(!&ns._ViewId!)" class="Editable" data-fieldName="Evangelist.Area" value="(!&r['Area']||''!)" tabindex=4 /></td></tr>
+<tr><td>Landskod:</td><td><input type="text" id="CountryCode420(!&ns._ViewId!)" class="Editable" data-fieldName="Evangelist.CountryCode" value="(!&r['CountryCode']||''!)" tabindex=6 /></td><td>F&ouml;dd:</td><td><input type="text" id="DOB413(!&ns._ViewId!)" class="Editable" data-fieldName="Evangelist.DOB" value="(!&r['DOB']||''!)" tabindex=7 /></td></tr>
+<tr><td><a class="ajaxLink" href="Pages/Giver/(!&r.GiverId!)">Giv.nr</a>:</td><td><input type="text" id="GiverId414(!&ns._ViewId!)" class="Editable" data-fieldName="Evangelist.GiverId" value="(!&r['GiverId']||''!)" tabindex=8 /></td><td>Inkom:</td><td><input type="text" id="TGdt419(!&ns._ViewId!)" class="Editable" data-fieldName="Evangelist.TGdt" value="(!&r['TGdt']||''!)" tabindex=9 /></td></tr>
+<tr><td>Kr/M&aring;n:</td><td><input type="text" id="Mkr416(!&ns._ViewId!)" class="Editable" data-fieldName="Evangelist.Mkr" value="(!&r['Mkr']||''!)" tabindex=12 /></td><td>Reg:</td><td><input type="text" id="RegDate647(!&ns._ViewId!)" class="Editable" data-fieldName="Evangelist.RegDate" value="(!&r['RegDate']||''!)" tabindex=13 /></td></tr>
+<tr><td>Projekt:</td><td><input type="text" id="ProjectId426(!&ns._ViewId!)" class="Editable" data-fieldName="Evangelist.ProjectId" value="(!&r['ProjectId']||''!)" tabindex=14 /></td><td>B&ouml;rjat:</td><td><input type="text" id="HelpD415(!&ns._ViewId!)" class="Editable" data-fieldName="Evangelist.HelpD" value="(!&r['HelpD']||''!)" tabindex=15 /></td></tr>
+<tr><td>Tags:</td><td><input type="text" id="Tags698(!&ns._ViewId!)" class="Editable" data-fieldName="Evangelist.Tags" value="(!&r['Tags']||''!)"  /></td><td></td><td></td><td></td></tr>
+</table>
+<script>
+$('#Tags698(!&ns._ViewId!)').tagsInput({
+   height:'20px'
+    ,width:'auto'
+   ,'defaultText':'add tag'
+   ,'removeWithBackspace' : true
+   ,'maxChars':90
+    ,interactive:false
+    ,'delimiter':','
+});
+</script>
+
+(!@-!)} else {
+    //no data retrieved yet... load it..
+    if(!ns.Id){ns.Id=ns.url.split("/").pop();}(!@+!)
+
+<script>
+dataViews.Evangelists.getRecord({
+    Id:'(!&ns.Id!)'
+    ,PK:'(!&ns.Id!)'
+    ,OnComplete:function(Record){
+        App3.Navigate2('(!&ns._fullurl!)?Id=(!&ns.Id!)',
+            {target:'(!&ns.target!)',data:Record }
+        );
+    }
+});
+</script><img src="img/ajaxLoading.gif"/>ladda...
+
+
+(!@-!)}(!@+!)
+
+<script>
+jQuery('input,textarea',document.getElementById('AppPages')).each(function(index,el){
+switch(el.type) {
+    case 'radio':
+        el.disabled = true;
+        break;
+    default:
+        if (el['data-fieldname'] == 'Evangelist.Id') {
+            //never allowed to edit the id
+        } else {
+            if ($j(el).is('.dateEdit')) {
+                el.disabled = true;
+            } else {
+                el.readOnly = true;
+            }
+        }
+   }
+});
+</script><div style="float:left;width:260px;margin-left:15px;align:top;">
+(!@-!)if(r){(!@+!)
+<div id="EvangelistActionsDetail841(!&ns._ViewId!)" style=""><img src="img/AjaxLoading.gif"/></div>
+<script>
+dataViews.EvangelistActions.clearFilter();
+dataViews.EvangelistActions.setFilter('entityId','=','(!&r.Id!)');
+dataViews.EvangelistActions.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2("local/Pages/EvangelistActions",{target:'EvangelistActionsDetail841(!&ns._ViewId!)',data:data,Recordset:Recordset,DataView:DataView,entityId:'(!&r.Id!)',entityName:'Evangelist'});}});
+</script>
+(!@-!)}(!@+!)
+
+</div><div style="float:left;width:240px;margin-left:15px;align:top;">(!@-!)if(r){(!@+!)
+<br/>
+<div id="EvangelistGiver(!&ns._ViewId!)"><img src="img/AjaxLoading2.gif"/></div>
+<script>
+dataViews.EvangelistGivers.getRecord({
+Id:'(!&r.GiverId!)'
+,PK:'(!&r.GiverId!)'
+,OnComplete:function(Record){
+App3.Navigate2('local/Pages/EvangelistGiver?Id=(!&r.GiverId!)',
+{target:'EvangelistGiver(!&ns._ViewId!)',data:Record }
+);
+}
+});
+</script>
+(!@-!)}(!@+!)</div><div style="float:left;width:360px;margin-left:15px;align:top;">(!@-!)if(ns.data) {(!@+!)<div style="float:left;">
+<div id="giverProjectStats"></div>
+</div>
+<script>
+$.get('do/giverProjectStats.php',{GiverId:'(!&r.GiverId!)'},function(resp) {
+    //$('#giverProjectStats').html(resp);
+    var dat;
+    eval("dat = "+resp);
+    App3.Navigate2("local/Pages/GiverProjectStats",{navTarget:'giverProjectStats',target:'giverProjectStats',Id:'(!&r.GiverId!)',data:dat });
+});
+</script>
+(!@-!)}(!@+!)</div>

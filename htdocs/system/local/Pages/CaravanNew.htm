@@ -1,0 +1,60 @@
+{#ajaxTemplate2#}<span class="CaravansBigIcon BigIcon TaskEdit4" task="Project4.Task" component="CaravanNew_ProtoHeader">Caravan</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/CaravanNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/Caravans" class="ajaxLink">Lista</a>
+    </span>
+</span><br/>
+
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan='2'><center><span class="TaskEdit4" task="Project4.Task" component="CaravanNew_fields">Uppgifter</span></center></th></tr>
+</thead>
+<tbody>
+
+<tr><td><label>Regnr</label>:</td><td><input id="Caravan_Regnr_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Notes</label>:</td><td><text(!&'area'!) wrap="off" cols="20" rows="10" id="Caravan_Notes_New(!&ns._ViewId!)"></text(!&'area'!)></td></tr>
+
+<tr><td><label>Status</label>:</td><td><input id="Caravan_Status_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Db</label>:</td><td><input id="Caravan_Db_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+</tbody>
+<tfoot><tr><td colspan="2"><center Task="Project4.Task" Component="CaravanNew_fields" class="TaskEdit4">
+
+<input type="button" value="L&auml;gg till" onclick="
+dataViews.Caravans.newRecord({
+NewRecord:{
+Regnr:document.getElementById('Caravan_Regnr_New(!&ns._ViewId!)').value
+,
+Notes:document.getElementById('Caravan_Notes_New(!&ns._ViewId!)').value
+,
+Status:document.getElementById('Caravan_Status_New(!&ns._ViewId!)').value
+,
+Db:document.getElementById('Caravan_Db_New(!&ns._ViewId!)').value
+
+}
+,OnComplete:function(response){
+
+//document.getElementById('NewCaravan_Name(!&ns._ViewId!)').value = '';
+//document.getElementById('NewCaravan_Name(!&ns._ViewId!)').focus();
+dataViews.Caravans.dataChanged();
+App3.Navigate2('local/Pages/Caravans',{target:'(!&ns.target!)',forceRead:true });
+
+}
+});
+"/></center>
+</td></tr></tfoot>
+</table>
+<script>
+try {
+document.getElementById('Caravan_Regnr_New(!&ns._ViewId!)').focus();
+} catch(e) {
+//no problem.
+}
+</script>
+

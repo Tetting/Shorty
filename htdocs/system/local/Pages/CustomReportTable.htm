@@ -1,0 +1,82 @@
+{#ajaxTemplate2#}<table class="EditTable">
+<tr><th colspan=8><center>data</center></th></tr>
+<tr><th>#</th>
+    <th>Typ</th>
+    <th>fält</th>
+    <th>x</th>
+    <th>xEnd</th>
+    <th>y</th>
+    <th></th>
+</tr>
+(!@-!)
+if (ns.data.length == 0) { (!@+!)
+<tr><td colspan="3"><center>Ingen element</center></td></tr>
+(!@-!)
+} else {
+    var r;
+    for(var ri=1;ri<ns.data.length;ri++) {
+        r = ns.data[ri];
+        if (r['type'] == 'text') {
+(!@+!)<tr>
+<td><a onclick="App3.Navigate2('/Pages/CustomReportDo?action=edit&id=(!&r.id!)&report=(!&ns.Id!)',{target:'ReportAction'});" class="ajaxLink linkClick">(!&r['id']!)</a></td>
+<td>(!&r['type']!)</td>
+<td>
+(!@-!)
+console.info("here");
+var tf = r['fieldName'];
+if (tf.indexOf(',') > 0) {
+    out.push(r['fieldName'].substr(0,tf.indexOf(',')));
+} else {
+    out.push(r['fieldName']);
+}
+(!@+!)</td>
+    <td>(!&r['xStart']!)</td>
+    <td>(!&r['xEnd']!)</td>
+    <td>(!&r['y']!)</td>
+    <td>
+<a onclick="App3.Navigate2('/Pages/CustomReportDo?action=up&id=(!&r.id!)&report=(!&ns.Id!)',{target:'ReportAction'});" class="ajaxLink"><img src="img/arrow_up.png"/></a>
+
+<a onclick="App3.Navigate2('/Pages/CustomReportDo?action=clone&id=(!&r.id!)&report=(!&ns.Id!)',{target:'ReportAction'});" class="ajaxLink">[ + ]</a>
+
+<a onclick="App3.Navigate2('/Pages/CustomReportDo?action=del&id=(!&r.id!)&report=(!&ns.Id!)',{target:'ReportAction'});" class="ajaxLink">[ x ]</a>
+</td>
+</tr>
+(!@-!)
+} else {
+if (r['cmdName'] == 'divider') {(!@+!)<tr><th colspan=6><center>(!&r.comment!)</center></th><th>
+
+<a onclick="App3.Navigate2('/Pages/CustomReportDo?action=up&id=(!&r.id!)&report=(!&ns.Id!)',{target:'ReportAction'});" class="ajaxLink"><img src="img/arrow_up.png"/></a>
+
+<a onclick="App3.Navigate2('/Pages/CustomReportDo?action=clone&id=(!&r.id!)&report=(!&ns.Id!)',{target:'ReportAction'});" class="ajaxLink">[ + ]</a>
+
+<a onclick="App3.Navigate2('/Pages/CustomReportDo?action=del&id=(!&r.id!)&report=(!&ns.Id!)',{target:'ReportAction'});" class="ajaxLink">[ x ]</a></td>
+</th></tr>
+
+(!@-!)
+} else {(!@+!)
+<td><a onclick="App3.Navigate2('/Pages/CustomReportDo?action=edit&id=(!&r.id!)&report=(!&ns.Id!)',{target:'ReportAction'});" class="ajaxLink linkClick">(!&r['id']!)</a></td>
+<td>(!&r['type']!)</td>
+<td>(!&r['cmdName']!)</td>
+    <td>(!&r['xStart']!)</td>
+    <td>(!&r['xEnd']!)</td>
+    <td>(!&r['y']!)</td>
+    <td>
+<a onclick="App3.Navigate2('/Pages/CustomReportDo?action=up&id=(!&r.id!)&report=(!&ns.Id!)',{target:'ReportAction'});" class="ajaxLink"><img src="img/arrow_up.png"/></a>
+
+<a onclick="App3.Navigate2('/Pages/CustomReportDo?action=clone&id=(!&r.id!)&report=(!&ns.Id!)',{target:'ReportAction'});" class="ajaxLink">[ + ]</a>
+
+<a onclick="App3.Navigate2('/Pages/CustomReportDo?action=del&id=(!&r.id!)&report=(!&ns.Id!)',{target:'ReportAction'});" class="ajaxLink">[ x ]</a></td>
+</tr>
+(!@-!)
+}
+}
+}
+}
+(!@+!)
+<tr><td colspan=7><center>
+<a onclick="App3.Navigate2('/Pages/CustomReportDo?action=editCmd&report=(!&ns.Id!)',{target:'ReportAction'});" class="ajaxLink linkClick">add cmd</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a onclick="App3.Navigate2('/Pages/CustomReportDo?action=edit&report=(!&ns.Id!)',{target:'ReportAction'});" class="ajaxLink linkClick">add text</a>
+</center></td></tr>
+
+</table>

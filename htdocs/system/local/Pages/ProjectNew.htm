@@ -1,0 +1,51 @@
+{#ajaxTemplate2#}<span class="ProjectsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="ProjectNew_ProtoHeader">Projekt</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/ProjectNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/Projects" class="ajaxLink">Lista</a>
+    </span>
+</span><script>
+    document.title = $('<div/>').html("Ny Projekt").text();
+</script><br/>
+
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan='2'><center><span class="TaskEdit4" task="Project4.Task" component="ProjectNew_fields">Uppgifter</span></center></th></tr>
+</thead>
+<tbody>
+
+<tr><td><label>Projekt</label>:</td><td><input id="Project_Project_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Notering</label>:</td><td><text(!&'area'!) wrap="On" cols="20" rows="10" id="Project_Notes_New(!&ns._ViewId!)"></text(!&'area'!)></td></tr>
+
+</tbody>
+<tfoot><tr><td colspan="2"><center Task="Project4.Task" Component="ProjectNew_fields" class="TaskEdit4">
+
+<input type="button" value="L&auml;gg till" onclick="
+dataViews.Projects.newRecord({
+NewRecord:{
+Project:document.getElementById('Project_Project_New(!&ns._ViewId!)').value
+,
+Notes:document.getElementById('Project_Notes_New(!&ns._ViewId!)').value
+
+}
+,OnComplete:function(response){
+var id;
+eval('id='+response);
+App3.Navigate2('local/Pages/Project/'+id.NewId,{target:'(!&ns.target!)',forceRead:true});
+}
+});
+"/></center>
+</td></tr></tfoot>
+</table>
+<script>
+try {
+document.getElementById('Project_Project_New(!&ns._ViewId!)').focus();
+} catch(e) {
+//no problem.
+}
+</script>
+

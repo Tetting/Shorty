@@ -1,0 +1,283 @@
+{#ajaxTemplate2#}<div class="EditIcons" style="padding-left: 0px; width: 100%;">
+<center>
+(!@-!)
+if (typeof(dataViews.Cassettes.curRecordSet.Count) != 'undefined') {
+if (typeof(dataViews.Cassettes.curRecordSet.start) != 'undefined') {
+if (typeof(dataViews.Cassettes.curRecordSet.rPos) != 'undefined') {
+if (dataViews.Cassettes.filterActive) {
+    o.push(dataViews.Cassettes.curRecordSet.start + dataViews.Cassettes.curRecordSet.rPos + 1);
+    o.push(' av ');
+    o.push(dataViews.Cassettes.curRecordSet.filteredCount);
+} else {
+    o.push(dataViews.Cassettes.curRecordSet.start + dataViews.Cassettes.curRecordSet.rPos + 1);
+    o.push(' av ');
+    o.push(dataViews.Cassettes.curRecordSet.Count);
+}
+}
+}
+}
+(!@+!)
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Cassettes'].firstRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).attr('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'undefined',target:target});
+        }});" title="F&ouml;rsta"><span class="RecordsetFirstIcon EditIcon"> </span></a>
+    
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Cassettes'].previousRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).attr('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'Cassettes',target:target});
+        },NoNewPage:function(){
+            $j('#Toolbar(!&ns._ViewId!)').removeClass('ajaxLoading');
+        }});" title="F&ouml;reg&aring;ende"><span class="RecordsetPreviousIcon EditIcon"> </span></a>
+    
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Cassettes'].nextRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).attr('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'Cassettes',target:target});
+        },NoNewPage:function() {
+            $j('#Toolbar(!&ns._ViewId!)').removeClass('ajaxLoading');
+        }});" title="N&auml;sta"><span class="RecordsetNextIcon EditIcon"> </span></a>
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Cassettes'].lastRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).attr('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'Cassettes',target:target});
+        }});" title="Sista"><span class="RecordsetLastIcon EditIcon"> </span></a>
+    
+    <span style="padding-left: 20px;" id="Toolbar(!&ns._ViewId!)"> </span>
+    <span class="TaskEdit4" task="Project4.Task" component="Generic304"> </span>
+<button onclick="
+/*
+jQuery('input,textarea', document.getElementById('CassetteTab(!&ns._ViewId!)')).each(function(index,elm) {
+    var t = jQuery(elm).attr('type');
+    if (t == 'radio') {
+        jQuery(elm).removeAttr('checked');
+    } else {
+        elm.value = '';
+    }
+});
+jQuery('#Id66(!&ns._ViewId!)').removeAttr('disabled');
+document.getElementById('Id66(!&ns._ViewId!)').enabled = true;
+jQuery('#Action(!&ns._ViewId!)').data('actionName','Search').html('s&ouml;k nu>>');
+*/
+dataViews['Cassettes'].clearFilter();
+App3.Navigate2('local/Pages/CassetteSearch',{target:'AppPages'});
+">Ny s&ouml;kning</button>
+<button class="NewBut" onclick="
+document.getElementById('Generic304(!&ns._ViewId!)').click();
+jQuery('#CassetteTab(!&ns._ViewId!) input').each(function(index,elm) {
+    elm.value = '';
+});
+jQuery('#CassetteTab(!&ns._ViewId!) textarea').each(function(index,elm) {
+    elm.value = '';
+});
+jQuery('#Action(!&ns._ViewId!)').data('actionName','New').html('skapa');
+">Ny</button>
+<button class="CopyBut" onclick="
+    document.getElementById('Generic304(!&ns._ViewId!)').click();
+    var s = String.fromCharCode(39)+'Cassette.Id'+String.fromCharCode(39);
+    jQuery('input[data-fieldname='+s+']').val('');
+    jQuery('#Action(!&ns._ViewId!)').data('actionName','New').html('skapa');
+">Duplicate</button>
+<button class="ChangeBut(!&ns._ViewId!)" id="Generic304(!&ns._ViewId!)" onclick="
+jQuery('input,textarea',document.getElementById('AppPages')).each(function(index,el){
+switch(el.type) {
+    case 'radio':
+        el.disabled = !el.disabled;
+        break;
+    default:
+        if (el.getAttribute('data-fieldname') == 'Cassette.Id') {
+            //never allowed to edit the id
+        } else {
+            if ($j(el).is('.dateEdit')) {
+                el.disabled = !el.disabled;
+            } else {
+                el.readOnly = !el.readOnly;
+            }
+        }
+   }
+});
+
+">&Auml;ndra</button>
+<center>
+</div><span class="CassettesBigIcon BigIcon TaskEdit4" task="Project4.Task" component="CassetteProtoHeader">Media</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/CassetteNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/Cassettes" class="ajaxLink">Lista</a>
+    </span>
+</span><br/>
+(!@-!)if (ns.data) {var r= ns.data;(!@+!)<table class="EditTable" id="ContactTab(!&ns._ViewId!)">
+<thead><tr><th colspan="7">Uppgifter</th></tr></thead>
+<tr>
+<td style="text-align:right">ID:</td><td><input type="text" id="Nr298(!&ns._ViewId!)" class="Editable" data-fieldName="Cassette.Nr" value="(!&r['Nr']||''!)"  /></td>
+<td style="text-align:right">Nr:</td><td><input type="text" id="Id297(!&ns._ViewId!)" class="Editable" data-fieldName="Cassette.Id" value="(!&r['Id']||''!)" readOnly=true /></td>
+<td rowspan="6"></td>
+</tr>
+<tr>
+<td style="text-align:right">Namn:</td><td><input type="text" id="Speaker299(!&ns._ViewId!)" class="Editable" data-fieldName="Cassette.Speaker" value="(!&r['Speaker']||''!)"  /></td>
+<td style="text-align:right">&Auml;mne:</td><td><input type="text" id="Subject300(!&ns._ViewId!)" class="Editable" data-fieldName="Cassette.Subject" value="(!&r['Subject']||''!)"  /></td>
+</tr>
+<tr>
+<td style="text-align:right">Datum:</td><td>(!@-!)if(r.Date == '0000-00-00') {r.Date = '';}
+(!@+!)<input class="Editable dateEdit" id="Date303(!&ns._ViewId!)" type="text"  onchange="EditInPlace4.quickSave('Cassettes.Date','(!&r.Id!)',this.value)"  data-fieldName="Cassette.Date" value="(!&r.Date!)" size="12"/>
+<script>$j('#Date303(!&ns._ViewId!)').date_input();</script>
+</td>
+<td style="text-align:right">Status:</td><td><input type="text" id="Status302(!&ns._ViewId!)" class="Editable" data-fieldName="Cassette.Status" value="(!&r['Status']||''!)"  /></td>
+</tr>
+<tr>
+<td style="text-align:right">Extra:</td><td><input type="text" id="Extra301(!&ns._ViewId!)" class="Editable" data-fieldName="Cassette.Extra" value="(!&r['Extra']||''!)"  /></td>
+<td style="text-align:right"></td><td></td>
+</tr>
+</table>
+
+(!@-!)} else {
+    //no data retrieved yet... load it..
+    if(!ns.Id){ns.Id=ns.url.split("/").pop();}(!@+!)
+
+<script>
+dataViews.Cassettes.getRecord({
+    Id:'(!&ns.Id!)'
+    ,PK:'(!&ns.Id!)'
+    ,OnComplete:function(Record){
+        App3.Navigate2('(!&ns._fullurl!)?Id=(!&ns.Id!)',
+            {target:'(!&ns.target!)',data:Record }
+        );
+    }
+});
+</script><img src="img/ajaxLoading.gif"/>ladda...
+
+
+(!@-!)}(!@+!)
+
+<script>
+jQuery('input,textarea',document.getElementById('AppPages')).each(function(index,el){
+switch(el.type) {
+    case 'radio':
+        el.disabled = true;
+        break;
+    default:
+        if (el.getAttribute('data-fieldname') == 'undefined.Id') {
+            //never allowed to edit the id
+        } else {
+            if ($j(el).is('.dateEdit')) {
+                el.disabled = true;
+            } else {
+                el.readOnly = true;
+            }
+        }
+   }
+});
+</script><center>
+<button class="CancelBut" onclick="
+var id = document.getElementById('Id297(!&ns._ViewId!)').value;
+App3.Navigate2('local/Pages/Cassette/'+id,{target:'AppPages'}); 
+">Avbruta</button>
+
+<button class="SaveBut" id="Action(!&ns._ViewId!)" onclick="
+var fName;
+var area = document.getElementById('CassetteTab(!&ns._ViewId!)');
+switch(jQuery(this).data('actionName')) {
+    case 'Search':
+        dataViews['Cassettes'].clearFilter();
+        jQuery('input,textarea', area).each(function(index,elm) {
+            var v = jQuery(elm).val();
+            var t = jQuery(elm).attr('type');
+            fName = jQuery(elm).attr('data-fieldName');
+            if (t == 'radio') {
+                 if (jQuery(elm).attr('checked')) {
+                    dataViews['Cassettes'].addFilter(fName.split('.').join('|'),'*',jQuery(elm).val());
+                }
+            } else {
+                if (v != '') {
+                    if (fName) {
+                        dataViews['Cassettes'].addFilter(fName.split('.').join('|'),'*',jQuery(elm).val());
+                    }  
+                }
+            }
+        });
+
+        dataViews['Cassettes'].firstRow({OnComplete:function() {
+        if (dataViews['Cassettes'].curRecordSet.Count > 0) {
+            var id = dataViews['Cassettes'].curRecordSet.Rows[0].Id;
+            App3.Navigate2('local/Pages/Cassettes/'+id,{target:'AppPages'}); 
+        } else {
+            alert('Ingen tr&auml;ff');
+        }
+        console.dir(dataViews['Cassettes'].curRecordSet);
+    },NoNewPage:function() {
+        alert('Ingen tr&auml;ff');
+     }
+    });
+    break;
+    case 'New':
+        var rec = {};
+        jQuery('input,textarea',area).each(function(index,elm) {
+            if (elm.value) {
+                fName = jQuery(elm).attr('data-fieldName');
+                if (fName) {
+                    fName = fName.split('.');
+                    if (fName[0] == 'Cassette') {
+                        if (fName) {
+                            rec[fName[1]] = jQuery(elm).val();
+                        }
+                    }
+                }  
+            }
+        });
+        dataViews['Cassettes'].newRecord({
+            NewRecord:rec
+            ,OnComplete:function(response){
+                var r;
+                eval('r='+response);
+                dataViews['Cassettes'].dataChanged();
+                if (r.Status != 'Created') {
+                    alert('Save Failed');
+                } else {
+                    App3.Navigate2('local/Pages/Cassette/' + r.NewId,{target:'AppPages',forceRead:true });
+                    //jQuery('.ChangeBut(!&ns._ViewId!)').click();
+                    //jQuery('input[data-fieldname=Cassette.Id]').val(r['NewId']);
+                    //jQuery('#Action(!&ns._ViewId!)').data('actionName','save').html('Spara');
+                    
+                }
+            }
+        });
+    break;
+    case 'Save':
+    case undefined:
+        var rec = {};
+        jQuery('input,textarea',area).each(function(index,elm) {
+                fName = jQuery(elm).attr('data-fieldName');
+                if (fName) {
+                    fName = fName.split('.');
+                    if (fName[0] == 'Cassette') {
+                        rec[fName[1]] = jQuery(elm).val();
+                    } 
+            }
+        });
+    dataViews['Cassettes'].updateFields(rec,rec['Id'],function(response) {
+        console.info(response);
+    });
+    break; 
+}
+">Spara</button>
+<span component="Generic306" task="Project4.Task" class="TaskEdit4"> </span>
+</center>

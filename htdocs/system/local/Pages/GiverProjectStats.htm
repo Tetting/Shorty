@@ -1,0 +1,80 @@
+{#ajaxTemplate2#}
+<span class='NewIcon EditIcon' style="margin-left:50px;">
+        <a class='ajaxLink' href='Pages/GivProjNew?GiverId=(!&ns.Id!)' target='giverProjectStats'>Nytt Givarprojekt</a>
+    </span>
+<span class="EditIcon" style="float:right;margin-right:60px;height:12px;">
+<a onclick="
+dataViews.GivProjs.clearFilter();
+dataViews.GivProjs.addFilter('GiverId','$','(!&ns.Id!)');
+dataViews.GivProjs.getList({
+    OnComplete:function(data,Recordset,DataView){
+
+        
+App3.Navigate2('local/Pages/GivProjs?GiverId=(!&ns.Id!)',{navTarget:'AppPages',target:'AppPages',data:data,Recordset:Recordset,DataView:DataView
+,GiverId:'(!&ns.Id!)' });
+    }
+}); 
+" ><img src="img/multiple.png"> Ut&ouml;ka</a>
+</span>
+
+<table class='ListTable'>
+<tr>
+<th>#</th>
+<th>Projekt</th>
+<th>Kr/m&aring;n</th>
+<th>B&ouml;rjat</th>
+<th>Senaste</th><th>12 m&aring;n tot</th></tr>
+(!@-!)
+var r;
+if (ns.data.length == 0) {(!@+!)
+<tr><td colspan=6><center>Ingen</center></td></tr>
+(!@-!)
+} else {
+for(var ri=0;ri<ns.data.length;ri++) {
+r = ns.data[ri];
+if (r['KrMon'] == 0) {
+    r['KrMon'] = '';
+}
+(!@+!)
+<tr >
+<td>
+(!@-!)if (r['Id'] && !r['multiple']){(!@+!)
+<a class="ajaxLink" href="
+Pages/GivProjPromisesMonthly/(!&r['Id']!)?GiverId=(!&ns.Id!)">#</a>
+(!@-!)} else {
+    if (r['multiple']) {(!@+!)
+<a class="linkClick" onclick="
+dataViews.GivProjs.clearFilter();
+dataViews.GivProjs.addFilter('GiverId','$','(!&ns.Id!)');
+dataViews.GivProjs.getList({
+    OnComplete:function(data,Recordset,DataView){
+
+        
+App3.Navigate2('local/Pages/GivProjs',{navTarget:'AppPages',target:'AppPages',data:data,Recordset:Recordset,DataView:DataView
+ });
+    }
+}); 
+" ><img src="img/multiple.png"/></a>
+(!@-!)
+}
+}(!@+!)</td>
+<td ><a class="ajaxLink" target="AppPages" href="Pages/Project/(!&r['ProjectId']!)">(!&r['ProjectId']!)</a></td>
+<td>(!@-!)out.push(dataConvert.toSEK(r['KrMon']))(!@+!)</td>
+<td>(!&r['StartDt']!)</td>
+<td>(!&r['Senast']!)</td>
+<td>(!@-!)out.push(dataConvert.toSEK(r['tot']))(!@+!)</td>
+</tr>
+(!@-!)
+}
+}
+(!@+!)
+<!--<tr><th colspan=6><center><button onclick="
+dataViews.GivProjs.clearFilter();
+dataViews.GivProjs.addFilter('GiverId','$','(!&ns.Id!)');
+dataViews.GivProjs.getList({
+    OnComplete:function(data,Recordset,DataView){
+        App3.Navigate2('local/Pages/GivProjs',{navTarget:'AppPages',target:'AppPages',data:data,Recordset:Recordset,DataView:DataView });
+    }
+}); 
+">Ut&ouml;ka</button></center></td></tr>-->
+</table>

@@ -1,0 +1,124 @@
+{#ajaxTemplate2#}<span class="CaravansBigIcon BigIcon TaskEdit4" task="Project4.Task" component="protoHeader613">Husvagn</span> 
+
+<span class="EditIcons">    <span class="ListIcon EditIcon">
+        <a href="Pages/Caravans" class="ajaxLink">Lista</a>
+    </span>
+</span><script>
+    document.title = $('<div/>').html("Husvagn s&ouml;k").text();
+</script><br/>
+<table class="EditTable" id="CaravanTab(!&ns._ViewId!)">
+<tr><th colspan="5">Uppgifter</th></tr>
+<tr><td>Nummer</td><td><input id="search_Nr618(!&ns._ViewId!)" type="text" tabindex=3 value="(!@-!)out.push(dataViews.Caravans.getFilter('Nr','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td>M&auml;rke</td><td><input id="search_Make518(!&ns._ViewId!)" type="text" tabindex=11 value="(!@-!)out.push(dataViews.Caravans.getFilter('Make','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td rowspan="7" valign="top">Utrustning:<br/><text(!&'area'!) wrap="On" cols="56" rows="6" id="search_Equipment525(!&ns._ViewId!)" tabindex=18>(!@-!)out.push(dataViews.Caravans.getFilter('Equipment','*'));(!@+!)</text(!&'area'!)></td></tr>
+<tr><td>RegNr</td><td><input id="search_Regnr514(!&ns._ViewId!)" type="text" tabindex=4 value="(!@-!)out.push(dataViews.Caravans.getFilter('Regnr','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td>&Aring;rsmodel</td><td><input id="search_Year616(!&ns._ViewId!)" type="text" tabindex=12 value="(!@-!)out.push(dataViews.Caravans.getFilter('Year','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td></tr>
+<tr><td>&Auml;gareNamn:</td><td><input id="search_OwnerName519(!&ns._ViewId!)" type="text" tabindex=5 value="(!@-!)out.push(dataViews.Caravans.getFilter('OwnerName','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td>&Auml;garePostNr:</td><td><input id="search_OwnerPostCode521(!&ns._ViewId!)" type="text" tabindex=13 value="(!@-!)out.push(dataViews.Caravans.getFilter('OwnerPostCode','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td></tr>
+<tr><td>&Auml;gareAdres:</td><td><input id="search_OwnerAddress520(!&ns._ViewId!)" type="text" tabindex=6 value="(!@-!)out.push(dataViews.Caravans.getFilter('OwnerAddress','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td>&Auml;garePost:</td><td><input id="search_OwnerPostTown522(!&ns._ViewId!)" type="text" tabindex=14 value="(!@-!)out.push(dataViews.Caravans.getFilter('OwnerPostTown','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td></tr>
+<tr><td>Tel</td><td><input id="search_Tel523(!&ns._ViewId!)" type="text" tabindex=7 value="(!@-!)out.push(dataViews.Caravans.getFilter('Tel','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td>Placering:</td><td><input id="search_Location526(!&ns._ViewId!)" type="text" tabindex=15 value="(!@-!)out.push(dataViews.Caravans.getFilter('Location','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td></tr>
+<tr><td>Pris:</td><td><input id="search_Price524(!&ns._ViewId!)" type="text" tabindex=8 value="(!@-!)out.push(dataViews.Caravans.getFilter('Price','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td>Bekr&auml;ftSki</td><td><input id="search_ConfirmDate529(!&ns._ViewId!)" type="text" tabindex=16 value="(!@-!)out.push(dataViews.Caravans.getFilter('ConfirmDate','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td></tr>
+<tr><td>Totalpris:</td><td><input id="search_TotalPrice617(!&ns._ViewId!)" type="text" tabindex=9 value="(!@-!)out.push(dataViews.Caravans.getFilter('TotalPrice','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td>UthyrdTill:</td><td><input id="search_HiredBy527(!&ns._ViewId!)" type="text" tabindex=17 value="(!@-!)out.push(dataViews.Caravans.getFilter('HiredBy','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td></tr>
+<tr><td><a class="ajaxLink" href="Pages/Giver/(!&r.GivNr!)">Giv.nr</a>:</td><td><input id="search_GivNr528(!&ns._ViewId!)" type="text" tabindex=10 value="(!@-!)out.push(dataViews.Caravans.getFilter('GivNr','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td>#</td><td><input id="search_Id513(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Caravans.getFilter('Id','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td></td></tr>
+</table>
+<center>
+<button class="CancelBut" id="clear(!&ns._ViewId!)" onclick="
+dataViews.Caravans.clearFilter();
+
+                jQuery('#search_Id513(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Regnr514(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Notes515(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Status516(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Db517(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Make518(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_OwnerName519(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_OwnerAddress520(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_OwnerPostCode521(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_OwnerPostTown522(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Tel523(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Price524(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Equipment525(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Location526(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_HiredBy527(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_GivNr528(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_ConfirmDate529(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Year616(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_TotalPrice617(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Nr618(!&ns._ViewId!)').val('');
+            
+//App3.Navigate2('local/Pages/Caravan/'+id,{target:'AppPages'});
+">Rensa</button>
+|
+<input class="SearchBut" type="button" id="doSearch(!&ns._ViewId!)" tabindex=19 value="Sök"
+ onclick="
+dataViews.Caravans.clearFilter();
+var elm;
+             dataViews.Caravans.addFilter('Id','$',jQuery('#search_Id513(!&ns._ViewId!)').val());
+            
+             dataViews.Caravans.addFilter('Regnr','*',jQuery('#search_Regnr514(!&ns._ViewId!)').val());
+            
+             dataViews.Caravans.addFilter('Notes','*',jQuery('#search_Notes515(!&ns._ViewId!)').val());
+            
+             dataViews.Caravans.addFilter('Status','*',jQuery('#search_Status516(!&ns._ViewId!)').val());
+            
+             dataViews.Caravans.addFilter('Db','*',jQuery('#search_Db517(!&ns._ViewId!)').val());
+            
+             dataViews.Caravans.addFilter('Make','*',jQuery('#search_Make518(!&ns._ViewId!)').val());
+            
+             dataViews.Caravans.addFilter('OwnerName','*',jQuery('#search_OwnerName519(!&ns._ViewId!)').val());
+            
+             dataViews.Caravans.addFilter('OwnerAddress','*',jQuery('#search_OwnerAddress520(!&ns._ViewId!)').val());
+            
+             dataViews.Caravans.addFilter('OwnerPostCode','*',jQuery('#search_OwnerPostCode521(!&ns._ViewId!)').val());
+            
+             dataViews.Caravans.addFilter('OwnerPostTown','*',jQuery('#search_OwnerPostTown522(!&ns._ViewId!)').val());
+            
+             dataViews.Caravans.addFilter('Tel','*',jQuery('#search_Tel523(!&ns._ViewId!)').val());
+            
+             dataViews.Caravans.addFilter('Price','*',jQuery('#search_Price524(!&ns._ViewId!)').val());
+            
+             dataViews.Caravans.addFilter('Equipment','*',jQuery('#search_Equipment525(!&ns._ViewId!)').val());
+            
+             dataViews.Caravans.addFilter('Location','*',jQuery('#search_Location526(!&ns._ViewId!)').val());
+            
+             dataViews.Caravans.addFilter('HiredBy','*',jQuery('#search_HiredBy527(!&ns._ViewId!)').val());
+            
+             dataViews.Caravans.addFilter('GivNr','*',jQuery('#search_GivNr528(!&ns._ViewId!)').val());
+            
+             dataViews.Caravans.addFilter('ConfirmDate','*',jQuery('#search_ConfirmDate529(!&ns._ViewId!)').val());
+            
+             dataViews.Caravans.addFilter('Year','*',jQuery('#search_Year616(!&ns._ViewId!)').val());
+            
+             dataViews.Caravans.addFilter('TotalPrice','*',jQuery('#search_TotalPrice617(!&ns._ViewId!)').val());
+            
+             dataViews.Caravans.addFilter('Nr','*',jQuery('#search_Nr618(!&ns._ViewId!)').val());
+            
+dataViews.Caravans.firstRow({OnComplete:function() {
+    if (dataViews.Caravans.curRecordSet.Hits > 0) {
+        var id = dataViews.Caravans.curRecordSet.Rows[0]['Id'];
+        App3.Navigate2('local/Pages/Caravan/'+id,{target:'AppPages'});
+    } else {
+        alert('Ingen träff');
+     }
+},NoNewPage:function() {
+        alert('Ingen träff');
+     }});
+"/></center>
+
+
+

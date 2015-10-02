@@ -1,0 +1,27 @@
+h2 { color:green}
+.page {
+	width:100%;
+}
+.header {
+	border-bottom:1px solid black;
+	width:100%;
+}
+table.data {
+	border-collapse:collapse;
+font-size:8pt;
+margin-bottom:2em;
+margin-top:2em;
+width:100%;
+border:1px solid black;
+}
+table.data > tbody > tr > th {
+border-bottom:1px solid black;
+}
+.even td{
+	background-color:#F6F6F6;
+	border-bottom:0.9px solid #DDDDDD;
+}
+.odd td {
+	background-color:transparent;
+	border-bottom:0.9px solid #DDDDDD;
+}

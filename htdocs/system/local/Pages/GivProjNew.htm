@@ -1,0 +1,103 @@
+{#ajaxTemplate2#}<span class="GivProjsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="GivProjNew_ProtoHeader">G&aring;vor</span> 
+
+<span class="EditIcons"></span><br/>
+<span class="EditIcons">
+    <span class="ListIcon EditIcon">
+        <a class="ajaxLink" target="AppPages" href="/Pages/Giver/(!&ns.GiverId!)">Lista</a>
+    </span>
+</span>
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan='2'><center><span class="TaskEdit4" task="Project4.Task" component="GivProjNew_fields">Uppgifter</span></center></th></tr>
+</thead>
+<tbody>
+
+<tr><td><label>Givare</label>:</td><td><input id="GivProj_GiverId_New(!&ns._ViewId!)" type="text"  value="(!&ns.GiverId!)"/></td></tr>
+
+<tr><td><label>B&ouml;rjat</label>:</td><td><input id="GivProj_StartDt_New(!&ns._ViewId!)" type="text" value=""/>
+<script>$j('#GivProj_StartDt_New(!&ns._ViewId!)').date_input();</script>
+</td></tr>
+
+<tr><td><label>Kr/m&aring;n</label>:</td><td><input id="GivProj_KrMon_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Projekt#</label>:</td><td><input id="GivProj_ProjectId_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+</tbody>
+
+
+<script>
+try {
+document.getElementById('GivProj_GiverId_New(!&ns._ViewId!)').focus();
+} catch(e) {
+//no problem.
+}
+</script>
+<tr><td>Projekt Typ:</td><td><select id="ProjectType(!&ns._ViewId!)">
+<option>Vanlig</option>
+<option (!@-!)if (ns['typ']&&ns['typ']=='Fadderbarn'){o.push('selected');}(!@+!)>Fadderbarn</option>
+<option (!@-!)if (ns['typ']&&ns['typ']=='Evangelist'){o.push('selected');}(!@+!)>Evangelist</option>
+</select></td></tr>
+<tr><td>Fadderbarn Nr/Evangelist Nr</td><td><input type="text" id="ProjectTypeId(!&ns._ViewId!)"/></td></tr>
+<tr><td colspan=2><center><button onclick="
+var gId = '(!&ns.GiverId!)';
+if (!gId) gId = document.getElementById('GivProj_GiverId_New(!&ns._ViewId!)').value;
+var nbr;
+var params;
+if (document.getElementById('ProjectType(!&ns._ViewId!)').value == 'Vanlig') {
+    nbr = document.getElementById('GivProj_ProjectId_New(!&ns._ViewId!)').value;
+    params = {Id:nbr,type:document.getElementById('ProjectType(!&ns._ViewId!)').value};
+} else {
+    nbr = document.getElementById('ProjectTypeId(!&ns._ViewId!)').value;
+    params = {Id:nbr,Project:document.getElementById('GivProj_ProjectId_New(!&ns._ViewId!)').value,type:document.getElementById('ProjectType(!&ns._ViewId!)').value};
+}               
+$.post('do/lookupId.php',params,function(response) {
+switch(response) {
+    case 'Inaktiv':
+        if (document.getElementById('ProjectType(!&ns._ViewId!)').value == 'Vanlig') {
+            alert('Projekt:'+nbr+' Inaktiv!');
+        } else {
+            alert(document.getElementById('ProjectType(!&ns._ViewId!)').value+':'+nbr+' Inaktiv!');
+        }
+    break;
+    case 'InaktivProjekt':
+        alert('Projekt:'+document.getElementById('GivProj_ProjectId_New(!&ns._ViewId!)').value+' Inaktiv!');
+    break;
+    case 'notFound':
+        alert(document.getElementById('ProjectType(!&ns._ViewId!)').value+':'+nbr+' hittades inte');
+    break;
+    default:
+         var barnId = response;
+ dataViews.GivProjs.newRecord({ 
+    NewRecord:{ 
+        GiverId:document.getElementById('GivProj_GiverId_New(!&ns._ViewId!)').value
+        ,StartDt:document.getElementById('GivProj_StartDt_New(!&ns._ViewId!)').value 
+        ,KrMon:document.getElementById('GivProj_KrMon_New(!&ns._ViewId!)').value.replace(',','.')
+        ,ProjectId:document.getElementById('GivProj_ProjectId_New(!&ns._ViewId!)').value  
+     },OnComplete:function(response){  
+        //document.getElementById('NewGivProj_Name181').value = ''; 
+        //document.getElementById('NewGivProj_Name181').focus(); 
+        dataViews.GivProjs.dataChanged(); 
+        switch(document.getElementById('ProjectType(!&ns._ViewId!)').value) {
+            case 'Fadderbarn':
+            case 'Evangelist':
+                 $.post('do/updateGiver.php',{
+                    type:document.getElementById('ProjectType(!&ns._ViewId!)').value
+                    ,giverId:gId
+                    ,typeId:barnId
+                    ,StartDt:document.getElementById('GivProj_StartDt_New(!&ns._ViewId!)').value 
+                   ,KrMon:document.getElementById('GivProj_KrMon_New(!&ns._ViewId!)').value
+                },function(response) {
+                    App3.Navigate2('local/Pages/Giver/'+gId,{target:'AppPages',forceRead:true });  
+                });
+            break;
+            default:
+                 App3.Navigate2('local/Pages/Giver/'+gId,{target:'AppPages',forceRead:true });  
+            break;
+        }
+    } 
+}); 
+}
+});
+">L&auml;gg till</button></center></td></tr>
+</table>

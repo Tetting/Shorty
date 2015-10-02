@@ -1,0 +1,165 @@
+{#ajaxTemplate2#}<span class="CaravansBigIcon BigIcon TaskEdit4" task="Project4.Task" component="Caravans_ProtoHeader">Husvagn</span> 
+
+<span class="EditIcons">    <span class="ListIcon EditIcon">
+        <a href="Pages/Caravans" class="ajaxLink">Lista</a>
+    </span>
+</span><script>
+    document.title = $('<div/>').html("Husvagnlista").text();
+</script><br/>
+
+(!@-!)
+if ((ns.data)&&(!ns['forceRead'])) {(!@+!)
+
+<span class="EditIcons"><span class="TaskEdit4" Task="Project4.Task" Component="CaravanList_fields"> </span>
+(!@-!)
+if (ns.Recordset) {
+if (ns.Recordset.Hits ==0) {
+out.push('<i>0 Poster');
+} else {
+out.push('<i>Post '+(ns.Recordset.start+1)+' till '+(ns.Recordset.Hits+ns.Recordset.start));
+}
+if (ns.Recordset.Count) {
+if ((ns.DataView)&&(ns.DataView.filterActive==true)) {
+//display filtered count..
+out.push(' av '+ns.Recordset.filteredCount);
+} else {
+out.push(' av '+ns.Recordset.Count);
+}
+}
+out.push('</i>');
+}
+(!@+!)
+<a title="Ta bort filter" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.Caravans.clearFilter();dataViews.Caravans.firstPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetClearFilterIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="F&ouml;rsta" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.Caravans.firstPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetFirstIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="F&ouml;reg&aring;nde" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.Caravans.previousPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetPreviousIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="N&auml;sta" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.Caravans.nextPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetNextIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="Sista" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.Caravans.lastPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetLastIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="H&auml;mta alla" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.Caravans.getAllRows({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetAllIcon EditIcon">&nb(!&'sp'!);</span></a>
+<input type="button" style="display:none" id="Filter_(!&ns._ViewId!)" onclick="
+dataViews.Caravans.clearFilter();
+
+dataViews.Caravans.addFilter('Nr','*',document.getElementById('Filter_Nr622(!&ns._ViewId!)').value);
+dataViews.Caravans.addFilter('Regnr','*',document.getElementById('Filter_Caravan_Regnr_List(!&ns._ViewId!)').value);
+dataViews.Caravans.addFilter('Year','*',document.getElementById('Filter_Year620(!&ns._ViewId!)').value);
+dataViews.Caravans.addFilter('OwnerName','*',document.getElementById('Filter_OwnerName500(!&ns._ViewId!)').value);
+dataViews.Caravans.addFilter('OwnerPostCode','*',document.getElementById('Filter_OwnerPostCode502(!&ns._ViewId!)').value);
+dataViews.Caravans.addFilter('OwnerPostTown','*',document.getElementById('Filter_OwnerPostTown503(!&ns._ViewId!)').value);
+dataViews.Caravans.addFilter('Tel','*',document.getElementById('Filter_Tel504(!&ns._ViewId!)').value);
+dataViews.Caravans.addFilter('Price','*',document.getElementById('Filter_Price505(!&ns._ViewId!)').value);
+dataViews.Caravans.addFilter('ConfirmDate','*',document.getElementById('Filter_ConfirmDate510(!&ns._ViewId!)').value);
+dataViews.Caravans.addFilter('Status','*',document.getElementById('Filter_Caravan_Status_List(!&ns._ViewId!)').value);
+
+dataViews.Caravans.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});
+"/>
+<span id="Prog(!&ns._ViewId!)"></span>
+</span>
+
+<table class="ListTable" ><tr>
+
+<th width="2" class="Col_Nr622"><a class="SortColumn" onclick="
+dataViews.Caravans.setSort('Nr');
+dataViews.Caravans.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Nr</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Nr622"> </span></th>
+
+<th width="5" class="Col_Caravan_Regnr_List"><a class="SortColumn" onclick="
+dataViews.Caravans.setSort('Regnr');
+dataViews.Caravans.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Regnr</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Caravan_Regnr_List"> </span></th>
+
+<th width="2" class="Col_Year620"><a class="SortColumn" onclick="
+dataViews.Caravans.setSort('Year');
+dataViews.Caravans.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>&Aring;rsmodel</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Year620"> </span></th>
+
+<th width="" class="Col_OwnerName500"><a class="SortColumn" onclick="
+dataViews.Caravans.setSort('OwnerName');
+dataViews.Caravans.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>&Auml;garenamn</u></a><span class="TaskEdit4" Task="Project4.Task" Component="OwnerName500"> </span></th>
+
+<th width="" class="Col_OwnerPostCode502"><a class="SortColumn" onclick="
+dataViews.Caravans.setSort('OwnerPostCode');
+dataViews.Caravans.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>&Auml;garepostnr</u></a><span class="TaskEdit4" Task="Project4.Task" Component="OwnerPostCode502"> </span></th>
+
+<th width="" class="Col_OwnerPostTown503"><a class="SortColumn" onclick="
+dataViews.Caravans.setSort('OwnerPostTown');
+dataViews.Caravans.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>&Auml;garepost</u></a><span class="TaskEdit4" Task="Project4.Task" Component="OwnerPostTown503"> </span></th>
+
+<th width="5" class="Col_Tel504"><a class="SortColumn" onclick="
+dataViews.Caravans.setSort('Tel');
+dataViews.Caravans.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Tel</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Tel504"> </span></th>
+
+<th width="5" class="Col_Price505"><a class="SortColumn" onclick="
+dataViews.Caravans.setSort('Price');
+dataViews.Caravans.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Pris</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Price505"> </span></th>
+
+<th width="" class="Col_ConfirmDate510"><a class="SortColumn" onclick="
+dataViews.Caravans.setSort('ConfirmDate');
+dataViews.Caravans.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Bekr&auml;ftSki</u></a><span class="TaskEdit4" Task="Project4.Task" Component="ConfirmDate510"> </span></th>
+
+<th width="" class="Col_Caravan_Status_List"><a class="SortColumn" onclick="
+dataViews.Caravans.setSort('Status');
+dataViews.Caravans.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Status</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Caravan_Status_List"> </span></th>
+
+</tr><tr>
+
+<td><input id="Filter_Nr622(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Caravans.getFilter('Nr','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_Caravan_Regnr_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Caravans.getFilter('Regnr','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_Year620(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Caravans.getFilter('Year','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_OwnerName500(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Caravans.getFilter('OwnerName','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_OwnerPostCode502(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Caravans.getFilter('OwnerPostCode','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_OwnerPostTown503(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Caravans.getFilter('OwnerPostTown','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_Tel504(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Caravans.getFilter('Tel','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_Price505(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Caravans.getFilter('Price','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_ConfirmDate510(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Caravans.getFilter('ConfirmDate','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_Caravan_Status_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Caravans.getFilter('Status','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+</tr>
+(!@-!)
+var r;
+
+for(var ri=0;ri<ns.data.length;ri++) {
+r = ns.data[ri];
+
+(!@+!)
+<tr >
+
+<td ><a class=ajaxLink href=Pages/Caravan/(!&r.Id!)>(!&r.Nr!)</a></td>
+
+<td >(!&r['Regnr']!)</td>
+
+<td >(!&r['Year']!)</td>
+
+<td ><a class=ajaxLink href=Pages/Caravan/(!&r.Id!)>(!&r.OwnerName!)</a></td>
+
+<td >(!&r['OwnerPostCode']!)</td>
+
+<td >(!&r['OwnerPostTown']!)</td>
+
+<td >(!&r['Tel']!)</td>
+
+<td >(!&r['Price']!)</td>
+
+<td >(!&r['ConfirmDate']!)</td>
+
+<td >(!&r['Status']!)</td>
+
+</tr>
+(!@-!)}
+if (ns.data.length == 0) {//no rows code.(!@+!)
+<tr><td colspan="20"><center>Ingen</center></td></tr>
+(!@-!) } (!@+!)
+
+</table>
+(!@-!)} else {
+//no data retrieved yet... load it..
+(!@+!)<script>
+dataViews.Caravans.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2("(!&ns._fullurl!)",{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});
+
+</script><img src="img/ajaxLoading.gif"/>ladda...
+(!@-!)}(!@+!)
+

@@ -1,0 +1,54 @@
+{#ajaxTemplate2#}<span class="FadderbarnActionsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="FadderbarnActionProtoHeader">Handling</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/FadderbarnActionNew?entityId=(!&ns.entityId!)" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/FadderbarnActions?entityId=(!&ns.entityId!)" class="ajaxLink">Lista</a>
+    </span>
+</span><br/>
+
+(!@-!)if (ns.data) {
+var r= ns.data;
+(!@+!)
+
+<span class="EditIcon DeleteIcon" style="float:right">
+    <a onclick="dataViews.FadderbarnActions.deleteRecord({Id:'(!&r.id!)',PK:'(!&r.id!)',OnComplete:function(){App3.Navigate2('http://local/Pages/FadderbarnActions',{target:'(!&ns.target!)' });}});">Ta Bort</a>
+</span>
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan="2"><span class="TaskEdit4" Task="Project4.Task" Component="FadderbarnActionEdit_fields">Uppgifter</span></th></tr>
+    <col /><col />
+
+    <tr><td><label>#:</label></td><td>(!&r.id!)
+</td>
+
+    <tr><td><label>Handelse:</label></td><td><input type="text" id="FadderbarnAction_actionName_Edit(!&ns._ViewId!)" class="Editable" data-fieldName="FadderbarnAction.actionName" value="(!&r['actionName']||''!)"  /></td>
+
+    <tr><td><label>Datum:</label></td><td>(!@-!)if(r.date == '0000-00-00') {r.date = '';}
+(!@+!)<input class="Editable dateEdit" id="FadderbarnAction_date_Edit(!&ns._ViewId!)" type="text"  onchange="EditInPlace4.quickSave('FadderbarnActions.date','(!&r.id!)',this.value)"  data-fieldName="FadderbarnAction.date" value="(!&r.date!)" size="12"/>
+<script>$j('#FadderbarnAction_date_Edit(!&ns._ViewId!)').date_input();</script>
+</td>
+
+    <tr><td><label>Notering:</label></td><td><text(!&'area'!) wrap='off'  class="Editable"  cols="20" rows="10" id="FadderbarnAction_notes_Edit(!&ns._ViewId!)" onchange="EditInPlace4.quickSave('FadderbarnActions.notes','(!&r.id!)',this.value)" data-fieldName="FadderbarnAction.notes">(!&r.notes!)</text(!&'area'!)></td>
+
+</table>
+
+(!@-!)} else {
+    //no data retrieved yet... load it..
+    if(!ns.Id){ns.Id=ns.url.split("/").pop();}(!@+!)
+
+<img src="img/ajaxLoading.gif"/>ladda...<script>
+dataViews.FadderbarnActions.getRecord({
+    Id:'(!&ns.Id!)'
+    ,PK:'(!&ns.Id!)'
+    ,OnComplete:function(Record){
+        App3.Navigate2('(!&ns._fullurl!)',
+            {target:'(!&ns.target!)',data:Record,Id:'(!&ns.Id!)' }
+        );
+    }
+});
+</script>
+(!@-!)}(!@+!)
+

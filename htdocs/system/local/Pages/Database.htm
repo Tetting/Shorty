@@ -1,0 +1,47 @@
+{#ajaxTemplate2#}<span class="DatabasesBigIcon BigIcon TaskEdit4" task="Project4.Task" component="DatabaseProtoHeader">Database</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/DatabaseNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/Databases" class="ajaxLink">Lista</a>
+    </span>
+</span><br/>
+
+(!@-!)if (ns.data) {
+var r= ns.data;
+(!@+!)
+
+<span class="EditIcon DeleteIcon" style="float:right">
+    <a onclick="dataViews.Databases.deleteRecord({Id:'(!&r.Id!)',PK:'(!&r.Id!)',OnComplete:function(){App3.Navigate2('http://local/Pages/Databases',{target:'(!&ns.target!)' });}});">Ta Bort</a>
+</span>
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan="2"><span class="TaskEdit4" Task="Project4.Task" Component="DatabaseEdit_fields">Uppgifter</span></th></tr>
+    <col /><col />
+
+    <tr><td><label>#:</label></td><td>(!&r.Id!)
+</td>
+
+    <tr><td><label>Namn:</label></td><td><span id="Database_Name_Edit(!&ns._ViewId!)" class="ajaxEdit3" dataView="Databases.Name" dataPK="(!&r.Id!)" >(!&r['Name']||EditInPlace4.blank!)</span></td>
+
+</table>
+
+(!@-!)} else {
+    //no data retrieved yet... load it..
+    if(!ns.Id){ns.Id=ns.url.split("/").pop();}(!@+!)
+
+<img src="img/ajaxLoading.gif"/>ladda...<script>
+dataViews.Databases.getRecord({
+    Id:'(!&ns.Id!)'
+    ,PK:'(!&ns.Id!)'
+    ,OnComplete:function(Record){
+        App3.Navigate2('(!&ns._fullurl!)',
+            {target:'(!&ns.target!)',data:Record,Id:'(!&ns.Id!)' }
+        );
+    }
+});
+</script>
+(!@-!)}(!@+!)
+

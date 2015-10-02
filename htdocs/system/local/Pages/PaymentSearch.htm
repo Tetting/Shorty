@@ -1,0 +1,112 @@
+{#ajaxTemplate2#}<span class="PaymentsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="protoHeader319">Betalningar</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/PaymentNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/Payments" class="ajaxLink">Lista</a>
+    </span>
+</span><br/>
+<table class="EditTable" id="PaymentTab(!&ns._ViewId!)">
+<thead><tr><th colspan="7">Betalningar</th></tr></thead>
+<tr>
+<td style="text-align:right">Datum:</td><td><input id="search_Date322(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Payments.getFilter('Date','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Givare:</td><td><input id="search_GiverId323(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Payments.getFilter('GiverId','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Projekt/Barn #</td><td><input id="search_ProjectId324(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Payments.getFilter('ProjectId','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+</tr>
+
+<tr>
+<td style="text-align:right">InKr:</td><td><input id="search_InKr326(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Payments.getFilter('InKr','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">OutKr:</td><td><input id="search_OutKr327(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Payments.getFilter('OutKr','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Projekt/Barn</td><td><input id="search_PaymentType328(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Payments.getFilter('PaymentType','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+</tr>
+
+<tr>
+<td style="text-align:right">AdminKr:</td><td><input id="search_AdminCharge332(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Payments.getFilter('AdminCharge','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Admin%:</td><td><input id="search_AdminPercent333(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Payments.getFilter('AdminPercent','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right"></td><td></td>
+</tr>
+<tr>
+<td style="text-align:right">Src:</td><td><input id="search_PaymentSource330(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Payments.getFilter('PaymentSource','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">SrcId:</td><td><input id="search_PaymentSourceId331(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Payments.getFilter('PaymentSourceId','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right"></td><td></td>
+</tr>
+<tr>
+<td style="text-align:right">Anv&auml;ndareNamn:</td><td><input id="search_AddedBy325(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Payments.getFilter('AddedBy','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Anv&auml;ndare#:</td><td><input id="search_AddedByUserId329(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Payments.getFilter('AddedByUserId','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right"></td><td></td>
+</tr>
+</table>
+<center>
+<button class="CancelBut" id="clear(!&ns._ViewId!)" onclick="
+dataViews.Payments.clearFilter();
+
+                jQuery('#search_Date322(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_GiverId323(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_ProjectId324(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_AddedBy325(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_InKr326(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_OutKr327(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_PaymentType328(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_AddedByUserId329(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_PaymentSource330(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_PaymentSourceId331(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_AdminCharge332(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_AdminPercent333(!&ns._ViewId!)').val('');
+            
+//App3.Navigate2('local/Pages/Payment/'+id,{target:'AppPages'});
+">Rensa</button>
+|
+<input class="SearchBut" type="button" id="doSearch(!&ns._ViewId!)"  value="Sök"
+ onclick="
+dataViews.Payments.clearFilter();
+var elm;
+             dataViews.Payments.addFilter('Date','*',jQuery('#search_Date322(!&ns._ViewId!)').val());
+            
+             dataViews.Payments.addFilter('GiverId','*',jQuery('#search_GiverId323(!&ns._ViewId!)').val());
+            
+             dataViews.Payments.addFilter('ProjectId','*',jQuery('#search_ProjectId324(!&ns._ViewId!)').val());
+            
+             dataViews.Payments.addFilter('AddedBy','*',jQuery('#search_AddedBy325(!&ns._ViewId!)').val());
+            
+             dataViews.Payments.addFilter('InKr','*',jQuery('#search_InKr326(!&ns._ViewId!)').val());
+            
+             dataViews.Payments.addFilter('OutKr','*',jQuery('#search_OutKr327(!&ns._ViewId!)').val());
+            
+             dataViews.Payments.addFilter('PaymentType','*',jQuery('#search_PaymentType328(!&ns._ViewId!)').val());
+            
+             dataViews.Payments.addFilter('AddedByUserId','*',jQuery('#search_AddedByUserId329(!&ns._ViewId!)').val());
+            
+             dataViews.Payments.addFilter('PaymentSource','*',jQuery('#search_PaymentSource330(!&ns._ViewId!)').val());
+            
+             dataViews.Payments.addFilter('PaymentSourceId','*',jQuery('#search_PaymentSourceId331(!&ns._ViewId!)').val());
+            
+             dataViews.Payments.addFilter('AdminCharge','*',jQuery('#search_AdminCharge332(!&ns._ViewId!)').val());
+            
+             dataViews.Payments.addFilter('AdminPercent','*',jQuery('#search_AdminPercent333(!&ns._ViewId!)').val());
+            
+dataViews.Payments.firstRow({OnComplete:function() {
+    if (dataViews.Payments.curRecordSet.Hits > 0) {
+        var id = dataViews.Payments.curRecordSet.Rows[0]['Id'];
+        App3.Navigate2('local/Pages/Payment/'+id,{target:'AppPages'});
+    } else {
+        alert('Ingen träff');
+     }
+},NoNewPage:function() {
+        alert('Ingen träff');
+     }});
+"/></center>
+
+
+

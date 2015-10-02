@@ -1,0 +1,90 @@
+{#ajaxTemplate2#}<div style="float:right">
+<br/>
+<table class="EditTable" style="width:150px;margin-right:50px;">
+    <tr><th>Ta Bort</th></tr>
+    <tr><td>
+To replace this import simply <a class="ajaxLink" href="Pages/OCR">Import OCR</a> again.
+By uploading the same file it will replace all of the current data.
+<p>
+If you really want to remove this OCR import and all payments from the file then
+<button onclick="
+if (confirm('&auml;r du s&auml;ker p&aring; att du vill ta bort OCR och betalningar?')) {
+$.post('do/removeOCR.php',{Id:'(!&ns.Id!)'},function(response) {
+    dataViews.OCRImports.dataChanged();
+    dataViews.Payments.dataChanged();
+    App3.Navigate2('local/Pages/OCRImports',{forceRead:true});
+});
+}
+">Click Me</button>
+</p>  
+</td></tr>
+</table>
+</div><span class="OCRImportsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="OCRImportProtoHeader">OCRImport</span> 
+
+<span class="EditIcons">    <span class="ListIcon EditIcon">
+        <a href="Pages/OCRImports" class="ajaxLink">Lista</a>
+    </span>
+</span><br/>
+
+(!@-!)if (ns.data) {
+var r= ns.data;
+(!@+!)
+
+<table class="EditTable" style='float:left;'>
+<thead>
+    <tr><th colspan="2"><span class="TaskEdit4" Task="Project4.Task" Component="OCRImportEdit_fields">Uppgifter</span></th></tr>
+    <col /><col />
+
+    <tr><td><label>#:</label></td><td>(!&r.Id!)
+</td>
+
+    <tr><td><label>Datum:</label></td><td>(!&r.Date!)
+</td>
+
+    <tr><td><label>Konto:</label></td><td>(!&r.AccountNr!)
+</td>
+
+    <tr><td><label>Kontonamn:</label></td><td>(!&r.AccountName!)
+</td>
+
+    <tr><td><label>Fil:</label></td><td>(!&r.FName!)
+</td>
+
+    <tr><td><label>Antal inbetalningar:</label></td><td>(!&r.Rows!)
+</td>
+
+    <tr><td><label>Sum Inbetalningar:</label></td><td>(!&r.Total!)
+</td>
+
+    <tr><td><label>Status:</label></td><td>(!&r.Status!)
+</td>
+
+(!@-!)} else {
+    //no data retrieved yet... load it..
+    if(!ns.Id){ns.Id=ns.url.split("/").pop();}(!@+!)
+
+<img src="img/ajaxLoading.gif"/>ladda...<script>
+dataViews.OCRImports.getRecord({
+    Id:'(!&ns.Id!)'
+    ,PK:'(!&ns.Id!)'
+    ,OnComplete:function(Record){
+        App3.Navigate2('(!&ns._fullurl!)',
+            {target:'(!&ns.target!)',data:Record,Id:'(!&ns.Id!)' }
+        );
+    }
+});
+</script>
+(!@-!)}(!@+!)
+<tr><th colspan=2><button onclick="
+document.getElementById('GivOCR').src = 'pdf/GivOCR.php?id=(!&r.Id!)&rnd='+Math.random(); 
+">GivOCR</button><iframe src="about:blank" id="GivOCR" style="width:0px;height:0px;"></iframe> 
+<button onclick="
+document.getElementById('GivOCR').src = 'pdf/OCRkontroll.php?id=(!&r.Id!)&rnd='+Math.random(); 
+">kontrolluppgift</button></th></tr>
+</table></table>
+<script>
+$j.get('do/OCR.php?fileId=(!&r['Id']!)',{},function(response){
+document.getElementById('Report(!&ns._ViewId!)').innerHTML = response;
+});
+</script>
+<div style='float:left' id="Report(!&ns._ViewId!)"></div>

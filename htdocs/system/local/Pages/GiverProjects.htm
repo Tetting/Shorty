@@ -1,0 +1,128 @@
+{#ajaxTemplate2#}<span class="GiverProjectsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="GiverProjects_ProtoHeader">Givarprojekt</span> 
+
+<span class="EditIcons"></span><br/>
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a class="ajaxLink" href="/Pages/GivProjNew?GiverId=(!&ns.GiverId!)">Nytt Givarprojekt</a>
+    </span>
+</span>
+(!@-!)
+if ((ns.data)&&(!ns['forceRead'])) {(!@+!)
+
+<span class="EditIcons"><span class="TaskEdit4" Task="Project4.Task" Component="GiverProjectList_fields"> </span>
+(!@-!)
+if (ns.Recordset) {
+if (ns.Recordset.Hits ==0) {
+out.push('<i>0 Poster');
+} else {
+out.push('<i>Post '+(ns.Recordset.start+1)+' till '+(ns.Recordset.Hits+ns.Recordset.start));
+}
+if (ns.Recordset.Count) {
+if ((ns.DataView)&&(ns.DataView.filterActive==true)) {
+//display filtered count..
+out.push(' av '+ns.Recordset.filteredCount);
+} else {
+out.push(' av '+ns.Recordset.Count);
+}
+}
+out.push('</i>');
+}
+(!@+!)
+
+<a title="F&ouml;rsta" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.GiverProjects.firstPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetFirstIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="F&ouml;reg&aring;nde" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.GiverProjects.previousPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetPreviousIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="N&auml;sta" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.GiverProjects.nextPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetNextIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="Sista" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.GiverProjects.lastPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetLastIcon EditIcon">&nb(!&'sp'!);</span></a>
+
+<input type="button" style="display:none" id="Filter_(!&ns._ViewId!)" onclick="
+dataViews.GiverProjects.clearFilter();
+dataViews.GiverProjects.addFilter('GiverId','=','(!&ns.GiverId!)');
+
+dataViews.GiverProjects.addFilter('Id','*',document.getElementById('Filter_GiverProject_Id_List(!&ns._ViewId!)').value);
+dataViews.GiverProjects.addFilter('ProjectId','*',document.getElementById('Filter_GiverProject_ProjectId_List(!&ns._ViewId!)').value);
+dataViews.GiverProjects.addFilter('KrMon','*',document.getElementById('Filter_GiverProject_KrMon_List(!&ns._ViewId!)').value);
+dataViews.GiverProjects.addFilter('OneTimePromise','*',document.getElementById('Filter_GiverProject_OneTimePromise_List(!&ns._ViewId!)').value);
+dataViews.GiverProjects.addFilter('LastPayment','*',document.getElementById('Filter_GiverProject_LastPayment_List(!&ns._ViewId!)').value);
+dataViews.GiverProjects.addFilter('Sum','*',document.getElementById('Filter_Sum708(!&ns._ViewId!)').value);
+
+dataViews.GiverProjects.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)'});}});
+"/>
+<span id="Prog(!&ns._ViewId!)"></span>
+</span>
+
+<table class="ListTable" ><tr>
+
+<th width="20" class="Col_GiverProject_Id_List"><a class="SortColumn" onclick="
+dataViews.GiverProjects.setSort('Id');
+dataViews.GiverProjects.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)'});}});"><u>#</u></a><span class="TaskEdit4" Task="Project4.Task" Component="GiverProject_Id_List"> </span></th>
+
+<th width="25" class="Col_GiverProject_ProjectId_List"><a class="SortColumn" onclick="
+dataViews.GiverProjects.setSort('ProjectId');
+dataViews.GiverProjects.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)'});}});"><u>Projekt#</u></a><span class="TaskEdit4" Task="Project4.Task" Component="GiverProject_ProjectId_List"> </span></th>
+
+<th width="25" class="Col_GiverProject_KrMon_List"><a class="SortColumn" onclick="
+dataViews.GiverProjects.setSort('KrMon');
+dataViews.GiverProjects.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)'});}});"><u>Kr/m&aring;n</u></a><span class="TaskEdit4" Task="Project4.Task" Component="GiverProject_KrMon_List"> </span></th>
+
+<th width="25" class="Col_GiverProject_OneTimePromise_List"><a class="SortColumn" onclick="
+dataViews.GiverProjects.setSort('OneTimePromise');
+dataViews.GiverProjects.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)'});}});"><u>Eng&aring;ngs<br/>l&ouml;fte</u></a><span class="TaskEdit4" Task="Project4.Task" Component="GiverProject_OneTimePromise_List"> </span></th>
+
+<th width="25" class="Col_GiverProject_LastPayment_List"><a class="SortColumn" onclick="
+dataViews.GiverProjects.setSort('LastPayment');
+dataViews.GiverProjects.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)'});}});"><u>Senaste betalning</u></a><span class="TaskEdit4" Task="Project4.Task" Component="GiverProject_LastPayment_List"> </span></th>
+
+<th width="20" class="Col_Sum708"><a class="SortColumn" onclick="
+dataViews.GiverProjects.setSort('Sum');
+dataViews.GiverProjects.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)'});}});"><u>Total</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Sum708"> </span></th>
+
+</tr><tr>
+
+<td><input id="Filter_GiverProject_Id_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.GiverProjects.getFilter('Id','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_GiverProject_ProjectId_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.GiverProjects.getFilter('ProjectId','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_GiverProject_KrMon_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.GiverProjects.getFilter('KrMon','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_GiverProject_OneTimePromise_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.GiverProjects.getFilter('OneTimePromise','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_GiverProject_LastPayment_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.GiverProjects.getFilter('LastPayment','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_Sum708(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.GiverProjects.getFilter('Sum','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+</tr>
+(!@-!)
+var r;
+
+for(var ri=0;ri<ns.data.length;ri++) {
+r = ns.data[ri];
+
+(!@+!)
+<tr >
+
+<td ><a class=ajaxLink  href=Pages/GivProj/(!&r.Id!)>#</a></td>
+
+<td ><a class=ajaxLink target=AppPages href=Pages/Project/(!&r.ProjectId!)>(!&r.ProjectId!)</a></td>
+
+<td >(!&r['KrMon']!)</td>
+
+<td >(!&r['OneTimePromise']!)</td>
+
+<td >(!&r['LastPayment']!)</td>
+
+<td >(!&r['Sum']!)</td>
+
+</tr>
+(!@-!)}
+if (ns.data.length == 0) {//no rows code.(!@+!)
+<tr><td colspan="13"><center>Ingen</center></td></tr>
+(!@-!) } (!@+!)
+
+</table>
+(!@-!)} else {
+//no data retrieved yet... load it..
+(!@+!)<script>
+dataViews.GiverProjects.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2("(!&ns._fullurl!)",{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)'});}});
+
+</script><img src="img/ajaxLoading.gif"/>ladda...
+(!@-!)}(!@+!)
+

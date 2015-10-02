@@ -1,0 +1,238 @@
+{#ajaxTemplate2#}<div style="float:right;margin-right:200px;"><button title="Ny" onclick="
+App3.Navigate2('local/Pages/Giver/ny',{target:'AppPages'})
+" class="NewBut" id="NewBut276"><img width="32" height="32" src="img/icons/new.png"></button>
+</div><span class="GiversBigIcon BigIcon TaskEdit4" task="Project4.Task" component="protoHeader150">Givare</span> 
+
+<span class="EditIcons">    <span class="ListIcon EditIcon">
+        <a href="Pages/Givers" class="ajaxLink">Lista</a>
+    </span>
+</span><script>
+    document.title = $('<div/>').html("Givare s&ouml;k").text();
+</script><br/>
+<table class="EditTable">
+<thead><tr><th colspan="7">Givare</th></tr></thead>
+<tr>
+<td style="text-align:right">Namn:</td><td><input id="search_Name177(!&ns._ViewId!)" type="text"  tabindex=1  value="(!@-!)out.push(dataViews.Givers.getFilter('Name','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Nr:</td><td><input id="search_Id176(!&ns._ViewId!)" type="text"  tabindex=8  value="(!@-!)out.push(dataViews.Givers.getFilter('Id','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Reg:</td><td><input id="search_StartD187(!&ns._ViewId!)" type="text"  tabindex=14 size=8 value="(!@-!)out.push(dataViews.Givers.getFilter('StartD','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td valign="top" rowspan="5">Noteringar<br/><text(!&'area'!) wrap="off" cols="20" rows="10" id="search_Notes190(!&ns._ViewId!)" tabindex=23>(!@-!)out.push(dataViews.Givers.getFilter('Notes','*'));(!@+!)</text(!&'area'!)></td>
+</tr>
+<tr>
+<td style="text-align:right">Efternamn</td><td><input id="search_LastName358(!&ns._ViewId!)" type="text"  tabindex=2  value="(!@-!)out.push(dataViews.Givers.getFilter('LastName','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Landskod:</td><td><input id="search_Land181(!&ns._ViewId!)" type="text"  tabindex=9  value="(!@-!)out.push(dataViews.Givers.getFilter('Land','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Tidning</td><td><label for="Paper185"><input type="radio" id="search_Paper185(!&ns._ViewId!)" value="1" name="Paper185" data-fieldName="Giver.Paper"(!@-!)
+if (dataViews.Givers.getFilter('Paper') == 1) {o.push(' checked ');}
+(!@+!) onmouseup="
+if (this.checked) {
+    setTimeout('document.getElementById('+String.fromCharCode(39)+this.id+String.fromCharCode(39)+').checked = false',20);
+    return false;
+}
+"  tabindex=15 /> Ja</label> <br/>
+<label for="Paper185"><input type="radio" id="searchN_Paper185(!&ns._ViewId!)" value="0" name="Paper185" data-fieldName="Giver.Paper"(!@-!)
+if (dataViews.Givers.getFilter('Paper') == 0) {o.push(' checked ');}
+(!@+!) onmouseup="
+if (this.checked) {
+    setTimeout('document.getElementById('+String.fromCharCode(39)+this.id+String.fromCharCode(39)+').checked = false',20);
+    return false;
+}
+"  tabindex=16 /> Nej</label>
+
+</td>
+</tr>
+<tr>
+<td style="text-align:right">c/o</td><td><input id="search_CoAddress192(!&ns._ViewId!)" type="text"  tabindex=3  value="(!@-!)out.push(dataViews.Givers.getFilter('CoAddress','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Telefon:</td><td><input id="search_Tel182(!&ns._ViewId!)" type="text"  tabindex=10  value="(!@-!)out.push(dataViews.Givers.getFilter('Tel','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Medlem:</td><td><label for="Member186"><input type="radio" id="search_Member186(!&ns._ViewId!)" value="1" name="Member186" data-fieldName="Giver.Member"(!@-!)
+if (dataViews.Givers.getFilter('Member') == 1) {o.push(' checked ');}
+(!@+!) onmouseup="
+if (this.checked) {
+    setTimeout('document.getElementById('+String.fromCharCode(39)+this.id+String.fromCharCode(39)+').checked = false',20);
+    return false;
+}
+"  tabindex=17 /> Ja</label> <br/>
+<label for="Member186"><input type="radio" id="searchN_Member186(!&ns._ViewId!)" value="0" name="Member186" data-fieldName="Giver.Member"(!@-!)
+if (dataViews.Givers.getFilter('Member') == 0) {o.push(' checked ');}
+(!@+!) onmouseup="
+if (this.checked) {
+    setTimeout('document.getElementById('+String.fromCharCode(39)+this.id+String.fromCharCode(39)+').checked = false',20);
+    return false;
+}
+"  tabindex=18 /> Nej</label>
+
+</td>
+</tr>
+<tr>
+<td style="text-align:right">Adress:</td><td><input id="search_Address178(!&ns._ViewId!)" type="text"  tabindex=4  value="(!@-!)out.push(dataViews.Givers.getFilter('Address','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Mobiltel:</td><td><input id="search_Mob183(!&ns._ViewId!)" type="text"  tabindex=11  value="(!@-!)out.push(dataViews.Givers.getFilter('Mob','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Brev:</td><td><label for="Letter373"><input type="radio" id="search_Letter373(!&ns._ViewId!)" value="1" name="Letter373" data-fieldName="Giver.Letter"(!@-!)
+if (dataViews.Givers.getFilter('Letter') == 1) {o.push(' checked ');}
+(!@+!) onmouseup="
+if (this.checked) {
+    setTimeout('document.getElementById('+String.fromCharCode(39)+this.id+String.fromCharCode(39)+').checked = false',20);
+    return false;
+}
+"  tabindex=19 /> Ja</label> <br/>
+<label for="Letter373"><input type="radio" id="searchN_Letter373(!&ns._ViewId!)" value="0" name="Letter373" data-fieldName="Giver.Letter"(!@-!)
+if (dataViews.Givers.getFilter('Letter') == 0) {o.push(' checked ');}
+(!@+!) onmouseup="
+if (this.checked) {
+    setTimeout('document.getElementById('+String.fromCharCode(39)+this.id+String.fromCharCode(39)+').checked = false',20);
+    return false;
+}
+"  tabindex=20 /> Nej</label>
+
+</td>
+</tr>
+<tr>
+<td style="text-align:right">PostNr:</td><td><input id="search_ZipCode179(!&ns._ViewId!)" type="text"  tabindex=5  value="(!@-!)out.push(dataViews.Givers.getFilter('ZipCode','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Status:</td><td><input id="search_Status189(!&ns._ViewId!)" type="text"  tabindex=12  value="(!@-!)out.push(dataViews.Givers.getFilter('Status','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Projkod:</td><td><input id="search_ProjCode188(!&ns._ViewId!)" type="text"  tabindex=21 size=8 value="(!@-!)out.push(dataViews.Givers.getFilter('ProjCode','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+</tr>
+<tr>
+<td style="text-align:right">PostOrt:</td><td><input id="search_ZipTown191(!&ns._ViewId!)" type="text"  tabindex=6  value="(!@-!)out.push(dataViews.Givers.getFilter('ZipTown','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">PersonNr:</td><td><input id="search_PersonNbr359(!&ns._ViewId!)" type="text"  tabindex=13  value="(!@-!)out.push(dataViews.Givers.getFilter('PersonNbr','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Tags</td><td><input id="search_Tags691(!&ns._ViewId!)" type="text"  tabindex=22  value="(!@-!)out.push(dataViews.Givers.getFilter('Tags','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+
+</tr>
+<tr>
+<td>Epost:</td><td><input id="search_Email184(!&ns._ViewId!)" type="text"  tabindex=7  value="(!@-!)out.push(dataViews.Givers.getFilter('Email','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td colspan=5></td></tr>
+</table>
+<center>
+<button class="CancelBut" id="clear(!&ns._ViewId!)" onclick="
+dataViews.Givers.clearFilter();
+
+                jQuery('#search_Id176(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Name177(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Address178(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_ZipCode179(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Land181(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Tel182(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Mob183(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Email184(!&ns._ViewId!)').val('');
+            
+            elm = document.getElementById('search_Paper185(!&ns._ViewId!)');
+            jQuery(elm).attr('checked', false);   
+            elm = document.getElementById('searchN_Paper185(!&ns._ViewId!)');
+            jQuery(elm).attr('checked', false);
+            
+            elm = document.getElementById('search_Member186(!&ns._ViewId!)');
+            jQuery(elm).attr('checked', false);   
+            elm = document.getElementById('searchN_Member186(!&ns._ViewId!)');
+            jQuery(elm).attr('checked', false);
+            
+                jQuery('#search_StartD187(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_ProjCode188(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Status189(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Notes190(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_ZipTown191(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_CoAddress192(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_LastName358(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_PersonNbr359(!&ns._ViewId!)').val('');
+            
+            elm = document.getElementById('search_Letter373(!&ns._ViewId!)');
+            jQuery(elm).attr('checked', false);   
+            elm = document.getElementById('searchN_Letter373(!&ns._ViewId!)');
+            jQuery(elm).attr('checked', false);
+            
+                jQuery('#search_Tags691(!&ns._ViewId!)').val('');
+            
+//App3.Navigate2('local/Pages/Giver/'+id,{target:'AppPages'});
+">Rensa</button>
+|
+<input class="SearchBut" type="button" id="doSearch(!&ns._ViewId!)"  value="Sök"
+ onclick="
+dataViews.Givers.clearFilter();
+var elm;
+             dataViews.Givers.addFilter('Id','$',jQuery('#search_Id176(!&ns._ViewId!)').val());
+            
+             dataViews.Givers.addFilter('Name','*',jQuery('#search_Name177(!&ns._ViewId!)').val());
+            
+             dataViews.Givers.addFilter('Address','*',jQuery('#search_Address178(!&ns._ViewId!)').val());
+            
+             dataViews.Givers.addFilter('ZipCode','*',jQuery('#search_ZipCode179(!&ns._ViewId!)').val());
+            
+             dataViews.Givers.addFilter('Land','*',jQuery('#search_Land181(!&ns._ViewId!)').val());
+            
+             dataViews.Givers.addFilter('Tel','*',jQuery('#search_Tel182(!&ns._ViewId!)').val());
+            
+             dataViews.Givers.addFilter('Mob','*',jQuery('#search_Mob183(!&ns._ViewId!)').val());
+            
+             dataViews.Givers.addFilter('Email','*',jQuery('#search_Email184(!&ns._ViewId!)').val());
+            
+            elm = document.getElementById('search_Paper185(!&ns._ViewId!)');
+            if (jQuery(elm).attr('checked')) {
+                dataViews.Givers.addFilter('Paper','*',jQuery(elm).val());
+            } else {
+                elm = document.getElementById('searchN_Paper185(!&ns._ViewId!)');
+                if (jQuery(elm).attr('checked')) {
+                    dataViews.Givers.addFilter('Paper','*',jQuery(elm).val());
+                }
+            }
+            
+            elm = document.getElementById('search_Member186(!&ns._ViewId!)');
+            if (jQuery(elm).attr('checked')) {
+                dataViews.Givers.addFilter('Member','*',jQuery(elm).val());
+            } else {
+                elm = document.getElementById('searchN_Member186(!&ns._ViewId!)');
+                if (jQuery(elm).attr('checked')) {
+                    dataViews.Givers.addFilter('Member','*',jQuery(elm).val());
+                }
+            }
+            
+             dataViews.Givers.addFilter('StartD','*',jQuery('#search_StartD187(!&ns._ViewId!)').val());
+            
+             dataViews.Givers.addFilter('ProjCode','*',jQuery('#search_ProjCode188(!&ns._ViewId!)').val());
+            
+             dataViews.Givers.addFilter('Status','*',jQuery('#search_Status189(!&ns._ViewId!)').val());
+            
+             dataViews.Givers.addFilter('Notes','*',jQuery('#search_Notes190(!&ns._ViewId!)').val());
+            
+             dataViews.Givers.addFilter('ZipTown','*',jQuery('#search_ZipTown191(!&ns._ViewId!)').val());
+            
+             dataViews.Givers.addFilter('CoAddress','*',jQuery('#search_CoAddress192(!&ns._ViewId!)').val());
+            
+             dataViews.Givers.addFilter('LastName','*',jQuery('#search_LastName358(!&ns._ViewId!)').val());
+            
+             dataViews.Givers.addFilter('PersonNbr','*',jQuery('#search_PersonNbr359(!&ns._ViewId!)').val());
+            
+            elm = document.getElementById('search_Letter373(!&ns._ViewId!)');
+            if (jQuery(elm).attr('checked')) {
+                dataViews.Givers.addFilter('Letter','*',jQuery(elm).val());
+            } else {
+                elm = document.getElementById('searchN_Letter373(!&ns._ViewId!)');
+                if (jQuery(elm).attr('checked')) {
+                    dataViews.Givers.addFilter('Letter','*',jQuery(elm).val());
+                }
+            }
+            
+            
+dataViews.Givers.addFilter('Tags','£',jQuery('#search_Tags691(!&ns._ViewId!)').val());
+            
+dataViews.Givers.firstRow({OnComplete:function() {
+    if (dataViews.Givers.curRecordSet.Hits > 0) {
+        var id = dataViews.Givers.curRecordSet.Rows[0]['Id'];
+        App3.Navigate2('local/Pages/Giver/'+id,{target:'AppPages'});
+    } else {
+        alert('Ingen träff');
+     }
+},NoNewPage:function() {
+        alert('Ingen träff');
+     }});
+"/></center>
+
+
+<script>$('#search_Name177(!&ns._ViewId!)').select().focus();</script>

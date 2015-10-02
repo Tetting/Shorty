@@ -1,0 +1,23 @@
+{#ajaxTemplate2#}(!@-!)if (ns.data) {(!@+!)
+<div id="MonthlyPayments(!&ns._ViewId!)" style="float:left"></div>
+<div id="MonthlyPaymentsGraph(!&ns._ViewId!)" style="float:left;width:600px;height:200px;"></div>
+<script>
+    dataViews.Payment_Sums.getList({OnComplete:function(data,Recordset,DataView){
+       App3.Navigate2("local/Pages/Payment_Sums",{navTarget:'MonthlyPayments(!&ns._ViewId!)',target:'MonthlyPayments(!&ns._ViewId!)',data:data,Recordset:Recordset,DataView:DataView ,ProjectId:'(!&ns.Id!)'});
+       //create a graph...
+       var gdat = [];
+        
+       for(var i=0;i<data.length;i++) {
+            
+            gdat.push([data[i].Date.replace('-','.'),data[i].InKr]);
+        }  
+        var series = {
+            data: gdat
+            ,lines:{show:true,fill:false}
+        }
+        console.info(series);
+        $j.plot($j("#MonthlyPaymentsGraph(!&ns._ViewId!)"),[series]);
+    }});
+</script>
+<br style="clear:both"/>
+(!@-!)}(!@+!)

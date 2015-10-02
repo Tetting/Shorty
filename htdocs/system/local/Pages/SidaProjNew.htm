@@ -1,0 +1,54 @@
+{#ajaxTemplate2#}<span class="SidaProjsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="SidaProjNew_ProtoHeader">Sida Projekt</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/SidaProjNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/SidaProjs" class="ajaxLink">Lista</a>
+    </span>
+</span><script>
+    document.title = ""+jQuery('<div/>').html("Sida Projekt").text()+"";
+</script><br/>
+
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan='2'><center><span class="TaskEdit4" task="Project4.Task" component="SidaProjNew_fields">Uppgifter</span></center></th></tr>
+</thead>
+<tbody>
+
+<tr><td><label>Projekt</label>:</td><td><input id="SidaProj_Project_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Status</label>:</td><td><input id="SidaProj_Status_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+</tbody>
+<tfoot><tr><td colspan="2"><center Task="Project4.Task" Component="SidaProjNew_fields" class="TaskEdit4">
+
+<input type="button" value="L&auml;gg till" onclick="
+dataViews.SidaProjs.newRecord({
+NewRecord:{
+Project:document.getElementById('SidaProj_Project_New(!&ns._ViewId!)').value
+,
+Status:document.getElementById('SidaProj_Status_New(!&ns._ViewId!)').value
+
+}
+,OnComplete:function(response){
+
+//document.getElementById('NewSidaProj_Name(!&ns._ViewId!)').value = '';
+//document.getElementById('NewSidaProj_Name(!&ns._ViewId!)').focus();
+dataViews.SidaProjs.dataChanged();
+App3.Navigate2('local/Pages/SidaProjs',{target:'(!&ns.target!)',forceRead:true });
+
+}
+});
+"/></center>
+</td></tr></tfoot>
+</table>
+<script>
+try {
+document.getElementById('SidaProj_Project_New(!&ns._ViewId!)').focus();
+} catch(e) {
+//no problem.
+}
+</script>
+

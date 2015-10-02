@@ -1,0 +1,32 @@
+function(ns) {
+	var out = new Array();
+	var o=out
+	try {
+
+if (window.App3AlreadyLoggedIn) {
+   //auto-login
+    App3.LoggedIn = true;
+    App3.LoggedInUser = App3AlreadyLoggedIn;
+    App3.LoggedInUserId = App3AlreadyLoggedInId;
+    window['App3AlreadyLoggedIn'] = '';
+}
+$j("#WikiApp3").trigger({type:"AppInit",InitPage:ns.InitPage});
+
+if (App3.LoggedIn) {
+    $j("#WikiApp3").trigger("AppLoggedIn",{InitPage:ns.InitPage});
+    dataViews.Databases.getAllRows({OnComplete:function(data,Recordset,DataView){console.info('loaded Databases');}});
+} else {
+   //App3.Navigate2('local/Proto/Login',{InitPage:ns.InitPage});
+    dataViews.Fadderbarns.getList({OnComplete:function(data,Recordset,DataView){console.info('loaded Fadderbarns');}});
+    dataViews.Givers.getList({OnComplete:function(data,Recordset,DataView){console.info('loaded Givers');}});
+    dataViews.Databases.getAllRows({OnComplete:function(data,Recordset,DataView){console.info('loaded Databases');}});
+
+}
+
+
+	return out.join('');
+	}catch(e){
+		console.error(e);
+		return 'Template Error:'+e.message;
+	}
+}

@@ -1,0 +1,78 @@
+{#ajaxTemplate2#}<span class="CompanysBigIcon BigIcon TaskEdit4" task="Project4.Task" component="CompanyNew_ProtoHeader">F&ouml;retag</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/CompanyNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/Companys" class="ajaxLink">Lista</a>
+    </span>
+</span><script>
+    document.title = ""+jQuery('<div/>').html("F&ouml;retag").text()+" ";
+</script><br/>
+
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan='2'><center><span class="TaskEdit4" task="Project4.Task" component="CompanyNew_fields">Uppgifter</span></center></th></tr>
+</thead>
+<tbody>
+
+<tr><td><label>F&ouml;retagsnamn</label>:</td><td><input id="Company_CompanyName_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Adress</label>:</td><td><input id="Company_Address_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Postnr</label>:</td><td><input id="Company_Zip_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Postort</label>:</td><td><input id="Company_ZipTown_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Tel</label>:</td><td><input id="Company_Tel_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>BankGiro</label>:</td><td><input id="Company_BankGiro_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>PostGiro</label>:</td><td><input id="Company_PostGiro_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>kod</label>:</td><td><input id="Company_Code_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+</tbody>
+<tfoot><tr><td colspan="2"><center Task="Project4.Task" Component="CompanyNew_fields" class="TaskEdit4">
+
+<input type="button" value="L&auml;gg till" onclick="
+dataViews.Companys.newRecord({
+NewRecord:{
+CompanyName:document.getElementById('Company_CompanyName_New(!&ns._ViewId!)').value
+,
+Address:document.getElementById('Company_Address_New(!&ns._ViewId!)').value
+,
+Zip:document.getElementById('Company_Zip_New(!&ns._ViewId!)').value
+,
+ZipTown:document.getElementById('Company_ZipTown_New(!&ns._ViewId!)').value
+,
+Tel:document.getElementById('Company_Tel_New(!&ns._ViewId!)').value
+,
+BankGiro:document.getElementById('Company_BankGiro_New(!&ns._ViewId!)').value
+,
+PostGiro:document.getElementById('Company_PostGiro_New(!&ns._ViewId!)').value
+,
+Code:document.getElementById('Company_Code_New(!&ns._ViewId!)').value
+
+}
+,OnComplete:function(response){
+
+//document.getElementById('NewCompany_Name(!&ns._ViewId!)').value = '';
+//document.getElementById('NewCompany_Name(!&ns._ViewId!)').focus();
+dataViews.Companys.dataChanged();
+App3.Navigate2('local/Pages/Companys',{target:'(!&ns.target!)',forceRead:true });
+
+}
+});
+"/></center>
+</td></tr></tfoot>
+</table>
+<script>
+try {
+document.getElementById('Company_CompanyName_New(!&ns._ViewId!)').focus();
+} catch(e) {
+//no problem.
+}
+</script>
+

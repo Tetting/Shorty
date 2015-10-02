@@ -1,0 +1,137 @@
+{#ajaxTemplate2#}<span class="EvangelistsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="protoHeader445">Evangelister</span> 
+
+<span class="EditIcons"></span><br/>
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a class="ajaxLink" href="/Pages/GivProjNew?GiverId=(!&ns.GiverId!)&typ=Evangelist">Koppla Evangelist</a>
+    </span>
+</span>
+(!@-!)
+if ((ns.data)&&(!ns['forceRead'])) {(!@+!)
+
+<span class="EditIcons"><span class="TaskEdit4" Task="Project4.Task" Component="GiverEvangelistList429"> </span>
+(!@-!)
+if (ns.Recordset) {
+if (ns.Recordset.Hits ==0) {
+out.push('<i>0 Poster');
+} else {
+out.push('<i>Post '+(ns.Recordset.start+1)+' till '+(ns.Recordset.Hits+ns.Recordset.start));
+}
+if (ns.Recordset.Count) {
+if ((ns.DataView)&&(ns.DataView.filterActive==true)) {
+//display filtered count..
+out.push(' av '+ns.Recordset.filteredCount);
+} else {
+out.push(' av '+ns.Recordset.Count);
+}
+}
+out.push('</i>');
+}
+(!@+!)
+
+<a title="F&ouml;rsta" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.GiverEvangelists.firstPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetFirstIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="F&ouml;reg&aring;nde" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.GiverEvangelists.previousPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetPreviousIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="N&auml;sta" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.GiverEvangelists.nextPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetNextIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="Sista" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.GiverEvangelists.lastPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetLastIcon EditIcon">&nb(!&'sp'!);</span></a>
+
+<input type="button" style="display:none" id="Filter_(!&ns._ViewId!)" onclick="
+dataViews.GiverEvangelists.clearFilter();
+dataViews.GiverEvangelists.addFilter('GiverId','=','(!&ns.GiverId!)');
+
+dataViews.GiverEvangelists.addFilter('Id','*',document.getElementById('Filter_Id430(!&ns._ViewId!)').value);
+dataViews.GiverEvangelists.addFilter('Name','*',document.getElementById('Filter_Name431(!&ns._ViewId!)').value);
+dataViews.GiverEvangelists.addFilter('Mkr','*',document.getElementById('Filter_Mkr435(!&ns._ViewId!)').value);
+dataViews.GiverEvangelists.addFilter('Area1','*',document.getElementById('Filter_Area1436(!&ns._ViewId!)').value);
+dataViews.GiverEvangelists.addFilter('Area','*',document.getElementById('Filter_Area437(!&ns._ViewId!)').value);
+dataViews.GiverEvangelists.addFilter('CountryCode','*',document.getElementById('Filter_CountryCode439(!&ns._ViewId!)').value);
+dataViews.GiverEvangelists.addFilter('HelpD','*',document.getElementById('Filter_HelpD434(!&ns._ViewId!)').value);
+
+dataViews.GiverEvangelists.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)});}});
+"/>
+<span id="Prog(!&ns._ViewId!)"></span>
+</span>
+
+<table class="ListTable" ><tr>
+
+<th width="25" class="Col_Id430"><a class="SortColumn" onclick="
+dataViews.GiverEvangelists.setSort('Id');
+dataViews.GiverEvangelists.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)});}});"><u>#</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Id430"> </span></th>
+
+<th width="" class="Col_Name431"><a class="SortColumn" onclick="
+dataViews.GiverEvangelists.setSort('Name');
+dataViews.GiverEvangelists.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)});}});"><u>Namn</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Name431"> </span></th>
+
+<th width="25" class="Col_Mkr435"><a class="SortColumn" onclick="
+dataViews.GiverEvangelists.setSort('Mkr');
+dataViews.GiverEvangelists.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)});}});"><u>kr/m&aring;n</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Mkr435"> </span></th>
+
+<th width="" class="Col_Area1436"><a class="SortColumn" onclick="
+dataViews.GiverEvangelists.setSort('Area1');
+dataViews.GiverEvangelists.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)});}});"><u>Omr&aring;de#</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Area1436"> </span></th>
+
+<th width="" class="Col_Area437"><a class="SortColumn" onclick="
+dataViews.GiverEvangelists.setSort('Area');
+dataViews.GiverEvangelists.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)});}});"><u>Omr&aring;de</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Area437"> </span></th>
+
+<th width="" class="Col_CountryCode439"><a class="SortColumn" onclick="
+dataViews.GiverEvangelists.setSort('CountryCode');
+dataViews.GiverEvangelists.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)});}});"><u>Land</u></a><span class="TaskEdit4" Task="Project4.Task" Component="CountryCode439"> </span></th>
+
+<th width="" class="Col_HelpD434"><a class="SortColumn" onclick="
+dataViews.GiverEvangelists.setSort('HelpD');
+dataViews.GiverEvangelists.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)});}});"><u>B&ouml;rjat</u></a><span class="TaskEdit4" Task="Project4.Task" Component="HelpD434"> </span></th>
+
+</tr><tr>
+
+<td><input id="Filter_Id430(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.GiverEvangelists.getFilter('Id','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_Name431(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.GiverEvangelists.getFilter('Name','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_Mkr435(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.GiverEvangelists.getFilter('Mkr','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_Area1436(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.GiverEvangelists.getFilter('Area1','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_Area437(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.GiverEvangelists.getFilter('Area','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_CountryCode439(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.GiverEvangelists.getFilter('CountryCode','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_HelpD434(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.GiverEvangelists.getFilter('HelpD','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+</tr>
+(!@-!)
+var r;
+
+for(var ri=0;ri<ns.data.length;ri++) {
+r = ns.data[ri];
+
+(!@+!)
+<tr >
+
+<td >(!&r['Id']!)</td>
+
+<td ><a class=ajaxLink href=Pages/Evangelist/(!&r.Id!) target=AppPages>(!&r.Name!)</a></td>
+
+<td style='text-align:right'>(!@-!)out.push(dataConvert.toSEK(r['Mkr']))(!@+!)</td>
+
+<td >(!&r['Area1']!)</td>
+
+<td >(!&r['Area']!)</td>
+
+<td >(!&r['CountryCode']!)</td>
+
+<td >(!&r['HelpD']!)</td>
+
+</tr>
+(!@-!)}
+if (ns.data.length == 0) {//no rows code.(!@+!)
+<tr><td colspan="14"><center>Ingen</center></td></tr>
+(!@-!) } (!@+!)
+
+</table>
+(!@-!)} else {
+//no data retrieved yet... load it..
+(!@+!)<script>
+dataViews.GiverEvangelists.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2("(!&ns._fullurl!)",{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)});}});
+
+</script><img src="img/ajaxLoading.gif"/>ladda...
+(!@-!)}(!@+!)
+

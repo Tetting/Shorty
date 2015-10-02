@@ -1,0 +1,103 @@
+.csDroppable {
+	min-height:50px;
+	background:#EEEEEE;
+}
+.csEditLink {
+    background-image: url("task/edit.png");
+    background-repeat: no-repeat;
+    padding-left: 20px;
+	cursor:pointer;
+}
+/*
+.csEditLink {
+	display:none;
+}*/
+.csItemDrag {
+    border: 1px solid #CCCCCC;
+    border-radius: 15px 15px 15px 15px;
+    cursor: move;
+    float: left;
+    height: 64px;
+    margin: 5px;
+    overflow: hidden;
+    position: relative;
+    width: 80px;
+	text-align:center;
+}
+.csItemDragging {
+	cursor: move;
+}
+.csItemName {
+    background-color: #FFFFFF;
+    bottom: 0;
+	left:0;
+    opacity: 0.6;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+.csList {
+	padding:5px;
+	background: none repeat scroll 0 0 #586695;
+    background: none repeat scroll 0 0 #EEEEEE;
+	text-align: center;
+	border-radius: 5px;
+}
+.taskComp {
+	background-image:url("task/strip.jpg");
+	padding-left:6px;
+	margin-top:2px;
+	margin-bottom:2px;
+	border: 1px solid #9CBDFF;
+	font-family: Trebuchet MS,Lucida Sans Unicode,Arial,sans-serif;
+    font-size: 0.8em;
+	cursor:move;
+	white-space:nowrap;
+	max-width:370px;
+	overflow:hidden;
+	position:relative;/*hack so we can float table columns to the right!*/
+}
+.taskComp .dragHandle {
+	background-image: url("task/dragHandle.png");
+    height: 25px;
+    width: 16px;
+	display:inline;
+	cursor:move;
+}
+.taskComp .compContent {
+	padding-left:6px;
+}
+.taskComp input {
+	display:inline;
+}
+.taskOC {
+	width:380px;
+}
+.dropPlaceholder {
+	height: 1.5em; line-height: 1.2em;
+	background:#C8C8C8;
+	border: 2px dashed #333333;
+}
+
+.contextEdit {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 0.6em 0.6em 0.6em 0.6em;
+    min-width: 150px;
+    padding: 2px;
+    position: absolute;
+    z-index: 1001;
+	background: #eee;
+}
+#contextTitle {
+    background-color: #124384;
+    color: #FFFFFF;
+    padding: 2px;
+	text-align:center;
+	cursor: move;
+}
+#contextContents {
+	font-family: 'lucida grande',verdana,sans-serif;
+    font-size: 10px;
+	
+}

@@ -1,0 +1,33 @@
+{#ajaxTemplate2#}
+
+<table class="EditTable" style="float:left">
+    <thead><tr><th colspan=3>Bokföring - Utbetalningar</th></tr></thead>
+    <tbody>
+        <tr><td align=top>datum</td>
+<td><input id="ReportFrom(!&ns._ViewId!)" type="text" value=""/>
+<script>$j('#ReportFrom(!&ns._ViewId!)').date_input();</script></td>
+</tr>
+<tr><td colspan=2><center>
+<button onclick="
+//'&type='+document.getElementById('type(!&ns._ViewId!)').value
+document.getElementById('PrintPreview').src = 'pdf/ManualOutPayments.php?Date='+document.getElementById('ReportFrom(!&ns._ViewId!)').value+'&forceInline=1&rnd='+Math.random();
+if (localStorage) {
+    localStorage.setItem('FinanceReportFrom',document.getElementById('ReportFrom(!&ns._ViewId!)').value);
+}
+">kör</button></center>
+</td>
+</tr>
+    </tbody>
+</table>
+
+
+<br style="clear:both;"/>
+<div id="testFrame">
+<iframe src="about:blank" style="width: 100%; height: 600px;" id="PrintPreview"></iframe>
+</div>
+<script>
+if (localStorage) {
+    $j('#ReportFrom(!&ns._ViewId!)').val(localStorage.getItem('FinanceReportFrom'));
+}
+document.title = 'Rapport: Bokföring - Utbetalningar';
+</script>

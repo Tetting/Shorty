@@ -1,0 +1,168 @@
+{#ajaxTemplate2#}<span class="BetelsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="Betels_ProtoHeader">Betel</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/BetelNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/Betels" class="ajaxLink">Lista</a>
+    </span>
+</span><script>
+    document.title = $('<div/>').html("Betellista").text();
+</script><br/>
+
+(!@-!)
+if ((ns.data)&&(!ns['forceRead'])) {(!@+!)
+
+<span class="EditIcons"><span class="TaskEdit4" Task="Project4.Task" Component="BetelList_fields"> </span>
+(!@-!)
+if (ns.Recordset) {
+if (ns.Recordset.Hits ==0) {
+out.push('<i>0 Poster');
+} else {
+out.push('<i>Post '+(ns.Recordset.start+1)+' till '+(ns.Recordset.Hits+ns.Recordset.start));
+}
+if (ns.Recordset.Count) {
+if ((ns.DataView)&&(ns.DataView.filterActive==true)) {
+//display filtered count..
+out.push(' av '+ns.Recordset.filteredCount);
+} else {
+out.push(' av '+ns.Recordset.Count);
+}
+}
+out.push('</i>');
+}
+(!@+!)
+<a title="Ta bort filter" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.Betels.clearFilter();dataViews.Betels.firstPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetClearFilterIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="F&ouml;rsta" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.Betels.firstPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetFirstIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="F&ouml;reg&aring;nde" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.Betels.previousPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetPreviousIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="N&auml;sta" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.Betels.nextPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetNextIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="Sista" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.Betels.lastPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetLastIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="H&auml;mta alla" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.Betels.getAllRows({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetAllIcon EditIcon">&nb(!&'sp'!);</span></a>
+<input type="button" style="display:none" id="Filter_(!&ns._ViewId!)" onclick="
+dataViews.Betels.clearFilter();
+
+dataViews.Betels.addFilter('Id','*',document.getElementById('Filter_Betel_Id_List(!&ns._ViewId!)').value);
+dataViews.Betels.addFilter('Name','*',document.getElementById('Filter_Betel_Name_List(!&ns._ViewId!)').value);
+dataViews.Betels.addFilter('Address','*',document.getElementById('Filter_Betel_Address_List(!&ns._ViewId!)').value);
+dataViews.Betels.addFilter('Zip','*',document.getElementById('Filter_Betel_Zip_List(!&ns._ViewId!)').value);
+dataViews.Betels.addFilter('ZipTown','*',document.getElementById('Filter_Betel_ZipTown_List(!&ns._ViewId!)').value);
+dataViews.Betels.addFilter('CountryCode','*',document.getElementById('Filter_Betel_CountryCode_List(!&ns._ViewId!)').value);
+dataViews.Betels.addFilter('DOB','*',document.getElementById('Filter_Betel_DOB_List(!&ns._ViewId!)').value);
+dataViews.Betels.addFilter('BapDT','*',document.getElementById('Filter_Betel_BapDT_List(!&ns._ViewId!)').value);
+dataViews.Betels.addFilter('Tel','*',document.getElementById('Filter_Betel_Tel_List(!&ns._ViewId!)').value);
+dataViews.Betels.addFilter('Status','*',document.getElementById('Filter_Betel_Status_List(!&ns._ViewId!)').value);
+
+dataViews.Betels.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});
+"/>
+<span id="Prog(!&ns._ViewId!)"></span>
+</span>
+
+<table class="ListTable" ><tr>
+
+<th width="" class="Col_Betel_Id_List"><a class="SortColumn" onclick="
+dataViews.Betels.setSort('Id');
+dataViews.Betels.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>#</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Betel_Id_List"> </span></th>
+
+<th width="" class="Col_Betel_Name_List"><a class="SortColumn" onclick="
+dataViews.Betels.setSort('Name');
+dataViews.Betels.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Namn</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Betel_Name_List"> </span></th>
+
+<th width="" class="Col_Betel_Address_List"><a class="SortColumn" onclick="
+dataViews.Betels.setSort('Address');
+dataViews.Betels.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Adress</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Betel_Address_List"> </span></th>
+
+<th width="" class="Col_Betel_Zip_List"><a class="SortColumn" onclick="
+dataViews.Betels.setSort('Zip');
+dataViews.Betels.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Postnr</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Betel_Zip_List"> </span></th>
+
+<th width="" class="Col_Betel_ZipTown_List"><a class="SortColumn" onclick="
+dataViews.Betels.setSort('ZipTown');
+dataViews.Betels.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Postort</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Betel_ZipTown_List"> </span></th>
+
+<th width="" class="Col_Betel_CountryCode_List"><a class="SortColumn" onclick="
+dataViews.Betels.setSort('CountryCode');
+dataViews.Betels.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Landkod</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Betel_CountryCode_List"> </span></th>
+
+<th width="" class="Col_Betel_DOB_List"><a class="SortColumn" onclick="
+dataViews.Betels.setSort('DOB');
+dataViews.Betels.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>F&ouml;dd</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Betel_DOB_List"> </span></th>
+
+<th width="" class="Col_Betel_BapDT_List"><a class="SortColumn" onclick="
+dataViews.Betels.setSort('BapDT');
+dataViews.Betels.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>D&ouml;pdatum</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Betel_BapDT_List"> </span></th>
+
+<th width="" class="Col_Betel_Tel_List"><a class="SortColumn" onclick="
+dataViews.Betels.setSort('Tel');
+dataViews.Betels.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Tel</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Betel_Tel_List"> </span></th>
+
+<th width="" class="Col_Betel_Status_List"><a class="SortColumn" onclick="
+dataViews.Betels.setSort('Status');
+dataViews.Betels.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Status</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Betel_Status_List"> </span></th>
+
+</tr><tr>
+
+<td><input id="Filter_Betel_Id_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Betels.getFilter('Id','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_Betel_Name_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Betels.getFilter('Name','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_Betel_Address_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Betels.getFilter('Address','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_Betel_Zip_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Betels.getFilter('Zip','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_Betel_ZipTown_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Betels.getFilter('ZipTown','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_Betel_CountryCode_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Betels.getFilter('CountryCode','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_Betel_DOB_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Betels.getFilter('DOB','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_Betel_BapDT_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Betels.getFilter('BapDT','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_Betel_Tel_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Betels.getFilter('Tel','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_Betel_Status_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Betels.getFilter('Status','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+</tr>
+(!@-!)
+var r;
+
+for(var ri=0;ri<ns.data.length;ri++) {
+r = ns.data[ri];
+
+(!@+!)
+<tr >
+
+<td ><a class=ajaxLink href=Pages/Betel/(!&r.Id!)>(!&r.Id!)</a></td>
+
+<td ><a class=ajaxLink href=Pages/Betel/(!&r.Id!)>(!&r.Name!)</a></td>
+
+<td >(!&r['Address']!)</td>
+
+<td >(!&r['Zip']!)</td>
+
+<td >(!&r['ZipTown']!)</td>
+
+<td >(!&r['CountryCode']!)</td>
+
+<td >(!&r['DOB']!)</td>
+
+<td >(!&r['BapDT']!)</td>
+
+<td >(!&r['Tel']!)</td>
+
+<td >(!&r['Status']!)</td>
+
+</tr>
+(!@-!)}
+if (ns.data.length == 0) {//no rows code.(!@+!)
+<tr><td colspan="13"><center>Ingen</center></td></tr>
+(!@-!) } (!@+!)
+
+</table>
+(!@-!)} else {
+//no data retrieved yet... load it..
+(!@+!)<script>
+dataViews.Betels.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2("(!&ns._fullurl!)",{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});
+
+</script><img src="img/ajaxLoading.gif"/>ladda...
+(!@-!)}(!@+!)
+

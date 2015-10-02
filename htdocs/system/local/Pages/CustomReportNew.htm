@@ -1,0 +1,58 @@
+{#ajaxTemplate2#}<span class="CustomReportsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="CustomReportNew_ProtoHeader">Anpassade Report</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/CustomReportNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/CustomReports" class="ajaxLink">Lista</a>
+    </span>
+</span><br/>
+
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan='2'><center><span class="TaskEdit4" task="Project4.Task" component="CustomReportNew_fields">Uppgifter</span></center></th></tr>
+</thead>
+<tbody>
+
+<tr><td><label>Namn</label>:</td><td><input id="CustomReport_Name_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Typ</label>:</td><td>
+<select id="CustomReport_Type_New(!&ns._ViewId!)" >
+
+<option value="PDF">PDF</option>
+
+<option value="CustomPDF">CustomPDF</option>
+
+</select></td></tr>
+
+</tbody>
+<tfoot><tr><td colspan="2"><center Task="Project4.Task" Component="CustomReportNew_fields" class="TaskEdit4">
+
+<input type="button" value="L&auml;gg till" onclick="
+dataViews.CustomReports.newRecord({
+NewRecord:{
+Name:document.getElementById('CustomReport_Name_New(!&ns._ViewId!)').value
+,
+Type:document.getElementById('CustomReport_Type_New(!&ns._ViewId!)').value
+
+}
+,OnComplete:function(response){
+var r;
+eval('r='+response);
+if (r['NewId']) {
+App3.Navigate2('local/Pages/ReportPDF/'+r['NewId'],{target:'(!&ns.target!)',forceRead:true});
+}
+}
+});
+"/></center>
+</td></tr></tfoot>
+</table>
+<script>
+try {
+document.getElementById('CustomReport_Name_New(!&ns._ViewId!)').focus();
+} catch(e) {
+//no problem.
+}
+</script>
+

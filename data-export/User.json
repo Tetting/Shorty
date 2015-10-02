@@ -1,0 +1,11 @@
+[
+{"Id":"1","Username":"admin","Password":"0192023a7bbd73250516f069df18b500","FirstName":"An","LastName":"Admin","Permissions":null,"Status":null,"Notes":null,"LastLogin":"2014-04-23 12:58:44","Db":null},
+{"Id":"2","Username":"curt","Password":"219f4263bc66cec03dadbaebfcb96b8d","FirstName":"Curt","LastName":"Johansson","Permissions":"","Status":"Aktiv","Notes":"","LastLogin":"2015-09-08 07:30:40","Db":null},
+{"Id":"3","Username":"david","Password":"d4e879aca51d48e0feba3112f0d1b8cd","FirstName":"David","LastName":"Duveskog","Permissions":"","Status":"Aktiv","Notes":"","LastLogin":"2015-09-09 11:40:46","Db":null},
+{"Id":"4","Username":"g&ouml;ran","Password":"de03b43c7cbcd17c601df19642de9146","FirstName":"G&ouml;ran","LastName":"Duveskog","Permissions":"","Status":"Aktiv","Notes":"","LastLogin":"2015-09-03 07:53:35","Db":null},
+{"Id":"5","Username":"veronika","Password":"775adc8545f3f6f878f267d8f017cadc","FirstName":"Veronika","LastName":"Bod&eacute;n","Permissions":"","Status":"Aktiv","Notes":"","LastLogin":"2015-09-09 07:29:42","Db":null},
+{"Id":"6","Username":"siv","Password":"affa26b547235144caa042294b5d0425","FirstName":"Siv","LastName":"Sandsg&aring;rd","Permissions":"","Status":"Aktiv","Notes":"","LastLogin":"2015-09-09 09:13:27","Db":null},
+{"Id":"7","Username":"jeanett","Password":"16f1f3b285f304773ff5f616328f4c52","FirstName":"Jeanett","LastName":"&Aring;sblom","Permissions":"","Status":"Aktiv","Notes":"","LastLogin":"2015-09-07 07:05:28","Db":null},
+{"Id":"8","Username":"henrik","Password":"266291d5f3a13d51ce1e285d9a421e1a","FirstName":"Henrik","LastName":"Herza","Permissions":"","Status":"Aktiv","Notes":"","LastLogin":"2015-09-09 06:06:05","Db":null},
+{"Id":"9","Username":"test","Password":"c93ccd78b2076528346216b3b2f701e6","FirstName":"","LastName":"","Permissions":"","Status":"Aktiv","Notes":"","LastLogin":"2015-01-27 15:27:05","Db":""}
+]

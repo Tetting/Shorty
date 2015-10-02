@@ -1,0 +1,122 @@
+{#ajaxTemplate2#} Custom Report.
+<script language="Javascript">
+App.fileUpload = function(form, action_url, div_id)
+{
+// Create the iframe...
+var iframe = document.createElement("iframe");
+iframe.setAttribute("id","upload_iframe");
+iframe.setAttribute("name","upload_iframe");
+iframe.setAttribute("width","0");
+iframe.setAttribute("height","0");
+iframe.setAttribute("border","0");
+iframe.setAttribute("style","width: 0; height: 0; border: none;");
+ 
+// Add to document...
+form.parentNode.appendChild(iframe);
+window.frames['upload_iframe'].name="upload_iframe";
+ 
+iframeId = document.getElementById("upload_iframe");
+ 
+// Add event...
+var eventHandler = function()  {
+ 
+if (iframeId.detachEvent)
+iframeId.detachEvent("onload", eventHandler);
+else
+iframeId.removeEventListener("load", eventHandler, false);
+ 
+// Message from server...
+if (iframeId.contentDocument) {
+content = iframeId.contentDocument.body.innerHTML;
+} else if (iframeId.contentWindow) {
+content = iframeId.contentWindow.document.body.innerHTML;
+} else if (iframeId.document) {
+content = iframeId.document.body.innerHTML;
+}
+ 
+document.getElementById(div_id).innerHTML = content;
+ 
+// Del the iframe...
+setTimeout('iframeId.parentNode.removeChild(iframeId)', 250);
+}
+ 
+if (iframeId.addEventListener)
+iframeId.addEventListener("load", eventHandler, true);
+if (iframeId.attachEvent)
+iframeId.attachEvent("onload", eventHandler);
+ 
+// Set properties of form...
+form.setAttribute("target","upload_iframe");
+form.setAttribute("action", action_url);
+form.setAttribute("method","post");
+form.setAttribute("enctype","multipart/form-data");
+form.setAttribute("encoding","multipart/form-data");
+ 
+// Submit the form...
+form.submit();
+ 
+document.getElementById(div_id).innerHTML = "Uploading...";
+}
+</script>
+ 
+<!-- index.php could be any script server-side for receive uploads. -->
+<form>
+<input type="file" name="custom" /></br>
+<input type="button" value="upload"
+        onClick="App.fileUpload(this.form,'pdf/custom/upload.php','upload'); return false;" >
+<div id="upload"></div>
+</form>
+id: <input type="text" id="reportObjectId" value="1" size="2"/>
+<button onclick="
+//document.getElementById('viewer').src='pdf/custom/uploads/custom.pdf?v='+Math.random();
+document.getElementById('viewer').src='pdf/custom.php?id='+document.getElementById('reportObjectId').value+'&v='+Math.random();
+">View</button>
+<div style="width:100%;">
+<div style="width:400px;float:left">
+<div id="addForm">
+<form target="addForm">
+    <input type="hidden" name="action" value="add"/>
+    fontSize: <input id="fontSize" name="fontSize" value="12"/><br/>
+    fieldName: <input id="fieldName" name="fieldName" value="Name"/><br/>
+    xStart: <input id="xStart" name="xStart" value="660"/><br/>
+    xEnd: <input id="xEnd" name="xEnd" value="206"/><br/>
+    y: <input id="y" name="y" value="90"/><br/>
+</form>
+<button onclick="
+$j.post('pdf/custom/badGateway.php',{
+    action:'add'
+    ,fontSize:document.getElementById('fontSize').value
+    ,fieldName:document.getElementById('fieldName').value
+    ,xStart:document.getElementById('xStart').value
+    ,xEnd:document.getElementById('xEnd').value
+    ,y:document.getElementById('y').value
+
+},function(response) {
+    console.info(response);
+    var ns = {};
+    eval('ns.data='+response);
+     var out = App3.go.local.Pages.CustomReportTable(ns);
+    console.info(out);
+    $j('#tableView').html(out);
+});
+">Add</button>
+</div>
+<div id="tableView"></div><div id="ReportAction"></div>
+</div>
+<div style="width:550px;height:600px;float:left;">
+<iframe id="viewer" style="width:100%;height:100%;"></iframe>
+</div>
+
+</div>
+<script>
+$j.post('pdf/custom/badGateway.php',{
+    action:'view'
+},function(response) {
+    console.info(response);
+    var ns = {};
+    eval('ns.data='+response);
+     var out = App3.go.local.Pages.CustomReportTable(ns);
+    console.info(out);
+    $j('#tableView').html(out);
+});
+</script>

@@ -1,0 +1,12 @@
+<b><a onclick="App3.Navigate2('/Pages/OCR');" style="cursor: pointer; color: blue;">OCR</a></b><hr>This page lets you upload postgiro files from the bank. Do not change or rename the files before upload, upload the files you have received from the bank with no changes.<br><ul><li>Click 'Browse' and then select the postgiro file to import.</li><li>Then click upload file</li><li>The system will then take some time to import the payments</li><ul><li>It will display a list of each payment, the giver, amount and 
+status</li><li>It will display "Fadderbarn: BarnNr" or "Project: ProjectNr" and 
+then the amount</li><li>It will display the amount taken for administration costs (15%)</li><li>This allows you to see how the system is allocating the payments</li><li>If you upload the same file twice (or two files with the same 
+name), then the second upload will replace all of the previous payments,
+ allowing you to test/work with the imports.</li><ul><li>If a particular giver is not registered, add the giver to the 
+database, then upload the postgiro file a second time.<br>
+    </li></ul></ul><li>Status</li><ul><li>Paid: payment was assigned to "Fadderbarn" or projects.</li><li>NoChildOrProjectMatch: the giver does not have a record in the 
+system promising to support a child, or give to a particular project.</li><li>PaidOverflow: the giver has given more money than they have 
+promised to give to children and projects. The extra money gets placed 
+into an Overflow project (project -2).</li><li>Error: Giver not found, there is no record of this giver in the 
+database.</li></ul></ul>
+<p></p>

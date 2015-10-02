@@ -1,0 +1,137 @@
+{#ajaxTemplate2#}<span class="BetelsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="protoHeader282">Betel</span> 
+
+<span class="EditIcons">    <span class="ListIcon EditIcon">
+        <a href="Pages/Betels" class="ajaxLink">Lista</a>
+    </span>
+</span><script>
+    document.title = $('<div/>').html("Betels&ouml;k").text();
+</script><br/>
+
+
+<table class="EditTable" id="BetelTab(!&ns._ViewId!)">
+<thead><tr><th colspan="7">Medlem</th></tr></thead>
+<tr>
+<td style="text-align:right">Namn:</td><td><input id="search_Name571(!&ns._ViewId!)" type="text" tabindex=3 value="(!@-!)out.push(dataViews.Betels.getFilter('Name','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Nr:</td><td><input id="search_Id570(!&ns._ViewId!)" type="text" tabindex=8 value="(!@-!)out.push(dataViews.Betels.getFilter('Id','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right"></td><td></td>
+<td rowspan="6"><text(!&'area'!) wrap="On" cols="10" rows="6" id="search_Notes582(!&ns._ViewId!)" tabindex=16>(!@-!)out.push(dataViews.Betels.getFilter('Notes','*'));(!@+!)</text(!&'area'!)></td>
+</tr>
+<tr>
+<td style="text-align:right">Efternamn:</td><td><input id="search_LastName640(!&ns._ViewId!)" type="text" tabindex=4 value="(!@-!)out.push(dataViews.Betels.getFilter('LastName','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Landskod:</td><td><input id="search_CountryCode575(!&ns._ViewId!)" type="text" tabindex=9 value="(!@-!)out.push(dataViews.Betels.getFilter('CountryCode','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">F&ouml;dd:</td><td><input id="search_DOB578(!&ns._ViewId!)" type="text" tabindex=13 value="(!@-!)out.push(dataViews.Betels.getFilter('DOB','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+</tr>
+<tr>
+<td style="text-align:right">c/o:</td><td><input id="search_coAddress628(!&ns._ViewId!)" type="text" tabindex=5 value="(!@-!)out.push(dataViews.Betels.getFilter('coAddress','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Telefon:</td><td><input id="search_Tel580(!&ns._ViewId!)" type="text" tabindex=10 value="(!@-!)out.push(dataViews.Betels.getFilter('Tel','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Medlem:</td><td><input id="search_BapDT579(!&ns._ViewId!)" type="text" tabindex=14 value="(!@-!)out.push(dataViews.Betels.getFilter('BapDT','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+</tr>
+<tr>
+<td style="text-align:right">Adress:</td><td><input id="search_Address572(!&ns._ViewId!)" type="text" tabindex=6 value="(!@-!)out.push(dataViews.Betels.getFilter('Address','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Mobil:</td><td><input id="search_mobile629(!&ns._ViewId!)" type="text" tabindex=11 value="(!@-!)out.push(dataViews.Betels.getFilter('mobile','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Status:</td><td><input id="search_Status581(!&ns._ViewId!)" type="text" tabindex=15 value="(!@-!)out.push(dataViews.Betels.getFilter('Status','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+</tr>
+<tr>
+<td style="text-align:right">PostNr:</td><td><input id="search_Zip573(!&ns._ViewId!)" type="text" tabindex=6 value="(!@-!)out.push(dataViews.Betels.getFilter('Zip','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Epost:</td><td><input id="search_email630(!&ns._ViewId!)" type="text" tabindex=12 value="(!@-!)out.push(dataViews.Betels.getFilter('email','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right"></td><td></td>
+</tr>
+<tr>
+<td style="text-align:right">PostOrt:</td><td><input id="search_ZipTown574(!&ns._ViewId!)" type="text" tabindex=7 value="(!@-!)out.push(dataViews.Betels.getFilter('ZipTown','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+</td><td style="text-align:right">Tags</td><td colspan=3><input id="search_Tags665(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Betels.getFilter('Tags','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+</tr>
+</table>
+<center>
+<button class="CancelBut" id="clear(!&ns._ViewId!)" onclick="
+dataViews.Betels.clearFilter();
+
+                jQuery('#search_Id570(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Name571(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Address572(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Zip573(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_ZipTown574(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_CountryCode575(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_ProjectCode577(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_DOB578(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_BapDT579(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Tel580(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Status581(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Notes582(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_coAddress628(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_mobile629(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_email630(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_LastName640(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Tags665(!&ns._ViewId!)').val('');
+            
+//App3.Navigate2('local/Pages/Betel/'+id,{target:'AppPages'});
+">Rensa</button>
+|
+<input class="SearchBut" type="button" id="doSearch(!&ns._ViewId!)" tabindex=17 value="Sök"
+ onclick="
+dataViews.Betels.clearFilter();
+var elm;
+             dataViews.Betels.addFilter('Id','$',jQuery('#search_Id570(!&ns._ViewId!)').val());
+            
+             dataViews.Betels.addFilter('Name','*',jQuery('#search_Name571(!&ns._ViewId!)').val());
+            
+             dataViews.Betels.addFilter('Address','*',jQuery('#search_Address572(!&ns._ViewId!)').val());
+            
+             dataViews.Betels.addFilter('Zip','*',jQuery('#search_Zip573(!&ns._ViewId!)').val());
+            
+             dataViews.Betels.addFilter('ZipTown','*',jQuery('#search_ZipTown574(!&ns._ViewId!)').val());
+            
+             dataViews.Betels.addFilter('CountryCode','*',jQuery('#search_CountryCode575(!&ns._ViewId!)').val());
+            
+             dataViews.Betels.addFilter('ProjectCode','*',jQuery('#search_ProjectCode577(!&ns._ViewId!)').val());
+            
+             dataViews.Betels.addFilter('DOB','*',jQuery('#search_DOB578(!&ns._ViewId!)').val());
+            
+             dataViews.Betels.addFilter('BapDT','*',jQuery('#search_BapDT579(!&ns._ViewId!)').val());
+            
+             dataViews.Betels.addFilter('Tel','*',jQuery('#search_Tel580(!&ns._ViewId!)').val());
+            
+             dataViews.Betels.addFilter('Status','*',jQuery('#search_Status581(!&ns._ViewId!)').val());
+            
+             dataViews.Betels.addFilter('Notes','*',jQuery('#search_Notes582(!&ns._ViewId!)').val());
+            
+             dataViews.Betels.addFilter('coAddress','*',jQuery('#search_coAddress628(!&ns._ViewId!)').val());
+            
+             dataViews.Betels.addFilter('mobile','*',jQuery('#search_mobile629(!&ns._ViewId!)').val());
+            
+             dataViews.Betels.addFilter('email','*',jQuery('#search_email630(!&ns._ViewId!)').val());
+            
+             dataViews.Betels.addFilter('LastName','*',jQuery('#search_LastName640(!&ns._ViewId!)').val());
+            
+            
+dataViews.Betels.addFilter('Tags','£',jQuery('#search_Tags665(!&ns._ViewId!)').val());
+            
+dataViews.Betels.firstRow({OnComplete:function() {
+    if (dataViews.Betels.curRecordSet.Hits > 0) {
+        var id = dataViews.Betels.curRecordSet.Rows[0]['Id'];
+        App3.Navigate2('local/Pages/Betel/'+id,{target:'AppPages'});
+    } else {
+        alert('Ingen träff');
+     }
+},NoNewPage:function() {
+        alert('Ingen träff');
+     }});
+"/></center>
+
+
+

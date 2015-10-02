@@ -1,0 +1,110 @@
+{#ajaxTemplate2#}<span class="GiversBigIcon BigIcon TaskEdit4" task="Project4.Task" component="GiverNew_ProtoHeader">Giver</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/GiverNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/Givers" class="ajaxLink">Lista</a>
+    </span>
+</span><br/>
+
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan='2'><center><span class="TaskEdit4" task="Project4.Task" component="GiverNew_fields">Uppgifter</span></center></th></tr>
+</thead>
+<tbody>
+
+<tr><td><label>Namn</label>:</td><td><input id="Giver_Name_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Adress</label>:</td><td><input id="Giver_Address_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>PostNr</label>:</td><td><input id="Giver_ZipCode_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>PostOrt</label>:</td><td><input id="ZipTown5(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Landskod</label>:</td><td><input id="Giver_Land_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Telefon</label>:</td><td><input id="Giver_Tel_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Mobiltel</label>:</td><td><input id="Giver_Mob_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Epost</label>:</td><td><input id="Giver_Email_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Tidning_An</label>:</td><td>
+<input id="Giver_Paper_New(!&ns._ViewId!)" type="hidden" value="0"/>
+<label for="Giver_Paper_New"><input type="radio" 
+value="1" name="Giver_Paper_New"  onchange="document.getElementById('Giver_Paper_New(!&ns._ViewId!)').value=this.value"/> Ja</label>
+<label for="Giver_Paper_New"><input type="radio" 
+value="0" name="Giver_Paper_New" checked onchange="document.getElementById('Giver_Paper_New(!&ns._ViewId!)').value=this.value"/> Nej</label>
+</td></tr>
+
+<tr><td><label>Medlem</label>:</td><td>
+<input id="Giver_Member_New(!&ns._ViewId!)" type="hidden" value="0"/>
+<label for="Giver_Member_New"><input type="radio" 
+value="1" name="Giver_Member_New"  onchange="document.getElementById('Giver_Member_New(!&ns._ViewId!)').value=this.value"/> Ja</label>
+<label for="Giver_Member_New"><input type="radio" 
+value="0" name="Giver_Member_New" checked onchange="document.getElementById('Giver_Member_New(!&ns._ViewId!)').value=this.value"/> Nej</label>
+</td></tr>
+
+<tr><td><label>Inkom</label>:</td><td><input id="Giver_StartD_New(!&ns._ViewId!)" type="text" value=""/>
+<script>$j('#Giver_StartD_New(!&ns._ViewId!)').date_input();</script>
+</td></tr>
+
+<tr><td><label>Projektkod</label>:</td><td><input id="Giver_ProjCode_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Status</label>:</td><td><input id="Giver_Status_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+</tbody>
+<tfoot><tr><td colspan="2"><center Task="Project4.Task" Component="GiverNew_fields" class="TaskEdit4">
+
+<input type="button" value="L&auml;gg till" onclick="
+dataViews.Givers.newRecord({
+NewRecord:{
+Name:document.getElementById('Giver_Name_New(!&ns._ViewId!)').value
+,
+Address:document.getElementById('Giver_Address_New(!&ns._ViewId!)').value
+,
+ZipCode:document.getElementById('Giver_ZipCode_New(!&ns._ViewId!)').value
+,
+Land:document.getElementById('Giver_Land_New(!&ns._ViewId!)').value
+,
+Tel:document.getElementById('Giver_Tel_New(!&ns._ViewId!)').value
+,
+Mob:document.getElementById('Giver_Mob_New(!&ns._ViewId!)').value
+,
+Email:document.getElementById('Giver_Email_New(!&ns._ViewId!)').value
+,
+Paper:document.getElementById('Giver_Paper_New(!&ns._ViewId!)').value
+,
+Member:document.getElementById('Giver_Member_New(!&ns._ViewId!)').value
+,
+StartD:document.getElementById('Giver_StartD_New(!&ns._ViewId!)').value
+,
+ProjCode:document.getElementById('Giver_ProjCode_New(!&ns._ViewId!)').value
+,
+Status:document.getElementById('Giver_Status_New(!&ns._ViewId!)').value
+,
+ZipTown:document.getElementById('ZipTown5(!&ns._ViewId!)').value
+
+}
+,OnComplete:function(response){
+
+//document.getElementById('NewGiver_Name(!&ns._ViewId!)').value = '';
+//document.getElementById('NewGiver_Name(!&ns._ViewId!)').focus();
+dataViews.Givers.dataChanged();
+App3.Navigate2('local/Pages/Givers',{target:'(!&ns.target!)',forceRead:true });
+
+}
+});
+"/></center>
+</td></tr></tfoot>
+</table>
+<script>
+try {
+document.getElementById('Giver_Name_New(!&ns._ViewId!)').focus();
+} catch(e) {
+//no problem.
+}
+</script>
+

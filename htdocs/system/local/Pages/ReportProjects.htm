@@ -1,0 +1,32 @@
+{#ajaxTemplate2#}<table class="EditTable"><tr><th>In och Ut betalningar</th></tr>
+<tr><td><div id="MonthlyPaymentsGraph(!&ns._ViewId!)" style="width:600px;height:200px;"></div></td></tr>
+</table>
+<script>
+    dataViews.Payment_Sums.getList({OnComplete:function(data,Recordset,DataView){
+       //App3.Navigate2("local/Pages/Payment_Sums",{navTarget:'MonthlyPayments(!&ns._ViewId!)',target:'MonthlyPayments(!&ns._ViewId!)',data:data,Recordset:Recordset,DataView:DataView ,ProjectId:'(!&ns.Id!)'});
+       //create a graph...
+       var gdat = [];
+        var gdat2=[];
+       var ticks = {};
+       var ticks2 =[];
+       for(var i=0;i<data.length;i++) {
+            gdat.push([data[i].Date.replace('-','.'),data[i].InKr]);
+            gdat2.push([data[i].Date.replace('-','.'),data[i].OutKr]);
+            if (!ticks[data[i].Date]){ticks[data[i].Date]=true;ticks2.push([data[i].Date.replace('-','.'),data[i].Date])}
+        }  
+
+        $j.plot($j("#MonthlyPaymentsGraph(!&ns._ViewId!)"),
+        [
+            {label:'inbet',data:gdat}
+            ,{label:'utbet',data:gdat2}
+        ],{
+            series:{lines:{show:true},points:{show:true}}
+            ,xaxis:{ticks:ticks2}
+            ,grid: {backgroundColor: { colors: ["#fff", "#eee"] }}
+        }
+        );
+    }});
+</script>
+<div id="MonthlyPayments(!&ns._ViewId!)" style="float:left"></div>
+
+<br style="clear:both"/>

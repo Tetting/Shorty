@@ -1,0 +1,64 @@
+{#ajaxTemplate2#}<span class="CustomReportsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="CustomReportProtoHeader">CustomReport</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/CustomReportNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/CustomReports" class="ajaxLink">Lista</a>
+    </span>
+</span><br/>
+
+(!@-!)if (ns.data) {
+var r= ns.data;
+(!@+!)
+
+<span class="EditIcon DeleteIcon" style="float:right">
+    <a onclick="dataViews.CustomReports.deleteRecord({Id:'(!&r.Id!)',PK:'(!&r.Id!)',OnComplete:function(){App3.Navigate2('http://local/Pages/CustomReports',{target:'(!&ns.target!)' });}});">Ta Bort</a>
+</span>
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan="2"><span class="TaskEdit4" Task="Project4.Task" Component="CustomReportEdit_fields">Uppgifter</span></th></tr>
+    <col /><col />
+
+    <tr><td><label>#:</label></td><td>(!&r.Id!)
+</td>
+
+    <tr><td><label>Namn:</label></td><td><span id="CustomReport_Name_Edit(!&ns._ViewId!)" class="ajaxEdit3" dataView="CustomReports.Name" dataPK="(!&r.Id!)" >(!&r['Name']||EditInPlace4.blank!)</span></td>
+
+    <tr><td><label>Typ:</label></td><td><span id="CustomReport_Type_Edit(!&ns._ViewId!)" class="ajaxEdit3" dataView="CustomReports.Type" dataPK="(!&r.Id!)" >(!&r['Type']||EditInPlace4.blank!)</span></td>
+
+    <tr><td><label>Data:</label></td><td><text(!&'area'!) wrap='off'  class="Editable"  cols="20" rows="10" id="CustomReport_Data_Edit(!&ns._ViewId!)" onchange="EditInPlace4.quickSave('CustomReports.Data','(!&r.Id!)',this.value)" data-fieldName="CustomReport.Data">(!&r.Data!)</text(!&'area'!)></td>
+
+    <tr><td><label>Status:</label></td><td>
+<select class="Editable" id="Status713(!&ns._ViewId!)" onchange="EditInPlace4.quickSave('CustomReports.Status','(!&r.Id!)',this.value)">
+
+<option value="Test" (!@-!)if (r.Status=='Test'){o.push('selected');}(!@+!)>Test</option>
+
+<option value="Utveckling" (!@-!)if (r.Status=='Utveckling'){o.push('selected');}(!@+!)>Utveckling</option>
+
+<option value="Publicerad" (!@-!)if (r.Status=='Publicerad'){o.push('selected');}(!@+!)>Publicerad</option>
+
+<option value="Inaktiv" (!@-!)if (r.Status=='Inaktiv'){o.push('selected');}(!@+!)>Inaktiv</option>
+
+</select></td>
+
+</table>
+
+(!@-!)} else {
+    //no data retrieved yet... load it..
+    if(!ns.Id){ns.Id=ns.url.split("/").pop();}(!@+!)
+
+<img src="img/ajaxLoading.gif"/>ladda...<script>
+dataViews.CustomReports.getRecord({
+    Id:'(!&ns.Id!)'
+    ,PK:'(!&ns.Id!)'
+    ,OnComplete:function(Record){
+        App3.Navigate2('(!&ns._fullurl!)',
+            {target:'(!&ns.target!)',data:Record,Id:'(!&ns.Id!)' }
+        );
+    }
+});
+</script>
+(!@-!)}(!@+!)
+

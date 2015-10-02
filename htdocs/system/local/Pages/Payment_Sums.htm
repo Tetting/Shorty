@@ -1,0 +1,57 @@
+{#ajaxTemplate2#}
+(!@-!)
+if ((ns.data)&&(!ns['forceRead'])) {(!@+!)
+
+<table class="ListTable" ><tr>
+
+<th width="50" class="Col_Date43"><a class="SortColumn" onclick="
+dataViews.Payment_Sums.setSort('Date');
+dataViews.Payment_Sums.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>M&aring;nad</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Date43"> </span></th>
+
+<th width="50" class="Col_InKr46"><a class="SortColumn" onclick="
+dataViews.Payment_Sums.setSort('InKr');
+dataViews.Payment_Sums.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Inbet</u></a><span class="TaskEdit4" Task="Project4.Task" Component="InKr46"> </span></th>
+
+<th width="50" class="Col_OutKr47"><a class="SortColumn" onclick="
+dataViews.Payment_Sums.setSort('OutKr');
+dataViews.Payment_Sums.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Utbet</u></a><span class="TaskEdit4" Task="Project4.Task" Component="OutKr47"> </span></th>
+
+</tr><tr>
+
+<td><input id="Filter_Date43(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Payment_Sums.getFilter('Date','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_InKr46(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Payment_Sums.getFilter('InKr','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_OutKr47(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Payment_Sums.getFilter('OutKr','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+</tr>
+(!@-!)
+var r;
+
+for(var ri=0;ri<ns.data.length;ri++) {
+r = ns.data[ri];
+
+(!@+!)
+<tr >
+
+<td >(!&r['Date']!)</td>
+
+<td >(!&r['InKr']!)</td>
+
+<td >(!&r['OutKr']!)</td>
+
+</tr>
+(!@-!)}
+if (ns.data.length == 0) {//no rows code.(!@+!)
+<tr><td colspan="7"><center>Ingen</center></td></tr>
+(!@-!) } (!@+!)
+
+</table>
+(!@-!)} else {
+//no data retrieved yet... load it..
+(!@+!)<script>
+dataViews.Payment_Sums.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2("(!&ns._fullurl!)",{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});
+
+</script><img src="img/ajaxLoading.gif"/>ladda...
+(!@-!)}(!@+!)
+

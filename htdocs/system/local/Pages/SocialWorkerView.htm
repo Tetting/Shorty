@@ -1,0 +1,21 @@
+{#ajaxTemplate2#}
+<img src="img/ajaxLoading.gif"/>ladda...<script>
+(!@-!)var nam=ns.url.split("/").pop();
+var cleanName = unescape(nam);
+(!@+!)
+dataViews.SocialWorkers.clearFilter();
+dataViews.SocialWorkers.addFilter('Name','*','(!&cleanName!)');
+
+dataViews.SocialWorkers.firstRow({
+    OnComplete:function(Id){
+        App3.Navigate2('local/Pages/SocialWorker/'+Id,
+            {target:'(!&ns.target!)'}
+        );
+    },NoNewPage:function(){
+        alert('Socialarbetare (!&cleanName!) kunde inte hittas');
+        App3.Navigate2('local/Pages/SocialWorkerSearch',
+            {target:'(!&ns.target!)'}
+        );
+    }
+});
+</script>

@@ -1,0 +1,73 @@
+{#ajaxTemplate2#}
+<script>
+$j('#DocEditText2').css('width',$j('#DocsMain3').width()-$j('#Sidebar2').width()-40);
+$j('#DocEditText2').css('height',$j('#DocsMain3').height()-86);
+
+
+ docEditor2 = new nicEditor({
+    
+iconsPath:'js/lib/nicEditorIcons.gif'
+    ,buttonList : [
+        
+'save'
+        ,'cancel'
+        ,'bold','italic','underline'
+ 
+       /*,'left','center','right','justify'*/
+        ,'ol','ul'
+ 
+       /*,'fontSize','fontFamily','fontFormat'*/
+        
+/*,'indent','outdent'*/
+        ,'image'
+        ,'link','unlink'
+
+        ,'forecolor','bgcolor'
+    ]
+    ,onSave:function(content,id,instance)
+ {
+      $j.post('docs.php',{
+          SaveName:document.getElementById('DocsPage2').value
+
+          ,Contents:content
+      },function(response) {
+  
+      docEditor2.removeInstance('DocEditText2');
+        
+App.displayDoc(document.getElementById('DocsPage2').value);
+  
+      $j('.nicEdit-pane').remove();
+        window.setTimeout("$j('.nicEdit-pane').remove();",200);
+
+        //window.setTimeout("docEditor2.removeInstance('DocEditText2');App.displayDoc(document.getElementById('DocsPage2').value);",200);
+
+      })
+    },onCancel:function(id,instance) {
+        
+docEditor2.removeInstance('DocEditText2');    
+        
+App.displayDoc(document.getElementById('DocsPage2').value);
+  
+      $j('.nicEdit-pane').remove();
+        window.setTimeout("$j('.nicEdit-pane').remove();",200);
+
+    }
+}).panelInstance('DocEditText2');
+        
+$j.get('docs.php',{
+
+   EditName:document.getElementById('DocsPage2').value
+},function(response)
+ {
+    //document.getElementById('DocEditText2').value=response;
+
+    docEditor2.instanceById('DocEditText2').setContent(response);
+   
+ docEditor2.instanceById('DocEditText2').elm.focus();
+    
+$j('#DocsEdit2').hide();
+}
+);
+</script>
+<text(!&'area'!)
+ id="DocEditText2"></text(!&'area'!)>

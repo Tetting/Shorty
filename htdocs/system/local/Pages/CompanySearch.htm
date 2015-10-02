@@ -1,0 +1,75 @@
+{#ajaxTemplate2#}<span class="CompanysBigIcon BigIcon TaskEdit4" task="Project4.Task" component="protoHeader599">F&ouml;retag</span> 
+
+<span class="EditIcons">    <span class="ListIcon EditIcon">
+        <a href="Pages/Companys" class="ajaxLink">Lista</a>
+    </span>
+</span><br/>
+<table class="EditTable">
+<thead><tr><th colspan="7">Givare</th></tr></thead>
+<tr>
+<td style="text-align:right">Namn:</td><td><input id="search_CompanyName587(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Companys.getFilter('CompanyName','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Nr:</td><td><input id="search_Id586(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Companys.getFilter('Id','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td rowspan="6"><text(!&'area'!) wrap="off" cols="30" rows="6" id="search_Notes595(!&ns._ViewId!)">(!@-!)out.push(dataViews.Companys.getFilter('Notes','*'));(!@+!)</text(!&'area'!)></td>
+</tr>
+<tr>
+<td style="text-align:right">Adress:</td><td><input id="search_Address588(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Companys.getFilter('Address','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Telefon:</td><td><input id="search_Tel591(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Companys.getFilter('Tel','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+</tr>
+<tr>
+<td style="text-align:right">PostNr:</td><td><input id="search_Zip589(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Companys.getFilter('Zip','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">BankGiro:</td><td><input id="search_BankGiro592(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Companys.getFilter('BankGiro','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+</tr>
+<tr>
+<td style="text-align:right">PostOrt:</td><td><input id="search_ZipTown590(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Companys.getFilter('ZipTown','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">PosttGiro:</td><td><input id="search_PostGiro593(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Companys.getFilter('PostGiro','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+</tr>
+<tr>
+<td style="text-align:right">Epost:</td><td>??</td>
+<td style="text-align:right">kod:</td><td><input id="search_Code594(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Companys.getFilter('Code','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+</tr>
+</table>
+<center>
+<button onclick="
+dataViews.Companys.clearFilter();
+App3.Navigate2('local/Pages/Company/'+id,{target:'AppPages'});
+">Rensa</button>
+|
+<input type="button" id="doSearch(!&ns._ViewId!)" value="Sök"
+ onclick="
+dataViews.Companys.clearFilter();
+var elm;
+             dataViews.Companys.addFilter('Id','*',jQuery('#search_Id586(!&ns._ViewId!)').val());
+            
+             dataViews.Companys.addFilter('CompanyName','*',jQuery('#search_CompanyName587(!&ns._ViewId!)').val());
+            
+             dataViews.Companys.addFilter('Address','*',jQuery('#search_Address588(!&ns._ViewId!)').val());
+            
+             dataViews.Companys.addFilter('Zip','*',jQuery('#search_Zip589(!&ns._ViewId!)').val());
+            
+             dataViews.Companys.addFilter('ZipTown','*',jQuery('#search_ZipTown590(!&ns._ViewId!)').val());
+            
+             dataViews.Companys.addFilter('Tel','*',jQuery('#search_Tel591(!&ns._ViewId!)').val());
+            
+             dataViews.Companys.addFilter('BankGiro','*',jQuery('#search_BankGiro592(!&ns._ViewId!)').val());
+            
+             dataViews.Companys.addFilter('PostGiro','*',jQuery('#search_PostGiro593(!&ns._ViewId!)').val());
+            
+             dataViews.Companys.addFilter('Code','*',jQuery('#search_Code594(!&ns._ViewId!)').val());
+            
+             dataViews.Companys.addFilter('Notes','*',jQuery('#search_Notes595(!&ns._ViewId!)').val());
+            
+             dataViews.Companys.addFilter('Status','*',jQuery('#search_Status596(!&ns._ViewId!)').val());
+            
+dataViews.Companys.firstRow({OnComplete:function() {
+    if (dataViews.Companys.curRecordSet.Hits > 0) {
+        var id = dataViews.Companys.curRecordSet.Rows[0]['Id'];
+        App3.Navigate2('local/Pages/Company/'+id,{target:'AppPages'});
+    } else {
+        alert('Ingen träff');
+     }
+},NoNewPage:function() {
+        alert('Ingen träff');
+     }});
+"/></center>
+
+

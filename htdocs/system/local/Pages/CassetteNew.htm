@@ -1,0 +1,70 @@
+{#ajaxTemplate2#}<span class="CassettesBigIcon BigIcon TaskEdit4" task="Project4.Task" component="CassetteNew_ProtoHeader">Media</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/CassetteNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/Cassettes" class="ajaxLink">Lista</a>
+    </span>
+</span><br/>
+
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan='2'><center><span class="TaskEdit4" task="Project4.Task" component="CassetteNew_fields">Uppgifter</span></center></th></tr>
+</thead>
+<tbody>
+
+<tr><td><label>ID</label>:</td><td><input id="Cassette_Nr_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Datum</label>:</td><td><input id="Date211(!&ns._ViewId!)" type="text" value=""/>
+<script>$j('#Date211(!&ns._ViewId!)').date_input();</script>
+</td></tr>
+
+<tr><td><label>Namn</label>:</td><td><input id="Cassette_Speaker_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>&Auml;mne</label>:</td><td><input id="Cassette_Subject_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Extra</label>:</td><td><input id="Cassette_Extra_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Status</label>:</td><td><input id="Cassette_Status_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+</tbody>
+<tfoot><tr><td colspan="2"><center Task="Project4.Task" Component="CassetteNew_fields" class="TaskEdit4">
+
+<input type="button" value="L&auml;gg till" onclick="
+dataViews.Cassettes.newRecord({
+NewRecord:{
+Nr:document.getElementById('Cassette_Nr_New(!&ns._ViewId!)').value
+,
+Speaker:document.getElementById('Cassette_Speaker_New(!&ns._ViewId!)').value
+,
+Subject:document.getElementById('Cassette_Subject_New(!&ns._ViewId!)').value
+,
+Extra:document.getElementById('Cassette_Extra_New(!&ns._ViewId!)').value
+,
+Status:document.getElementById('Cassette_Status_New(!&ns._ViewId!)').value
+,
+Date:document.getElementById('Date211(!&ns._ViewId!)').value
+
+}
+,OnComplete:function(response){
+
+//document.getElementById('NewCassette_Name(!&ns._ViewId!)').value = '';
+//document.getElementById('NewCassette_Name(!&ns._ViewId!)').focus();
+dataViews.Cassettes.dataChanged();
+App3.Navigate2('local/Pages/Cassettes',{target:'(!&ns.target!)',forceRead:true });
+
+}
+});
+"/></center>
+</td></tr></tfoot>
+</table>
+<script>
+try {
+document.getElementById('Cassette_Nr_New(!&ns._ViewId!)').focus();
+} catch(e) {
+//no problem.
+}
+</script>
+

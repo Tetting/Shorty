@@ -1,0 +1,61 @@
+{#ajaxTemplate2#}<span class="GivProjPromisessBigIcon BigIcon TaskEdit4" task="Project4.Task" component="GivProjPromisesProtoHeader">Eng&aring;ngsl&ouml;fte</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/GivProjPromisesNew?GiverId=(!&ns.GiverId!)" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/GivProjPromisess?GiverId=(!&ns.GiverId!)" class="ajaxLink">Lista</a>
+    </span>
+</span><br/>
+
+(!@-!)if (ns.data) {
+var r= ns.data;
+(!@+!)
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan="2"><span class="TaskEdit4" Task="Project4.Task" Component="GivProjPromisesEdit_fields">Uppgifter</span></th></tr>
+    <col /><col />
+
+    <tr><td><label>#:</label></td><td>(!&r.Id!)
+</td>
+
+    <tr><td><label>Givare#:</label></td><td><input type="text" id="GivProjPromises_GiverId_Edit(!&ns._ViewId!)" class="Editable" data-fieldName="GivProjPromises.GiverId" value="(!&r['GiverId']||''!)"  /></td>
+
+    <tr><td><label>StartDt:</label></td><td>(!@-!)if(r.StartDt == '0000-00-00') {r.StartDt = '';}
+(!@+!)<input class="Editable dateEdit" id="GivProjPromises_StartDt_Edit(!&ns._ViewId!)" type="text"  onchange="EditInPlace4.quickSave('GivProjPromisess.StartDt','(!&r.Id!)',this.value)"  data-fieldName="GivProjPromises.StartDt" value="(!&r.StartDt!)" size="12"/>
+<script>$j('#GivProjPromises_StartDt_Edit(!&ns._ViewId!)').date_input();</script>
+</td>
+
+    <tr><td><label>Projekt#:</label></td><td><input type="text" id="GivProjPromises_ProjectId_Edit(!&ns._ViewId!)" class="Editable" data-fieldName="GivProjPromises.ProjectId" value="(!&r['ProjectId']||''!)"  /></td>
+
+    <tr><td><label>L&ouml;fte:</label></td><td><span id="GivProjPromises_OneTimePromise_Edit(!&ns._ViewId!)" class="ajaxEdit3" dataView="GivProjPromisess.OneTimePromise" dataPK="(!&r.Id!)" >(!&r['OneTimePromise']||EditInPlace4.blank!)</span></td>
+
+    <tr><td><label>Status:</label></td><td>
+<select class="Editable" id="GivProjPromises_Status_Edit(!&ns._ViewId!)" onchange="EditInPlace4.quickSave('GivProjPromisess.Status','(!&r.Id!)',this.value)">
+
+<option value="Aktiv" (!@-!)if (r.Status=='Aktiv'){o.push('selected');}(!@+!)>Aktiv</option>
+
+<option value="Inaktiv" (!@-!)if (r.Status=='Inaktiv'){o.push('selected');}(!@+!)>Inaktiv</option>
+
+</select></td>
+
+</table>
+
+(!@-!)} else {
+    //no data retrieved yet... load it..
+    if(!ns.Id){ns.Id=ns.url.split("/").pop();}(!@+!)
+
+<img src="img/ajaxLoading.gif"/>ladda...<script>
+dataViews.GivProjPromisess.getRecord({
+    Id:'(!&ns.Id!)'
+    ,PK:'(!&ns.Id!)'
+    ,OnComplete:function(Record){
+        App3.Navigate2('(!&ns._fullurl!)',
+            {target:'(!&ns.target!)',data:Record,Id:'(!&ns.Id!)' }
+        );
+    }
+});
+</script>
+(!@-!)}(!@+!)
+

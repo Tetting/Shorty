@@ -1,0 +1,108 @@
+{#ajaxTemplate2#}<span class="ChurchsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="protoHeader602">F&ouml;rsamlingar</span> 
+
+<span class="EditIcons">    <span class="ListIcon EditIcon">
+        <a href="Pages/Churchs" class="ajaxLink">Lista</a>
+    </span>
+</span><script>
+    document.title = $('<div/>').html("F&ouml;rsamlingar s&ouml;k").text();
+</script><br/>
+<table class="EditTable">
+<thead><tr><th colspan="7">Uppgifter</th></tr></thead>
+<tr>
+<td style="text-align:right">F&ouml;rsamling:</td><td><input id="search_ChurchName604(!&ns._ViewId!)" type="text" tabindex=3 value="(!@-!)out.push(dataViews.Churchs.getFilter('ChurchName','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Nr:</td><td><input id="search_Id603(!&ns._ViewId!)" type="text" tabindex=8 value="(!@-!)out.push(dataViews.Churchs.getFilter('Id','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td rowspan="6"><text(!&'area'!) wrap="off" cols="53" rows="6" id="search_Notes610(!&ns._ViewId!)" tabindex=13>(!@-!)out.push(dataViews.Churchs.getFilter('Notes','*'));(!@+!)</text(!&'area'!)></td>
+</tr>
+<tr>
+<td style="text-align:right">c/o Adress:</td><td><input id="search_coAddress636(!&ns._ViewId!)" type="text" tabindex=4 value="(!@-!)out.push(dataViews.Churchs.getFilter('coAddress','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Telefon:</td><td><input id="search_Tel608(!&ns._ViewId!)" type="text" tabindex=9 value="(!@-!)out.push(dataViews.Churchs.getFilter('Tel','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+</tr>
+<tr>
+<td style="text-align:right">Adress:</td><td><input id="search_Address605(!&ns._ViewId!)" type="text" tabindex=5 value="(!@-!)out.push(dataViews.Churchs.getFilter('Address','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Kontakt:</td><td><input id="search_Contact609(!&ns._ViewId!)" type="text" tabindex=10 value="(!@-!)out.push(dataViews.Churchs.getFilter('Contact','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+</tr>
+<tr>
+<td style="text-align:right">PostNr:</td><td><input id="search_Zip606(!&ns._ViewId!)" type="text" tabindex=6 value="(!@-!)out.push(dataViews.Churchs.getFilter('Zip','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Epost:</td><td><input id="search_Email637(!&ns._ViewId!)" type="text" tabindex=11 value="(!@-!)out.push(dataViews.Churchs.getFilter('Email','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+</tr>
+<tr>
+<td style="text-align:right">PostOrt:</td><td><input id="search_ZipTown607(!&ns._ViewId!)" type="text" tabindex=7 value="(!@-!)out.push(dataViews.Churchs.getFilter('ZipTown','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Hemsida:</td><td><input id="search_Url638(!&ns._ViewId!)" type="text" tabindex=12 value="(!@-!)out.push(dataViews.Churchs.getFilter('Url','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+</tr>
+<tr>
+<td style="text-align:right">Tags:</td><td><input id="search_Tags701(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Churchs.getFilter('Tags','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td></td><td></td></tr>
+</table>
+<center>
+<button class="CancelBut" id="clear(!&ns._ViewId!)" onclick="
+dataViews.Churchs.clearFilter();
+
+                jQuery('#search_Id603(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_ChurchName604(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Address605(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Zip606(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_ZipTown607(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Tel608(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Contact609(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Notes610(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_coAddress636(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Email637(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Url638(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Tags701(!&ns._ViewId!)').val('');
+            
+//App3.Navigate2('local/Pages/Church/'+id,{target:'AppPages'});
+">Rensa</button>
+|
+<input class="SearchBut" type="button" id="doSearch(!&ns._ViewId!)" tabindex=14 value="Sök"
+ onclick="
+dataViews.Churchs.clearFilter();
+var elm;
+             dataViews.Churchs.addFilter('Id','$',jQuery('#search_Id603(!&ns._ViewId!)').val());
+            
+             dataViews.Churchs.addFilter('ChurchName','*',jQuery('#search_ChurchName604(!&ns._ViewId!)').val());
+            
+             dataViews.Churchs.addFilter('Address','*',jQuery('#search_Address605(!&ns._ViewId!)').val());
+            
+             dataViews.Churchs.addFilter('Zip','*',jQuery('#search_Zip606(!&ns._ViewId!)').val());
+            
+             dataViews.Churchs.addFilter('ZipTown','*',jQuery('#search_ZipTown607(!&ns._ViewId!)').val());
+            
+             dataViews.Churchs.addFilter('Tel','*',jQuery('#search_Tel608(!&ns._ViewId!)').val());
+            
+             dataViews.Churchs.addFilter('Contact','*',jQuery('#search_Contact609(!&ns._ViewId!)').val());
+            
+             dataViews.Churchs.addFilter('Notes','*',jQuery('#search_Notes610(!&ns._ViewId!)').val());
+            
+             dataViews.Churchs.addFilter('coAddress','*',jQuery('#search_coAddress636(!&ns._ViewId!)').val());
+            
+             dataViews.Churchs.addFilter('Email','*',jQuery('#search_Email637(!&ns._ViewId!)').val());
+            
+             dataViews.Churchs.addFilter('Url','*',jQuery('#search_Url638(!&ns._ViewId!)').val());
+            
+            
+dataViews.Churchs.addFilter('Tags','£',jQuery('#search_Tags701(!&ns._ViewId!)').val());
+            
+dataViews.Churchs.firstRow({OnComplete:function() {
+    if (dataViews.Churchs.curRecordSet.Hits > 0) {
+        var id = dataViews.Churchs.curRecordSet.Rows[0]['Id'];
+        App3.Navigate2('local/Pages/Church/'+id,{target:'AppPages'});
+    } else {
+        alert('Ingen träff');
+     }
+},NoNewPage:function() {
+        alert('Ingen träff');
+     }});
+"/></center>
+
+
+

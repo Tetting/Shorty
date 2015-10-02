@@ -1,0 +1,76 @@
+{#ajaxTemplate2#}<span class="FadderbarnActionsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="FadderbarnActionNew_ProtoHeader">Handling</span> 
+
+<span class="EditIcons">    <span class="ListIcon EditIcon">
+        <a href="Pages/FadderbarnActions?entityId=(!&ns.entityId!)" class="ajaxLink">Lista</a>
+    </span>
+</span><br/>
+
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan='2'><center><span class="TaskEdit4" task="Project4.Task" component="FadderbarnActionNew_fields">Uppgifter</span></center></th></tr>
+</thead>
+<tbody>
+
+<tr><td><label>Handelse</label>:</td><td>
+<select id="FadderbarnAction_actionName_New(!&ns._ViewId!)" >
+
+<option value="Nytt foto">Nytt foto</option>
+
+<option value="Ny allm&auml;n rapport">Ny allm&auml;n rapport</option>
+
+<option value="Ny rapport">Ny rapport</option>
+
+</select></td></tr>
+
+<tr><td><label>datum</label>:</td><td><input id="FadderbarnAction_date_New(!&ns._ViewId!)" type="text" value=""/>
+<script>$j('#FadderbarnAction_date_New(!&ns._ViewId!)').date_input();</script>
+</td></tr>
+
+<tr><td><label>noteringar</label>:</td><td><text(!&'area'!) wrap="off" cols="20" rows="10" id="FadderbarnAction_notes_New(!&ns._ViewId!)"></text(!&'area'!)></td></tr>
+
+<tr><td><label>Typ</label>:</td><td><input type="hidden" id="FadderbarnAction_entityName_New(!&ns._ViewId!)" value="(!&'Fadderbarn'!)"/>(!&'Fadderbarn'!)
+
+</td></tr>
+
+<tr><td><label>#</label>:</td><td><input type="hidden" id="FadderbarnAction_entityId_New(!&ns._ViewId!)" value="(!&ns.entityId!)"/>(!&ns.entityId!)
+
+</td></tr>
+
+</tbody>
+<tfoot><tr><td colspan="2"><center Task="Project4.Task" Component="FadderbarnActionNew_fields" class="TaskEdit4">
+
+<input type="button" value="L&auml;gg till" onclick="
+dataViews.FadderbarnActions.newRecord({
+NewRecord:{
+actionName:document.getElementById('FadderbarnAction_actionName_New(!&ns._ViewId!)').value
+,
+entityName:document.getElementById('FadderbarnAction_entityName_New(!&ns._ViewId!)').value
+,
+entityId:document.getElementById('FadderbarnAction_entityId_New(!&ns._ViewId!)').value
+,
+date:document.getElementById('FadderbarnAction_date_New(!&ns._ViewId!)').value
+,
+notes:document.getElementById('FadderbarnAction_notes_New(!&ns._ViewId!)').value
+
+}
+,OnComplete:function(response){
+
+//document.getElementById('NewFadderbarnAction_Name(!&ns._ViewId!)').value = '';
+//document.getElementById('NewFadderbarnAction_Name(!&ns._ViewId!)').focus();
+dataViews.FadderbarnActions.dataChanged();
+App3.Navigate2('local/Pages/FadderbarnActions',{target:'(!&ns.target!)',forceRead:true ,entityId:'(!&ns.entityId!)'});
+
+}
+});
+"/></center>
+</td></tr></tfoot>
+</table>
+<script>
+try {
+document.getElementById('FadderbarnAction_actionName_New(!&ns._ViewId!)').focus();
+} catch(e) {
+//no problem.
+}
+</script>
+

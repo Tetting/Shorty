@@ -1,0 +1,107 @@
+{#ajaxTemplate2#}<div id="confirmClickAway"><div style="position:absolute;"><div id="confirm" style="
+z-index:99;position:absolute;background-color:grey;
+width:400px;height:260px;
+background: rgb(99, 99, 99);
+background: rgba(99, 99, 99, 0.9);
+display:none;
+"></div></div>
+<div style="float:left"><span class="PaymentOutsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="PaymentOutNew_ProtoHeader">Utbetalning</span> 
+
+<span class="EditIcons"></span><script>
+    document.title = $('<div/>').html("Utbetalning").text();
+</script><br/>
+
+
+<table class="EditTable" id='PaymentTable'>
+<thead>
+    <tr><th colspan='2'><center><span class="TaskEdit4" task="Project4.Task" component="PaymentOutNew_fields">Uppgifter</span></center></th></tr>
+</thead>
+<tbody>
+
+<tr><td><label>Datum</label>:</td><td><input id="PaymentOut_Date_New(!&ns._ViewId!)" type="text" pattern='[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])' value=""/></td></tr>
+
+<tr><td><label>Projekt#</label>:</td><td><input id="PaymentOut_ProjectId_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Ut summa</label>:</td><td><input id="PaymentOut_OutKr_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Anv&auml;ndare</label>:</td><td><input type="hidden" id="PaymentOut_AddedBy_New(!&ns._ViewId!)" value="(!&App3.LoggedInUser!)"/>(!&App3.LoggedInUser!)
+
+</td></tr>
+
+</tbody>
+
+
+<script>
+try {
+document.getElementById('PaymentOut_Date_New(!&ns._ViewId!)').focus();
+} catch(e) {
+//no problem.
+}
+</script>
+<tfoot><tr><td colspan="2"><center>
+<input type="button" class="autoClick" value="Preview" onclick="
+var dat= {};
+$j('#PaymentTable input').each(function(){
+    if (this.id) {
+        var p = this.id.split('_');
+        dat[p[0]+'_'+p[1]] = $j(this).val();
+    }
+});
+$j('#PaymentTable select').each(function(){
+    dat['Payment_Source'] = $j(this).val();
+});
+$j.post('do/paymentOutPreview.php',dat,function(response) {
+    $j('#confirm').html(response).show();
+
+});
+"/></center></td></tr></tfoot></table>
+<br/></div><script>
+$j('#confirmClickAway').click(function(e){
+    if ($j(this).closest('#confirm').size() == 0) {
+        $j('#confirm').hide();
+    }
+});
+if (localStorage) {
+    $j('#PaymentOut_ProjectId_New(!&ns._ViewId!)').val(localStorage.getItem('NewPayment_Project'));
+    $j('#PaymentOut_Date_New(!&ns._ViewId!)').addClass('isDate').val(localStorage.getItem('NewPayment_Date'));
+}
+$j('#PaymentTable input,select').keydown( function(e) {
+        var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
+        if(key == 13) {
+            var inputs = $j(this).closest('table').find(':input:visible');
+            var next = inputs.eq( inputs.index(this)+ 1 )
+            e.preventDefault();
+            if (next.length>0) {
+                if(next.is('button')) {
+                    var next = inputs.eq( inputs.index(this)+ 2 )
+                }
+                if (next.hasClass('isDate')) {
+                    next.select();
+                } else {
+                    next.focus().select();
+                }
+                if (next.hasClass('autoClick')) {
+                    next.click();
+                }    
+            } else {
+                $j(this).click();
+            }
+        }
+    });
+$j('#PaymentOut_ProjectId_New(!&ns._ViewId!)').focus().select();
+</script></div>
+<div style="float:left;padding-left:20px;" id="PaymentList">
+</div>
+<input type="hidden" id="mainPaymentViewId" value="(!&ns._ViewId!)"/>
+<script>
+window.newPaymentDate=function() {
+dataViews.PaymentOuts.clearFilter();
+dataViews.PaymentOuts.setFilter('Date','=',document.getElementById('PaymentOut_Date_New(!&ns._ViewId!)').value);
+dataViews.PaymentOuts.addFilter('PaymentSource','=','utbet');
+dataViews.PaymentOuts.getList({
+    OnComplete:function(data,Recordset,DataView){
+        App3.Navigate2("local/Pages/PaymentOuts",{navTarget:'PaymentList',target:'PaymentList',data:data,Recordset:Recordset,DataView:DataView,PaymentViewId:'(!&ns._ViewId!)'});
+}});
+}
+window.newPaymentDate();
+</script>

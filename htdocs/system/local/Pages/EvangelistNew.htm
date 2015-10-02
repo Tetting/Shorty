@@ -1,0 +1,113 @@
+{#ajaxTemplate2#}<span class="EvangelistsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="EvangelistNew_ProtoHeader">Evangelist</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/EvangelistNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/Evangelists" class="ajaxLink">Lista</a>
+    </span>
+</span><script>
+    document.title = $('<div/>').html("Ny Evangelist").text();
+</script><br/>
+
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan='2'><center><span class="TaskEdit4" task="Project4.Task" component="EvangelistNew_fields">Uppgifter</span></center></th></tr>
+</thead>
+<tbody>
+
+<tr><td><label>Name</label>:</td><td><input id="Evangelist_Name_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>DOB</label>:</td><td><input id="Evangelist_DOB_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>GiverId</label>:</td><td>
+<input type="text" id="Evangelist_GiverId_New(!&ns._ViewId!)" value="0" OnChange=""/>
+<a style="cursor:pointer;" onclick="
+if($j('#Evangelist_GiverId_NewPopUp(!&ns._ViewId!)_area').css('display')=='none') {
+$j('#Evangelist_GiverId_NewPopUp(!&ns._ViewId!)_area').show();
+App3.Navigate2('local/Pages/GiverSelect',{target:'Evangelist_GiverId_NewPopUp(!&ns._ViewId!)'});
+} else {
+$j('#Evangelist_GiverId_NewPopUp(!&ns._ViewId!)_area').hide();
+}
+"><span class="EditLink" style="display:none;" id="Evangelist_GiverId_NewPopUp(!&ns._ViewId!)_display">undefined</span>
+
+<button>Välj</button></a>
+<br/>
+<div id="Evangelist_GiverId_NewPopUp(!&ns._ViewId!)_area" style="display:none;position:relative;" datadisplay="Evangelist_GiverId_NewPopUp(!&ns._ViewId!)_display" datastoreid="Evangelist_GiverId_New(!&ns._ViewId!)"><div id="Evangelist_GiverId_NewPopUp(!&ns._ViewId!)" class="PopupSelect" style="position:absolute;background:#EEEEEE;">loading...</div></div>
+
+</td></tr>
+
+<tr><td><label>HelpD</label>:</td><td><input id="Evangelist_HelpD_New(!&ns._ViewId!)" type="text" value=""/>
+<script>$j('#Evangelist_HelpD_New(!&ns._ViewId!)').date_input();</script>
+</td></tr>
+
+<tr><td><label>Mkr</label>:</td><td><input id="Evangelist_Mkr_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Area1</label>:</td><td><input id="Evangelist_Area1_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Area</label>:</td><td><input id="Evangelist_Area_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>TGdt</label>:</td><td><input id="Evangelist_TGdt_New(!&ns._ViewId!)" type="text" value=""/>
+<script>$j('#Evangelist_TGdt_New(!&ns._ViewId!)').date_input();</script>
+</td></tr>
+
+<tr><td><label>CountryCode</label>:</td><td><input id="Evangelist_CountryCode_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Notes</label>:</td><td><text(!&'area'!) wrap="off" cols="20" rows="10" id="Evangelist_Notes_New(!&ns._ViewId!)"></text(!&'area'!)></td></tr>
+
+<tr><td><label>Status</label>:</td><td><input id="Evangelist_Status_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Db</label>:</td><td><input id="Evangelist_Db_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+</tbody>
+<tfoot><tr><td colspan="2"><center Task="Project4.Task" Component="EvangelistNew_fields" class="TaskEdit4">
+
+<input type="button" value="L&auml;gg till" onclick="
+dataViews.Evangelists.newRecord({
+NewRecord:{
+Name:document.getElementById('Evangelist_Name_New(!&ns._ViewId!)').value
+,
+DOB:document.getElementById('Evangelist_DOB_New(!&ns._ViewId!)').value
+,
+GiverId:document.getElementById('Evangelist_GiverId_New(!&ns._ViewId!)').value
+,
+HelpD:document.getElementById('Evangelist_HelpD_New(!&ns._ViewId!)').value
+,
+Mkr:document.getElementById('Evangelist_Mkr_New(!&ns._ViewId!)').value
+,
+Area1:document.getElementById('Evangelist_Area1_New(!&ns._ViewId!)').value
+,
+Area:document.getElementById('Evangelist_Area_New(!&ns._ViewId!)').value
+,
+TGdt:document.getElementById('Evangelist_TGdt_New(!&ns._ViewId!)').value
+,
+CountryCode:document.getElementById('Evangelist_CountryCode_New(!&ns._ViewId!)').value
+,
+Notes:document.getElementById('Evangelist_Notes_New(!&ns._ViewId!)').value
+,
+Status:document.getElementById('Evangelist_Status_New(!&ns._ViewId!)').value
+,
+Db:document.getElementById('Evangelist_Db_New(!&ns._ViewId!)').value
+
+}
+,OnComplete:function(response){
+
+//document.getElementById('NewEvangelist_Name(!&ns._ViewId!)').value = '';
+//document.getElementById('NewEvangelist_Name(!&ns._ViewId!)').focus();
+dataViews.Evangelists.dataChanged();
+App3.Navigate2('local/Pages/Evangelists',{target:'(!&ns.target!)',forceRead:true });
+
+}
+});
+"/></center>
+</td></tr></tfoot>
+</table>
+<script>
+try {
+document.getElementById('Evangelist_Name_New(!&ns._ViewId!)').focus();
+} catch(e) {
+//no problem.
+}
+</script>
+

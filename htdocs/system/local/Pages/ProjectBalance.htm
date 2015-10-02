@@ -1,0 +1,75 @@
+{#ajaxTemplate2#}(!@-!)
+    if(!ns.Id){ns.Id=ns.url.split("/").pop();}(!@+!)
+<div id="confirmClickAway">
+<div style="position:absolute;"><div style="z-index: 99; position: absolute; width: 400px; height: 260px; background: none repeat scroll 0% 0% rgba(99, 99, 99, 0.9); display: none;" id="confirm">
+</div></div>
+</div>
+<script>
+$j('#confirmClickAway').click(function(e){
+    if ($j(this).closest('#confirm').size() == 0) {
+        $j('#confirm').hide();
+    }
+});
+</script></div>
+<table style="float:left;min-width:300px" class="EditTable">
+<thead>
+    <tr><th colspan="2">Välj Projekt</span></th></tr>
+    </thead><colgroup><col><col>
+
+    </colgroup><tbody>
+<tr><td><label>Projekt:</label></td><td><input type="text" id="ProjectId"
+onchange="$.post('do/projectStats.php',{
+    id:document.getElementById('ProjectId').value
+},function(response) {
+    $('#projectView(!&ns._ViewId!)').html(response);
+});
+"
+value="(!&ns.Id!)"/>
+<button id="viewProject" onclick="
+$.post('do/projectStats.php',{
+    id:document.getElementById('ProjectId').value
+},function(response) {
+    $('#projectView(!&ns._ViewId!)').html(response);
+});
+">Go</button></td></tr>
+</tbody></table>
+
+<br style="clear:both"/>
+<div id="projectView(!&ns._ViewId!)"></div>
+<br style="clear:both"/>
+
+<table style="float:left;min-width:300px" class="EditTable">
+<thead>
+    <tr><th colspan="2">Ställa balansen</span></th></tr>
+    </thead><colgroup><col><col>
+
+    </colgroup><tbody>
+<tr><td><label>Datum:</label></td><td>
+<input type="text" size="12" value="" 
+id="BalanceDate(!&ns._ViewId!)" class="Editable dateEdit">
+<script>$j('#BalanceDate(!&ns._ViewId!)').date_input();</script>
+</td></tr>
+<tr><td><label>Saldo:</label></td><td><input id="Saldo(!&ns._ViewId!)"/></td></tr>
+<tr><td colspan="2"><center><button onclick="
+var dat={};
+dat.ProjectId = $('#ProjectId').val();
+dat.Date = $('#BalanceDate(!&ns._ViewId!)').val();
+dat.Saldo = $('#Saldo(!&ns._ViewId!)').val();
+$j.post('do/setBalancePreview.php',dat,function(response) {
+    $j('#confirm').html(response).show();
+});
+">Preview</button></center></td></tr>
+</tbody></table>
+
+
+</div>
+<script>
+    document.title = 'Ställa balansen';
+    (!@-!)if (ns.Id) {(!@+!)        
+$.post('do/projectStats.php',{
+    id:document.getElementById('ProjectId').value
+},function(response) {
+    $('#projectView(!&ns._ViewId!)').html(response);
+});    
+    (!@-!)}(!@+!)
+</script>

@@ -1,0 +1,38 @@
+{#ajaxTemplate2#}
+
+<table class="EditTable">
+    <thead><tr><th colspan=3>Barn Rapport</th></tr></thead>
+    <tbody>
+        <tr><td align=top>
+Rapport:<select id="ReportName" size=5>
+
+
+<option selected>BarnRamForFoto</option>
+<option>barnrapbrevfoto</option>
+<option>barnrapfoto</option>
+<option>barnrapportallman</option>
+<option>barnrapportbrev</option>
+</select>
+        </td>
+<td>
+Barn:<input id='ChildId' value="1"/>
+<br/>
+<button onclick="
+document.getElementById('PrintPreview').src = 'pdf/'+document.getElementById('ReportName').value+'.php?id='+document.getElementById('ChildId').value+'&rnd='+Math.random();
+">kör</button>
+</td>
+</tr>
+<tr><td>
+Område:<input id='Area' value="52"/>
+</td><td>
+<button onclick="
+$j('#PrintPreview').css({'width': '960px','height': '620px'});
+document.getElementById('PrintPreview').src = 'pdf/Barnlista.php?area='+document.getElementById('Area').value+'&rnd='+Math.random();
+">Barnlista</button>
+</td>
+</tr>
+    </tbody>
+</table>
+<div id="testFrame">
+<iframe src="about:blank" style="width: 0px; height: 0px;" id="PrintPreview"></iframe>
+</div>

@@ -1,0 +1,81 @@
+{#ajaxTemplate2#}<span class="GivProjsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="GivProjProtoHeader">Givarprojekt</span> 
+
+<span class="EditIcons"></span><br/>
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a class="ajaxLink" href="/Pages/GivProjNew?GiverId=(!@-!)if(ns['data']){o.push(ns.data['GiverId']);}(!@+!)">Nytt Givarprojekt</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a class="ajaxLink" target="AppPages" href="/Pages/Giver/(!@-!)if(ns['data']){o.push(ns.data['GiverId']);}(!@+!)">Lista</a>
+    </span>
+</span>
+(!@-!)if (ns.data) {
+var r= ns.data;
+(!@+!)
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan="2"><span class="TaskEdit4" Task="Project4.Task" Component="GivProjEdit_fields">Uppgifter</span></th></tr>
+    <col /><col />
+
+    <tr><td><label>#:</label></td><td>(!&r.Id!)
+</td>
+
+    <tr><td><label>Givare:</label></td><td>
+<input type="hidden" id="GivProj_GiverId_Edit(!&ns._ViewId!)" value="(!&r.GiverId!)" OnChange=""/>
+<a style="cursor:pointer;" onclick="
+if($j('#GivProj_GiverId_EditPopUp(!&ns._ViewId!)_area').css('display')=='none') {
+    $j('#GivProj_GiverId_EditPopUp(!&ns._ViewId!)_area').show();
+    App3.Navigate2('local/Pages/GiverSelect',{target:'GivProj_GiverId_EditPopUp(!&ns._ViewId!)'});
+} else {
+    $j('#GivProj_GiverId_EditPopUp(!&ns._ViewId!)_area').hide();
+}"><span class="EditLink" id="GivProj_GiverId_EditPopUp(!&ns._ViewId!)_display">(!&r.GiverId!)</span> <button>V&#228;lj</button></a>
+<br/>
+<div id="GivProj_GiverId_EditPopUp(!&ns._ViewId!)_area" style="display:none;position:relative;" datapk="(!&r.Id!)" dataview="GivProjs.GiverId" datadisplay="GivProj_GiverId_EditPopUp(!&ns._ViewId!)_display" datastoreid="GivProj_GiverId_Edit(!&ns._ViewId!)"><div id="GivProj_GiverId_EditPopUp(!&ns._ViewId!)" class="PopupSelect" style="position:absolute;background:#EEEEEE;">loading...</div></div>
+</td>
+
+    <tr><td><label>B&ouml;rjat:</label></td><td>(!@-!)if(r.StartDt == '0000-00-00') {r.StartDt = '';}
+(!@+!)<input class="Editable dateEdit" id="GivProj_StartDt_Edit(!&ns._ViewId!)" type="text"  onchange="EditInPlace4.quickSave('GivProjs.StartDt','(!&r.Id!)',this.value)"  data-fieldName="GivProj.StartDt" value="(!&r.StartDt!)" size="12"/>
+<script>$j('#GivProj_StartDt_Edit(!&ns._ViewId!)').date_input();</script>
+</td>
+
+    <tr><td><label>Kr_m&aring;nad:</label></td><td><span id="GivProj_KrMon_Edit(!&ns._ViewId!)" class="ajaxEdit3" dataView="GivProjs.KrMon" dataPK="(!&r.Id!)" >(!&r['KrMon']||EditInPlace4.blank!)</span></td>
+
+    <tr><td><label>Projekt#:</label></td><td>
+<input type="hidden" id="GivProj_ProjectId_Edit(!&ns._ViewId!)" value="(!&r.ProjectId!)" OnChange=""/>
+<a style="cursor:pointer;" onclick="
+if($j('#GivProj_ProjectId_EditPopUp(!&ns._ViewId!)_area').css('display')=='none') {
+    $j('#GivProj_ProjectId_EditPopUp(!&ns._ViewId!)_area').show();
+    App3.Navigate2('local/Pages/ProjectSelect',{target:'GivProj_ProjectId_EditPopUp(!&ns._ViewId!)'});
+} else {
+    $j('#GivProj_ProjectId_EditPopUp(!&ns._ViewId!)_area').hide();
+}"><span class="EditLink" id="GivProj_ProjectId_EditPopUp(!&ns._ViewId!)_display">(!&r.ProjectId!)</span> <button>V&#228;lj</button></a>
+<br/>
+<div id="GivProj_ProjectId_EditPopUp(!&ns._ViewId!)_area" style="display:none;position:relative;" datapk="(!&r.Id!)" dataview="GivProjs.ProjectId" datadisplay="GivProj_ProjectId_EditPopUp(!&ns._ViewId!)_display" datastoreid="GivProj_ProjectId_Edit(!&ns._ViewId!)"><div id="GivProj_ProjectId_EditPopUp(!&ns._ViewId!)" class="PopupSelect" style="position:absolute;background:#EEEEEE;">loading...</div></div>
+</td>
+
+    <tr><td><label>Status:</label></td><td>
+<select class="Editable" id="GivProj_Status_Edit(!&ns._ViewId!)" onchange="EditInPlace4.quickSave('GivProjs.Status','(!&r.Id!)',this.value)">
+
+<option value="Aktiv" (!@-!)if (r.Status=='Aktiv'){o.push('selected');}(!@+!)>Aktiv</option>
+
+<option value="Inaktiv" (!@-!)if (r.Status=='Inaktiv'){o.push('selected');}(!@+!)>Inaktiv</option>
+
+</select></td>
+
+(!@-!)} else {
+    //no data retrieved yet... load it..
+    if(!ns.Id){ns.Id=ns.url.split("/").pop();}(!@+!)
+
+<img src="img/ajaxLoading.gif"/>ladda...<script>
+dataViews.GivProjs.getRecord({
+    Id:'(!&ns.Id!)'
+    ,PK:'(!&ns.Id!)'
+    ,OnComplete:function(Record){
+        App3.Navigate2('(!&ns._fullurl!)',
+            {target:'(!&ns.target!)',data:Record,Id:'(!&ns.Id!)' }
+        );
+    }
+});
+</script>
+(!@-!)}(!@+!)
+

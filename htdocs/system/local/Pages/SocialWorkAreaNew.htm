@@ -1,0 +1,77 @@
+{#ajaxTemplate2#}<span class="SocialWorkAreasBigIcon BigIcon TaskEdit4" task="Project4.Task" component="SocialWorkAreaNew_ProtoHeader">Omr&aring;de</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/SocialWorkAreaNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/SocialWorkAreas" class="ajaxLink">Lista</a>
+    </span>
+</span><script>
+    document.title = $('<div/>').html("Ny Omr&aring;de").text();
+</script><br/>
+
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan='2'><center><span class="TaskEdit4" task="Project4.Task" component="SocialWorkAreaNew_fields">Uppgifter</span></center></th></tr>
+</thead>
+<tbody>
+
+<tr><td><label>Land</label>:</td><td><input id="SocialWorkArea_CountryCode_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Omr&aring;de</label>:</td><td><input id="SocialWorkArea_Area_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Omr&aring;de1</label>:</td><td><input id="SocialWorkArea_Area1_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>SocialWorkerId</label>:</td><td>
+<input type="text" id="SocialWorkArea_SocialWorkerId_New(!&ns._ViewId!)" value="0" OnChange=""/>
+<a style="cursor:pointer;" onclick="
+if($j('#SocialWorkArea_SocialWorkerId_NewPopUp(!&ns._ViewId!)_area').css('display')=='none') {
+$j('#SocialWorkArea_SocialWorkerId_NewPopUp(!&ns._ViewId!)_area').show();
+App3.Navigate2('local/Pages/SocialWorkerSelect',{target:'SocialWorkArea_SocialWorkerId_NewPopUp(!&ns._ViewId!)'});
+} else {
+$j('#SocialWorkArea_SocialWorkerId_NewPopUp(!&ns._ViewId!)_area').hide();
+}
+"><span class="EditLink" style="display:none;" id="SocialWorkArea_SocialWorkerId_NewPopUp(!&ns._ViewId!)_display">undefined</span>
+
+<button>Välj</button></a>
+<br/>
+<div id="SocialWorkArea_SocialWorkerId_NewPopUp(!&ns._ViewId!)_area" style="display:none;position:relative;" datadisplay="SocialWorkArea_SocialWorkerId_NewPopUp(!&ns._ViewId!)_display" datastoreid="SocialWorkArea_SocialWorkerId_New(!&ns._ViewId!)"><div id="SocialWorkArea_SocialWorkerId_NewPopUp(!&ns._ViewId!)" class="PopupSelect" style="position:absolute;background:#EEEEEE;">loading...</div></div>
+
+</td></tr>
+
+</tbody>
+<tfoot><tr><td colspan="2"><center Task="Project4.Task" Component="SocialWorkAreaNew_fields" class="TaskEdit4">
+
+<input type="button" value="L&auml;gg till" onclick="
+dataViews.SocialWorkAreas.newRecord({
+NewRecord:{
+CountryCode:document.getElementById('SocialWorkArea_CountryCode_New(!&ns._ViewId!)').value
+,
+Area:document.getElementById('SocialWorkArea_Area_New(!&ns._ViewId!)').value
+,
+Area1:document.getElementById('SocialWorkArea_Area1_New(!&ns._ViewId!)').value
+,
+SocialWorkerId:document.getElementById('SocialWorkArea_SocialWorkerId_New(!&ns._ViewId!)').value
+
+}
+,OnComplete:function(response){
+
+//document.getElementById('NewSocialWorkArea_Name(!&ns._ViewId!)').value = '';
+//document.getElementById('NewSocialWorkArea_Name(!&ns._ViewId!)').focus();
+dataViews.SocialWorkAreas.dataChanged();
+App3.Navigate2('local/Pages/SocialWorkAreas',{target:'(!&ns.target!)',forceRead:true });
+
+}
+});
+"/></center>
+</td></tr></tfoot>
+</table>
+<script>
+try {
+document.getElementById('SocialWorkArea_CountryCode_New(!&ns._ViewId!)').focus();
+} catch(e) {
+//no problem.
+}
+</script>
+

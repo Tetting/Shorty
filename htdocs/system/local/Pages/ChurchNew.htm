@@ -1,0 +1,65 @@
+{#ajaxTemplate2#}<span class="ChurchsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="ChurchNew_ProtoHeader">F&ouml;rsamling</span> 
+
+<span class="EditIcons">    <span class="ListIcon EditIcon">
+        <a href="Pages/Churchs" class="ajaxLink">Lista</a>
+    </span>
+</span><br/>
+
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan='2'><center><span class="TaskEdit4" task="Project4.Task" component="ChurchNew_fields">Uppgifter</span></center></th></tr>
+</thead>
+<tbody>
+
+<tr><td><label>F&ouml;rsamling</label>:</td><td><input id="Church_ChurchName_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Adress</label>:</td><td><input id="Church_Address_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Postnr</label>:</td><td><input id="Church_Zip_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Postort</label>:</td><td><input id="Church_ZipTown_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Tel</label>:</td><td><input id="Church_Tel_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Kontakt</label>:</td><td><input id="Church_Contact_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+</tbody>
+<tfoot><tr><td colspan="2"><center Task="Project4.Task" Component="ChurchNew_fields" class="TaskEdit4">
+
+<input type="button" value="L&auml;gg till" onclick="
+dataViews.Churchs.newRecord({
+NewRecord:{
+ChurchName:document.getElementById('Church_ChurchName_New(!&ns._ViewId!)').value
+,
+Address:document.getElementById('Church_Address_New(!&ns._ViewId!)').value
+,
+Zip:document.getElementById('Church_Zip_New(!&ns._ViewId!)').value
+,
+ZipTown:document.getElementById('Church_ZipTown_New(!&ns._ViewId!)').value
+,
+Tel:document.getElementById('Church_Tel_New(!&ns._ViewId!)').value
+,
+Contact:document.getElementById('Church_Contact_New(!&ns._ViewId!)').value
+
+}
+,OnComplete:function(response){
+
+//document.getElementById('NewChurch_Name(!&ns._ViewId!)').value = '';
+//document.getElementById('NewChurch_Name(!&ns._ViewId!)').focus();
+dataViews.Churchs.dataChanged();
+App3.Navigate2('local/Pages/Churchs',{target:'(!&ns.target!)',forceRead:true });
+
+}
+});
+"/></center>
+</td></tr></tfoot>
+</table>
+<script>
+try {
+document.getElementById('Church_ChurchName_New(!&ns._ViewId!)').focus();
+} catch(e) {
+//no problem.
+}
+</script>
+

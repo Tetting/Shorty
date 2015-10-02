@@ -1,0 +1,112 @@
+{#ajaxTemplate2#}
+(!@-!)
+if ((ns.data)&&(!ns['forceRead'])) {(!@+!)
+
+<span class="EditIcons"><span class="TaskEdit4" Task="Project4.Task" Component="SocialWorkAreaList796"> </span>
+(!@-!)
+if (ns.Recordset) {
+if (ns.Recordset.Hits ==0) {
+out.push('<i>0 Poster');
+} else {
+out.push('<i>Post '+(ns.Recordset.start+1)+' till '+(ns.Recordset.Hits+ns.Recordset.start));
+}
+if (ns.Recordset.Count) {
+if ((ns.DataView)&&(ns.DataView.filterActive==true)) {
+//display filtered count..
+out.push(' av '+ns.Recordset.filteredCount);
+} else {
+out.push(' av '+ns.Recordset.Count);
+}
+}
+out.push('</i>');
+}
+(!@+!)
+<a title="Ta bort filter" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.SocialWorkAreas.clearFilter();dataViews.SocialWorkAreas.firstPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetClearFilterIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="F&ouml;rsta" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.SocialWorkAreas.firstPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetFirstIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="F&ouml;reg&aring;nde" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.SocialWorkAreas.previousPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetPreviousIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="N&auml;sta" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.SocialWorkAreas.nextPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetNextIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="Sista" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.SocialWorkAreas.lastPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetLastIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="H&auml;mta alla" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.SocialWorkAreas.getAllRows({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetAllIcon EditIcon">&nb(!&'sp'!);</span></a>
+<input type="button" style="display:none" id="Filter_(!&ns._ViewId!)" onclick="
+dataViews.SocialWorkAreas.clearFilter();
+
+dataViews.SocialWorkAreas.addFilter('Id','*',document.getElementById('Filter_Id797(!&ns._ViewId!)').value);
+dataViews.SocialWorkAreas.addFilter('CountryCode','*',document.getElementById('Filter_CountryCode798(!&ns._ViewId!)').value);
+dataViews.SocialWorkAreas.addFilter('Area','*',document.getElementById('Filter_Area799(!&ns._ViewId!)').value);
+dataViews.SocialWorkAreas.addFilter('Area1','*',document.getElementById('Filter_Area1800(!&ns._ViewId!)').value);
+dataViews.SocialWorkAreas.addFilter('SocialWorkerId','*',document.getElementById('Filter_SocialWorkerId801(!&ns._ViewId!)').value);
+
+dataViews.SocialWorkAreas.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});
+"/>
+<span id="Prog(!&ns._ViewId!)"></span>
+</span>
+
+<table class="ListTable" ><tr>
+
+<th width="" class="Col_Id797"><a class="SortColumn" onclick="
+dataViews.SocialWorkerAreas.setSort('Id');
+dataViews.SocialWorkerAreas.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>#</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Id797"> </span></th>
+
+<th width="" class="Col_CountryCode798"><a class="SortColumn" onclick="
+dataViews.SocialWorkerAreas.setSort('CountryCode');
+dataViews.SocialWorkerAreas.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Landkod</u></a><span class="TaskEdit4" Task="Project4.Task" Component="CountryCode798"> </span></th>
+
+<th width="" class="Col_Area799"><a class="SortColumn" onclick="
+dataViews.SocialWorkerAreas.setSort('Area');
+dataViews.SocialWorkerAreas.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Area</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Area799"> </span></th>
+
+<th width="" class="Col_Area1800"><a class="SortColumn" onclick="
+dataViews.SocialWorkerAreas.setSort('Area1');
+dataViews.SocialWorkerAreas.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Area1</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Area1800"> </span></th>
+
+<th width="" class="Col_SocialWorkerId801"><a class="SortColumn" onclick="
+dataViews.SocialWorkerAreas.setSort('SocialWorkerId');
+dataViews.SocialWorkerAreas.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>SocialWorkerId</u></a><span class="TaskEdit4" Task="Project4.Task" Component="SocialWorkerId801"> </span></th>
+
+</tr><tr>
+
+<td><input id="Filter_Id797(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.SocialWorkerAreas.getFilter('Id','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_CountryCode798(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.SocialWorkerAreas.getFilter('CountryCode','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_Area799(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.SocialWorkerAreas.getFilter('Area','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_Area1800(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.SocialWorkerAreas.getFilter('Area1','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_SocialWorkerId801(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.SocialWorkerAreas.getFilter('SocialWorkerId','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+</tr>
+(!@-!)
+var r;
+
+for(var ri=0;ri<ns.data.length;ri++) {
+r = ns.data[ri];
+
+(!@+!)
+<tr >
+
+<td >(!&r['Id']!)</td>
+
+<td >(!&r['CountryCode']!)</td>
+
+<td >(!&r['Area']!)</td>
+
+<td >(!&r['Area1']!)</td>
+
+<td >(!&r['SocialWorkerId']!)</td>
+
+</tr>
+(!@-!)}
+if (ns.data.length == 0) {//no rows code.(!@+!)
+<tr><td colspan="5"><center>Ingen</center></td></tr>
+(!@-!) } (!@+!)
+
+</table>
+(!@-!)} else {
+//no data retrieved yet... load it..
+(!@+!)<script>
+dataViews.SocialWorkAreas.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2("(!&ns._fullurl!)",{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});
+
+</script><img src="img/ajaxLoading.gif"/>ladda...
+(!@-!)}(!@+!)
+

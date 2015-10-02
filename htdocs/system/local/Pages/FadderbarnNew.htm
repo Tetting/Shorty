@@ -1,0 +1,98 @@
+{#ajaxTemplate2#}<span class="FadderbarnsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="FadderbarnNew_ProtoHeader">Fadderbarn</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/FadderbarnNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/Fadderbarns" class="ajaxLink">Lista</a>
+    </span>
+</span><br/>
+
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan='2'><center><span class="TaskEdit4" task="Project4.Task" component="FadderbarnNew_fields">Uppgifter</span></center></th></tr>
+</thead>
+<tbody>
+
+<tr><td><label>Namn</label>:</td><td><input id="Fadderbarn_Name_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>FathersName</label>:</td><td><input id="Fadderbarn_FathersName_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>MothersName</label>:</td><td><input id="Fadderbarn_MothersName_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>F&ouml;dd</label>:</td><td><input id="Fadderbarn_DOB_New(!&ns._ViewId!)" type="text" value=""/>
+<script>$j('#Fadderbarn_DOB_New(!&ns._ViewId!)').date_input();</script>
+</td></tr>
+
+<tr><td><label>Socialarbe</label>:</td><td><input id="Fadderbarn_HelpD_New(!&ns._ViewId!)" type="text" value=""/>
+<script>$j('#Fadderbarn_HelpD_New(!&ns._ViewId!)').date_input();</script>
+</td></tr>
+
+<tr><td><label>Kronor M&aring;n</label>:</td><td><input id="Fadderbarn_Mkr_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Omr&aring;de1</label>:</td><td><input id="Fadderbarn_Area1_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Omr&aring;de</label>:</td><td><input id="Fadderbarn_Area_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Inkom t TG</label>:</td><td><input id="Fadderbarn_TGdt_New(!&ns._ViewId!)" type="text" value=""/>
+<script>$j('#Fadderbarn_TGdt_New(!&ns._ViewId!)').date_input();</script>
+</td></tr>
+
+<tr><td><label>Landkod</label>:</td><td><input id="Fadderbarn_CountryCode_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Helper</label>:</td><td><input id="Fadderbarn_Helper_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Status</label>:</td><td><input id="Fadderbarn_Status_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+</tbody>
+<tfoot><tr><td colspan="2"><center Task="Project4.Task" Component="FadderbarnNew_fields" class="TaskEdit4">
+
+<input type="button" value="L&auml;gg till" onclick="
+dataViews.Fadderbarns.newRecord({
+NewRecord:{
+Name:document.getElementById('Fadderbarn_Name_New(!&ns._ViewId!)').value
+,
+FathersName:document.getElementById('Fadderbarn_FathersName_New(!&ns._ViewId!)').value
+,
+MothersName:document.getElementById('Fadderbarn_MothersName_New(!&ns._ViewId!)').value
+,
+DOB:document.getElementById('Fadderbarn_DOB_New(!&ns._ViewId!)').value
+,
+HelpD:document.getElementById('Fadderbarn_HelpD_New(!&ns._ViewId!)').value
+,
+Mkr:document.getElementById('Fadderbarn_Mkr_New(!&ns._ViewId!)').value
+,
+Area1:document.getElementById('Fadderbarn_Area1_New(!&ns._ViewId!)').value
+,
+Area:document.getElementById('Fadderbarn_Area_New(!&ns._ViewId!)').value
+,
+TGdt:document.getElementById('Fadderbarn_TGdt_New(!&ns._ViewId!)').value
+,
+CountryCode:document.getElementById('Fadderbarn_CountryCode_New(!&ns._ViewId!)').value
+,
+Helper:document.getElementById('Fadderbarn_Helper_New(!&ns._ViewId!)').value
+,
+Status:document.getElementById('Fadderbarn_Status_New(!&ns._ViewId!)').value
+
+}
+,OnComplete:function(response){
+
+//document.getElementById('NewFadderbarn_Name(!&ns._ViewId!)').value = '';
+//document.getElementById('NewFadderbarn_Name(!&ns._ViewId!)').focus();
+dataViews.Fadderbarns.dataChanged();
+App3.Navigate2('local/Pages/Fadderbarns',{target:'(!&ns.target!)',forceRead:true });
+
+}
+});
+"/></center>
+</td></tr></tfoot>
+</table>
+<script>
+try {
+document.getElementById('Fadderbarn_Name_New(!&ns._ViewId!)').focus();
+} catch(e) {
+//no problem.
+}
+</script>
+

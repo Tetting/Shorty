@@ -1,0 +1,98 @@
+{#ajaxTemplate2#}<span class="SocialWorkersBigIcon BigIcon TaskEdit4" task="Project4.Task" component="SocialWorkerNew_ProtoHeader">SocialWorker</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/SocialWorkerNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/SocialWorkers" class="ajaxLink">Lista</a>
+    </span>
+</span><br/>
+
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan='2'><center><span class="TaskEdit4" task="Project4.Task" component="SocialWorkerNew_fields">Uppgifter</span></center></th></tr>
+</thead>
+<tbody>
+
+<tr><td><label>Name</label>:</td><td><input id="SocialWorker_Name_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Address</label>:</td><td><input id="SocialWorker_Address_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>ZipCode</label>:</td><td><input id="SocialWorker_ZipCode_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>ZipTown</label>:</td><td><input id="SocialWorker_ZipTown_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Land</label>:</td><td><input id="SocialWorker_Land_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Tel</label>:</td><td><input id="SocialWorker_Tel_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Mob</label>:</td><td><input id="SocialWorker_Mob_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Email</label>:</td><td><input id="SocialWorker_Email_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>StartD</label>:</td><td><input id="SocialWorker_StartD_New(!&ns._ViewId!)" type="text" value=""/>
+<script>$j('#SocialWorker_StartD_New(!&ns._ViewId!)').date_input();</script>
+</td></tr>
+
+<tr><td><label>Status</label>:</td><td><input id="SocialWorker_Status_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Notes</label>:</td><td><text(!&'area'!) wrap="off" cols="20" rows="10" id="SocialWorker_Notes_New(!&ns._ViewId!)"></text(!&'area'!)></td></tr>
+
+<tr><td><label>CoAddress</label>:</td><td><input id="SocialWorker_CoAddress_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Db</label>:</td><td><input id="SocialWorker_Db_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+</tbody>
+<tfoot><tr><td colspan="2"><center Task="Project4.Task" Component="SocialWorkerNew_fields" class="TaskEdit4">
+
+<input type="button" value="L&auml;gg till" onclick="
+dataViews.SocialWorkers.newRecord({
+NewRecord:{
+Name:document.getElementById('SocialWorker_Name_New(!&ns._ViewId!)').value
+,
+Address:document.getElementById('SocialWorker_Address_New(!&ns._ViewId!)').value
+,
+ZipCode:document.getElementById('SocialWorker_ZipCode_New(!&ns._ViewId!)').value
+,
+ZipTown:document.getElementById('SocialWorker_ZipTown_New(!&ns._ViewId!)').value
+,
+Land:document.getElementById('SocialWorker_Land_New(!&ns._ViewId!)').value
+,
+Tel:document.getElementById('SocialWorker_Tel_New(!&ns._ViewId!)').value
+,
+Mob:document.getElementById('SocialWorker_Mob_New(!&ns._ViewId!)').value
+,
+Email:document.getElementById('SocialWorker_Email_New(!&ns._ViewId!)').value
+,
+StartD:document.getElementById('SocialWorker_StartD_New(!&ns._ViewId!)').value
+,
+Status:document.getElementById('SocialWorker_Status_New(!&ns._ViewId!)').value
+,
+Notes:document.getElementById('SocialWorker_Notes_New(!&ns._ViewId!)').value
+,
+CoAddress:document.getElementById('SocialWorker_CoAddress_New(!&ns._ViewId!)').value
+,
+Db:document.getElementById('SocialWorker_Db_New(!&ns._ViewId!)').value
+
+}
+,OnComplete:function(response){
+
+//document.getElementById('NewSocialWorker_Name(!&ns._ViewId!)').value = '';
+//document.getElementById('NewSocialWorker_Name(!&ns._ViewId!)').focus();
+dataViews.SocialWorkers.dataChanged();
+App3.Navigate2('local/Pages/SocialWorkers',{target:'(!&ns.target!)',forceRead:true });
+
+}
+});
+"/></center>
+</td></tr></tfoot>
+</table>
+<script>
+try {
+document.getElementById('SocialWorker_Name_New(!&ns._ViewId!)').focus();
+} catch(e) {
+//no problem.
+}
+</script>
+

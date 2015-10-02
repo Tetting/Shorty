@@ -1,0 +1,180 @@
+{#ajaxTemplate2#}
+<span class="GiversBigIcon BigIcon">Rapport</span>
+<span class="EditIcons">    <span class="ListIcon EditIcon">
+        <a class="ajaxLink" href="Pages/CustomReports">Lista</a>
+    </span>
+</span>
+<br/>
+(!@-!)if (!ns['data']) {
+//no data retrieved yet... load it..
+if(!ns.Id){ns.Id=ns.url.split("/").pop();}(!@+!)
+<script>
+dataViews.CustomReports.getRecord({
+    Id:'(!&ns.Id!)'
+    ,PK:'(!&ns.Id!)'
+    ,OnComplete:function(Record){
+        App3.Navigate2('(!&ns._fullurl!)?Id=(!&ns.Id!)',
+            {target:'(!&ns.target!)',data:Record}
+        );
+    }
+});
+</script><img src="img/ajaxLoading.gif"/>ladda...
+(!@-!)} else {
+var r= ns.data;
+var dat;
+console.dir(r);
+if (r.Data) {
+    eval('dat = '+ r.Data);
+} 
+if (!r.Query) {
+    r.Query = '[ ... ]';
+}
+(!@+!)
+<div style="width:100%;">
+<div style="width:400px;float:left">
+<table class="EditTable">
+<tr><th colspan="2">Custom PDF Report <button onclick="
+App3.Navigate2('local/Pages/CustomReportDo?report=(!&ns.Id!)&action=cloneReport'
+    ,{target:'tableView'}
+);
+">clone</button></th></tr>
+<tr><td>Namn:</td><td>
+<span datapk="(!&r.Id!)" dataview="CustomReports.Name" class="ajaxEdit3" id="CustomReport_Name_Edit354">(!&r.Name!)</span>
+</td></tr>
+<tr><td>Query:</td><td>
+<span datapk="(!&r.Id!)" dataview="CustomReports.Query" class="ajaxEdit3" id="CustomReport_Query_Edit354">(!&r.Query!)</span>
+</td></tr>
+<tr><td>Status:</td><td>
+<select onchange="EditInPlace4.quickSave('CustomReports.Status','(!&r.Id!)',this.value)" id="CustomReport_Status_Edit318" class="Editable">
+<option (!@-!)if(r.Status=='Test'){o.push('selected');}(!@+!) value="Test">Test</option>
+<option (!@-!)if(r.Status=='Utveckling'){o.push('selected');}(!@+!) value="Utveckling">Utveckling</option>
+<option (!@-!)if(r.Status=='Publicerad'){o.push('selected');}(!@+!) value="Publicerad">Publicerad</option>
+<option (!@-!)if(r.Status=='Inaktiv'){o.push('selected');}(!@+!) value="Inaktiv">Inaktiv</option>
+</select>
+</td></tr>
+<tr><td>PDF:<br/>
+<button onClick="
+document.getElementById('viewer').src='pdf/raw.php?ReportId=(!&ns.Id!)&v='+Math.random();
+">Visa</button></td><td><form>
+<input type="file" name="custom" /></br>
+<input type="button" value="upload"
+        onClick="App.fileUpload(this.form,'pdf/custom/upload.php?ReportId=(!&ns.Id!)','upload'); return false;" >
+<div id="upload"></div>
+</form></td></tr>
+</table>
+<script language="Javascript">
+App.fileUpload = function(form, action_url, div_id)
+{
+// Create the iframe...
+var iframe = document.createElement("iframe");
+iframe.setAttribute("id","upload_iframe");
+iframe.setAttribute("name","upload_iframe");
+iframe.setAttribute("width","0");
+iframe.setAttribute("height","0");
+iframe.setAttribute("border","0");
+iframe.setAttribute("style","width: 0; height: 0; border: none;");
+ 
+// Add to document...
+form.parentNode.appendChild(iframe);
+window.frames['upload_iframe'].name="upload_iframe";
+ 
+iframeId = document.getElementById("upload_iframe");
+ 
+// Add event...
+var eventHandler = function()  {
+ 
+if (iframeId.detachEvent)
+iframeId.detachEvent("onload", eventHandler);
+else
+iframeId.removeEventListener("load", eventHandler, false);
+ 
+// Message from server...
+if (iframeId.contentDocument) {
+content = iframeId.contentDocument.body.innerHTML;
+} else if (iframeId.contentWindow) {
+content = iframeId.contentWindow.document.body.innerHTML;
+} else if (iframeId.document) {
+content = iframeId.document.body.innerHTML;
+}
+ 
+document.getElementById(div_id).innerHTML = content;
+ 
+// Del the iframe...
+setTimeout('iframeId.parentNode.removeChild(iframeId)', 250);
+}
+ 
+if (iframeId.addEventListener)
+iframeId.addEventListener("load", eventHandler, true);
+if (iframeId.attachEvent)
+iframeId.attachEvent("onload", eventHandler);
+ 
+// Set properties of form...
+form.setAttribute("target","upload_iframe");
+form.setAttribute("action", action_url);
+form.setAttribute("method","post");
+form.setAttribute("enctype","multipart/form-data");
+form.setAttribute("encoding","multipart/form-data");
+ 
+// Submit the form...
+form.submit();
+ 
+document.getElementById(div_id).innerHTML = "Uploading...";
+}
+</script>
+ 
+<!-- index.php could be any script server-side for receive uploads. -->
+<table class="EditTable">
+<tr><th colspan="2">Preview</th></tr>
+<tr><td>id:</td><td><input type="text" id="reportObjectId" value="1" size="36"/></td>
+<tr><td colspan="2"><center><button onclick="
+document.getElementById('viewer').src='pdf/custom.php?id='+document.getElementById('reportObjectId').value+'&CustomText='+App.CustomText(document.getElementById('CustomText').value)+'&ReportId=(!&ns.Id!)&download=true&v='+Math.random();
+">Spara</button>
+
+<button onclick="
+document.getElementById('viewer').src='pdf/custom.php?id='+document.getElementById('reportObjectId').value+'&CustomText='+App.CustomText(document.getElementById('CustomText').value)+'&Type=Data&ReportId=(!&ns.Id!)&v='+Math.random();
+">Data</button>
+
+<button onclick="
+document.getElementById('viewer').src='pdf/custom.php?id='+document.getElementById('reportObjectId').value+'&CustomText='+App.CustomText(document.getElementById('CustomText').value)+'&ReportId=(!&ns.Id!)&v='+Math.random();
+">Visa</button>
+</center></td></tr>
+</table>
+
+<div id="addForm">
+
+</div>
+<div id="tableView"></div><div id="ReportAction"></div>
+<br/>
+<table class="EditTable">
+<tr><th>Custom Text</th></tr>
+<tr><td><text(!&'area'!) id="CustomText" style="width: 284px; height: 82px;"></text(!&'area'!)></td></tr>
+</table>
+
+<button onclick="
+App3.Navigate2('local/Pages/CustomReportDo?report=(!&ns.Id!)&action=delReport'
+    ,{target:'tableView'}
+);
+">Delete</button>
+</div>
+<div style="width:550px;height:600px;float:left;">
+<table class="EditTable" style="width:100%;height:600px;">
+<tr><th style="height:20px;">Preview</th></tr>
+<tr><td style="vertical-align:top;"><iframe id="viewer" style="width:100%;height:560px;"></iframe></td></tr>
+</table>
+
+</div>
+<script>
+$j.post('pdf/custom/badGateway.php',{
+    action:'view'
+    ,ReportId:(!&ns.Id!)
+},function(response) {
+    console.info(response);
+    var ns = {Id:(!&ns.Id!)};
+    eval('ns.data='+response);
+     var out = App3.go.local.Pages.CustomReportTable(ns);
+    console.info(out);
+    $j('#tableView').html(out);
+});
+</script>
+(!@-!)}(!@+!)
+

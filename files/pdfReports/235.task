@@ -1,0 +1,8 @@
+{"guid":"235",
+"c":{"report":{"Name":"delete",
+"__k":"zendPdf",
+"__c":"report"}},
+"oi":{"report":{}},
+"uId":1,
+"deps":{"zendPdf":{}},
+"dirty":false}

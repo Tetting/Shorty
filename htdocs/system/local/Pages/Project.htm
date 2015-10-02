@@ -1,0 +1,170 @@
+{#ajaxTemplate2#}<div class="EditIcons" style="padding-left: 0px; width: 100%;">
+<center>
+(!@-!)
+if (typeof(dataViews.Projects.curRecordSet.Count) != 'undefined') {
+if (typeof(dataViews.Projects.curRecordSet.start) != 'undefined') {
+if (typeof(dataViews.Projects.curRecordSet.rPos) != 'undefined') {
+if (dataViews.Projects.filterActive) {
+    o.push(dataViews.Projects.curRecordSet.start + dataViews.Projects.curRecordSet.rPos + 1);
+    o.push(' av ');
+    o.push(dataViews.Projects.curRecordSet.filteredCount);
+} else {
+    o.push(dataViews.Projects.curRecordSet.start + dataViews.Projects.curRecordSet.rPos + 1);
+    o.push(' av ');
+    o.push(dataViews.Projects.curRecordSet.Count);
+}
+}
+}
+}
+(!@+!)
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Projects'].firstRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).prop('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'undefined',target:target});
+        }});" title="F&ouml;rsta"><span class="RecordsetFirstIcon EditIcon">&nbsp;</span></a>
+    
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Projects'].previousRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).prop('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'Projects',target:target});
+        },NoNewPage:function(){
+            $j('#Toolbar(!&ns._ViewId!)').removeClass('ajaxLoading');
+        }});" title="F&ouml;reg&aring;ende"><span class="RecordsetPreviousIcon EditIcon">&nbsp;</span></a>
+    
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Projects'].nextRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).prop('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'Projects',target:target});
+        },NoNewPage:function() {
+            $j('#Toolbar(!&ns._ViewId!)').removeClass('ajaxLoading');
+        }});" title="N&auml;sta"><span class="RecordsetNextIcon EditIcon">&nbsp;</span></a>
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Projects'].lastRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).prop('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'Projects',target:target});
+        }});" title="Sista"><span class="RecordsetLastIcon EditIcon">&nbsp;</span></a>
+    
+    <span style="padding-left: 20px;" id="Toolbar(!&ns._ViewId!)">&nbsp;</span>
+    <span class="TaskEdit4" task="Project4.Task" component="Generic317">&nbsp;</span>
+<button onclick="
+/*
+jQuery('input,textarea', document.getElementById('ProjectTab(!&ns._ViewId!)')).each(function(index,elm) {
+    var t = jQuery(elm).prop('type');
+    if (t == 'radio') {
+        jQuery(elm).removeAttr('checked');
+    } else {
+        elm.value = '';
+    }
+});
+jQuery('#Id66(!&ns._ViewId!)').removeAttr('disabled');
+document.getElementById('Id66(!&ns._ViewId!)').enabled = true;
+jQuery('#Action(!&ns._ViewId!)').data('actionName','Search').html('s&ouml;k nu>>');
+*/
+App3.Navigate2('local/Pages/ProjectSearch',{target:'AppPages'});
+" title="Ny s&ouml;kning"><img src="img/icons/search.png"/></button>
+<center>
+</div><span class="ProjectsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="ProjectProtoHeader">Projekt</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/ProjectNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/Projects" class="ajaxLink">Lista</a>
+    </span>
+</span><script>
+    document.title = $('<div/>').html("Project (!&ns.data['Project']!)").text();
+</script><br/>
+
+(!@-!)if (ns.data) {
+var r= ns.data;
+(!@+!)
+
+<table class="EditTable" style='float:left;min-width:300px'>
+<thead>
+    <tr><th colspan="2"><span class="TaskEdit4" Task="Project4.Task" Component="ProjectEdit_fields">Uppgifter</span></th></tr>
+    <col /><col />
+
+    <tr><td><label>#:</label></td><td>(!&r.Id!)
+</td>
+
+    <tr><td><label>Projekt:</label></td><td><span id="Project_Project_Edit(!&ns._ViewId!)" class="ajaxEdit3" dataView="Projects.Project" dataPK="(!&r.Id!)" >(!&r['Project']||EditInPlace4.blank!)</span></td>
+
+    <tr><td><label>Bokf&ouml;rings#:</label></td><td><span id="FinanceCode378(!&ns._ViewId!)" class="ajaxEdit3" dataView="Projects.FinanceCode" dataPK="(!&r.Id!)" >(!&r['FinanceCode']||EditInPlace4.blank!)</span></td>
+
+    <tr><td><label>Avgift%:</label></td><td><span id="AdminPercent379(!&ns._ViewId!)" class="ajaxEdit3" dataView="Projects.AdminPercent" dataPK="(!&r.Id!)" >(!&r['AdminPercent']||EditInPlace4.blank!)</span></td>
+
+    <tr><td><label>Status:</label></td><td>
+<select class="Editable" id="Project_Status_Edit(!&ns._ViewId!)" onchange="EditInPlace4.quickSave('Projects.Status','(!&r.Id!)',this.value)">
+
+<option value="Aktiv" (!@-!)if (r.Status=='Aktiv'){o.push('selected');}(!@+!)>Aktiv</option>
+
+<option value="Inaktiv" (!@-!)if (r.Status=='Inaktiv'){o.push('selected');}(!@+!)>Inaktiv</option>
+
+<option value="Arkiv" (!@-!)if (r.Status=='Arkiv'){o.push('selected');}(!@+!)>Arkiv</option>
+
+</select></td>
+
+</table>
+
+(!@-!)} else {
+    //no data retrieved yet... load it..
+    if(!ns.Id){ns.Id=ns.url.split("/").pop();}(!@+!)
+
+<img src="img/ajaxLoading.gif"/>ladda...<script>
+dataViews.Projects.getRecord({
+    Id:'(!&ns.Id!)'
+    ,PK:'(!&ns.Id!)'
+    ,OnComplete:function(Record){
+        App3.Navigate2('(!&ns._fullurl!)',
+            {target:'(!&ns.target!)',data:Record,Id:'(!&ns.Id!)' }
+        );
+    }
+});
+</script>
+(!@-!)}(!@+!)
+(!@-!)if (ns.data) {(!@+!)
+</div><div style="float:left;margin-left:15px;">
+<table class="EditTable"><tr><th>Kommentar</th></tr>
+<tr><td>
+<text(!&'area'!) wrap="on" cols="70" rows="6" id="Project_Notes_Edit(!&ns._ViewId!)" onchange="EditInPlace4.quickSave('Projects.Notes','(!&r.Id!)',this.value)">(!&r.Notes!)</text(!&'area'!)>
+</td></tr>
+</table>
+</div>
+(!@-!)}(!@+!)
+<br style="clear:both"/>(!@-!)if(ns.data){(!@+!)
+<div id="ProjectStats(!&ns._ViewId!)"></div>
+<br style="clear:both"/>
+<script>
+jQuery.get('do/projectStats.php?id=(!&r.Id!)',{},function(response) {
+    jQuery('#ProjectStats(!&ns._ViewId!)').html(response);
+});
+</script>
+(!@-!)}(!@+!)
+<button onclick=" App3.Navigate2('local/Pages/ProjectBalance/(!&r.Id!)',{target:'AppPages'}) ">Balancer</button>
+<br/>
+(!@-!)if(r){(!@+!)
+<div id="ProjectGiversDetail51(!&ns._ViewId!)" style=""><img src="img/AjaxLoading.gif"/></div>
+<script>
+dataViews.ProjectGivers.clearFilter();
+dataViews.ProjectGivers.setFilter('ProjectId','=','(!&r.Id!)');
+dataViews.ProjectGivers.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2("local/Pages/ProjectGivers",{target:'ProjectGiversDetail51(!&ns._ViewId!)',data:data,Recordset:Recordset,DataView:DataView,ProjectId:'(!&r.Id!)'});}});
+</script>
+(!@-!)}(!@+!)
+
+

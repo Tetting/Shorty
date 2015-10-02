@@ -1,0 +1,572 @@
+{#ajaxTemplate2#}(!@-!)
+ns.EditClass = '';
+if (ns.data && ns.data.Status == 'Inaktiv') {
+    ns.EditClass='Inaktiv';
+}(!@+!)<div id="viewWrap(!&ns._ViewId!)" class="(!&ns.EditClass!)"><div id="viewBar(!&ns._ViewId!)" class="EditIcons" style="padding-left: 0px; width: 100%;">
+
+<span style="margin-right:30px;" component="Generic146" task="Project4.Task" class="GiversBigIcon BigIcon TaskEdit4">Givare</span>
+(!@-!)
+if (typeof(dataViews.Givers.curRecordSet.Count) != 'undefined') {
+if (typeof(dataViews.Givers.curRecordSet.start) != 'undefined') {
+if (typeof(dataViews.Givers.curRecordSet.rPos) != 'undefined') {
+if (dataViews.Givers.filterActive) {
+    o.push(dataViews.Givers.curRecordSet.start + dataViews.Givers.curRecordSet.rPos + 1);
+    o.push(' av ');
+    o.push(dataViews.Givers.curRecordSet.filteredCount);
+} else {
+    o.push(dataViews.Givers.curRecordSet.start + dataViews.Givers.curRecordSet.rPos + 1);
+    o.push(' av ');
+    o.push(dataViews.Givers.curRecordSet.Count);
+}
+}
+}
+}
+(!@+!)
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Givers'].firstRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).prop('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'undefined',target:target});
+        }});" title="F&ouml;rsta"><span class="RecordsetFirstIcon EditIcon"> </span></a>
+    
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Givers'].previousRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).prop('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'Givers',target:target});
+        },NoNewPage:function(){
+            $j('#Toolbar(!&ns._ViewId!)').removeClass('ajaxLoading');
+        }});" title="F&ouml;reg&aring;ende"><span class="RecordsetPreviousIcon EditIcon"> </span></a>
+    
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Givers'].nextRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).prop('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'Givers',target:target});
+        },NoNewPage:function() {
+            $j('#Toolbar(!&ns._ViewId!)').removeClass('ajaxLoading');
+        }});" title="N&auml;sta"><span class="RecordsetNextIcon EditIcon"> </span></a>
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Givers'].lastRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).prop('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'Givers',target:target});
+        }});" title="Sista"><span class="RecordsetLastIcon EditIcon"> </span></a>
+
+<span class="ListIcon EditIcon" style="margin-left: 40px;">
+        <a class="ajaxLink" href="Pages/Givers">Lista</a>
+    </span>
+    
+    <span style="padding-left: 40px;" id="Toolbar(!&ns._ViewId!)"> </span>
+    <span class="TaskEdit4" task="Project4.Task" component="Generic146"> </span>
+
+<button class="SearchBut ToolBut" onclick="
+dataViews['Givers'].clearFilter();
+App3.Navigate2('local/Pages/GiverSearch',{target:'AppPages',newSearch:true});
+" class="SearchBut" title="Ny s&ouml;kning"><img src="img/icons/search.png" width=32 height=32/></button>
+
+<button id="NewBut(!&ns._ViewId!)" class="NewBut" onclick="
+$('#Id66(!&ns._ViewId!)').data('oldId',$('#Id66(!&ns._ViewId!)').val());
+document.getElementById('EditBut(!&ns._ViewId!)').click();
+jQuery('#GiverTab(!&ns._ViewId!) input').each(function(index,elm) {
+    switch(elm.type) {
+        case 'radio':
+        break;
+        default:
+            elm.value = '';
+        break;
+    }
+});
+jQuery('#GiverTab(!&ns._ViewId!) textarea').each(function(index,elm) {
+    elm.value = '';
+});
+jQuery('#StartD77(!&ns._ViewId!)').val(App.Today());
+
+jQuery('#ActionBut(!&ns._ViewId!)').data('actionName','New').attr('title','Skapa');
+" title="Ny"><img src="img/icons/new.png" width=32 height=32/></button>
+
+<button id="CopyBut(!&ns._ViewId!)" class="CopyBut" onclick="
+    $('#Id66(!&ns._ViewId!)').data('oldId',$('#Id66(!&ns._ViewId!)').val());
+    document.getElementById('EditBut(!&ns._ViewId!)').click();
+    var s = String.fromCharCode(39)+'Giver.Id'+String.fromCharCode(39);
+    jQuery('input[data-fieldname='+s+']').val('');
+    var d = new Date();
+    var dd = d.getFullYear();
+    var m = d.getMonth()+1;
+    if (m<10) m= '0'+m;
+    var da = d.getDate();
+    if (da<10) da='0'+da;
+    jQuery('#StartD77(!&ns._ViewId!)').val(dd+'-'+m+'-'+da);
+    jQuery('#ActionBut(!&ns._ViewId!)').data('actionName','New').attr('title','skapa');
+" title="Kopiera"><img src="img/icons/copy.png" width=32 height=32/></button>
+
+<button class="ChangeBut(!&ns._ViewId!) EditBut" id="EditBut(!&ns._ViewId!)" onclick="
+jQuery('input,textarea',document.getElementById('AppPages')).each(function(index,el){
+switch(el.type) {
+    case 'radio':
+        el.disabled = !el.disabled;
+        break;
+    default:
+        if (el.getAttribute('data-fieldname') == 'Giver.Id') {
+            //never allowed to edit the id
+        } else {
+            if ($j(el).is('.dateEdit')) {
+                el.disabled = !el.disabled;
+            } else {
+                el.readOnly = !el.readOnly;
+            }
+        }
+   }
+});
+$('.tagsinput').each(function(){
+    var id = $(this).attr('id');
+    id = id.substr(0,id.length-10);
+    $j('#'+id).interactiveTags();
+});
+/*
+if ($('#EditBut(!&ns._ViewId!)').css('opacity')==0) {
+    $('#NewBut(!&ns._ViewId!)').animate({opacity:1});
+    $('#CopyBut(!&ns._ViewId!)').animate({opacity:1});
+    $('#EditBut(!&ns._ViewId!)').animate({opacity:1});
+    $('.ToolBut').animate({opacity:1});
+    
+    $('#CancelBut(!&ns._ViewId!)').animate({opacity:0});
+    $('#ActionBut(!&ns._ViewId!)').animate({opacity:0});
+    
+} else {
+    $('#CancelBut(!&ns._ViewId!)').animate({opacity:1});
+    $('#ActionBut(!&ns._ViewId!)').animate({opacity:1});
+    $('#NewBut(!&ns._ViewId!)').animate({opacity:0});
+    $('.ToolBut').animate({opacity:0});
+    $('#CopyBut(!&ns._ViewId!)').animate({opacity:0});
+    $('#EditBut(!&ns._ViewId!)').animate({opacity:0});
+    //also focus the first field...
+    $('.EditTable').find('input').eq(0).focus();                
+}
+*/
+if ($('#editingBar(!&ns._ViewId!)').css('display') == 'none') {
+    $('#viewBar(!&ns._ViewId!)').css({opacity:0,display:'none'});
+    $('#editingBar(!&ns._ViewId!)').css({opacity:0,display:''}).animate({opacity:1});
+} else {
+    $('#editingBar(!&ns._ViewId!)').css({opacity:0,display:'none'});
+    $('#viewBar(!&ns._ViewId!)').css({opacity:0,display:''}).animate({opacity:1});
+
+}
+" tabindex=2 title="&Auml;ndra"><img src="img/icons/change.png" width=32 height=32/></button>
+
+<!--<button class="Ta bort" onclick="
+if (confirm('Vill du verkligen ta bort objektet?')) {
+    dataViews['Givers'].updateFields({Status:'Inaktiv'},document.getElementById('Id66(!&ns._ViewId!)').value,function(response) {
+         $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+         dataViews['Givers'].nextRow({IdField:'Id',OnComplete:function(Id){
+             //reload ourselves...
+             var target = 'AppPages';
+             var l = jQuery('#'+target).prop('loc').split('/');
+             var oldId = l.pop();
+             App3.Navigate2(l.join('/')+'/'+Id,{View:'Givers',target:target});
+         },NoNewPage:function(){
+             $j('#Toolbar(!&ns._ViewId!)').removeClass('ajaxLoading');
+         }});
+
+    });         
+}
+">Ta bort</button>-->
+
+
+
+<!--<button onclick="
+document.getElementById('ExcelExport').src='do/excelExport.php?_export=1' + dataViews.Givers.getQueryUrl();
+">Excel</button>-->
+
+<button class="ToolBut" onclick="
+document.getElementById('ExcelExport').src='do/fastExcel.php?_export=1' + dataViews.Givers.getQueryUrl();
+" title="Excel"><img src="img/icons/excel.png" width=32 height=32/></button><iframe src="about:blank" id="ExcelExport" style="width:0px;height:0px;"></iframe>
+
+<div style="position:absolute"><div id="reportDropDown(!&ns._ViewId!)" class="dropDown" style="
+    position:relative;
+    left:600px;
+    width:200px;
+    display:none;
+    background: rgb(99, 99, 99);
+background: rgba(99, 99, 99, 0.9);
+">
+Inga rapporter</div>
+</div>
+<button class="ToolBut" onclick="
+$('#reportDropDown(!&ns._ViewId!)').slideToggle();
+" title="Rapport"><img width="32" height="32/" src="img/file_pdf.png"></button>
+<script>
+
+dataViews.CustomReports.clearFilter();
+dataViews.CustomReports.addFilter('Display','*','G,');
+dataViews.CustomReports.getList({
+    OnComplete:function(data,Recordset,DataView){
+        App3.Navigate2("local/Pages/reportListDropDown"
+            ,{navTarget:'ReportList(!&ns._ViewId!)'
+            ,target:'reportDropDown(!&ns._ViewId!)'
+            ,entityId:'(!&ns.Id!)',data:data,Recordset:Recordset,DataView:DataView
+        });
+    }
+});
+</script>
+</div>
+<div id="editingBar(!&ns._ViewId!)" style="display:none;">
+<span style="margin-right:30px;" component="Generic146" task="Project4.Task" class="GiversBigIcon BigIcon TaskEdit4">Givare</span>
+<span style="width:300px;display:inline-block;">&nbsp;</span>
+<button id="CancelBut(!&ns._ViewId!)" class="CancelBut" style="" onclick="
+var id = document.getElementById('Id66(!&ns._ViewId!)').value;
+if (id =='') {
+    id = $('#Id66(!&ns._ViewId!)').data('oldId');
+}
+App3.Navigate2('local/Pages/Giver/'+id,{target:'AppPages'}); 
+" title="Avbryt"><img src="img/icons/abort.png" width=32 height=32/></button>
+
+<button id="ActionBut(!&ns._ViewId!)" class="SaveBut" style="" tabindex=20 onclick="
+var fName;
+var saveEntity = 'Giver';
+var area = document.getElementById('GiverTab(!&ns._ViewId!)');
+switch(jQuery(this).data('actionName')) {
+    case 'Search':
+        dataViews['Givers'].clearFilter();
+        jQuery('input,textarea', area).each(function(index,elm) {
+            var v = jQuery(elm).val();
+            var t = jQuery(elm).attr('type');
+            fName = jQuery(elm).attr('data-fieldName');
+            if (t == 'radio') {
+                if (jQuery(elm).attr('checked')) {
+                    dataViews['Givers'].addFilter(fName.split('.').join('|'),'*',jQuery(elm).val());
+                }
+            } else {
+                if (v != '') {
+                    if (fName) {
+                        if (jQuery(elm).hasClass('exactSearch')) {
+                            dataViews['Givers'].addFilter(fName.split('.').join('|'),'+',jQuery(elm).val());
+                        } else {
+                            dataViews['Givers'].addFilter(fName.split('.').join('|'),'*',jQuery(elm).val());
+                        }
+                    }  
+                }
+            }
+        });
+
+        dataViews['Givers'].firstRow({OnComplete:function() {
+        if (dataViews['Givers'].curRecordSet.Count > 0) {
+            var id = dataViews['Givers'].curRecordSet.Rows[0].Id;
+            App3.Navigate2('local/Pages/Giver/'+id,{target:'AppPages'}); 
+        } else {
+            alert('Ingen tr&auml;ff');
+        }
+        //console.dir(dataViews['Givers'].curRecordSet);
+    },NoNewPage:function() {
+        alert('Ingen tr&auml;ff');
+     }
+    });
+    break;
+    case 'New':
+        var rec = {};
+        jQuery('input,textarea',area).each(function(index,elm) {
+            //if (elm.value) {
+                fName = jQuery(elm).attr('data-fieldName');
+                if (fName) {
+                    fName = fName.split('.');
+                    if (fName[0] == 'Giver') {
+                        if (fName) {
+                            switch(elm.type) {
+                                case 'radio':
+                                console.log('radio',fName[1],jQuery(elm).attr('checked'),jQuery(elm).val(),elm);
+                                     if (jQuery(elm).attr('checked')) {
+				        //take this value
+					rec[fName[1]] = jQuery(elm).val();
+				    }
+                                break;
+                                default:
+                                    rec[fName[1]] = jQuery(elm).val();
+                                break;
+                            }
+                        }
+                    }
+                }  
+            //}
+        });
+        dataViews['Givers'].newRecord({
+            NewRecord:rec
+            ,OnComplete:function(response){
+                var r;
+                eval('r='+response);
+                dataViews['Givers'].dataChanged();
+                if (r.Status != 'Created') {
+                    alert('Save Failed');
+                } else {
+                    App3.Navigate2('local/Pages/Giver/' + r.NewId,{target:'AppPages',forceRead:true });
+                }
+            }
+        });
+    break;
+    case 'Save':
+    case undefined:
+        var rec = {};
+        jQuery('input,textarea',area).each(function(index,elm) {
+			fName = jQuery(elm).attr('data-fieldName');
+            if (fName) {
+			   fName = fName.split('.');
+			   if (fName[0] == 'Giver') {     
+				   switch(elm.type) {
+					   case 'radio':
+						   if (jQuery(elm).attr('checked')) {
+							   //take this value
+							   rec[fName[1]] = jQuery(elm).val();
+							}
+						break;
+						default:
+							rec[fName[1]] = jQuery(elm).val();
+						break;
+					}
+				} 
+            }       
+        });
+        dataViews['Givers'].updateFields(rec,rec['Id'],function(response) {
+        jQuery('#EditBut(!&ns._ViewId!)').click();
+        if (console) console.info(response);
+                //go back to an unedited state.
+                /*
+                jQuery('input,textarea',area).each(function(index,el){ 
+        	switch(el.type) {    
+        		case 'radio':         
+        			el.disabled = !el.disabled;         
+        		break;
+        		default:
+        		if (el.getAttribute('data-fieldname') == 'Giver.Id') {
+        			//never allowed to edit the id         
+        		} else {
+        		if ($j(el).is('.dateEdit')) {
+        			el.disabled = !el.disabled;             
+        		} else {
+        			el.readOnly = !el.readOnly;
+        		}
+        	}
+            }
+         });  */
+    });
+    break; 
+}
+" title="Spara"><img src="img/icons/save.png" width=32 height=32/></button>
+
+</div>(!@-!)if (ns.data) {var r= ns.data;(!@+!)<table class="EditTable (!&ns.EditClass!)" id="GiverTab(!&ns._ViewId!)">
+<thead><tr><th colspan="7">Givare <span component="CustomFieldDisplay65" task="Project4.Task" class="TaskEdit4"> </span></th></tr></thead>
+<tr>
+<td style="text-align:right">Namn:</td><td><input type="text" id="Name67(!&ns._ViewId!)" class="Editable" data-fieldName="Giver.Name" value="(!&r['Name']||''!)" tabindex=3 size=30 /></td>
+<td style="text-align:right">Nr:</td><td><input type="text" id="Id66(!&ns._ViewId!)" class="Editable" data-fieldName="Giver.Id" value="(!&r['Id']||''!)"  disabled='true' size=12 /></td>
+<td style="text-align:right">Reg:</td><td><input type="text" id="StartD77(!&ns._ViewId!)" class="Editable" data-fieldName="Giver.StartD" value="(!&r['StartD']||''!)" tabindex=13 size=8 /></td>
+<td valign="top" rowspan="6">
+Noteringar<br/>
+<text(!&'area'!) wrap='on'  class="Editable" tabindex=18 cols="32" rows="10" id="Notes80(!&ns._ViewId!)"  data-fieldName="Giver.Notes">(!&r.Notes!)</text(!&'area'!)></td>
+</tr>
+<tr>
+<td style="text-align:right">Efternamn:</td><td><input type="text" id="LastName351(!&ns._ViewId!)" class="Editable" data-fieldName="Giver.LastName" value="(!&r['LastName']||''!)" tabindex=4 size=30 /></td>
+<td style="text-align:right">Landskod:</td><td><input type="text" id="Land71(!&ns._ViewId!)" class="Editable" data-fieldName="Giver.Land" value="(!&r['Land']||''!)" tabindex=8 size=12 /></td>
+<td style="text-align:right">Tidning</td><td><label for="Paper75"><input type="radio" tabindex=14  id="Paper75(!&ns._ViewId!)" value="1" name="Paper75" data-fieldName="Giver.Paper" (!@-!)if(r['Paper']==1){out.push('checked');}(!@+!) /> Ja</label> <br/>
+<label for="Paper75"><input tabindex=14  type="radio" value="0" name="Paper75" data-fieldName="Giver.Paper" (!@-!)if(r['Paper']==0){out.push('checked');}(!@+!) /> Nej</label>
+
+</td>
+</tr>
+<tr>
+<td style="text-align:right">c/o</td><td><input type="text" id="CoAddress148(!&ns._ViewId!)" class="Editable" data-fieldName="Giver.CoAddress" value="(!&r['CoAddress']||''!)" tabindex=5 size=30 /></td>
+<td style="text-align:right">Telefon:</td><td><input type="text" id="Tel72(!&ns._ViewId!)" class="Editable" data-fieldName="Giver.Tel" value="(!&r['Tel']||''!)" tabindex=9 size=12 /></td>
+<td style="text-align:right">Medlem:</td><td><label for="Member76"><input type="radio" tabindex=15  id="Member76(!&ns._ViewId!)" value="1" name="Member76" data-fieldName="Giver.Member" (!@-!)if(r['Member']==1){out.push('checked');}(!@+!) /> Ja</label> <br/>
+<label for="Member76"><input tabindex=15  type="radio" value="0" name="Member76" data-fieldName="Giver.Member" (!@-!)if(r['Member']==0){out.push('checked');}(!@+!) /> Nej</label>
+
+</td>
+</tr>
+<tr>
+<td style="text-align:right">Adress:</td><td><input type="text" id="Address68(!&ns._ViewId!)" class="Editable" data-fieldName="Giver.Address" value="(!&r['Address']||''!)" tabindex=5 size=30 /></td>
+<td style="text-align:right">Mobiltel:</td><td><input type="text" id="Mob73(!&ns._ViewId!)" class="Editable" data-fieldName="Giver.Mob" value="(!&r['Mob']||''!)" tabindex=10 size=12 /></td>
+<td style="text-align:right">Brev</td><td><label for="Letter372"><input type="radio" tabindex=16  id="Letter372(!&ns._ViewId!)" value="1" name="Letter372" data-fieldName="Giver.Letter" (!@-!)if(r['Letter']==1){out.push('checked');}(!@+!) /> Ja</label> <br/>
+<label for="Letter372"><input tabindex=16  type="radio" value="0" name="Letter372" data-fieldName="Giver.Letter" (!@-!)if(r['Letter']==0){out.push('checked');}(!@+!) /> Nej</label>
+
+</td>
+</tr>
+<tr>
+<td style="text-align:right">PostNr:</td><td><input type="text" id="ZipCode69(!&ns._ViewId!)" class="Editable" data-fieldName="Giver.ZipCode" value="(!&r['ZipCode']||''!)" tabindex=6 size=30 /></td>
+<td style="text-align:right">Status:</td><td>
+<select class="Editable" id="Status79(!&ns._ViewId!)" onchange="EditInPlace4.quickSave('Givers.Status','(!&r.Id!)',this.value)">
+
+<option value="Aktiv" (!@-!)if (r.Status=='Aktiv'){o.push('selected');}(!@+!)>Aktiv</option>
+
+<option value="Inaktiv" (!@-!)if (r.Status=='Inaktiv'){o.push('selected');}(!@+!)>Inaktiv</option>
+
+</select></td>
+<td style="text-align:right"></td><td></td>
+</tr>
+<tr>
+<td style="text-align:right">PostOrt:</td><td><input type="text" id="ZipTown81(!&ns._ViewId!)" class="Editable" data-fieldName="Giver.ZipTown" value="(!&r['ZipTown']||''!)" tabindex=7 size=30 /></td>
+<td style="text-align:right">PersonNr:</td><td><input type="text" id="PersonNbr352(!&ns._ViewId!)" class="Editable" data-fieldName="Giver.PersonNbr" value="(!&r['PersonNbr']||''!)" tabindex=12 size=12 /></td>
+<td style="text-align:right">Tags</td><td colspan="2"><input type="text" id="Tags693(!&ns._ViewId!)" class="Editable" data-fieldName="Giver.Tags" value="(!&r['Tags']||''!)"  /></td>
+</tr>
+<tr>
+<td><a href="mailto:(!&r.Email!)">Epost</a>:</td><td><input type="text" id="Email74(!&ns._ViewId!)" class="Editable" data-fieldName="Giver.Email" value="(!&r['Email']||''!)" tabindex=11 size=30 /></td><td></td><td></td><td></td><td></td><td></td></tr>
+</tr>
+</table>
+<script>
+$('#Tags693(!&ns._ViewId!)').tagsInput({
+   height:'20px'
+    ,width:'auto'
+   ,'defaultText':'add tag'
+   ,'removeWithBackspace' : true
+   ,'maxChars':90
+    ,interactive:false
+    ,'delimiter':','
+});
+</script>
+
+(!@-!)} else {
+    //no data retrieved yet... load it..
+    if(!ns.Id){ns.Id=ns.url.split("/").pop();}(!@+!)
+
+<script>
+dataViews.Givers.getRecord({
+    Id:'(!&ns.Id!)'
+    ,PK:'(!&ns.Id!)'
+    ,OnComplete:function(Record){
+        App3.Navigate2('(!&ns._fullurl!)?Id=(!&ns.Id!)',
+            {target:'(!&ns.target!)',data:Record }
+        );
+    }
+});
+</script><img src="img/ajaxLoading.gif"/>ladda...
+
+
+(!@-!)}(!@+!)
+
+(!@-!)if (r) {(!@+!)<center><div id="Summary(!&ns._ViewId!)"></div></center>
+
+<script>
+$j.get('do/paymentSummary.php',{GiverId:'(!&r.Id!)'},function(response) {
+    var r;
+    eval('r=' + response);
+    o = [];
+    var o4 = [];
+    var o5 = [];
+    o.push('<table class=EditTable><tr><th colspan=14><span component="Generic210" task="Project4.Task" class="TaskEdit4">Inbetalt</span></th></tr>');
+    o4.push('<tr>');
+    o5.push('<tr>');
+    for(var i=0;i<r.length;i++) {
+        switch(i) {
+        case 12:
+            o4.push('<td>12 m&aring;n</td>');
+            break;
+        case 13:
+            o4.push('<td>inbet totalt</td>');
+            break;
+        default:
+            o4.push('<td>' + r[i].name + '</td>');
+        }
+        o5.push('<td>' + dataConvert.toSEK(r[i].tot) + '</td>');
+    }
+    o4.push('</tr>');
+    o5.push('</tr>');
+    o.push(o4.join(''));
+    o.push(o5.join(''));
+    o.push('</table>');  
+    document.getElementById('Summary(!&ns._ViewId!)').innerHTML = o.join('');
+});
+</script>
+(!@-!)}(!@+!)(!@-!)if(ns.data) {(!@+!)<div style="float:left;">
+<div id="giverProjectStats"></div>
+</div>
+<script>
+$.get('do/giverProjectStats.php',{GiverId:'(!&r.Id!)'},function(resp) {
+    //$('#giverProjectStats').html(resp);
+    var dat;
+    eval("dat = "+resp);
+    App3.Navigate2("local/Pages/GiverProjectStats",{navTarget:'giverProjectStats',target:'giverProjectStats',Id:'(!&r.Id!)',data:dat });
+});
+</script>
+(!@-!)}(!@+!)
+(!@-!)if(r){(!@+!)
+<div id="GiverFadderbarnDetail145(!&ns._ViewId!)" style="width:600px;float:left;margin-left:4px;"><img src="img/AjaxLoading.gif"/></div>
+<script>
+dataViews.GiverFadderbarns.clearFilter();
+dataViews.GiverFadderbarns.setFilter('GiverId','=','(!&r.Id!)');
+dataViews.GiverFadderbarns.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2("local/Pages/GiverFadderbarns",{target:'GiverFadderbarnDetail145(!&ns._ViewId!)',data:data,Recordset:Recordset,DataView:DataView,GiverId:'(!&r.Id!)' });}});
+</script>
+(!@-!)}(!@+!)
+
+<br style="clear:both;height:2px;"/><table><tr><td valign="top">
+(!@-!)if(r){(!@+!)
+<div id="GiverPaymentsDetail208(!&ns._ViewId!)" style=""><img src="img/AjaxLoading.gif"/></div>
+<script>
+dataViews.GiverPayments.clearFilter();
+dataViews.GiverPayments.setFilter('GiverId','=','(!&r.Id!)');
+dataViews.GiverPayments.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2("local/Pages/GiverPayments",{target:'GiverPaymentsDetail208(!&ns._ViewId!)',data:data,Recordset:Recordset,DataView:DataView,GiverId:'(!&r.Id!)'});}});
+</script>
+(!@-!)}(!@+!)
+
+</td><td valign="top">
+(!@-!)if(r){(!@+!)
+<div id="GiverPromises879(!&ns._ViewId!)" style=""><img src="img/AjaxLoading.gif"/></div>
+<script>
+dataViews.GivProjPromisess.clearFilter();
+dataViews.GivProjPromisess.setFilter('GiverId','=','(!&r.Id!)');
+dataViews.GivProjPromisess.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2("local/Pages/GivProjPromisess",{target:'GiverPromises879(!&ns._ViewId!)',data:data,Recordset:Recordset,DataView:DataView,GiverId:'(!&r.Id!)'});}});
+</script>
+(!@-!)}(!@+!)
+
+</td></tr></table>
+
+(!@-!)if(r){(!@+!)
+<div id="GiverEvangelistsDetail444(!&ns._ViewId!)" style=""><img src="img/AjaxLoading.gif"/></div>
+<script>
+dataViews.GiverEvangelists.clearFilter();
+dataViews.GiverEvangelists.setFilter('GiverId','=','(!&r.Id!)');
+dataViews.GiverEvangelists.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2("local/Pages/GiverEvangelists",{target:'GiverEvangelistsDetail444(!&ns._ViewId!)',data:data,Recordset:Recordset,DataView:DataView,GiverId:'(!&r.Id!)'});}});
+</script>
+(!@-!)}(!@+!)
+
+
+(!@-!)if(r){(!@+!)
+<div id="GiverCaravanDetail623(!&ns._ViewId!)" style=""><img src="img/AjaxLoading.gif"/></div>
+<script>
+dataViews.GiverCaravans.clearFilter();
+dataViews.GiverCaravans.setFilter('GivNr','=','(!&r.Id!)');
+dataViews.GiverCaravans.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2("local/Pages/GiverCaravans",{target:'GiverCaravanDetail623(!&ns._ViewId!)',data:data,Recordset:Recordset,DataView:DataView,GivNr:'(!&r.Id!)'});}});
+</script>
+(!@-!)}(!@+!)
+
+<script>
+jQuery('input,textarea',document.getElementById('AppPages')).each(function(index,el){
+switch(el.type) {
+    case 'radio':
+        el.disabled = true;
+        break;
+    default:
+        if (el['data-fieldname'] == 'Giver.Id') {
+            //never allowed to edit the id
+        } else {
+            if ($j(el).is('.dateEdit')) {
+                el.disabled = true;
+            } else {
+                el.readOnly = true;
+            }
+        }
+   }
+});
+</script><div id="ReportList(!&ns._ViewId!)"></div>
+</div><script>
+document.title = $('<div/>').html("Givare (!&ns.data['Name']!) (!&ns.data['LastName']!)").text();
+</script>(!@-!)
+if (ns.Id=='ny' && ns.data) {
+    setTimeout("$('.NewBut').click();",20);
+}
+(!@+!)

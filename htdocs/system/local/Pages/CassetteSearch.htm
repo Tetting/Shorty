@@ -1,0 +1,55 @@
+{#ajaxTemplate2#}<table class="EditTable" id="ContactTab(!&ns._ViewId!)">
+<thead><tr><th colspan="7">Uppgifter</th></tr></thead>
+<tr>
+<td style="text-align:right">ID:</td><td><input id="search_Nr290(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Cassettes.getFilter('Nr','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Nr:</td><td><input id="search_Id289(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Cassettes.getFilter('Id','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td rowspan="6"></td>
+</tr>
+<tr>
+<td style="text-align:right">Namn:</td><td><input id="search_Speaker291(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Cassettes.getFilter('Speaker','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">&Auml;mne:</td><td><input id="search_Subject292(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Cassettes.getFilter('Subject','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+</tr>
+<tr>
+<td style="text-align:right">Datum:</td><td><input id="search_Date295(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Cassettes.getFilter('Date','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Status:</td><td><input id="search_Status294(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Cassettes.getFilter('Status','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+</tr>
+<tr>
+<td style="text-align:right">Extra:</td><td><input id="search_Extra293(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Cassettes.getFilter('Extra','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right"></td><td></td>
+</tr>
+</table>
+<center>
+<button onclick="
+dataViews.Cassettes.clearFilter();
+App3.Navigate2('local/Pages/Cassette/'+id,{target:'AppPages'});
+">Rensa</button>
+|
+<input type="button" id="doSearch(!&ns._ViewId!)" value="Sök"
+ onclick="
+dataViews.Cassettes.clearFilter();
+var elm;
+             dataViews.Cassettes.addFilter('Nr','*',jQuery('#search_Nr290(!&ns._ViewId!)').val());
+            
+             dataViews.Cassettes.addFilter('Speaker','*',jQuery('#search_Speaker291(!&ns._ViewId!)').val());
+            
+             dataViews.Cassettes.addFilter('Subject','*',jQuery('#search_Subject292(!&ns._ViewId!)').val());
+            
+             dataViews.Cassettes.addFilter('Extra','*',jQuery('#search_Extra293(!&ns._ViewId!)').val());
+            
+             dataViews.Cassettes.addFilter('Status','*',jQuery('#search_Status294(!&ns._ViewId!)').val());
+            
+             dataViews.Cassettes.addFilter('Date','*',jQuery('#search_Date295(!&ns._ViewId!)').val());
+            
+dataViews.Cassettes.firstRow({OnComplete:function() {
+    if (dataViews.Cassettes.curRecordSet.Hits > 0) {
+        var id = dataViews.Cassettes.curRecordSet.Rows[0]['undefined'];
+        App3.Navigate2('local/Pages/Cassette/'+id,{target:'AppPages'});
+    } else {
+        alert('Ingen träff');
+     }
+},NoNewPage:function() {
+        alert('Ingen träff');
+     }});
+"/></center>
+
+

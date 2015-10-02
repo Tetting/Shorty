@@ -1,0 +1,468 @@
+{#ajaxTemplate2#}<div class="EditIcons" style="padding-left: 0px; width: 100%;">
+<center>
+<span style="margin-right:30px;" component="Generic244" task="Project4.Task" class="FadderbarnBigIcon BigIcon TaskEdit4">Fadderbarn</span>
+(!@-!)
+if (typeof(dataViews.Fadderbarns.curRecordSet.Count) != 'undefined') {
+if (typeof(dataViews.Fadderbarns.curRecordSet.start) != 'undefined') {
+if (typeof(dataViews.Fadderbarns.curRecordSet.rPos) != 'undefined') {
+if (dataViews.Fadderbarns.filterActive) {
+    o.push(dataViews.Fadderbarns.curRecordSet.start + dataViews.Fadderbarns.curRecordSet.rPos + 1);
+    o.push(' av ');
+    o.push(dataViews.Fadderbarns.curRecordSet.filteredCount);
+} else {
+    o.push(dataViews.Fadderbarns.curRecordSet.start + dataViews.Fadderbarns.curRecordSet.rPos + 1);
+    o.push(' av ');
+    o.push(dataViews.Fadderbarns.curRecordSet.Count);
+}
+}
+}
+}
+(!@+!)
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Fadderbarns'].firstRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).prop('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'undefined',target:target});
+        }});" title="F&ouml;rsta"><span class="RecordsetFirstIcon EditIcon"> </span></a>
+    
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Fadderbarns'].previousRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).prop('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'Fadderbarns',target:target});
+        },NoNewPage:function(){
+            $j('#Toolbar(!&ns._ViewId!)').removeClass('ajaxLoading');
+        }});" title="F&ouml;reg&aring;ende"><span class="RecordsetPreviousIcon EditIcon"> </span></a>
+    
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Fadderbarns'].nextRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).prop('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'Fadderbarns',target:target});
+        },NoNewPage:function() {
+            $j('#Toolbar(!&ns._ViewId!)').removeClass('ajaxLoading');
+        }});" title="N&auml;sta"><span class="RecordsetNextIcon EditIcon"> </span></a>
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Fadderbarns'].lastRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).prop('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'Fadderbarns',target:target});
+        }});" title="Sista"><span class="RecordsetLastIcon EditIcon"> </span></a>
+
+<span class="ListIcon EditIcon" style="margin-left: 40px;">
+        <a class="ajaxLink" href="Pages/Fadderbarns">Lista</a>
+    </span>
+    
+    <span style="padding-left: 40px;" id="Toolbar(!&ns._ViewId!)"> </span>
+    <span class="TaskEdit4" task="Project4.Task" component="Generic244"> </span>
+
+<button class="SearchBut ToolBut" onclick="
+dataViews['Fadderbarns'].clearFilter();
+App3.Navigate2('local/Pages/FadderbarnSearch',{target:'AppPages',newSearch:true});
+" class="SearchBut" title="Ny s&ouml;kning"><img src="img/icons/search.png" width=32 height=32/></button>
+
+<button id="NewBut(!&ns._ViewId!)" class="NewBut" onclick="
+    $('#Id83(!&ns._ViewId!)').data('oldId',$('#Id83(!&ns._ViewId!)').val());
+ document.getElementById('EditBut(!&ns._ViewId!)').click();
+
+$('#BarnNum(!&ns._ViewId!)').text('');
+jQuery('#FadderbarnTab(!&ns._ViewId!) input').each(function(index,elm) {
+    elm.value = '';
+});
+jQuery('#FadderbarnTab(!&ns._ViewId!) textarea').each(function(index,elm) {
+    elm.value = '';
+});
+jQuery('#GiverId88(!&ns._ViewId!)').val('-33333');
+jQuery('#RegDate364(!&ns._ViewId!)').val(App.Today());
+jQuery('#ActionBut(!&ns._ViewId!)').data('actionName','New').attr('title', 'Skapa');
+" title="Ny"><img src="img/icons/new.png" width=32 height=32/></button>
+
+<button id="CopyBut(!&ns._ViewId!)" class="CopyBut" onclick="
+    $('#Id83(!&ns._ViewId!)').data('oldId',$('#Id83(!&ns._ViewId!)').val());
+    document.getElementById('EditBut(!&ns._ViewId!)').click();
+    var s = String.fromCharCode(39)+'Fadderbarn.Id'+String.fromCharCode(39);
+jQuery('input[data-fieldname='+s+']').val('');
+    jQuery('#ActionBut(!&ns._ViewId!)').data('actionName','New').attr('title', 'skapa');
+" title="Kopiera"><img src="img/icons/copy.png" width=32 height=32/></button>
+
+<button class="ChangeBut(!&ns._ViewId!) EditBut" id="EditBut(!&ns._ViewId!)" onclick="
+jQuery('input,textarea',document.getElementById('AppPages')).each(function(index,el){
+switch(el.type) {
+    case 'radio':
+        el.disabled = !el.disabled;
+        break;
+    default:
+        if (el.getAttribute('data-fieldname') == 'Fadderbarn.Id') {
+            //never allowed to edit the id
+        } else {
+            if ($j(el).is('.dateEdit')) {
+                el.disabled = !el.disabled;
+            } else {
+                el.readOnly = !el.readOnly;
+            }
+        }
+   }
+});
+$j('#HelperShow(!&ns._ViewId!)').hide();
+$('.tagsinput').each(function(){
+    var id = $(this).attr('id');
+    id = id.substr(0,id.length-10);
+    $j('#'+id).interactiveTags();
+});
+if ($('#EditBut(!&ns._ViewId!)').css('opacity')==0) {
+    $('#NewBut(!&ns._ViewId!)').animate({opacity:1});
+    $('#CopyBut(!&ns._ViewId!)').animate({opacity:1});
+    $('#EditBut(!&ns._ViewId!)').animate({opacity:1});
+    $('#setId(!&ns._ViewId!)').animate({opacity:1});
+    $('.ToolBut').animate({opacity:1});
+    
+    $('#CancelBut(!&ns._ViewId!)').animate({opacity:0});
+    $('#ActionBut(!&ns._ViewId!)').animate({opacity:0});
+    
+} else {
+    $('#CancelBut(!&ns._ViewId!)').animate({opacity:1});
+    $('#ActionBut(!&ns._ViewId!)').animate({opacity:1});
+    
+    $('#NewBut(!&ns._ViewId!)').animate({opacity:0});
+    $('#CopyBut(!&ns._ViewId!)').animate({opacity:0});
+    $('#EditBut(!&ns._ViewId!)').animate({opacity:0});
+    $('#setId(!&ns._ViewId!)').animate({opacity:0});
+    $('.ToolBut').animate({opacity:0});
+    
+}
+" tabindex=1 title="&Auml;ndra"><img src="img/icons/change.png" width=32 height=32/></button>
+
+<button id="CancelBut(!&ns._ViewId!)" class="CancelBut" style="opacity:0" onclick="
+var id = document.getElementById('Id83(!&ns._ViewId!)').value;
+if (id =='') {
+    id = $('#Id83(!&ns._ViewId!)').data('oldId');
+}
+App3.Navigate2('local/Pages/Fadderbarn/'+id,{target:'AppPages'}); 
+" title="Avbryt"><img src="img/icons/abort.png" width=32 height=32/></button>
+
+<button id="ActionBut(!&ns._ViewId!)" style="opacity:0" class="SaveBut" tabindex=20 onclick="
+var fName;
+var area = document.getElementById('FadderbarnTab(!&ns._ViewId!)');
+switch(jQuery(this).data('actionName')) {
+    case 'Search':
+        dataViews['Fadderbarns'].clearFilter();
+        jQuery('input,textarea', area).each(function(index,elm) {
+            var v = jQuery(elm).val();
+            var t = jQuery(elm).attr('type');
+            fName = jQuery(elm).attr('data-fieldName');
+            if (t == 'radio') {
+                if (jQuery(elm).attr('checked')) {
+                    dataViews['Fadderbarns'].addFilter(fName.split('.').join('|'),'*',jQuery(elm).val());
+                }
+            } else {
+                if (v != '') {
+                    if (fName) {
+                        if (jQuery(elm).hasClass('exactSearch')) {
+                            dataViews['Fadderbarns'].addFilter(fName.split('.').join('|'),'+',jQuery(elm).val());
+                        } else {
+                            dataViews['Fadderbarns'].addFilter(fName.split('.').join('|'),'*',jQuery(elm).val());
+                        }
+                    }  
+                }
+            }
+        });
+
+        dataViews['Fadderbarns'].firstRow({OnComplete:function() {
+        if (dataViews['Fadderbarns'].curRecordSet.Count > 0) {
+            var id = dataViews['Fadderbarns'].curRecordSet.Rows[0].Id;
+            App3.Navigate2('local/Pages/Fadderbarn/'+id,{target:'AppPages'}); 
+        } else {
+            alert('Ingen tr&auml;ff');
+        }
+        //console.dir(dataViews['Fadderbarns'].curRecordSet);
+    },NoNewPage:function() {
+        alert('Ingen tr&auml;ff');
+     }
+    });
+    break;
+    case 'New':
+        var rec = {};
+        jQuery('input,textarea',area).each(function(index,elm) {
+            if (elm.value) {
+                fName = jQuery(elm).attr('data-fieldName');
+                if (fName) {
+                    fName = fName.split('.');
+                    if (fName[0] == 'Fadderbarn') {
+                        if (fName) {
+                            rec[fName[1]] = jQuery(elm).val();
+                        }
+                    }
+                }  
+            }
+        });
+        dataViews['Fadderbarns'].newRecord({
+            NewRecord:rec
+            ,OnComplete:function(response){
+                var r;
+                eval('r='+response);
+                dataViews['Fadderbarns'].dataChanged();
+                if (r.Status != 'Created') {
+                    alert('Save Failed');
+                } else {
+                    App3.Navigate2('local/Pages/Fadderbarn/' + r.NewId,{target:'AppPages',forceRead:true });
+                    //jQuery('.ChangeBut(!&ns._ViewId!)').click();
+                    //jQuery('input[data-fieldname=Fadderbarn.Id]').val(r['NewId']);
+                    //jQuery('#ActionBut(!&ns._ViewId!)').data('actionName','save').html('Spara');
+                
+                }
+            }
+        });
+    break;
+    case 'Save':
+    case undefined:
+        var rec = {};
+        jQuery('input,textarea',area).each(function(index,elm) {
+                fName = jQuery(elm).attr('data-fieldName');
+                if (fName) {
+                    fName = fName.split('.');
+                    if (fName[0] == 'Fadderbarn') {
+                        rec[fName[1]] = jQuery(elm).val();
+                    } 
+            }
+        });
+		dataViews['Fadderbarns'].updateFields(rec,rec['Id'],function(response) {
+        jQuery('#EditBut(!&ns._ViewId!)').click();
+        if (console) console.info(response);
+    });
+    break; 
+}
+//$('#CancelBut(!&ns._ViewId!)').animate({opacity:0});
+//$('#ActionBut(!&ns._ViewId!)').animate({opacity:0});
+//$('#EditBut(!&ns._ViewId!)').animate({opacity:1});
+" title="Spara"><img src="img/icons/save.png" width=32 height=32/></button>
+
+<button id="setId(!&ns._ViewId!)" onclick="
+    //assign this child a new number...
+    if (confirm('Vill du verkligen tilldela ett barn nummer?')) {
+        $.post('do/assignChildNumber.php',{
+            Id:document.getElementById('Id83(!&ns._ViewId!)').value
+        },function(response) {
+            //refresh page..
+            var id = document.getElementById('Id83(!&ns._ViewId!)').value;
+        App3.Navigate2('local/Pages/Fadderbarn/'+id,{target:'AppPages'}); 
+            console.log(response);
+        });
+        /*dataViews['Fadderbarns'].updateFields({Status:'Inaktiv'},document.getElementById('Id83(!&ns._ViewId!)').value,function(response) {
+            console.log(response);
+        });*/         
+    }
+" title="tilldela Barnnr"><img src="img/icons/setid.png" width=32 height=32/></button>
+
+<!--<button class="Ta bort" onclick="
+if (confirm('Vill du verkligen ta bort objektet?')) {
+    dataViews['Fadderbarns'].updateFields({Status:'Inaktiv'},document.getElementById('Id83(!&ns._ViewId!)').value,function(response) {
+        console.log(response);
+    });         
+}
+">Ta bort</button>-->
+
+<button class="ToolBut" onclick="
+if (confirm('Vill du verkligen ta bort barnnr?')) {
+    $.post('do/inactiveChild.php',{
+        Id:document.getElementById('Id83(!&ns._ViewId!)').value
+    },function(response) {
+        //refresh page..
+        var id = document.getElementById('Id83(!&ns._ViewId!)').value;
+    App3.Navigate2('local/Pages/Fadderbarn/'+id,{target:'AppPages'}); 
+    });
+    /*dataViews['Fadderbarns'].updateFields({Status:'Inaktiv'},document.getElementById('Id83(!&ns._ViewId!)').value,function(response) {
+        console.log(response);
+    });*/         
+}
+" title="Inaktiv"><img src="img/icons/inactive.png" width=32 height=32/></button>
+
+<button class="ToolBut" onclick="
+document.getElementById('ExcelExport').src='do/fastExcel.php?_export=1' + dataViews.Fadderbarns.getQueryUrl();
+" title="Export Excel"><img src="img/icons/excel.png" width=32 height=32/></button><iframe style="width:0px;height:0px;" id="ExcelExport" src="about:blank"></iframe>
+
+<!--<button onclick="
+document.getElementById('RapportView').src='pdf/PdfInjection.php?datasource=photoReport&id=(!&r.Id!)';
+">Rapport</button><iframe id="RapportView" src="about:blank" width=0 height=0 style="display:none;"></iframe>-->
+
+<div style="position:absolute"><div id="reportDropDown" class="dropDown" style="
+    position:relative;
+    left:800px;
+    width:200px;
+    display:none;
+    background: rgb(99, 99, 99);
+background: rgba(99, 99, 99, 0.9);
+">
+Inga rapporter</div>
+</div>
+<button class="ToolBut" onclick="
+$('#reportDropDown').slideToggle();
+" title="Rapport"><img width="32" height="32/" src="img/file_pdf.png"></button>
+
+<script>
+dataViews.CustomReports.clearFilter();
+dataViews.CustomReports.addFilter('Display','*','F,');
+dataViews.CustomReports.getList({
+    OnComplete:function(data,Recordset,DataView){
+        App3.Navigate2("local/Pages/reportListDropDown"
+            ,{navTarget:'ReportList(!&ns._ViewId!)'
+            ,target:'reportDropDown(!&ns._ViewId!)'
+            ,entityId:'(!&ns.Id!)',data:data,Recordset:Recordset,DataView:DataView
+        });
+    }
+});
+</script>
+<span component="Generic244" task="Project4.Task" class="TaskEdit4"> </span>
+<br/>
+</center>
+</div>(!@-!)if (ns.data) {var r= ns.data;(!@+!)<table class="EditTable" id="FadderbarnTab(!&ns._ViewId!)">
+<tr><th colspan="5">Uppgifter</th></tr>
+<tr><td>Barnnr</td><td><span id="BarnNum(!&ns._ViewId!)">(!&r.Nbr!)
+</span></td><td>Id:</td><td><input type="text" id="Id83(!&ns._ViewId!)" class="Editable" data-fieldName="Fadderbarn.Id" value="(!&r['Id']||''!)"  /></td><td rowspan="6" valign="top">Noteringar:<br/><text(!&'area'!) wrap='on'  class="Editable" tabindex=17 cols="54" rows="10" id="Notes95(!&ns._ViewId!)"  data-fieldName="Fadderbarn.Notes">(!&r.Notes!)</text(!&'area'!)></td></tr>
+<tr><td>Namn</td><td colspan="3"><input type="text" id="Name84(!&ns._ViewId!)" class="Editable" data-fieldName="Fadderbarn.Name" value="(!&r['Name']||''!)" tabindex=1 /></td></tr>
+<tr><td><a class="ajaxLink" href="Pages/Area/(!&r.Area1!)">Omr&aring;de#</a>:</td><td><input type="text" id="Area191(!&ns._ViewId!)" class="Editable" data-fieldName="Fadderbarn.Area1" value="(!&r['Area1']||''!)" tabindex=2 size=14 /><button tabindex=2 onclick="
+$.post('do/lookupArea.php',{area:document.getElementById('Area191(!&ns._ViewId!)').value},function(response) {
+try {
+
+if (response=='false') {
+alert('Area '+document.getElementById('Area191(!&ns._ViewId!)').value+ ' kunde inte hittas');
+} else {
+var res;
+eval('res='+response);
+
+//update fields from the area...
+$('#Area92(!&ns._ViewId!)').val(res['SocialWorkArea.Area']);
+$('#CountryCode94(!&ns._ViewId!)').val(res['SocialWorkArea.CountryCode']);
+//$('#SocialWorker99(!&ns._ViewId!)').html('<a class=ajaxLink href=Pages/SocialWorker/'+res['SocialWorker.Id']+'>'+res['SocialWorker.Name']+'</a>');
+$('#SocialWorker99(!&ns._ViewId!)').html(res['SocialWorker.Name']);
+$('input[TabIndex=5]').focus();
+}
+}catch(e) {
+alert('Area '+document.getElementById('Area191(!&ns._ViewId!)').value+ ' kunde inte hittas');
+}
+});
+">...</button></td><td>Omr&aring;de:</td><td><input type="text" id="Area92(!&ns._ViewId!)" class="Editable" data-fieldName="Fadderbarn.Area" value="(!&r['Area']||''!)" tabindex=3 /></td></tr>
+<tr><td>Landskod:</td><td><input type="text" id="CountryCode94(!&ns._ViewId!)" class="Editable" data-fieldName="Fadderbarn.CountryCode" value="(!&r['CountryCode']||''!)" tabindex=4 /></td><td>F&ouml;dd:</td><td><input type="text" id="DOB87(!&ns._ViewId!)" class="Editable" data-fieldName="Fadderbarn.DOB" value="(!&r['DOB']||''!)" tabindex=5 /></td></tr>
+<tr><td><a class="ajaxLink" href="Pages/Giver/(!&r.GiverId!)">Giv.nr</a>:</td><td><input type="text" id="GiverId88(!&ns._ViewId!)" class="Editable" data-fieldName="Fadderbarn.GiverId" value="(!&r['GiverId']||''!)" tabindex=6 /></td><td>Inkom:</td><td><input type="text" id="TGdt93(!&ns._ViewId!)" class="Editable" data-fieldName="Fadderbarn.TGdt" value="(!&r['TGdt']||''!)" tabindex=7 /></td></tr>
+<tr><td>Kr/M&aring;n:</td><td><input type="text" id="Mkr90(!&ns._ViewId!)" class="Editable" data-fieldName="Fadderbarn.Mkr" value="(!&r['Mkr']||''!)" tabindex=8 /></td><td>Reg:</td><td><input type="text" id="RegDate364(!&ns._ViewId!)" class="Editable" data-fieldName="Fadderbarn.RegDate" value="(!&r['RegDate']||''!)" tabindex=9 /></td></tr>
+<tr><td>Projekt</td><td><input type="text" id="ProjectId366(!&ns._ViewId!)" class="Editable" data-fieldName="Fadderbarn.ProjectId" value="(!&r['ProjectId']||''!)" tabindex=10 /></td><td>B&ouml;rjat:</td><td><input type="text" id="HelpD89(!&ns._ViewId!)" class="Editable" data-fieldName="Fadderbarn.HelpD" value="(!&r['HelpD']||''!)" tabindex=12 /></td><td rowspan="5">Egna Noteringar:<br/><text(!&'area'!) wrap='on'  class="Editable" tabindex=18 cols="54" rows="4" id="OwnNotes98(!&ns._ViewId!)"  data-fieldName="Fadderbarn.OwnNotes">(!&r.OwnNotes!)</text(!&'area'!)></td></tr>
+
+<tr><td>Faderns namn:</td><td><input type="text" id="FathersName85(!&ns._ViewId!)" class="Editable" data-fieldName="Fadderbarn.FathersName" value="(!&r['FathersName']||''!)" tabindex=13 /></td><td>Social Worker</td><td><span id="SocialWorker99(!&ns._ViewId!)"><a class="ajaxLink" href="Pages/SocialWorker/(!&r.SocialWorkerId!)">(!&r['SocialWorker']!)</a></span></td></tr>
+<tr><td>Moderns namn:</td><td><input type="text" id="MothersName86(!&ns._ViewId!)" class="Editable" data-fieldName="Fadderbarn.MothersName" value="(!&r['MothersName']||''!)" tabindex=15 /></td><td>Guardian:</td><td><input type="text" id="Guardian214(!&ns._ViewId!)" class="Editable" data-fieldName="Fadderbarn.Guardian" value="(!&r['Guardian']||''!)" size=12 tabindex=16 /></td></tr>
+<tr><td>Tags:</td><td><input type="text" id="Tags696(!&ns._ViewId!)" class="Editable" data-fieldName="Fadderbarn.Tags" value="(!&r['Tags']||''!)"  /></td><td></td><td></td>
+</table>
+<script>
+$('#Tags696(!&ns._ViewId!)').tagsInput({
+   height:'20px'
+    ,width:'auto'
+   ,'defaultText':'add tag'
+   ,'removeWithBackspace' : true
+   ,'maxChars':90
+    ,interactive:false
+    ,'delimiter':','
+});
+</script>
+
+(!@-!)} else {
+    //no data retrieved yet... load it..
+    if(!ns.Id){ns.Id=ns.url.split("/").pop();}(!@+!)
+
+<script>
+dataViews.Fadderbarns.getRecord({
+    Id:'(!&ns.Id!)'
+    ,PK:'(!&ns.Id!)'
+    ,OnComplete:function(Record){
+        App3.Navigate2('(!&ns._fullurl!)?Id=(!&ns.Id!)',
+            {target:'(!&ns.target!)',data:Record }
+        );
+    }
+});
+</script><img src="img/ajaxLoading.gif"/>ladda...
+
+
+(!@-!)}(!@+!)
+
+<script>
+jQuery('input,textarea',document.getElementById('AppPages')).each(function(index,el){
+switch(el.type) {
+    case 'radio':
+        el.disabled = true;
+        break;
+    default:
+        if (el['data-fieldname'] == 'Fadderbarn.Id') {
+            //never allowed to edit the id
+        } else {
+            if ($j(el).is('.dateEdit')) {
+                el.disabled = true;
+            } else {
+                el.readOnly = true;
+            }
+        }
+   }
+});
+</script><div><div style="float:left;width:80px;align:top;">(!@-!)
+if (ns.data) {
+    var nbr = ns.data['Nbr'];
+}
+(!@+!)
+<br style="clear:both"/>
+<script>
+dataViews.CustomReports.clearFilter();
+dataViews.CustomReports.addFilter('Display','*','F,');
+dataViews.CustomReports.getList({
+    OnComplete:function(data,Recordset,DataView){
+        App3.Navigate2("local/Pages/reportListDropDown"
+            ,{navTarget:'pageReportList'
+            ,target:'reportDropDown'
+            ,entityId:'(!&nbr!)',data:data,Recordset:Recordset,DataView:DataView
+        });
+    }
+});
+</script></div><div style="float:left;width:260px;margin-left:15px;align:top;">
+(!@-!)if(r){(!@+!)
+<div id="FadderbarnActionsDetail689(!&ns._ViewId!)" style=""><img src="img/AjaxLoading.gif"/></div>
+<script>
+dataViews.FadderbarnActions.clearFilter();
+dataViews.FadderbarnActions.setFilter('entityId','=','(!&r.Id!)');
+dataViews.FadderbarnActions.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2("local/Pages/FadderbarnActions",{target:'FadderbarnActionsDetail689(!&ns._ViewId!)',data:data,Recordset:Recordset,DataView:DataView,entityId:'(!&r.Id!)',entityName:'Fadderbarn'});}});
+</script>
+(!@-!)}(!@+!)
+
+</div><div style="float:left;width:240px;margin-left:15px;align:top;">(!@-!)if(r){(!@+!)
+<div id="FadderbarnGiver(!&ns._ViewId!)"><img src="img/AjaxLoading2.gif"/></div>
+<script>
+dataViews.FadderbarnGivers.getRecord({
+Id:'(!&r.GiverId!)'
+,PK:'(!&r.GiverId!)'
+,OnComplete:function(Record){
+App3.Navigate2('local/Pages/FadderbarnGiver?Id=(!&r.GiverId!)',
+{target:'FadderbarnGiver(!&ns._ViewId!)',data:Record }
+);
+}
+});
+</script>
+(!@-!)}(!@+!)</div><div style="float:left;width:360px;margin-left:15px;align:top;">(!@-!)if(ns.data) {(!@+!)<div style="float:left;">
+<div id="giverProjectStats"></div>
+</div>
+<script>
+$.get('do/giverProjectStats.php',{GiverId:'(!&r.GiverId!)'},function(resp) {
+    //$('#giverProjectStats').html(resp);
+    var dat;
+    eval("dat = "+resp);
+    App3.Navigate2("local/Pages/GiverProjectStats",{navTarget:'giverProjectStats',target:'giverProjectStats',Id:'(!&r.GiverId!)',data:dat });
+});
+</script>
+(!@-!)}(!@+!)</div><script>
+document.title = $('<div/>').html("Fadderbarn (!&ns.data['Nbr']!) (!&ns.data['Name']!)").text();
+</script>

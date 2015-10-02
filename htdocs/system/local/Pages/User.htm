@@ -1,0 +1,78 @@
+{#ajaxTemplate2#}<span class="UsersBigIcon BigIcon TaskEdit4" task="Project4.Task" component="UserProtoHeader">Anv&auml;ndare</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/UserNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/Users" class="ajaxLink">Lista</a>
+    </span>
+</span><script>
+    document.title = ""+jQuery('<div/>').html("Anv&auml;ndare: (!&ns.data['Username']!)").text()+"";
+</script><br/>
+
+(!@-!)if (ns.data) {
+var r= ns.data;
+(!@+!)
+
+<span class="EditIcon DeleteIcon" style="float:right">
+    <a onclick="dataViews.Users.deleteRecord({Id:'(!&r.Id!)',PK:'(!&r.Id!)',OnComplete:function(){App3.Navigate2('http://local/Pages/Users',{target:'(!&ns.target!)' });}});">Ta Bort</a>
+</span>
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan="2"><span class="TaskEdit4" Task="Project4.Task" Component="UserEdit_fields">Uppgifter</span></th></tr>
+    <col /><col />
+
+    <tr><td><label>#:</label></td><td>(!&r.Id!)
+</td>
+
+    <tr><td><label>Anv&auml;ndarnamn:</label></td><td><span id="User_Username_Edit(!&ns._ViewId!)" class="ajaxEdit3" dataView="Users.Username" dataPK="(!&r.Id!)" >(!&r['Username']||EditInPlace4.blank!)</span></td>
+
+    <tr><td><label>L&ouml;senord:</label></td><td><input type="password" id="User_Password_Edit(!&ns._ViewId!)" value="****"/><input type="button" value="OK" onclick="EditInPlace4.quickPassSave('Users.Password','(!&r.Id!)',document.getElementById('User_Password_Edit(!&ns._ViewId!)').value)"/>
+    
+</td>
+
+    <tr><td><label>F&ouml;rnamn:</label></td><td><span id="User_FirstName_Edit(!&ns._ViewId!)" class="ajaxEdit3" dataView="Users.FirstName" dataPK="(!&r.Id!)" >(!&r['FirstName']||EditInPlace4.blank!)</span></td>
+
+    <tr><td><label>Efternamn:</label></td><td><span id="User_LastName_Edit(!&ns._ViewId!)" class="ajaxEdit3" dataView="Users.LastName" dataPK="(!&r.Id!)" >(!&r['LastName']||EditInPlace4.blank!)</span></td>
+
+    <tr><td><label>Status:</label></td><td>
+<select class="Editable" id="User_Status_Edit(!&ns._ViewId!)" onchange="EditInPlace4.quickSave('Users.Status','(!&r.Id!)',this.value)">
+
+<option value="Aktiv" (!@-!)if (r.Status=='Aktiv'){o.push('selected');}(!@+!)>Aktiv</option>
+
+<option value="Inaktiv" (!@-!)if (r.Status=='Inaktiv'){o.push('selected');}(!@+!)>Inaktiv</option>
+
+</select></td>
+
+    <tr><td><label>Notering:</label></td><td><text(!&'area'!) wrap='off'  class="Editable"  cols="20" rows="10" id="User_Notes_Edit(!&ns._ViewId!)" onchange="EditInPlace4.quickSave('Users.Notes','(!&r.Id!)',this.value)" data-fieldName="User.Notes">(!&r.Notes!)</text(!&'area'!)></td>
+
+    <tr><td><label>Db:</label></td><td>
+<select class="Editable" id="Db357(!&ns._ViewId!)" onchange="EditInPlace4.quickSave('Users.Db','(!&r.Id!)',this.value)">
+(!@-!)
+var l = dataViews.Databases.allRecordSet.Rows.length;
+for(var si=0;si<l;si++) {s=dataViews.Databases.allRecordSet.Rows[si];
+(!@+!)
+<option value="(!&s.Id!)" (!@-!)if (s.Id==r.Db){o.push('selected');}(!@+!)>(!&s.Name!)</option>
+(!@-!)}(!@+!)
+</select></td>
+
+</table>
+
+(!@-!)} else {
+    //no data retrieved yet... load it..
+    if(!ns.Id){ns.Id=ns.url.split("/").pop();}(!@+!)
+
+<img src="img/ajaxLoading.gif"/>ladda...<script>
+dataViews.Users.getRecord({
+    Id:'(!&ns.Id!)'
+    ,PK:'(!&ns.Id!)'
+    ,OnComplete:function(Record){
+        App3.Navigate2('(!&ns._fullurl!)',
+            {target:'(!&ns.target!)',data:Record,Id:'(!&ns.Id!)' }
+        );
+    }
+});
+</script>
+(!@-!)}(!@+!)
+

@@ -1,0 +1,37 @@
+{#ajaxTemplate2#}
+<span component="ChurchProtoHeader" task="Project4.Task" class="BigIcon">Mass Handlingar</span>
+
+<table class="EditTable">
+<thead>
+<tr><th colspan=2>Handlingar</th></tr>
+</thead>
+<tbody>
+<tr><td>#lista</td><td><input id="list(!&ns._ViewId!)"/></td></tr>
+<tr><td>Handelse:</td><td><select id="FadderbarnAction_actionName_New31">
+<option value="Nytt foto">Nytt foto</option>
+<option value="Ny allmän rapport">Ny allmän rapport</option>
+<option value="Ny rapport">Ny rapport</option>
+</select></td></tr>
+<tr><td>Datum:</td><td>
+<input class="dateEdit" id="MassAction_date_Edit(!&ns._ViewId!)" type="text"  onchange="" value="" size="12"/>
+<script>$j('#MassAction_date_Edit(!&ns._ViewId!)').date_input();</script>
+</td></tr>
+<tr><td>noteringar:</td><td>
+<textarea id="MassAction_notes(!&ns._ViewId!)" rows="10" cols="20" wrap="off"></textarea>
+</td></tr>
+<tr><td colspan=2><center><button onclick="
+$.post('do/massActions.php',{
+    list:$('#list(!&ns._ViewId!)').val()
+&nbsp;   ,date:$('#MassAction_date_Edit(!&ns._ViewId!)').val()
+&nbsp;   ,action:$('#FadderbarnAction_actionName_New31').val()
+&nbsp;   ,notes:$('#MassAction_notes(!&ns._ViewId!)').val()
+    ,entityName:'Fadderbarn'
+},function(response) {
+    $('#list(!&ns._ViewId!)').focus().select();
+    console.log(response);
+});
+">lägg till</button></center></td></tr>
+</table>
+<script>
+document.title = 'Mass Handlingar';
+</script>

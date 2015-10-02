@@ -1,0 +1,68 @@
+{#ajaxTemplate2#}<span class="ProjectsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="protoHeader311">Projekt</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/ProjectNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/Projects" class="ajaxLink">Lista</a>
+    </span>
+</span><script>
+    document.title = $('<div/>').html("Projekt s&ouml;k").text();
+</script><br/>
+<table class="EditTable" id="ContactTab(!&ns._ViewId!)">
+<thead><tr><th colspan="5">Uppgifter</th></tr></thead>
+<tr>
+<td style="text-align:right">Namn:</td><td><input id="search_Project315(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Projects.getFilter('Project','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td rowspan="5"><text(!&'area'!) wrap="off" cols="40" rows="5" id="search_Notes316(!&ns._ViewId!)" 10>(!@-!)out.push(dataViews.Projects.getFilter('Notes','*'));(!@+!)</text(!&'area'!)></td>
+</tr>
+<tr>
+<td style="text-align:right">Nr:</td><td><input id="search_Id313(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Projects.getFilter('Id','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+</tr>
+<tr>
+<td style="text-align:right">Bokf&ouml;rings#:</td><td><input id="search_FinanceCode375(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Projects.getFilter('FinanceCode','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+</tr>
+<tr>
+<td style="text-align:right">Status:</td><td><input id="search_Status314(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Projects.getFilter('Status','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+</tr>
+</table>
+<center>
+<button class="CancelBut" id="clear(!&ns._ViewId!)" onclick="
+dataViews.Projects.clearFilter();
+
+                jQuery('#search_Id313(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Status314(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Project315(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Notes316(!&ns._ViewId!)').val('');
+            
+//App3.Navigate2('local/Pages/Project/'+id,{target:'AppPages'});
+">Rensa</button>
+|
+<input class="SearchBut" type="button" id="doSearch(!&ns._ViewId!)"  value="Sök"
+ onclick="
+dataViews.Projects.clearFilter();
+var elm;
+             dataViews.Projects.addFilter('Id','$',jQuery('#search_Id313(!&ns._ViewId!)').val());
+            
+             dataViews.Projects.addFilter('Status','*',jQuery('#search_Status314(!&ns._ViewId!)').val());
+            
+             dataViews.Projects.addFilter('Project','*',jQuery('#search_Project315(!&ns._ViewId!)').val());
+            
+             dataViews.Projects.addFilter('Notes','*',jQuery('#search_Notes316(!&ns._ViewId!)').val());
+            
+dataViews.Projects.firstRow({OnComplete:function() {
+    if (dataViews.Projects.curRecordSet.Hits > 0) {
+        var id = dataViews.Projects.curRecordSet.Rows[0]['Id'];
+        App3.Navigate2('local/Pages/Project/'+id,{target:'AppPages'});
+    } else {
+        alert('Ingen träff');
+     }
+},NoNewPage:function() {
+        alert('Ingen träff');
+     }});
+"/></center>
+
+
+

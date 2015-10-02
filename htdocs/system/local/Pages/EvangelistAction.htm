@@ -1,0 +1,51 @@
+{#ajaxTemplate2#}<span class="EvangelistActionsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="EvangelistActionProtoHeader">Handling</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/EvangelistActionNew?entityId=(!&ns.entityId!)" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/EvangelistActions?entityId=(!&ns.entityId!)" class="ajaxLink">Lista</a>
+    </span>
+</span><br/>
+
+(!@-!)if (ns.data) {
+var r= ns.data;
+(!@+!)
+
+<span class="EditIcon DeleteIcon" style="float:right">
+    <a onclick="dataViews.EvangelistActions.deleteRecord({Id:'(!&r.id!)',PK:'(!&r.id!)',OnComplete:function(){App3.Navigate2('http://local/Pages/EvangelistActions',{target:'(!&ns.target!)' });}});">Ta Bort</a>
+</span>
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan="2"><span class="TaskEdit4" Task="Project4.Task" Component="EvangelistActionEdit_fields">Uppgifter</span></th></tr>
+    <col /><col />
+
+    <tr><td><label>#:</label></td><td>(!&r.id!)
+</td>
+
+    <tr><td><label>Handling:</label></td><td><span id="EvangelistAction_actionName_Edit(!&ns._ViewId!)" class="ajaxEdit3" dataView="EvangelistActions.actionName" dataPK="(!&r.id!)" >(!&r['actionName']||EditInPlace4.blank!)</span></td>
+
+    <tr><td><label>Date:</label></td><td><span id="EvangelistAction_date_Edit(!&ns._ViewId!)" class="ajaxEdit3" dataView="EvangelistActions.date" dataPK="(!&r.id!)" >(!&r['date']||EditInPlace4.blank!)</span></td>
+
+    <tr><td><label>Notering:</label></td><td><text(!&'area'!) wrap='off'  class="Editable"  cols="20" rows="10" id="EvangelistAction_notes_Edit(!&ns._ViewId!)" onchange="EditInPlace4.quickSave('EvangelistActions.notes','(!&r.id!)',this.value)" data-fieldName="EvangelistAction.notes">(!&r.notes!)</text(!&'area'!)></td>
+
+</table>
+
+(!@-!)} else {
+    //no data retrieved yet... load it..
+    if(!ns.Id){ns.Id=ns.url.split("/").pop();}(!@+!)
+
+<img src="img/ajaxLoading.gif"/>ladda...<script>
+dataViews.EvangelistActions.getRecord({
+    Id:'(!&ns.Id!)'
+    ,PK:'(!&ns.Id!)'
+    ,OnComplete:function(Record){
+        App3.Navigate2('(!&ns._fullurl!)',
+            {target:'(!&ns.target!)',data:Record,Id:'(!&ns.Id!)' }
+        );
+    }
+});
+</script>
+(!@-!)}(!@+!)
+

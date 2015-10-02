@@ -1,0 +1,59 @@
+<ul id="nav">
+	<select id="fastLookupSelect" style="float:left;margin-right:10px;">
+		<option value="Giver">Givare</option>
+		<option value="Fadderbarn">Fadderbarn</option>
+		<option value="Project">Projekt</option>
+		<option value="Evangelist">Evangelist</option>
+	</select>
+	<input id="fastLookup" title="Alt + 1" style="float:left;margin-right:10px;" size=4 onkeydown="
+	
+	if (event) { var e = event;}
+	var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
+	switch(key) {
+		case 70:
+			$('#fastLookupSelect').val('Fadderbarn');
+			return false;
+			break;
+		case 71:
+			$('#fastLookupSelect').val('Giver');
+			return false;
+			break;
+		case 80:
+			$('#fastLookupSelect').val('Project');
+			return false;
+			break;
+		case 69:
+			//e
+			$('#fastLookupSelect').val('Evangelist');
+			return false;
+			break;
+		
+	 case 13:
+		if ($('#fastLookupSelect').val() == 'Fadderbarn') {
+			//lookup via barnnr
+			$.post('do/lookupId.php',{
+				Id:this.value
+				,type:$('#fastLookupSelect').val()
+			},function(response) {
+				App3.Navigate2('local/Pages/'+$('#fastLookupSelect').val()+'/'+response,{target:'AppPages'});
+	$('#fastLookup').focus().select();
+			});
+		} else {
+			App3.Navigate2('local/Pages/'+$('#fastLookupSelect').val()+'/'+this.value,{target:'AppPages'});
+	$('#fastLookup').focus().select();
+		}
+	break;
+	default:
+		//console.log(key);
+	}
+"/>
+	<li id="TabHome" class="TabItem"><a keyCode='112' title="Alt+2" href="Pages/Home" class="ajaxLink" target="AppPages">Hem</a></li>
+	<li id="TabNewOrder" class="TabItem"><a keyCode='113' title="Alt+3" href="Pages/GiverSearch" class="ajaxLink" target="AppPages">Givare</a></li>
+	<li id="TabNewOrder" class="TabItem"><a keyCode='113' title="Alt+4" href="Pages/FadderbarnSearch" class="ajaxLink" target="AppPages">Fadderbarn </a></li>
+	<li id="TabNewOrder" class="TabItem"><a keyCode='118' title="Alt+5" href="Pages/CustomReports" class="ajaxLink" target="AppPages">Rapporter</a></li>	
+	<span><a style="width:25px;top:-12px;height:5px;position:relative;background:none repeat scroll 0 0 #595D66;" href='Pages/Docs' class='ajaxLink' target="DocsTarget"><img align="middle" border=0 src="img/Themes/Cube/Tip.png" alt="Docs"/></a></span>
+</ul>
+<span style="float:right;padding-top:0px;color:white;"><img style="vertical-align:middle;" src="img/Themes/Cube/User.gif"/>&nbsp;<span id="UserName"></span></span>
+<script>
+document.getElementById('UserName').innerHTML = App3.LoggedInUser;
+</script>

@@ -1,0 +1,17 @@
+.ac_over {
+	background:yellow;	
+}
+.ac_hover {
+	background:yellow;	
+}
+.AutoComplete {
+	display:none;
+	position:relative;
+	/*left:50;*/
+	width:450px;
+	height:210px;
+	overflow:auto;
+	background-color:white;
+	z-order:5;
+	border-style: outset;
+}

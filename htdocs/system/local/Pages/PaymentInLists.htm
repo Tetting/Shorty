@@ -1,0 +1,180 @@
+{#ajaxTemplate2#}<span class="PaymentInListsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="PaymentInLists_ProtoHeader">Betalningar</span> 
+
+<span class="EditIcons"></span><br/>
+
+(!@-!)
+if ((ns.data)&&(!ns['forceRead'])) {(!@+!)
+
+<span class="EditIcons"><span class="TaskEdit4" Task="Project4.Task" Component="PaymentInListList_fields"> </span>
+(!@-!)
+if (ns.Recordset) {
+if (ns.Recordset.Hits ==0) {
+out.push('<i>0 Poster');
+} else {
+out.push('<i>Post '+(ns.Recordset.start+1)+' till '+(ns.Recordset.Hits+ns.Recordset.start));
+}
+if (ns.Recordset.Count) {
+if ((ns.DataView)&&(ns.DataView.filterActive==true)) {
+//display filtered count..
+out.push(' av '+ns.Recordset.filteredCount);
+} else {
+out.push(' av '+ns.Recordset.Count);
+}
+}
+out.push('</i>');
+}
+(!@+!)
+
+<a title="F&ouml;rsta" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.PaymentInLists.firstPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetFirstIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="F&ouml;reg&aring;nde" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.PaymentInLists.previousPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetPreviousIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="N&auml;sta" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.PaymentInLists.nextPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetNextIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="Sista" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.PaymentInLists.lastPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetLastIcon EditIcon">&nb(!&'sp'!);</span></a>
+
+<input type="button" style="display:none" id="Filter_(!&ns._ViewId!)" onclick="
+dataViews.PaymentInLists.clearFilter();
+dataViews.PaymentInLists.addFilter('Date','=','(!&ns.Date!)');
+dataViews.PaymentInLists.addFilter('PaymentSource','=','(!&ns.PaymentSource!)');
+
+dataViews.PaymentInLists.addFilter('Id','*',document.getElementById('Filter_PaymentInList_Id_List(!&ns._ViewId!)').value);
+dataViews.PaymentInLists.addFilter('Date','*',document.getElementById('Filter_PaymentInList_Date_List(!&ns._ViewId!)').value);
+dataViews.PaymentInLists.addFilter('GiverId','*',document.getElementById('Filter_PaymentInList_GiverId_List(!&ns._ViewId!)').value);
+dataViews.PaymentInLists.addFilter('ProjectId','*',document.getElementById('Filter_PaymentInList_ProjectId_List(!&ns._ViewId!)').value);
+dataViews.PaymentInLists.addFilter('InKr','*',document.getElementById('Filter_PaymentInList_InKr_List(!&ns._ViewId!)').value);
+dataViews.PaymentInLists.addFilter('AdminCharge','*',document.getElementById('Filter_PaymentInList_AdminCharge_List(!&ns._ViewId!)').value);
+dataViews.PaymentInLists.addFilter('AdminPercent','*',document.getElementById('Filter_PaymentInList_AdminPercent_List(!&ns._ViewId!)').value);
+dataViews.PaymentInLists.addFilter('InKrTotal','*',document.getElementById('Filter_PaymentInList_InKrTotal_List(!&ns._ViewId!)').value);
+
+dataViews.PaymentInLists.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,mainViewId:'(!&ns.mainViewId!)',Date:'(!&ns.Date!)',PaymentSource:'(!&ns.PaymentSource!)'});}});
+"/>
+<span id="Prog(!&ns._ViewId!)"></span>
+</span>
+
+<table class="ListTable" ><thead><tr>
+
+<th width="2" class="Col_PaymentInList_Id_List"><a class="SortColumn" onclick="
+dataViews.PaymentInLists.setSort('Id');
+dataViews.PaymentInLists.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,mainViewId:'(!&ns.mainViewId!)',Date:'(!&ns.Date!)',PaymentSource:'(!&ns.PaymentSource!)'});}});"><u>#</u></a><span class="TaskEdit4" Task="Project4.Task" Component="PaymentInList_Id_List"> </span></th>
+
+<th width="2" class="Col_PaymentInList_Date_List"><a class="SortColumn" onclick="
+dataViews.PaymentInLists.setSort('Date');
+dataViews.PaymentInLists.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,mainViewId:'(!&ns.mainViewId!)',Date:'(!&ns.Date!)',PaymentSource:'(!&ns.PaymentSource!)'});}});"><u>Datum</u></a><span class="TaskEdit4" Task="Project4.Task" Component="PaymentInList_Date_List"> </span></th>
+
+<th width="2" class="Col_PaymentInList_GiverId_List"><a class="SortColumn" onclick="
+dataViews.PaymentInLists.setSort('GiverId');
+dataViews.PaymentInLists.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,mainViewId:'(!&ns.mainViewId!)',Date:'(!&ns.Date!)',PaymentSource:'(!&ns.PaymentSource!)'});}});"><u>Givare</u></a><span class="TaskEdit4" Task="Project4.Task" Component="PaymentInList_GiverId_List"> </span></th>
+
+<th width="2" class="Col_PaymentInList_ProjectId_List"><a class="SortColumn" onclick="
+dataViews.PaymentInLists.setSort('ProjectId');
+dataViews.PaymentInLists.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,mainViewId:'(!&ns.mainViewId!)',Date:'(!&ns.Date!)',PaymentSource:'(!&ns.PaymentSource!)'});}});"><u>Projekt</u></a><span class="TaskEdit4" Task="Project4.Task" Component="PaymentInList_ProjectId_List"> </span></th>
+
+<th width="2" class="Col_PaymentInList_InKr_List"><a class="SortColumn" onclick="
+dataViews.PaymentInLists.setSort('InKr');
+dataViews.PaymentInLists.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,mainViewId:'(!&ns.mainViewId!)',Date:'(!&ns.Date!)',PaymentSource:'(!&ns.PaymentSource!)'});}});"><u>InKr</u></a><span class="TaskEdit4" Task="Project4.Task" Component="PaymentInList_InKr_List"> </span></th>
+
+<th width="2" class="Col_PaymentInList_AdminCharge_List"><a class="SortColumn" onclick="
+dataViews.PaymentInLists.setSort('AdminCharge');
+dataViews.PaymentInLists.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,mainViewId:'(!&ns.mainViewId!)',Date:'(!&ns.Date!)',PaymentSource:'(!&ns.PaymentSource!)'});}});"><u>Admin</u></a><span class="TaskEdit4" Task="Project4.Task" Component="PaymentInList_AdminCharge_List"> </span></th>
+
+<th width="2" class="Col_PaymentInList_AdminPercent_List"><a class="SortColumn" onclick="
+dataViews.PaymentInLists.setSort('AdminPercent');
+dataViews.PaymentInLists.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,mainViewId:'(!&ns.mainViewId!)',Date:'(!&ns.Date!)',PaymentSource:'(!&ns.PaymentSource!)'});}});"><u>Admin%</u></a><span class="TaskEdit4" Task="Project4.Task" Component="PaymentInList_AdminPercent_List"> </span></th>
+
+<th width="2" class="Col_PaymentInList_InKrTotal_List"><a class="SortColumn" onclick="
+dataViews.PaymentInLists.setSort('InKrTotal');
+dataViews.PaymentInLists.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,mainViewId:'(!&ns.mainViewId!)',Date:'(!&ns.Date!)',PaymentSource:'(!&ns.PaymentSource!)'});}});"><u>InKrTotal</u></a><span class="TaskEdit4" Task="Project4.Task" Component="PaymentInList_InKrTotal_List"> </span></th>
+
+<th width="" class="Col_Generic662"><a class="SortColumn" onclick="
+dataViews.undefineds.setSort('undefined');
+dataViews.undefineds.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,mainViewId:'(!&ns.mainViewId!)',Date:'(!&ns.Date!)',PaymentSource:'(!&ns.PaymentSource!)'});}});"><u>Action</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Generic662"> </span></th>
+
+</tr><tr>
+
+<td><input id="Filter_PaymentInList_Id_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.PaymentInLists.getFilter('Id','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_PaymentInList_Date_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.PaymentInLists.getFilter('Date','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_PaymentInList_GiverId_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.PaymentInLists.getFilter('GiverId','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_PaymentInList_ProjectId_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.PaymentInLists.getFilter('ProjectId','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_PaymentInList_InKr_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.PaymentInLists.getFilter('InKr','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_PaymentInList_AdminCharge_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.PaymentInLists.getFilter('AdminCharge','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_PaymentInList_AdminPercent_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.PaymentInLists.getFilter('AdminPercent','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_PaymentInList_InKrTotal_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.PaymentInLists.getFilter('InKrTotal','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+<td></td>
+</tr></thead><tbody>
+(!@-!)
+var r;
+var totIn=0;
+var totAdmin = 0;
+var totTot = 0;
+for(var ri=0;ri<ns.data.length;ri++) {
+r = ns.data[ri];
+totIn += parseFloat(r.InKr);
+totAdmin += parseFloat(r.AdminCharge);
+totTot += parseFloat(r.InKrTotal);
+(!@+!)
+<tr >
+
+<td ><a class=ajaxLink href=Pages/Payment/(!&r.Id!)>(!&r.Id!)</a></td>
+
+<td >(!&r['Date']!)</td>
+
+<td ><a class=ajaxLink target=AppPages href=Pages/Giver/(!&r.GiverId!)>(!&r.GiverId!)</a></td>
+
+<td ><a class=ajaxLink target=AppPages href=Pages/Project/(!&r.ProjectId!)>(!&r.ProjectName!)</a></td>
+
+<td style='text-align:right'>(!@-!)out.push(dataConvert.toSEK(r['InKr']))(!@+!)</td>
+
+<td style='text-align:right'>(!@-!)out.push(dataConvert.toSEK(r['AdminCharge']))(!@+!)</td>
+
+<td >(!&r.AdminPercent!)%</td>
+
+<td style='text-align:right'>(!@-!)out.push(dataConvert.toSEK(r['InKrTotal']))(!@+!)</td>
+
+<td ><span class="DeleteIcon" style="width:32px;height:16px;cursor:pointer;">
+    <a onclick="
+if (confirm('&Auml;r du s&auml;ker p&aring; att du vill ta bort betalningen')) {
+$.post('do/paymentPreview.php?action=del&Id=(!&r.Id!)',{},function(response) {
+    dataViews.PaymentInLists.clearFilter();
+    var mainId = document.getElementById('mainPaymentViewId').value;
+    dataViews.PaymentInLists.setFilter('Date','=',document.getElementById('Payment_Date_New'+mainId).value);
+    dataViews.PaymentInLists.addFilter('PaymentSource','=',document.getElementById('PaymentSource653'+mainId).value);
+    dataViews.PaymentInLists.getList({
+    OnComplete:function(data,Recordset,DataView){
+        App3.Navigate2('local/Pages/PaymentInLists',{navTarget:'PaymentList',target:'PaymentList',data:data,Recordset:Recordset,DataView:DataView });
+    }});
+});
+}
+" >&nbsp;&nbsp;&nbsp;&nbsp;</a>
+</span></td>
+
+</tr>
+(!@-!)}
+if (ns.data.length == 0) {//no rows code.(!@+!)
+<tr><td colspan="20"><center>Ingen</center></td></tr>
+(!@-!) } (!@+!)
+</tbody>
+
+(!@-!)} else {
+//no data retrieved yet... load it..
+(!@+!)<script>
+dataViews.PaymentInLists.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2("(!&ns._fullurl!)",{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,mainViewId:'(!&ns.mainViewId!)',Date:'(!&ns.Date!)',PaymentSource:'(!&ns.PaymentSource!)'});}});
+
+</script><img src="img/ajaxLoading.gif"/>ladda...
+(!@-!)}(!@+!)
+<tr>
+<td colspan=3></td>
+    <td>Tot</td>
+    <th>(!@-!)out.push(dataConvert.toSEK(totIn))(!@+!)</th>
+<th>(!@-!)out.push(dataConvert.toSEK(totAdmin))(!@+!)</th>
+<td></td>
+<th>(!@-!)out.push(dataConvert.toSEK(totTot))(!@+!)</th>
+<td></td>
+</tr><button onclick="
+ document.getElementById('PaymentReport').src = 'pdf/ManualPayments.php?PaymentSource='+$('#PaymentSource653(!&ns.PaymentViewId!)').val()+'&Date='+$('#Payment_Date_New(!&ns.PaymentViewId!)').val()+'&rnd='+Math.random();  
+"><img src="img/file_pdf.png" width=24 height=24/> Betalningskontroll</button>
+<iframe style="width:0px;height:0px;" id="PaymentReport" src="about:blank"></iframe>

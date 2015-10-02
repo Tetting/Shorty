@@ -1,0 +1,141 @@
+{#ajaxTemplate2#}<span class="UsersBigIcon BigIcon TaskEdit4" task="Project4.Task" component="Users_ProtoHeader">Anv&auml;ndare</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/UserNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/Users" class="ajaxLink">Lista</a>
+    </span>
+</span><script>
+    document.title = $('<div/>').html("Anv&auml;ndarelista").text();
+</script><br/>
+
+(!@-!)
+if ((ns.data)&&(!ns['forceRead'])) {(!@+!)
+
+<span class="EditIcons"><span class="TaskEdit4" Task="Project4.Task" Component="UserList_fields"> </span>
+(!@-!)
+if (ns.Recordset) {
+if (ns.Recordset.Hits ==0) {
+out.push('<i>0 Poster');
+} else {
+out.push('<i>Post '+(ns.Recordset.start+1)+' till '+(ns.Recordset.Hits+ns.Recordset.start));
+}
+if (ns.Recordset.Count) {
+if ((ns.DataView)&&(ns.DataView.filterActive==true)) {
+//display filtered count..
+out.push(' av '+ns.Recordset.filteredCount);
+} else {
+out.push(' av '+ns.Recordset.Count);
+}
+}
+out.push('</i>');
+}
+(!@+!)
+<a title="Ta bort filter" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.Users.clearFilter();dataViews.Users.firstPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetClearFilterIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="F&ouml;rsta" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.Users.firstPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetFirstIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="F&ouml;reg&aring;nde" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.Users.previousPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetPreviousIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="N&auml;sta" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.Users.nextPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetNextIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="Sista" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.Users.lastPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetLastIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="H&auml;mta alla" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.Users.getAllRows({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetAllIcon EditIcon">&nb(!&'sp'!);</span></a>
+<input type="button" style="display:none" id="Filter_(!&ns._ViewId!)" onclick="
+dataViews.Users.clearFilter();
+
+dataViews.Users.addFilter('Id','*',document.getElementById('Filter_User_Id_List(!&ns._ViewId!)').value);
+dataViews.Users.addFilter('Username','*',document.getElementById('Filter_User_Username_List(!&ns._ViewId!)').value);
+dataViews.Users.addFilter('FirstName','*',document.getElementById('Filter_User_FirstName_List(!&ns._ViewId!)').value);
+dataViews.Users.addFilter('LastName','*',document.getElementById('Filter_User_LastName_List(!&ns._ViewId!)').value);
+dataViews.Users.addFilter('Status','*',document.getElementById('Filter_User_Status_List(!&ns._ViewId!)').value);
+dataViews.Users.addFilter('LastLogin','*',document.getElementById('Filter_LastLogin55(!&ns._ViewId!)').value);
+dataViews.Users.addFilter('Databases.Name','*',document.getElementById('Filter_Db360(!&ns._ViewId!)').value);
+
+dataViews.Users.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});
+"/>
+<span id="Prog(!&ns._ViewId!)"></span>
+</span>
+
+<table class="ListTable" ><tr>
+
+<th width="25" class="Col_User_Id_List"><a class="SortColumn" onclick="
+dataViews.Users.setSort('Id');
+dataViews.Users.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>#</u></a><span class="TaskEdit4" Task="Project4.Task" Component="User_Id_List"> </span></th>
+
+<th width="" class="Col_User_Username_List"><a class="SortColumn" onclick="
+dataViews.Users.setSort('Username');
+dataViews.Users.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Anv&auml;ndarnamn</u></a><span class="TaskEdit4" Task="Project4.Task" Component="User_Username_List"> </span></th>
+
+<th width="" class="Col_User_FirstName_List"><a class="SortColumn" onclick="
+dataViews.Users.setSort('FirstName');
+dataViews.Users.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>F&ouml;rnamn</u></a><span class="TaskEdit4" Task="Project4.Task" Component="User_FirstName_List"> </span></th>
+
+<th width="" class="Col_User_LastName_List"><a class="SortColumn" onclick="
+dataViews.Users.setSort('LastName');
+dataViews.Users.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Efternamn</u></a><span class="TaskEdit4" Task="Project4.Task" Component="User_LastName_List"> </span></th>
+
+<th width="" class="Col_User_Status_List"><a class="SortColumn" onclick="
+dataViews.Users.setSort('Status');
+dataViews.Users.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Status</u></a><span class="TaskEdit4" Task="Project4.Task" Component="User_Status_List"> </span></th>
+
+<th width="" class="Col_LastLogin55"><a class="SortColumn" onclick="
+dataViews.Users.setSort('LastLogin');
+dataViews.Users.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Sista inloggning</u></a><span class="TaskEdit4" Task="Project4.Task" Component="LastLogin55"> </span></th>
+
+<th width="" class="Col_Db360"><a class="SortColumn" onclick="
+dataViews.Users.setSort('Databases.Name');
+dataViews.Users.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Db</u></a><span class="TaskEdit4" Task="Project4.Task" Component="Db360"> </span></th>
+
+</tr><tr>
+
+<td><input id="Filter_User_Id_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Users.getFilter('Id','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_User_Username_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Users.getFilter('Username','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_User_FirstName_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Users.getFilter('FirstName','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_User_LastName_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Users.getFilter('LastName','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_User_Status_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Users.getFilter('Status','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_LastLogin55(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Users.getFilter('LastLogin','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_Db360(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.Users.getFilter('dbname','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+</tr>
+(!@-!)
+var r;
+
+for(var ri=0;ri<ns.data.length;ri++) {
+r = ns.data[ri];
+
+(!@+!)
+<tr >
+
+<td ><a class=ajaxLink href=Pages/User/(!&r.Id!)>(!&r.Id!)</a></td>
+
+<td ><a class=ajaxLink href=Pages/User/(!&r.Id!)>(!&r.Username!)</a></td>
+
+<td >(!&r['FirstName']!)</td>
+
+<td >(!&r['LastName']!)</td>
+
+<td >(!&r['Status']!)</td>
+
+<td >(!&r['LastLogin']!)</td>
+
+<td >(!&r['dbname']!)</td>
+
+</tr>
+(!@-!)}
+if (ns.data.length == 0) {//no rows code.(!@+!)
+<tr><td colspan="10"><center>Ingen</center></td></tr>
+(!@-!) } (!@+!)
+
+</table>
+(!@-!)} else {
+//no data retrieved yet... load it..
+(!@+!)<script>
+dataViews.Users.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2("(!&ns._fullurl!)",{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});
+
+</script><img src="img/ajaxLoading.gif"/>ladda...
+(!@-!)}(!@+!)
+

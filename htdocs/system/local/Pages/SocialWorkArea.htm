@@ -1,0 +1,66 @@
+{#ajaxTemplate2#}<span class="SocialWorkAreasBigIcon BigIcon TaskEdit4" task="Project4.Task" component="SocialWorkAreaProtoHeader">Omr&aring;de</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/SocialWorkAreaNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/SocialWorkAreas" class="ajaxLink">Lista</a>
+    </span>
+</span><script>
+    document.title = $('<div/>').html("Omr&aring;de (!&ns.data['Area']!) (!&ns.data['Area1']!)").text();
+</script><br/>
+
+(!@-!)if (ns.data) {
+var r= ns.data;
+(!@+!)
+
+<span class="EditIcon DeleteIcon" style="float:right">
+    <a onclick="dataViews.SocialWorkAreas.deleteRecord({Id:'(!&r.Id!)',PK:'(!&r.Id!)',OnComplete:function(){App3.Navigate2('http://local/Pages/SocialWorkAreas',{target:'(!&ns.target!)' });}});">Ta Bort</a>
+</span>
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan="2"><span class="TaskEdit4" Task="Project4.Task" Component="SocialWorkAreaEdit_fields">Uppgifter</span></th></tr>
+    <col /><col />
+
+    <tr><td><label>#:</label></td><td>(!&r.Id!)
+</td>
+
+    <tr><td><label>Landkod:</label></td><td><span id="SocialWorkArea_CountryCode_Edit(!&ns._ViewId!)" class="ajaxEdit3" dataView="SocialWorkAreas.CountryCode" dataPK="(!&r.Id!)" >(!&r['CountryCode']||EditInPlace4.blank!)</span></td>
+
+    <tr><td><label>Omr&aring;de:</label></td><td><span id="SocialWorkArea_Area_Edit(!&ns._ViewId!)" class="ajaxEdit3" dataView="SocialWorkAreas.Area" dataPK="(!&r.Id!)" >(!&r['Area']||EditInPlace4.blank!)</span></td>
+
+    <tr><td><label>Omr&aring;de#:</label></td><td><span id="SocialWorkArea_Area1_Edit(!&ns._ViewId!)" class="ajaxEdit3" dataView="SocialWorkAreas.Area1" dataPK="(!&r.Id!)" >(!&r['Area1']||EditInPlace4.blank!)</span></td>
+
+    <tr><td><label>SocialWorkerId:</label></td><td>
+<input type="hidden" id="SocialWorkArea_SocialWorkerId_Edit(!&ns._ViewId!)" value="(!&r.SocialWorkerId!)" OnChange=""/>
+<a style="cursor:pointer;" onclick="
+if($j('#SocialWorkArea_SocialWorkerId_EditPopUp(!&ns._ViewId!)_area').css('display')=='none') {
+    $j('#SocialWorkArea_SocialWorkerId_EditPopUp(!&ns._ViewId!)_area').show();
+    App3.Navigate2('local/Pages/SocialWorkerSelect',{target:'SocialWorkArea_SocialWorkerId_EditPopUp(!&ns._ViewId!)'});
+} else {
+    $j('#SocialWorkArea_SocialWorkerId_EditPopUp(!&ns._ViewId!)_area').hide();
+}"><span class="EditLink" id="SocialWorkArea_SocialWorkerId_EditPopUp(!&ns._ViewId!)_display">(!&r.Socialarbetare!)</span> <button>V&#228;lj</button></a>
+<br/>
+<div id="SocialWorkArea_SocialWorkerId_EditPopUp(!&ns._ViewId!)_area" style="display:none;position:relative;" datapk="(!&r.Id!)" dataview="SocialWorkAreas.SocialWorkerId" datadisplay="SocialWorkArea_SocialWorkerId_EditPopUp(!&ns._ViewId!)_display" datastoreid="SocialWorkArea_SocialWorkerId_Edit(!&ns._ViewId!)"><div id="SocialWorkArea_SocialWorkerId_EditPopUp(!&ns._ViewId!)" class="PopupSelect" style="position:absolute;background:#EEEEEE;">loading...</div></div>
+</td>
+
+</table>
+
+(!@-!)} else {
+    //no data retrieved yet... load it..
+    if(!ns.Id){ns.Id=ns.url.split("/").pop();}(!@+!)
+
+<img src="img/ajaxLoading.gif"/>ladda...<script>
+dataViews.SocialWorkAreas.getRecord({
+    Id:'(!&ns.Id!)'
+    ,PK:'(!&ns.Id!)'
+    ,OnComplete:function(Record){
+        App3.Navigate2('(!&ns._fullurl!)',
+            {target:'(!&ns.target!)',data:Record,Id:'(!&ns.Id!)' }
+        );
+    }
+});
+</script>
+(!@-!)}(!@+!)
+

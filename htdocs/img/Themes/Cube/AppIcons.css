@@ -1,0 +1,90 @@
+/** Application Icon Style **/
+.TopIcon { 
+    background-repeat:no-repeat;
+    /*height:35px;*/
+    padding-left:20px;/* make space for the image*/
+}
+.TopIcon a {
+    text-decoration:none;
+    color:blue;
+}
+.BigIcon{
+    background-repeat:no-repeat;
+    /*height:35px;*/
+    padding-left:20px;/* make space for the image*/
+    font-size:20px;
+}
+.EditIcons {
+    padding-left:150px;
+}
+.EditIcon {
+    background-repeat:no-repeat;
+    height:35px;
+    padding-left:20px;/* make space for the image*/
+    cursor:pointer;
+}
+.EditIcon a {
+    text-decoration:none;
+    color:blue;
+}
+/** Application Icons **/
+.HomeTopIcon {background-image:url("House.gif");}
+.HomeBigIcon {background-image:url("House.gif");}
+.PersonsTopIcon {background-image:url("user_green.gif");}
+.PersonsBigIcon {background-image:url("user_green.gif");}
+.CloseWindow {background-image:url("cancel.gif");}
+.ToDosTopIcon {background-image:url("user_comment.gif");}
+.ToDosBigIcon {background-image:url("user_comment.gif");}
+
+/**Standard View Icons **/
+.NewIcon {background-image:url("New.png");}
+.DeleteIcon {background-image:url("delete.gif");}
+.ListIcon {background-image:url("List.png");}
+.CancelIcon {background-image:url("Cancel.gif");}
+.PDFIcon {background-image:url("page_white_acrobat.gif");}
+
+
+/** DBIcons **/
+.FilterRemoveIcon {background-image:url("magnifier.gif");}
+.FilterIcon {background-image:url("magnifier_zoom_in.gif");}
+.RecordsetClearFilterIcon {background-image:url("zoom_out.gif");}
+.RecordsetFirstIcon {background-image:url("resultset_first.gif");}
+.RecordsetNextIcon {background-image:url("resultset_next.gif");}
+.RecordsetPreviousIcon {background-image:url("resultset_previous.gif");}
+.RecordsetLastIcon {background-image:url("resultset_last.gif");}
+.RecordsetAllIcon {background-image:url("asterisk_yellow.png");} 
+
+/*AjaxProgress*/
+.AjaxProgress{
+	background-image:url(img/ajaxLoading.gif);
+	background-repeat:no-repeat;
+	display:inline-block;
+	padding-left:21px;
+	padding-right:90px;
+	height:21px
+}
+.AjaxNormal{
+	background-image:'';background-repeat:no-repeat;
+	display:inline-block;
+	height:21px
+}
+.AjaxLoading {
+    padding-left:66px;
+    background-repeat:no-repeat;
+    background-image:url("ajaxProgress.gif");
+}
+.ajaxProgress {
+    padding-left:66px;
+    background-repeat:no-repeat;
+    background-image:url("ajaxProgress.gif");
+}
+.ajaxLoading {
+    padding-left:20px;/* make space for the image*/
+    background-repeat:no-repeat;
+    background-image:url("ajaxLoading.gif");
+}
+
+
+.EditIcons button {
+	cursor:pointer;
+}

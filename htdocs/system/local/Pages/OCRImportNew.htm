@@ -1,0 +1,70 @@
+{#ajaxTemplate2#}<span class="OCRImportsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="OCRImportNew_ProtoHeader">OCRImport</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/OCRImportNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/OCRImports" class="ajaxLink">Lista</a>
+    </span>
+</span><br/>
+
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan='2'><center><span class="TaskEdit4" task="Project4.Task" component="OCRImportNew_fields">Uppgifter</span></center></th></tr>
+</thead>
+<tbody>
+
+<tr><td><label>Date</label>:</td><td><input id="OCRImport_Date_New(!&ns._ViewId!)" type="text" value=""/>
+<script>$j('#OCRImport_Date_New(!&ns._ViewId!)').date_input();</script>
+</td></tr>
+
+<tr><td><label>AccountNr</label>:</td><td><input id="OCRImport_AccountNr_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>AccountName</label>:</td><td><input id="OCRImport_AccountName_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>FName</label>:</td><td><input id="OCRImport_FName_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Src</label>:</td><td><text(!&'area'!) wrap="off" cols="20" rows="10" id="OCRImport_Src_New(!&ns._ViewId!)"></text(!&'area'!)></td></tr>
+
+<tr><td><label>Status</label>:</td><td><input id="OCRImport_Status_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+</tbody>
+<tfoot><tr><td colspan="2"><center Task="Project4.Task" Component="OCRImportNew_fields" class="TaskEdit4">
+
+<input type="button" value="L&auml;gg till" onclick="
+dataViews.OCRImports.newRecord({
+NewRecord:{
+Date:document.getElementById('OCRImport_Date_New(!&ns._ViewId!)').value
+,
+AccountNr:document.getElementById('OCRImport_AccountNr_New(!&ns._ViewId!)').value
+,
+AccountName:document.getElementById('OCRImport_AccountName_New(!&ns._ViewId!)').value
+,
+FName:document.getElementById('OCRImport_FName_New(!&ns._ViewId!)').value
+,
+Src:document.getElementById('OCRImport_Src_New(!&ns._ViewId!)').value
+,
+Status:document.getElementById('OCRImport_Status_New(!&ns._ViewId!)').value
+
+}
+,OnComplete:function(response){
+
+//document.getElementById('NewOCRImport_Name(!&ns._ViewId!)').value = '';
+//document.getElementById('NewOCRImport_Name(!&ns._ViewId!)').focus();
+dataViews.OCRImports.dataChanged();
+App3.Navigate2('local/Pages/OCRImports',{target:'(!&ns.target!)',forceRead:true });
+
+}
+});
+"/></center>
+</td></tr></tfoot>
+</table>
+<script>
+try {
+document.getElementById('OCRImport_Date_New(!&ns._ViewId!)').focus();
+} catch(e) {
+//no problem.
+}
+</script>
+

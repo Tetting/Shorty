@@ -1,0 +1,312 @@
+{#ajaxTemplate2#}<div class="EditIcons" style="padding-left: 0px; width: 100%;">
+<center>
+(!@-!)
+if (typeof(dataViews.Churchs.curRecordSet.Count) != 'undefined') {
+if (typeof(dataViews.Churchs.curRecordSet.start) != 'undefined') {
+if (typeof(dataViews.Churchs.curRecordSet.rPos) != 'undefined') {
+if (dataViews.Churchs.filterActive) {
+    o.push(dataViews.Churchs.curRecordSet.start + dataViews.Churchs.curRecordSet.rPos + 1);
+    o.push(' av ');
+    o.push(dataViews.Churchs.curRecordSet.filteredCount);
+} else {
+    o.push(dataViews.Churchs.curRecordSet.start + dataViews.Churchs.curRecordSet.rPos + 1);
+    o.push(' av ');
+    o.push(dataViews.Churchs.curRecordSet.Count);
+}
+}
+}
+}
+(!@+!)
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Churchs'].firstRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).prop('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'undefined',target:target});
+        }});" title="F&ouml;rsta"><span class="RecordsetFirstIcon EditIcon">&nbsp;</span></a>
+    
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Churchs'].previousRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).prop('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'Churchs',target:target});
+        },NoNewPage:function(){
+            $j('#Toolbar(!&ns._ViewId!)').removeClass('ajaxLoading');
+        }});" title="F&ouml;reg&aring;ende"><span class="RecordsetPreviousIcon EditIcon">&nbsp;</span></a>
+    
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Churchs'].nextRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).prop('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'Churchs',target:target});
+        },NoNewPage:function() {
+            $j('#Toolbar(!&ns._ViewId!)').removeClass('ajaxLoading');
+        }});" title="N&auml;sta"><span class="RecordsetNextIcon EditIcon">&nbsp;</span></a>
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Churchs'].lastRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).prop('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'Churchs',target:target});
+        }});" title="Sista"><span class="RecordsetLastIcon EditIcon">&nbsp;</span></a>
+    
+    <span style="padding-left: 20px;" id="Toolbar(!&ns._ViewId!)">&nbsp;</span>
+    <span class="TaskEdit4" task="Project4.Task" component="Generic553">&nbsp;</span>
+<button onclick="
+/*
+jQuery('input,textarea', document.getElementById('ChurchTab(!&ns._ViewId!)')).each(function(index,elm) {
+    var t = jQuery(elm).prop('type');
+    if (t == 'radio') {
+        jQuery(elm).removeAttr('checked');
+    } else {
+        elm.value = '';
+    }
+});
+jQuery('#Id66(!&ns._ViewId!)').removeAttr('disabled');
+document.getElementById('Id66(!&ns._ViewId!)').enabled = true;
+jQuery('#Action(!&ns._ViewId!)').data('actionName','Search').html('s&ouml;k nu>>');
+*/
+dataViews['Churchs'].clearFilter();
+App3.Navigate2('local/Pages/ChurchSearch',{target:'AppPages'});
+" class="SearchBut" title="Ny s&ouml;kning"><img src="img/icons/search.png"/></button>
+
+<button class="NewBut" onclick="
+document.getElementById('Generic553(!&ns._ViewId!)').click();
+jQuery('#ChurchTab(!&ns._ViewId!) input').each(function(index,elm) {
+    elm.value = '';
+});
+jQuery('#ChurchTab(!&ns._ViewId!) textarea').each(function(index,elm) {
+    elm.value = '';
+});
+jQuery('#GiverId88(!&ns._ViewId!)').val('-333333');
+jQuery('#RegDate364(!&ns._ViewId!)').val(App.Today());
+jQuery('#Action(!&ns._ViewId!)').data('actionName','New').html('skapa');
+" title="Ny"><img src="img/icons/new.png"/></button>
+
+<button class="CopyBut" onclick="
+    document.getElementById('Generic553(!&ns._ViewId!)').click();
+    var s = String.fromCharCode(39)+'Church.Id'+String.fromCharCode(39);
+    jQuery('input[data-fieldname='+s+']').val('');
+    jQuery('#Action(!&ns._ViewId!)').data('actionName','New').html('skapa');
+" title="Kopiera"><img src="img/icons/copy.png"/></button>
+<button class="ChangeBut(!&ns._ViewId!) EditBut" id="Generic553(!&ns._ViewId!)" onclick="
+jQuery('input,textarea',document.getElementById('AppPages')).each(function(index,el){
+switch(el.type) {
+    case 'radio':
+        el.disabled = !el.disabled;
+        break;
+    default:
+        if (el.getAttribute('data-fieldname') == 'Church.Id') {
+            //never allowed to edit the id
+        } else {
+            if ($j(el).is('.dateEdit')) {
+                el.disabled = !el.disabled;
+            } else {
+                el.readOnly = !el.readOnly;
+            }
+        }
+   }
+});
+$('.tagsinput').each(function(){
+    var id = $(this).attr('id');
+    id = id.substr(0,id.length-10);
+    $j('#'+id).interactiveTags();
+});
+" tabindex=1 title="&Auml;ndra"><img src="img/icons/change.png"/></button>
+<center>
+</div><span class="ChurchsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="ChurchProtoHeader">F&ouml;rsamling</span> 
+
+<span class="EditIcons">    <span class="ListIcon EditIcon">
+        <a href="Pages/Churchs" class="ajaxLink">Lista</a>
+    </span>
+</span><script>
+    document.title = ""+jQuery('<div/>').html("(!&ns.data['ChurchName']!)").text()+"";
+</script><br/>
+(!@-!)if (ns.data) {var r= ns.data;(!@+!)<table class="EditTable" id="ChurchTab(!&ns._ViewId!)">
+<thead><tr><th colspan="7">Uppgifter</th></tr></thead>
+<tr>
+<td style="text-align:right">F&ouml;rsamling:</td><td><input type="text" id="ChurchName121(!&ns._ViewId!)" class="Editable" data-fieldName="Church.ChurchName" value="(!&r['ChurchName']||''!)" tabindex=3 /></td>
+<td style="text-align:right">Nr:</td><td><input type="text" id="Id120(!&ns._ViewId!)" class="Editable" data-fieldName="Church.Id" value="(!&r['Id']||''!)"  /></td>
+<td rowspan="6"><text(!&'area'!) wrap='on'  class="Editable" tabindex=12 cols="60" rows="8" id="Notes127(!&ns._ViewId!)"  data-fieldName="Church.Notes">(!&r.Notes!)</text(!&'area'!)></td>
+</tr>
+<tr>
+<td style="text-align:right">c/o Adress:</td><td><input type="text" id="coAddress632(!&ns._ViewId!)" class="Editable" data-fieldName="Church.coAddress" value="(!&r['coAddress']||''!)" tabindex=4 /></td>
+<td style="text-align:right">Telefon:</td><td><input type="text" id="Tel125(!&ns._ViewId!)" class="Editable" data-fieldName="Church.Tel" value="(!&r['Tel']||''!)" tabindex=8 /></td>
+</tr>
+<tr>
+<td style="text-align:right">Adress:</td><td><input type="text" id="Address122(!&ns._ViewId!)" class="Editable" data-fieldName="Church.Address" value="(!&r['Address']||''!)" tabindex=5 /></td>
+<td style="text-align:right">Kontakt:</td><td><input type="text" id="Contact126(!&ns._ViewId!)" class="Editable" data-fieldName="Church.Contact" value="(!&r['Contact']||''!)" tabindex=9 /></td>
+</tr>
+<tr>
+<td style="text-align:right">PostNr:</td><td><input type="text" id="Zip123(!&ns._ViewId!)" class="Editable" data-fieldName="Church.Zip" value="(!&r['Zip']||''!)" tabindex=6 /></td>
+<td style="text-align:right"><a href="mailto:(!&r.Email!)">Epost</a>:</td><td><input type="text" id="Email633(!&ns._ViewId!)" class="Editable" data-fieldName="Church.Email" value="(!&r['Email']||''!)" tabindex=10 /></td>
+</tr>
+<tr>
+<td style="text-align:right">PostOrt:</td><td><input type="text" id="ZipTown124(!&ns._ViewId!)" class="Editable" data-fieldName="Church.ZipTown" value="(!&r['ZipTown']||''!)" tabindex=7 /></td>
+<td style="text-align:right"><a href="(!&r.Url!)">Hemsida</a>:</td><td><input type="text" id="Url634(!&ns._ViewId!)" class="Editable" data-fieldName="Church.Url" value="(!&r['Url']||''!)" tabindex=11 /></td>
+</tr>
+<tr>
+<td style="text-align:right">Tags:</td><td><input type="text" id="Tags702(!&ns._ViewId!)" class="Editable" data-fieldName="Church.Tags" value="(!&r['Tags']||''!)"  /></td>
+<td></td>
+<td></td>
+</table>
+<script>
+$('#Tags702(!&ns._ViewId!)').tagsInput({
+   height:'20px'
+    ,width:'auto'
+   ,'defaultText':'add tag'
+   ,'removeWithBackspace' : true
+   ,'maxChars':90
+    ,interactive:false
+    ,'delimiter':','
+});
+</script>
+
+(!@-!)} else {
+    //no data retrieved yet... load it..
+    if(!ns.Id){ns.Id=ns.url.split("/").pop();}(!@+!)
+
+<script>
+dataViews.Churchs.getRecord({
+    Id:'(!&ns.Id!)'
+    ,PK:'(!&ns.Id!)'
+    ,OnComplete:function(Record){
+        App3.Navigate2('(!&ns._fullurl!)?Id=(!&ns.Id!)',
+            {target:'(!&ns.target!)',data:Record }
+        );
+    }
+});
+</script><img src="img/ajaxLoading.gif"/>ladda...
+
+
+(!@-!)}(!@+!)
+
+<script>
+jQuery('input,textarea',document.getElementById('AppPages')).each(function(index,el){
+switch(el.type) {
+    case 'radio':
+        el.disabled = true;
+        break;
+    default:
+        if (el['data-fieldname'] == 'Evangelist.Id') {
+            //never allowed to edit the id
+        } else {
+            if ($j(el).is('.dateEdit')) {
+                el.disabled = true;
+            } else {
+                el.readOnly = true;
+            }
+        }
+   }
+});
+</script><center>
+
+<button class="CancelBut" onclick="
+var id = document.getElementById('Id120(!&ns._ViewId!)').value;
+App3.Navigate2('local/Pages/Church/'+id,{target:'AppPages'}); 
+">Avbruta</button>
+
+<button class="SaveBut" tabindex=20 id="Action(!&ns._ViewId!)" onclick="
+var fName;
+var area = document.getElementById('ChurchTab(!&ns._ViewId!)');
+switch(jQuery(this).data('actionName')) {
+    case 'Search':
+        dataViews['Churchs'].clearFilter();
+        jQuery('input,textarea', area).each(function(index,elm) {
+            var v = jQuery(elm).val();
+            var t = jQuery(elm).attr('type');
+            fName = jQuery(elm).attr('data-fieldName');
+            if (t == 'radio') {
+                 if (jQuery(elm).attr('checked')) {
+                    dataViews['Churchs'].addFilter(fName.split('.').join('|'),'*',jQuery(elm).val());
+                }
+            } else {
+                if (v != '') {
+                    if (fName) {
+                        if (jQuery(elm).hasClass('exactSearch')) {
+                            dataViews['Churchs'].addFilter(fName.split('.').join('|'),'+',jQuery(elm).val());
+                        } else {
+                            dataViews['Churchs'].addFilter(fName.split('.').join('|'),'*',jQuery(elm).val());
+                        }
+                    }  
+                }
+            }
+        });
+
+        dataViews['Churchs'].firstRow({OnComplete:function() {
+        if (dataViews['Churchs'].curRecordSet.Count > 0) {
+            var id = dataViews['Churchs'].curRecordSet.Rows[0].Id;
+            App3.Navigate2('local/Pages/Church/'+id,{target:'AppPages'}); 
+        } else {
+            alert('Ingen tr&auml;ff');
+        }
+        console.dir(dataViews['Churchs'].curRecordSet);
+    },NoNewPage:function() {
+        alert('Ingen tr&auml;ff');
+     }
+    });
+    break;
+    case 'New':
+        var rec = {};
+        jQuery('input,textarea',area).each(function(index,elm) {
+            if (elm.value) {
+                fName = jQuery(elm).attr('data-fieldName');
+                if (fName) {
+                    fName = fName.split('.');
+                    if (fName[0] == 'Church') {
+                        if (fName) {
+                            rec[fName[1]] = jQuery(elm).val();
+                        }
+                    }
+                }  
+            }
+        });
+        dataViews['Churchs'].newRecord({
+            NewRecord:rec
+            ,OnComplete:function(response){
+                var r;
+                eval('r='+response);
+                dataViews['Churchs'].dataChanged();
+                if (r.Status != 'Created') {
+                    alert('Save Failed');
+                } else {
+                    App3.Navigate2('local/Pages/Church/' + r.NewId,{target:'AppPages',forceRead:true });
+                    //jQuery('.ChangeBut(!&ns._ViewId!)').click();
+                    //jQuery('input[data-fieldname=Church.Id]').val(r['NewId']);
+                    //jQuery('#Action(!&ns._ViewId!)').data('actionName','save').html('Spara');
+                    
+                }
+            }
+        });
+    break;
+    case 'Save':
+    case undefined:
+        var rec = {};
+        jQuery('input,textarea',area).each(function(index,elm) {
+                fName = jQuery(elm).attr('data-fieldName');
+                if (fName) {
+                    fName = fName.split('.');
+                    if (fName[0] == 'Church') {
+                        rec[fName[1]] = jQuery(elm).val();
+                    } 
+            }
+        });
+    dataViews['Churchs'].updateFields(rec,rec['Id'],function(response) {
+        jQuery('.ChangeBut(!&ns._ViewId!)').click();
+        console.info(response);
+    });
+    break; 
+}
+">Spara</button>
+<span component="Generic601" task="Project4.Task" class="TaskEdit4"> </span>
+</center>

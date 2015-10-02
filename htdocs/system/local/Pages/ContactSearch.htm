@@ -1,0 +1,83 @@
+{#ajaxTemplate2#}<span class="ContactsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="protoHeader247">&Ouml;vriga adresser</span> 
+
+<span class="EditIcons">    <span class="ListIcon EditIcon">
+        <a href="Pages/Contacts" class="ajaxLink">Lista</a>
+    </span>
+</span><br/>
+<table class="EditTable" id="ContactTab(!&ns._ViewId!)">
+<thead><tr><th colspan="7">Uppgifter</th></tr></thead>
+<tr>
+<td style="text-align:right">Namn:</td><td><input id="search_Name251(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Contacts.getFilter('Name','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">kod:</td><td><input id="search_Code260(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Contacts.getFilter('Code','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td rowspan="6"><text(!&'area'!) wrap="off" cols="40" rows="10" id="search_Notes261(!&ns._ViewId!)">(!@-!)out.push(dataViews.Contacts.getFilter('Notes','*'));(!@+!)</text(!&'area'!)></td>
+</tr>
+<tr>
+<td style="text-align:right">Kontaktnamn:</td><td><input id="search_ContactName252(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Contacts.getFilter('ContactName','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Epost:</td><td><input id="search_Email253(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Contacts.getFilter('Email','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+</tr>
+<tr>
+<td style="text-align:right">C/o:</td><td><input id="search_Co307(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Contacts.getFilter('Co','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Telefon:</td><td><input id="search_Tel257(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Contacts.getFilter('Tel','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+</tr>
+<tr>
+<td style="text-align:right">Adress:</td><td><input id="search_Address254(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Contacts.getFilter('Address','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right"></td><td></td>
+</tr>
+<tr>
+<td style="text-align:right">PostNr:</td><td><input id="search_Zip255(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Contacts.getFilter('Zip','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right"></td><td></td>
+</tr>
+<tr>
+<td style="text-align:right">PostOrt:</td><td><input id="search_ZipTown256(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Contacts.getFilter('ZipTown','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+<td style="text-align:right">Status:</td><td><input id="search_Status262(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Contacts.getFilter('Status','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td>
+</tr>
+</table>
+<center>
+<button onclick="
+dataViews.Contacts.clearFilter();
+App3.Navigate2('local/Pages/Contact/'+id,{target:'AppPages'});
+">Rensa</button>
+|
+<input type="button" id="doSearch(!&ns._ViewId!)" value="Sök"
+ onclick="
+dataViews.Contacts.clearFilter();
+var elm;
+             dataViews.Contacts.addFilter('Id','*',jQuery('#search_Id250(!&ns._ViewId!)').val());
+            
+             dataViews.Contacts.addFilter('Name','*',jQuery('#search_Name251(!&ns._ViewId!)').val());
+            
+             dataViews.Contacts.addFilter('ContactName','*',jQuery('#search_ContactName252(!&ns._ViewId!)').val());
+            
+             dataViews.Contacts.addFilter('Email','*',jQuery('#search_Email253(!&ns._ViewId!)').val());
+            
+             dataViews.Contacts.addFilter('Address','*',jQuery('#search_Address254(!&ns._ViewId!)').val());
+            
+             dataViews.Contacts.addFilter('Zip','*',jQuery('#search_Zip255(!&ns._ViewId!)').val());
+            
+             dataViews.Contacts.addFilter('ZipTown','*',jQuery('#search_ZipTown256(!&ns._ViewId!)').val());
+            
+             dataViews.Contacts.addFilter('Tel','*',jQuery('#search_Tel257(!&ns._ViewId!)').val());
+            
+             dataViews.Contacts.addFilter('BankGiro','*',jQuery('#search_BankGiro258(!&ns._ViewId!)').val());
+            
+             dataViews.Contacts.addFilter('PostGiro','*',jQuery('#search_PostGiro259(!&ns._ViewId!)').val());
+            
+             dataViews.Contacts.addFilter('Code','*',jQuery('#search_Code260(!&ns._ViewId!)').val());
+            
+             dataViews.Contacts.addFilter('Notes','*',jQuery('#search_Notes261(!&ns._ViewId!)').val());
+            
+             dataViews.Contacts.addFilter('Co','*',jQuery('#search_Co307(!&ns._ViewId!)').val());
+            
+dataViews.Contacts.firstRow({OnComplete:function() {
+    if (dataViews.Contacts.curRecordSet.Hits > 0) {
+        var id = dataViews.Contacts.curRecordSet.Rows[0]['Id'];
+        App3.Navigate2('local/Pages/Contact/'+id,{target:'AppPages'});
+    } else {
+        alert('Ingen träff');
+     }
+},NoNewPage:function() {
+        alert('Ingen träff');
+     }});
+"/></center>
+
+

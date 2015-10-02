@@ -1,0 +1,22 @@
+
+.popup {
+    background-color:window;
+    border:1px solid windowframe;
+    padding:0px;
+    height:200px;
+    overflow:auto;
+    position:absolute;
+    display:none;
+}
+.SortColumn {
+    cursor:pointer;
+}
+div#Home h2 {
+    color:#007BC4;
+    margin:10px 0;
+    font-size:160%;
+}
+div#Home {
+    font-family:"Times New Roman";
+    font-size:12pt;
+}

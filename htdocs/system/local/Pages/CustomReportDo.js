@@ -1,0 +1,153 @@
+function(ns) {
+	var out = new Array();
+	var o=out
+	try {
+out.push("");
+
+/* Called to do something, add, edit, delete
+*/
+switch(ns.params['action']) {
+    case 'delReport':
+        dataViews.CustomReports.deleteRecord({
+            Id:ns.params['report']
+            ,PK:ns.params['report']
+            ,OnComplete:function(){
+                var reportId = ns.params['report'];
+                $j.post('pdf/custom/badGateway.php',{
+                    action:'delReport'
+                    ,ReportId:reportId
+
+                },function(response) {
+                        console.info(response);
+                });
+                App3.Navigate2('local/Pages/CustomReports',{target:'AppPages' });
+            }
+        });
+        break;
+    case 'cloneReport':
+        dataViews.CustomReports.getRecord({
+            Id:ns.params['report']
+            ,PK:ns.params['report']
+            ,OnComplete:function(Record){
+                
+                var newRecord = jQuery.extend({}, Record);
+                delete newRecord['Id'];
+                newRecord['Name'] = newRecord['Name'] + '_copy';
+				dataViews.CustomReports.newRecord({
+            NewRecord:newRecord
+            ,OnComplete:function(response){
+                var dat;
+                var RecordCopy = Record;
+                eval('dat='+response);
+                dataViews.CustomReports.dataChanged();
+                $j.post('pdf/custom/badGateway.php',{
+                    action:'cloneReport'
+                    ,ReportId:dat.NewId
+                    ,clonedReportId:RecordCopy.Id
+                },function(response) {
+                    console.info(response);
+                    App3.Navigate2('local/Pages/ReportCustomPDF/'+dat.NewId,{target:'AppPages' });
+                });
+            }
+        });
+        }
+    });
+
+    break;
+    case 'del':
+        var myparams = ns.params;
+        $j.post('pdf/custom/badGateway.php',{
+            action:'del'
+            ,ReportId:ns.params['report']
+            ,id:ns.params['id']
+        },function(response) {
+            console.info(response);
+            var ns = {
+                Id:myparams['report']
+            };
+            eval('ns.data='+response);
+            console.dir(ns);
+            var out = App3.go.local.Pages.CustomReportTable(ns);
+            console.info(out);
+            $j('#tableView').html(out);
+        });
+    break;
+    case 'clone':
+        var myparams = ns.params;
+        $j.post('pdf/custom/badGateway.php',{
+            action:'clone'
+            ,ReportId:ns.params['report']
+            ,id:ns.params['id']
+        },function(response) {
+            var ns = {
+                Id:myparams['report']
+            };
+            eval('ns.data='+response);
+            var out = App3.go.local.Pages.CustomReportTable(ns);
+            $j('#tableView').html(out);
+        });
+    break;
+    case 'up':
+        var myparams = ns.params;
+        $j.post('pdf/custom/badGateway.php',{
+            action:'up'
+            ,ReportId:ns.params['report']
+            ,id:ns.params['id']
+        },function(response) {
+            console.info(response);
+            var ns = {
+                Id:myparams['report']
+            };
+            eval('ns.data='+response);
+            console.dir(ns);
+            var out = App3.go.local.Pages.CustomReportTable(ns);
+            console.info(out);
+            $j('#tableView').html(out);
+        });
+    break;
+    case 'edit':
+        var myparams = ns.params;
+        $j.post('pdf/custom/badGateway.php',{
+            action:'edit'
+            ,ReportId:ns.params['report']
+            ,id:ns.params['id']
+        },function(response) {
+            var ns = {
+                Id:myparams['report']
+                ,defaultType:'text'
+            };
+            eval('ns.data='+response);
+            var out = App3.go.local.Pages.CustomReportElementText(ns);
+            $j('#addForm').html(out);
+        });
+
+    break;
+    case 'editCmd':
+        var myparams = ns.params;
+        $j.post('pdf/custom/badGateway.php',{
+            action:'edit'
+            ,ReportId:ns.params['report']
+            ,id:ns.params['id']
+        },function(response) {
+            console.info(response);
+            var ns = {
+                Id:myparams['report']
+                ,defaultType:'cmd'
+            };
+            eval('ns.data='+response);
+            console.dir(ns);
+            var out = App3.go.local.Pages.CustomReportElementText(ns);
+            console.info(out);
+            $j('#addForm').html(out);
+        });
+    break;
+}
+
+ out.push("");
+
+	return out.join('');
+	}catch(e){
+		console.error(e);
+		return 'Template Error:'+e.message;
+	}
+}

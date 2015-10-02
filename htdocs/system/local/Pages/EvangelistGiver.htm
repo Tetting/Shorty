@@ -1,0 +1,49 @@
+{#ajaxTemplate2#}
+(!@-!)if (ns.data) {
+var r= ns.data;
+(!@+!)
+
+<table class="EditTable" style='width:220px;'>
+<thead>
+    <tr><th colspan="2"><span class="TaskEdit4" Task="Project4.Task" Component="GiverEdit845">Givare</span></th></tr>
+    <col /><col />
+
+    <tr><td><label>Nr:</label></td><td><a class=ajaxLink href=Pages/Giver/(!&r.Id!) target=AppPages>(!&r.Id!)</a></td>
+
+    <tr><td><label>Namn:</label></td><td>(!&r.Name!)
+</td>
+
+    <tr><td><label>Efternamn:</label></td><td>(!&r.LastName!)
+</td>
+
+    <tr><td><label>c/o:</label></td><td>(!&r.CoAddress!)
+</td>
+
+    <tr><td><label>Adress:</label></td><td>(!&r.Address!)
+</td>
+
+    <tr><td><label>Postnr:</label></td><td>(!&r.ZipCode!)
+</td>
+
+    <tr><td><label>Postort:</label></td><td>(!&r.ZipTown!)
+</td>
+
+</table>
+
+(!@-!)} else {
+    //no data retrieved yet... load it..
+    if(!ns.Id){ns.Id=ns.url.split("/").pop();}(!@+!)
+
+<img src="img/ajaxLoading.gif"/>ladda...<script>
+dataViews.Givers.getRecord({
+    Id:'(!&ns.Id!)'
+    ,PK:'(!&ns.Id!)'
+    ,OnComplete:function(Record){
+        App3.Navigate2('(!&ns._fullurl!)',
+            {target:'(!&ns.target!)',data:Record,Id:'(!&ns.Id!)' }
+        );
+    }
+});
+</script>
+(!@-!)}(!@+!)
+

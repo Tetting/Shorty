@@ -1,0 +1,57 @@
+{#ajaxTemplate2#}<span class="GiverPaymentsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="protoHeader817">Givare Betalning</span> 
+
+<span class="EditIcons">    <span class="ListIcon EditIcon">
+        <a href="Pages/GiverPayments?GiverId=(!&ns.GiverId!)" class="ajaxLink">Lista</a>
+    </span>
+</span><br/>
+(!@-!)if (ns.data) {var r= ns.data;(!@+!)<table class="EditTable" id="PaymentTab(!&ns._ViewId!)">
+<thead><tr><th colspan="7">Betalningar</th></tr></thead>
+<tr>
+<td style="text-align:right">Datum:</td><td><span id="Date820(!&ns._ViewId!)" class="ajaxEdit3" dataView="Payments.Date" dataPK="(!&r.Id!)" >(!&r['Date']||EditInPlace4.blank!)</span></td>
+<td style="text-align:right">Givare:</td><td><span id="GiverId821(!&ns._ViewId!)" class="ajaxEdit3" dataView="Payments.GiverId" dataPK="(!&r.Id!)" >(!&r['GiverId']||EditInPlace4.blank!)</span></td>
+<td style="text-align:right">Projekt/Barn #</td><td><span id="ProjectId822(!&ns._ViewId!)" class="ajaxEdit3" dataView="Payments.ProjectId" dataPK="(!&r.Id!)" >(!&r['ProjectId']||EditInPlace4.blank!)</span></td>
+</tr>
+
+<tr>
+<td style="text-align:right">InKr:</td><td><span id="InKr824(!&ns._ViewId!)" class="ajaxEdit3" dataView="Payments.InKr" dataPK="(!&r.Id!)" >(!&r['InKr']||EditInPlace4.blank!)</span></td>
+<td style="text-align:right">OutKr:</td><td><span id="OutKr825(!&ns._ViewId!)" class="ajaxEdit3" dataView="Payments.OutKr" dataPK="(!&r.Id!)" >(!&r['OutKr']||EditInPlace4.blank!)</span></td>
+<td style="text-align:right">Projekt/Barn</td><td><span id="PaymentType826(!&ns._ViewId!)" class="ajaxEdit3" dataView="Payments.PaymentType" dataPK="(!&r.Id!)" >(!&r['PaymentType']||EditInPlace4.blank!)</span></td>
+</tr>
+
+<tr>
+<td style="text-align:right">AdminKr:</td><td><span id="AdminCharge830(!&ns._ViewId!)" class="ajaxEdit3" dataView="Payments.AdminCharge" dataPK="(!&r.Id!)" >(!&r['AdminCharge']||EditInPlace4.blank!)</span></td>
+<td style="text-align:right">Admin%:</td><td><span id="AdminPercent831(!&ns._ViewId!)" class="ajaxEdit3" dataView="Payments.AdminPercent" dataPK="(!&r.Id!)" >(!&r['AdminPercent']||EditInPlace4.blank!)</span></td>
+<td style="text-align:right">#</td><td><input type="text" id="Id819(!&ns._ViewId!)" class="Editable" data-fieldName="Payment.Id" value="(!&r['Id']||''!)" disabled='true' /></td>
+</tr>
+<tr>
+<td style="text-align:right">Src:</td><td><span id="PaymentSource828(!&ns._ViewId!)" class="ajaxEdit3" dataView="Payments.PaymentSource" dataPK="(!&r.Id!)" >(!&r['PaymentSource']||EditInPlace4.blank!)</span></td>
+<td style="text-align:right">SrcId:</td><td><span id="PaymentSourceId829(!&ns._ViewId!)" class="ajaxEdit3" dataView="Payments.PaymentSourceId" dataPK="(!&r.Id!)" >(!&r['PaymentSourceId']||EditInPlace4.blank!)</span></td>
+<td style="text-align:right"></td><td></td>
+</tr>
+<tr>
+<td style="text-align:right">Anv&auml;ndareNamn:</td><td><span id="AddedBy823(!&ns._ViewId!)" class="ajaxEdit3" dataView="Payments.AddedBy" dataPK="(!&r.Id!)" >(!&r['AddedBy']||EditInPlace4.blank!)</span></td>
+<td style="text-align:right">Anv&auml;ndare#:</td><td><span id="AddedByUserId827(!&ns._ViewId!)" class="ajaxEdit3" dataView="Payments.AddedByUserId" dataPK="(!&r.Id!)" >(!&r['AddedByUserId']||EditInPlace4.blank!)</span></td>
+<td style="text-align:right"></td><td></td>
+</tr>
+</table>
+
+(!@-!)} else {
+    //no data retrieved yet... load it..
+    if(!ns.Id){ns.Id=ns.url.split("/").pop();}(!@+!)
+
+<script>
+dataViews.GiverPayments.getRecord({
+    Id:'(!&ns.Id!)'
+    ,PK:'(!&ns.Id!)'
+    ,OnComplete:function(Record){
+        App3.Navigate2('(!&ns._fullurl!)?Id=(!&ns.Id!)',
+            {target:'(!&ns.target!)',data:Record }
+        );
+    }
+});
+</script><img src="img/ajaxLoading.gif"/>ladda...
+
+
+(!@-!)}(!@+!)
+
+

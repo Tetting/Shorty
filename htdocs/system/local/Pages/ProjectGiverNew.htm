@@ -1,0 +1,122 @@
+{#ajaxTemplate2#}<span class="ProjectGiversBigIcon BigIcon TaskEdit4" task="Project4.Task" component="ProjectGiverNew_ProtoHeader">ProjectGiver</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/ProjectGiverNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/ProjectGivers" class="ajaxLink">Lista</a>
+    </span>
+</span><br/>
+
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan='2'><center><span class="TaskEdit4" task="Project4.Task" component="ProjectGiverNew_fields">Uppgifter</span></center></th></tr>
+</thead>
+<tbody>
+
+<tr><td><label>GiverId</label>:</td><td>
+<input type="text" id="ProjectGiver_GiverId_New(!&ns._ViewId!)" value="0" OnChange=""/>
+<a style="cursor:pointer;" onclick="
+if($j('#ProjectGiver_GiverId_NewPopUp(!&ns._ViewId!)_area').css('display')=='none') {
+$j('#ProjectGiver_GiverId_NewPopUp(!&ns._ViewId!)_area').show();
+App3.Navigate2('local/Pages/GiverSelect',{target:'ProjectGiver_GiverId_NewPopUp(!&ns._ViewId!)'});
+} else {
+$j('#ProjectGiver_GiverId_NewPopUp(!&ns._ViewId!)_area').hide();
+}
+"><span class="EditLink" style="display:none;" id="ProjectGiver_GiverId_NewPopUp(!&ns._ViewId!)_display">undefined</span>
+
+<button>Välj</button></a>
+<br/>
+<div id="ProjectGiver_GiverId_NewPopUp(!&ns._ViewId!)_area" style="display:none;position:relative;" datadisplay="ProjectGiver_GiverId_NewPopUp(!&ns._ViewId!)_display" datastoreid="ProjectGiver_GiverId_New(!&ns._ViewId!)"><div id="ProjectGiver_GiverId_NewPopUp(!&ns._ViewId!)" class="PopupSelect" style="position:absolute;background:#EEEEEE;">loading...</div></div>
+
+</td></tr>
+
+<tr><td><label>StartDt</label>:</td><td><input id="ProjectGiver_StartDt_New(!&ns._ViewId!)" type="text" value=""/>
+<script>$j('#ProjectGiver_StartDt_New(!&ns._ViewId!)').date_input();</script>
+</td></tr>
+
+<tr><td><label>KrMon</label>:</td><td><input id="ProjectGiver_KrMon_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>ProjectId</label>:</td><td>
+<input type="text" id="ProjectGiver_ProjectId_New(!&ns._ViewId!)" value="0" OnChange=""/>
+<a style="cursor:pointer;" onclick="
+if($j('#ProjectGiver_ProjectId_NewPopUp(!&ns._ViewId!)_area').css('display')=='none') {
+$j('#ProjectGiver_ProjectId_NewPopUp(!&ns._ViewId!)_area').show();
+App3.Navigate2('local/Pages/ProjectSelect',{target:'ProjectGiver_ProjectId_NewPopUp(!&ns._ViewId!)'});
+} else {
+$j('#ProjectGiver_ProjectId_NewPopUp(!&ns._ViewId!)_area').hide();
+}
+"><span class="EditLink" style="display:none;" id="ProjectGiver_ProjectId_NewPopUp(!&ns._ViewId!)_display">undefined</span>
+
+<button>Välj</button></a>
+<br/>
+<div id="ProjectGiver_ProjectId_NewPopUp(!&ns._ViewId!)_area" style="display:none;position:relative;" datadisplay="ProjectGiver_ProjectId_NewPopUp(!&ns._ViewId!)_display" datastoreid="ProjectGiver_ProjectId_New(!&ns._ViewId!)"><div id="ProjectGiver_ProjectId_NewPopUp(!&ns._ViewId!)" class="PopupSelect" style="position:absolute;background:#EEEEEE;">loading...</div></div>
+
+</td></tr>
+
+<tr><td><label>LastPayment</label>:</td><td><input id="ProjectGiver_LastPayment_New(!&ns._ViewId!)" type="text" value=""/>
+<script>$j('#ProjectGiver_LastPayment_New(!&ns._ViewId!)').date_input();</script>
+</td></tr>
+
+<tr><td><label>LastPaymentTot</label>:</td><td><input id="ProjectGiver_LastPaymentTot_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>PaidTot</label>:</td><td><input id="ProjectGiver_PaidTot_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>OneTimePromise</label>:</td><td><input id="ProjectGiver_OneTimePromise_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>LastYearSi</label>:</td><td><input id="ProjectGiver_LastYearSi_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Status</label>:</td><td><input id="ProjectGiver_Status_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Db</label>:</td><td><input id="ProjectGiver_Db_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+</tbody>
+<tfoot><tr><td colspan="2"><center Task="Project4.Task" Component="ProjectGiverNew_fields" class="TaskEdit4">
+
+<input type="button" value="L&auml;gg till" onclick="
+dataViews.ProjectGivers.newRecord({
+NewRecord:{
+GiverId:document.getElementById('ProjectGiver_GiverId_New(!&ns._ViewId!)').value
+,
+StartDt:document.getElementById('ProjectGiver_StartDt_New(!&ns._ViewId!)').value
+,
+KrMon:document.getElementById('ProjectGiver_KrMon_New(!&ns._ViewId!)').value
+,
+ProjectId:document.getElementById('ProjectGiver_ProjectId_New(!&ns._ViewId!)').value
+,
+LastPayment:document.getElementById('ProjectGiver_LastPayment_New(!&ns._ViewId!)').value
+,
+LastPaymentTot:document.getElementById('ProjectGiver_LastPaymentTot_New(!&ns._ViewId!)').value
+,
+PaidTot:document.getElementById('ProjectGiver_PaidTot_New(!&ns._ViewId!)').value
+,
+OneTimePromise:document.getElementById('ProjectGiver_OneTimePromise_New(!&ns._ViewId!)').value
+,
+LastYearSi:document.getElementById('ProjectGiver_LastYearSi_New(!&ns._ViewId!)').value
+,
+Status:document.getElementById('ProjectGiver_Status_New(!&ns._ViewId!)').value
+,
+Db:document.getElementById('ProjectGiver_Db_New(!&ns._ViewId!)').value
+
+}
+,OnComplete:function(response){
+
+//document.getElementById('NewProjectGiver_Name(!&ns._ViewId!)').value = '';
+//document.getElementById('NewProjectGiver_Name(!&ns._ViewId!)').focus();
+dataViews.ProjectGivers.dataChanged();
+App3.Navigate2('local/Pages/ProjectGivers',{target:'(!&ns.target!)',forceRead:true });
+
+}
+});
+"/></center>
+</td></tr></tfoot>
+</table>
+<script>
+try {
+document.getElementById('ProjectGiver_GiverId_New(!&ns._ViewId!)').focus();
+} catch(e) {
+//no problem.
+}
+</script>
+

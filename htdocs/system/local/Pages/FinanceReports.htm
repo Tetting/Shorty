@@ -1,0 +1,48 @@
+{#ajaxTemplate2#}
+
+<table class="EditTable" style="float:left">
+    <thead><tr><th colspan=3>Bokföring Underlag</th></tr></thead>
+    <tbody>
+        <tr><td align=top>datum från</td>
+<td><input id="ReportFrom(!&ns._ViewId!)" type="text" value=""/>
+<script>$j('#ReportFrom(!&ns._ViewId!)').date_input();</script></td>
+</tr>
+        <tr><td align=top>datum till</td><td><input id="ReportTo(!&ns._ViewId!)" type="text" value=""/>
+<script>$j('#ReportTo(!&ns._ViewId!)').date_input();</script></td>
+</tr>
+<tr><td>Typ</td><td><select id="ReportType(!&ns._ViewId!)">
+    <option selected value="">Alla</option>
+    <option value="autogiro">Autogiro</option>
+    <option value="bankgiro">Bankgiro</option>
+    <option value="diverse">Diverse</option>
+    <option value="OCRImport">OCR</option>
+    <option value="postgiro">Postgiro</option>
+</select></td></tr>
+<tr><td colspan=2><center>
+<button onclick="
+//'&type='+document.getElementById('ReportType(!&ns._ViewId!)').value
+document.getElementById('PrintPreview').src = 'pdf/Bookkeeping.php?from='+document.getElementById('ReportFrom(!&ns._ViewId!)').value+'&to='+document.getElementById('ReportTo(!&ns._ViewId!)').value+'&type='+document.getElementById('ReportType(!&ns._ViewId!)').value+'&rnd='+Math.random();
+if (localStorage) {
+    localStorage.setItem('FinanceReportFrom',document.getElementById('ReportFrom(!&ns._ViewId!)').value); 
+    localStorage.setItem('FinanceReportTo',document.getElementById('ReportTo(!&ns._ViewId!)').value); 
+    localStorage.setItem('FinanceReportType',document.getElementById('ReportType(!&ns._ViewId!)').value); 
+}
+">kör</button></center>
+</td>
+</tr>
+    </tbody>
+</table>
+
+
+<br style="clear:both;"/>
+<div id="testFrame">
+<iframe src="about:blank" style="width: 100%; height: 600px;" id="PrintPreview"></iframe>
+</div>
+<script>
+if (localStorage) {
+    $j('#ReportFrom(!&ns._ViewId!)').val(localStorage.getItem('FinanceReportFrom'));
+    $j('#ReportTo(!&ns._ViewId!)').val(localStorage.getItem('FinanceReportTo'));
+    $j('#ReportType(!&ns._ViewId!)').val(localStorage.getItem('FinanceReportType'));
+}
+
+document.title = 'Rapport: Bokföring Underlag';</script>

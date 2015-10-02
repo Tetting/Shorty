@@ -1,0 +1,82 @@
+{#ajaxTemplate2#}<span class="BetelsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="BetelNew_ProtoHeader">Betel</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/BetelNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/Betels" class="ajaxLink">Lista</a>
+    </span>
+</span><script>
+    document.title = "Betel";
+</script><br/>
+
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan='2'><center><span class="TaskEdit4" task="Project4.Task" component="BetelNew_fields">Uppgifter</span></center></th></tr>
+</thead>
+<tbody>
+
+<tr><td><label>Namn</label>:</td><td><input id="Betel_Name_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Adress</label>:</td><td><input id="Betel_Address_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Postnr</label>:</td><td><input id="Betel_Zip_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Postort</label>:</td><td><input id="Betel_ZipTown_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Landkod</label>:</td><td><input id="Betel_CountryCode_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>F&ouml;dd</label>:</td><td><input id="Betel_DOB_New(!&ns._ViewId!)" type="text" value=""/>
+<script>$j('#Betel_DOB_New(!&ns._ViewId!)').date_input();</script>
+</td></tr>
+
+<tr><td><label>D&ouml;pdatum</label>:</td><td><input id="Betel_BapDT_New(!&ns._ViewId!)" type="text" value=""/>
+<script>$j('#Betel_BapDT_New(!&ns._ViewId!)').date_input();</script>
+</td></tr>
+
+<tr><td><label>Tel</label>:</td><td><input id="Betel_Tel_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+</tbody>
+<tfoot><tr><td colspan="2"><center Task="Project4.Task" Component="BetelNew_fields" class="TaskEdit4">
+
+<input type="button" value="L&auml;gg till" onclick="
+dataViews.Betels.newRecord({
+NewRecord:{
+Name:document.getElementById('Betel_Name_New(!&ns._ViewId!)').value
+,
+Address:document.getElementById('Betel_Address_New(!&ns._ViewId!)').value
+,
+Zip:document.getElementById('Betel_Zip_New(!&ns._ViewId!)').value
+,
+ZipTown:document.getElementById('Betel_ZipTown_New(!&ns._ViewId!)').value
+,
+CountryCode:document.getElementById('Betel_CountryCode_New(!&ns._ViewId!)').value
+,
+DOB:document.getElementById('Betel_DOB_New(!&ns._ViewId!)').value
+,
+BapDT:document.getElementById('Betel_BapDT_New(!&ns._ViewId!)').value
+,
+Tel:document.getElementById('Betel_Tel_New(!&ns._ViewId!)').value
+
+}
+,OnComplete:function(response){
+
+//document.getElementById('NewBetel_Name(!&ns._ViewId!)').value = '';
+//document.getElementById('NewBetel_Name(!&ns._ViewId!)').focus();
+dataViews.Betels.dataChanged();
+App3.Navigate2('local/Pages/Betels',{target:'(!&ns.target!)',forceRead:true });
+
+}
+});
+"/></center>
+</td></tr></tfoot>
+</table>
+<script>
+try {
+document.getElementById('Betel_Name_New(!&ns._ViewId!)').focus();
+} catch(e) {
+//no problem.
+}
+</script>
+

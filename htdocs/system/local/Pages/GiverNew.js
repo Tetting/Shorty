@@ -1,0 +1,82 @@
+function(ns) {
+	var out = new Array();
+	var o=out
+	try {
+out.push("<span class=\"GiversBigIcon BigIcon TaskEdit4\" task=\"Project4.Task\" component=\"GiverNew_ProtoHeader\">Giver</span> \n\n<span class=\"EditIcons\"><span class=\"NewIcon EditIcon\">\n        <a href=\"Pages/GiverNew\" class=\"ajaxLink\">Ny</a>\n    </span>\n    <span class=\"ListIcon EditIcon\">\n        <a href=\"Pages/Givers\" class=\"ajaxLink\">Lista</a>\n    </span>\n</span><br/>\n\n\n<table class=\"EditTable\" >\n<thead>\n    <tr><th colspan='2'><center><span class=\"TaskEdit4\" task=\"Project4.Task\" component=\"GiverNew_fields\">Uppgifter</span></center></th></tr>\n</thead>\n<tbody>\n\n<tr><td><label>Namn</label>:</td><td><input id=\"Giver_Name_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("\" type=\"text\"  value=\"\"/></td></tr>\n\n<tr><td><label>Adress</label>:</td><td><input id=\"Giver_Address_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("\" type=\"text\"  value=\"\"/></td></tr>\n\n<tr><td><label>PostNr</label>:</td><td><input id=\"Giver_ZipCode_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("\" type=\"text\"  value=\"\"/></td></tr>\n\n<tr><td><label>PostOrt</label>:</td><td><input id=\"ZipTown5");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("\" type=\"text\"  value=\"\"/></td></tr>\n\n<tr><td><label>Landskod</label>:</td><td><input id=\"Giver_Land_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("\" type=\"text\"  value=\"\"/></td></tr>\n\n<tr><td><label>Telefon</label>:</td><td><input id=\"Giver_Tel_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("\" type=\"text\"  value=\"\"/></td></tr>\n\n<tr><td><label>Mobiltel</label>:</td><td><input id=\"Giver_Mob_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("\" type=\"text\"  value=\"\"/></td></tr>\n\n<tr><td><label>Epost</label>:</td><td><input id=\"Giver_Email_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("\" type=\"text\"  value=\"\"/></td></tr>\n\n<tr><td><label>Tidning_An</label>:</td><td>\n<input id=\"Giver_Paper_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("\" type=\"hidden\" value=\"0\"/>\n<label for=\"Giver_Paper_New\"><input type=\"radio\" \nvalue=\"1\" name=\"Giver_Paper_New\"  onchange=\"document.getElementById('Giver_Paper_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("').value=this.value\"/> Ja</label>\n<label for=\"Giver_Paper_New\"><input type=\"radio\" \nvalue=\"0\" name=\"Giver_Paper_New\" checked onchange=\"document.getElementById('Giver_Paper_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("').value=this.value\"/> Nej</label>\n</td></tr>\n\n<tr><td><label>Medlem</label>:</td><td>\n<input id=\"Giver_Member_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("\" type=\"hidden\" value=\"0\"/>\n<label for=\"Giver_Member_New\"><input type=\"radio\" \nvalue=\"1\" name=\"Giver_Member_New\"  onchange=\"document.getElementById('Giver_Member_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("').value=this.value\"/> Ja</label>\n<label for=\"Giver_Member_New\"><input type=\"radio\" \nvalue=\"0\" name=\"Giver_Member_New\" checked onchange=\"document.getElementById('Giver_Member_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("').value=this.value\"/> Nej</label>\n</td></tr>\n\n<tr><td><label>Inkom</label>:</td><td><input id=\"Giver_StartD_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("\" type=\"text\" value=\"\"/>\n<script>$j('#Giver_StartD_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("').date_input();</script>\n</td></tr>\n\n<tr><td><label>Projektkod</label>:</td><td><input id=\"Giver_ProjCode_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("\" type=\"text\"  value=\"\"/></td></tr>\n\n<tr><td><label>Status</label>:</td><td><input id=\"Giver_Status_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("\" type=\"text\"  value=\"\"/></td></tr>\n\n</tbody>\n<tfoot><tr><td colspan=\"2\"><center Task=\"Project4.Task\" Component=\"GiverNew_fields\" class=\"TaskEdit4\">\n\n<input type=\"button\" value=\"L&auml;gg till\" onclick=\"\ndataViews.Givers.newRecord({\nNewRecord:{\nName:document.getElementById('Giver_Name_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("').value\n,\nAddress:document.getElementById('Giver_Address_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("').value\n,\nZipCode:document.getElementById('Giver_ZipCode_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("').value\n,\nLand:document.getElementById('Giver_Land_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("').value\n,\nTel:document.getElementById('Giver_Tel_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("').value\n,\nMob:document.getElementById('Giver_Mob_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("').value\n,\nEmail:document.getElementById('Giver_Email_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("').value\n,\nPaper:document.getElementById('Giver_Paper_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("').value\n,\nMember:document.getElementById('Giver_Member_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("').value\n,\nStartD:document.getElementById('Giver_StartD_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("').value\n,\nProjCode:document.getElementById('Giver_ProjCode_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("').value\n,\nStatus:document.getElementById('Giver_Status_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("').value\n,\nZipTown:document.getElementById('ZipTown5");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("').value\n\n}\n,OnComplete:function(response){\n\n//document.getElementById('NewGiver_Name");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("').value = '';\n//document.getElementById('NewGiver_Name");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("').focus();\ndataViews.Givers.dataChanged();\nApp3.Navigate2('local/Pages/Givers',{target:'");
+try{d=ns.target;}catch(e){d=''}out.push(d);
+ out.push("',forceRead:true });\n\n}\n});\n\"/></center>\n</td></tr></tfoot>\n</table>\n<script>\ntry {\ndocument.getElementById('Giver_Name_New");
+try{d=ns._ViewId;}catch(e){d=''}out.push(d);
+ out.push("').focus();\n} catch(e) {\n//no problem.\n}\n</script>\n\n");
+
+	return out.join('');
+	}catch(e){
+		console.error(e);
+		return 'Template Error:'+e.message;
+	}
+}

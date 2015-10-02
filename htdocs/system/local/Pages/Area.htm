@@ -1,0 +1,42 @@
+{#ajaxTemplate2#}(!@-!)if (ns.data) {var r= ns.data;(!@+!)<table class="EditTable">
+<tr><th colspan=6>Omr&aring;de</th></tr>
+<tr><td>Land: (!&r.CountryCode!)
+</td><td>Area:(!&r.Area!)
+</td><td>Area1:(!&r.Area1!)
+</td></tr>
+</table>
+
+(!@-!)} else {
+    //no data retrieved yet... load it..
+    if(!ns.Id){ns.Id=ns.url.split("/").pop();}(!@+!)
+
+<script>
+dataViews.Areas.getRecord({
+    Id:'(!&ns.Id!)'
+    ,PK:'(!&ns.Id!)'
+    ,OnComplete:function(Record){
+        App3.Navigate2('(!&ns._fullurl!)?Id=(!&ns.Id!)',
+            {target:'(!&ns.target!)',data:Record }
+        );
+    }
+});
+</script><img src="img/ajaxLoading.gif"/>ladda...
+
+
+(!@-!)}(!@+!)
+
+(!@-!)if(r){(!@+!)
+<br/>
+<div id="SocialWorker(!&ns._ViewId!)"><img src="img/AjaxLoading2.gif"/></div>
+<script>
+dataViews.SocialWorkers.getRecord({
+Id:'(!&r.SocialWorkerId!)'
+,PK:'(!&r.SocialWorkerId!)'
+,OnComplete:function(Record){
+App3.Navigate2('local/Pages/SocialWorker?Id=(!&r.SocialWorkerId!)',
+{target:'SocialWorker(!&ns._ViewId!)',data:Record }
+);
+}
+});
+</script>
+(!@-!)}(!@+!)

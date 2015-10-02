@@ -1,0 +1,183 @@
+{#ajaxTemplate2#}<span class="SocialWorkersBigIcon BigIcon TaskEdit4" task="Project4.Task" component="SocialWorkers_ProtoHeader">Socialarbetare</span> 
+
+<span class="EditIcons">    <span class="ListIcon EditIcon">
+        <a href="Pages/SocialWorkers" class="ajaxLink">Lista</a>
+    </span>
+</span><script>
+    document.title = $('<div/>').html("Socialarbetare lista").text();
+</script><br/>
+
+(!@-!)
+if ((ns.data)&&(!ns['forceRead'])) {(!@+!)
+
+<span class="EditIcons"><span class="TaskEdit4" Task="Project4.Task" Component="SocialWorkerList_fields"> </span>
+(!@-!)
+if (ns.Recordset) {
+if (ns.Recordset.Hits ==0) {
+out.push('<i>0 Poster');
+} else {
+out.push('<i>Post '+(ns.Recordset.start+1)+' till '+(ns.Recordset.Hits+ns.Recordset.start));
+}
+if (ns.Recordset.Count) {
+if ((ns.DataView)&&(ns.DataView.filterActive==true)) {
+//display filtered count..
+out.push(' av '+ns.Recordset.filteredCount);
+} else {
+out.push(' av '+ns.Recordset.Count);
+}
+}
+out.push('</i>');
+}
+(!@+!)
+<a title="Ta bort filter" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.SocialWorkers.clearFilter();dataViews.SocialWorkers.firstPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetClearFilterIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="F&ouml;rsta" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.SocialWorkers.firstPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetFirstIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="F&ouml;reg&aring;nde" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.SocialWorkers.previousPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetPreviousIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="N&auml;sta" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.SocialWorkers.nextPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetNextIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="Sista" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.SocialWorkers.lastPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetLastIcon EditIcon">&nb(!&'sp'!);</span></a>
+<a title="H&auml;mta alla" onclick="$j('#Prog(!&ns._ViewId!)').addClass('ajaxLoading');dataViews.SocialWorkers.getAllRows({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns._ViewId!)').removeClass('ajaxLoading');}});"><span class="RecordsetAllIcon EditIcon">&nb(!&'sp'!);</span></a>
+<input type="button" style="display:none" id="Filter_(!&ns._ViewId!)" onclick="
+dataViews.SocialWorkers.clearFilter();
+
+dataViews.SocialWorkers.addFilter('Name','*',document.getElementById('Filter_SocialWorker_Name_List(!&ns._ViewId!)').value);
+dataViews.SocialWorkers.addFilter('Address','*',document.getElementById('Filter_SocialWorker_Address_List(!&ns._ViewId!)').value);
+dataViews.SocialWorkers.addFilter('ZipCode','*',document.getElementById('Filter_SocialWorker_ZipCode_List(!&ns._ViewId!)').value);
+dataViews.SocialWorkers.addFilter('ZipTown','*',document.getElementById('Filter_SocialWorker_ZipTown_List(!&ns._ViewId!)').value);
+dataViews.SocialWorkers.addFilter('Land','*',document.getElementById('Filter_SocialWorker_Land_List(!&ns._ViewId!)').value);
+dataViews.SocialWorkers.addFilter('Tel','*',document.getElementById('Filter_SocialWorker_Tel_List(!&ns._ViewId!)').value);
+dataViews.SocialWorkers.addFilter('Mob','*',document.getElementById('Filter_SocialWorker_Mob_List(!&ns._ViewId!)').value);
+dataViews.SocialWorkers.addFilter('Email','*',document.getElementById('Filter_SocialWorker_Email_List(!&ns._ViewId!)').value);
+dataViews.SocialWorkers.addFilter('StartD','*',document.getElementById('Filter_SocialWorker_StartD_List(!&ns._ViewId!)').value);
+dataViews.SocialWorkers.addFilter('Status','*',document.getElementById('Filter_SocialWorker_Status_List(!&ns._ViewId!)').value);
+dataViews.SocialWorkers.addFilter('CoAddress','*',document.getElementById('Filter_SocialWorker_CoAddress_List(!&ns._ViewId!)').value);
+dataViews.SocialWorkers.addFilter('Db','*',document.getElementById('Filter_SocialWorker_Db_List(!&ns._ViewId!)').value);
+
+dataViews.SocialWorkers.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});
+"/>
+<span id="Prog(!&ns._ViewId!)"></span>
+</span>
+
+<table class="ListTable" ><tr>
+
+<th width="" class="Col_SocialWorker_Name_List"><a class="SortColumn" onclick="
+dataViews.SocialWorkers.setSort('Name');
+dataViews.SocialWorkers.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Name</u></a><span class="TaskEdit4" Task="Project4.Task" Component="SocialWorker_Name_List"> </span></th>
+
+<th width="" class="Col_SocialWorker_Address_List"><a class="SortColumn" onclick="
+dataViews.SocialWorkers.setSort('Address');
+dataViews.SocialWorkers.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Address</u></a><span class="TaskEdit4" Task="Project4.Task" Component="SocialWorker_Address_List"> </span></th>
+
+<th width="" class="Col_SocialWorker_ZipCode_List"><a class="SortColumn" onclick="
+dataViews.SocialWorkers.setSort('ZipCode');
+dataViews.SocialWorkers.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>ZipCode</u></a><span class="TaskEdit4" Task="Project4.Task" Component="SocialWorker_ZipCode_List"> </span></th>
+
+<th width="" class="Col_SocialWorker_ZipTown_List"><a class="SortColumn" onclick="
+dataViews.SocialWorkers.setSort('ZipTown');
+dataViews.SocialWorkers.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>ZipTown</u></a><span class="TaskEdit4" Task="Project4.Task" Component="SocialWorker_ZipTown_List"> </span></th>
+
+<th width="" class="Col_SocialWorker_Land_List"><a class="SortColumn" onclick="
+dataViews.SocialWorkers.setSort('Land');
+dataViews.SocialWorkers.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Land</u></a><span class="TaskEdit4" Task="Project4.Task" Component="SocialWorker_Land_List"> </span></th>
+
+<th width="" class="Col_SocialWorker_Tel_List"><a class="SortColumn" onclick="
+dataViews.SocialWorkers.setSort('Tel');
+dataViews.SocialWorkers.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Tel</u></a><span class="TaskEdit4" Task="Project4.Task" Component="SocialWorker_Tel_List"> </span></th>
+
+<th width="" class="Col_SocialWorker_Mob_List"><a class="SortColumn" onclick="
+dataViews.SocialWorkers.setSort('Mob');
+dataViews.SocialWorkers.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Mob</u></a><span class="TaskEdit4" Task="Project4.Task" Component="SocialWorker_Mob_List"> </span></th>
+
+<th width="" class="Col_SocialWorker_Email_List"><a class="SortColumn" onclick="
+dataViews.SocialWorkers.setSort('Email');
+dataViews.SocialWorkers.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Email</u></a><span class="TaskEdit4" Task="Project4.Task" Component="SocialWorker_Email_List"> </span></th>
+
+<th width="" class="Col_SocialWorker_StartD_List"><a class="SortColumn" onclick="
+dataViews.SocialWorkers.setSort('StartD');
+dataViews.SocialWorkers.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>StartD</u></a><span class="TaskEdit4" Task="Project4.Task" Component="SocialWorker_StartD_List"> </span></th>
+
+<th width="" class="Col_SocialWorker_Status_List"><a class="SortColumn" onclick="
+dataViews.SocialWorkers.setSort('Status');
+dataViews.SocialWorkers.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Status</u></a><span class="TaskEdit4" Task="Project4.Task" Component="SocialWorker_Status_List"> </span></th>
+
+<th width="" class="Col_SocialWorker_CoAddress_List"><a class="SortColumn" onclick="
+dataViews.SocialWorkers.setSort('CoAddress');
+dataViews.SocialWorkers.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>CoAddress</u></a><span class="TaskEdit4" Task="Project4.Task" Component="SocialWorker_CoAddress_List"> </span></th>
+
+<th width="" class="Col_SocialWorker_Db_List"><a class="SortColumn" onclick="
+dataViews.SocialWorkers.setSort('Db');
+dataViews.SocialWorkers.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});"><u>Db</u></a><span class="TaskEdit4" Task="Project4.Task" Component="SocialWorker_Db_List"> </span></th>
+
+</tr><tr>
+
+<td><input id="Filter_SocialWorker_Name_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.SocialWorkers.getFilter('Name','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_SocialWorker_Address_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.SocialWorkers.getFilter('Address','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_SocialWorker_ZipCode_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.SocialWorkers.getFilter('ZipCode','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_SocialWorker_ZipTown_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.SocialWorkers.getFilter('ZipTown','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_SocialWorker_Land_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.SocialWorkers.getFilter('Land','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_SocialWorker_Tel_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.SocialWorkers.getFilter('Tel','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_SocialWorker_Mob_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.SocialWorkers.getFilter('Mob','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_SocialWorker_Email_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.SocialWorkers.getFilter('Email','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_SocialWorker_StartD_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.SocialWorkers.getFilter('StartD','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_SocialWorker_Status_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.SocialWorkers.getFilter('Status','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_SocialWorker_CoAddress_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.SocialWorkers.getFilter('CoAddress','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_SocialWorker_Db_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.SocialWorkers.getFilter('Db','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+</tr>
+(!@-!)
+var r;
+
+for(var ri=0;ri<ns.data.length;ri++) {
+r = ns.data[ri];
+
+(!@+!)
+<tr >
+
+<td ><a class=ajaxLink href=Pages/SocialWorker/(!&r.Id!)>(!&r.Name!)</a></td>
+
+<td >(!&r['Address']!)</td>
+
+<td >(!&r['ZipCode']!)</td>
+
+<td >(!&r['ZipTown']!)</td>
+
+<td >(!&r['Land']!)</td>
+
+<td >(!&r['Tel']!)</td>
+
+<td >(!&r['Mob']!)</td>
+
+<td >(!&r['Email']!)</td>
+
+<td >(!&r['StartD']!)</td>
+
+<td >(!&r['Status']!)</td>
+
+<td >(!&r['CoAddress']!)</td>
+
+<td >(!&r['Db']!)</td>
+
+</tr>
+(!@-!)}
+if (ns.data.length == 0) {//no rows code.(!@+!)
+<tr><td colspan="15"><center>Ingen</center></td></tr>
+(!@-!) } (!@+!)
+
+</table>
+(!@-!)} else {
+//no data retrieved yet... load it..
+(!@+!)<script>
+dataViews.SocialWorkers.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2("(!&ns._fullurl!)",{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView });}});
+
+</script><img src="img/ajaxLoading.gif"/>ladda...
+(!@-!)}(!@+!)
+

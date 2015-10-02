@@ -1,0 +1,282 @@
+{#ajaxTemplate2#}<div class="EditIcons" style="padding-left: 0px; width: 100%;">
+<center>
+(!@-!)
+if (typeof(dataViews.Companys.curRecordSet.Count) != 'undefined') {
+if (typeof(dataViews.Companys.curRecordSet.start) != 'undefined') {
+if (typeof(dataViews.Companys.curRecordSet.rPos) != 'undefined') {
+if (dataViews.Companys.filterActive) {
+    o.push(dataViews.Companys.curRecordSet.start + dataViews.Companys.curRecordSet.rPos + 1);
+    o.push(' av ');
+    o.push(dataViews.Companys.curRecordSet.filteredCount);
+} else {
+    o.push(dataViews.Companys.curRecordSet.start + dataViews.Companys.curRecordSet.rPos + 1);
+    o.push(' av ');
+    o.push(dataViews.Companys.curRecordSet.Count);
+}
+}
+}
+}
+(!@+!)
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Companys'].firstRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).attr('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'undefined',target:target});
+        }});" title="F&ouml;rsta"><span class="RecordsetFirstIcon EditIcon">&nbsp;</span></a>
+    
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Companys'].previousRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).attr('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'Companys',target:target});
+        },NoNewPage:function(){
+            $j('#Toolbar(!&ns._ViewId!)').removeClass('ajaxLoading');
+        }});" title="F&ouml;reg&aring;ende"><span class="RecordsetPreviousIcon EditIcon">&nbsp;</span></a>
+    
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Companys'].nextRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).attr('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'Companys',target:target});
+        },NoNewPage:function() {
+            $j('#Toolbar(!&ns._ViewId!)').removeClass('ajaxLoading');
+        }});" title="N&auml;sta"><span class="RecordsetNextIcon EditIcon">&nbsp;</span></a>
+    <a onclick="
+        $j('#Toolbar(!&ns._ViewId!)').addClass('ajaxLoading');
+        dataViews['Companys'].lastRow({IdField:'Id',OnComplete:function(Id){
+            //reload ourselves...
+            var target = 'AppPages';
+            var l = jQuery('#'+target).attr('loc').split('/');
+            var oldId = l.pop();
+            App3.Navigate2(l.join('/')+'/'+Id,{View:'Companys',target:target});
+        }});" title="Sista"><span class="RecordsetLastIcon EditIcon">&nbsp;</span></a>
+    
+    <span style="padding-left: 20px;" id="Toolbar(!&ns._ViewId!)">&nbsp;</span>
+    <span class="TaskEdit4" task="Project4.Task" component="Generic583">&nbsp;</span>
+<button onclick="
+/*
+jQuery('input,textarea', document.getElementById('CompanyTab(!&ns._ViewId!)')).each(function(index,elm) {
+    var t = jQuery(elm).attr('type');
+    if (t == 'radio') {
+        jQuery(elm).removeAttr('checked');
+    } else {
+        elm.value = '';
+    }
+});
+jQuery('#Id66(!&ns._ViewId!)').removeAttr('disabled');
+document.getElementById('Id66(!&ns._ViewId!)').enabled = true;
+jQuery('#Action(!&ns._ViewId!)').data('actionName','Search').html('s&ouml;k nu>>');
+*/
+App3.Navigate2('local/Pages/CompanySearch',{target:'AppPages'});
+" class="SearchBut">Ny s&ouml;kning</button>
+<button onclick="
+document.getElementById('Generic583(!&ns._ViewId!)').click();
+jQuery('#CompanyTab(!&ns._ViewId!) input').each(function(index,elm) {
+    elm.value = '';
+});
+jQuery('#CompanyTab(!&ns._ViewId!) textarea').each(function(index,elm) {
+    elm.value = '';
+});
+jQuery('#GiverId88(!&ns._ViewId!)').val('-333333');
+jQuery('#RegDate364(!&ns._ViewId!)').val(App.Today());
+jQuery('#Action(!&ns._ViewId!)').data('actionName','New').html('skapa');
+">Ny</button>
+<button onclick="
+    document.getElementById('Generic583(!&ns._ViewId!)').click();
+    jQuery('input[data-fieldname=Company.Id]').val('');
+    jQuery('#Action(!&ns._ViewId!)').data('actionName','New').html('skapa');
+">Kopiera</button>
+<button class="ChangeBut(!&ns._ViewId!) EditBut" id="Generic583(!&ns._ViewId!)" onclick="
+jQuery('input,textarea',document.getElementById('AppPages')).each(function(index,el){
+switch(el.type) {
+    case 'radio':
+        el.disabled = !el.disabled;
+        break;
+    default:
+        if (el.getAttribute('data-fieldname') == 'Company.Id') {
+            //never allowed to edit the id
+        } else {
+            if ($j(el).is('.dateEdit')) {
+                el.disabled = !el.disabled;
+            } else {
+                el.readOnly = !el.readOnly;
+            }
+        }
+   }
+});
+
+" tabindex=1>&Auml;ndra</button>
+<center>
+</div><span class="CompanysBigIcon BigIcon TaskEdit4" task="Project4.Task" component="CompanyProtoHeader">F&ouml;retag</span> 
+
+<span class="EditIcons">    <span class="ListIcon EditIcon">
+        <a href="Pages/Companys" class="ajaxLink">Lista</a>
+    </span>
+</span><script>
+    document.title = ""+jQuery('<div/>').html("(!&ns.data['CompanyName']!)").text()+" ";
+</script><br/>
+(!@-!)if (ns.data) {var r= ns.data;(!@+!)<table class="EditTable" id="CompanyTab(!&ns._ViewId!)">
+<thead><tr><th colspan="7">Givare</th></tr></thead>
+<tr>
+<td style="text-align:right">Namn:</td><td><input type="text" id="CompanyName132(!&ns._ViewId!)" class="Editable" data-fieldName="Company.CompanyName" value="(!&r['CompanyName']||''!)" /></td>
+<td style="text-align:right">Nr:</td><td><input type="text" id="Id131(!&ns._ViewId!)" class="Editable" data-fieldName="Company.Id" value="(!&r['Id']||''!)" /></td>
+<td rowspan="6"><text(!&'area'!) wrap='on'  class="Editable"  cols="60" rows="8" id="Notes140(!&ns._ViewId!)" onchange="EditInPlace4.quickSave('Companys.Notes','(!&r.Id!)',this.value)" data-fieldName="Company.Notes">(!&r.Notes!)</text(!&'area'!)></td>
+</tr>
+<tr>
+<td style="text-align:right">Adress:</td><td><input type="text" id="Address133(!&ns._ViewId!)" class="Editable" data-fieldName="Company.Address" value="(!&r['Address']||''!)" /></td>
+<td style="text-align:right">Telefon:</td><td><input type="text" id="Tel136(!&ns._ViewId!)" class="Editable" data-fieldName="Company.Tel" value="(!&r['Tel']||''!)" /></td>
+</tr>
+<tr>
+<td style="text-align:right">PostNr:</td><td><input type="text" id="Zip134(!&ns._ViewId!)" class="Editable" data-fieldName="Company.Zip" value="(!&r['Zip']||''!)" /></td>
+<td style="text-align:right">BankGiro:</td><td><input type="text" id="BankGiro137(!&ns._ViewId!)" class="Editable" data-fieldName="Company.BankGiro" value="(!&r['BankGiro']||''!)" /></td>
+</tr>
+<tr>
+<td style="text-align:right">PostOrt:</td><td><input type="text" id="ZipTown135(!&ns._ViewId!)" class="Editable" data-fieldName="Company.ZipTown" value="(!&r['ZipTown']||''!)" /></td>
+<td style="text-align:right">PosttGiro:</td><td><input type="text" id="PostGiro138(!&ns._ViewId!)" class="Editable" data-fieldName="Company.PostGiro" value="(!&r['PostGiro']||''!)" /></td>
+</tr>
+<tr>
+<td style="text-align:right">Epost:</td><td>??</td>
+<td style="text-align:right">kod:</td><td><input type="text" id="Code139(!&ns._ViewId!)" class="Editable" data-fieldName="Company.Code" value="(!&r['Code']||''!)" /></td>
+</tr>
+</table>
+
+(!@-!)} else {
+    //no data retrieved yet... load it..
+    if(!ns.Id){ns.Id=ns.url.split("/").pop();}(!@+!)
+
+<script>
+dataViews.Companys.getRecord({
+    Id:'(!&ns.Id!)'
+    ,PK:'(!&ns.Id!)'
+    ,OnComplete:function(Record){
+        App3.Navigate2('(!&ns._fullurl!)?Id=(!&ns.Id!)',
+            {target:'(!&ns.target!)',data:Record }
+        );
+    }
+});
+</script><img src="img/ajaxLoading.gif"/>ladda...
+
+
+(!@-!)}(!@+!)
+
+<script>
+jQuery('input,textarea',document.getElementById('AppPages')).each(function(index,el){
+switch(el.type) {
+    case 'radio':
+        el.disabled = true;
+        break;
+    default:
+        if (el['data-fieldname'] == 'Company.Id') {
+            //never allowed to edit the id
+        } else {
+            if ($j(el).is('.dateEdit')) {
+                el.disabled = true;
+            } else {
+                el.readOnly = true;
+            }
+        }
+   }
+});
+</script><center><button tabindex=20 id="Action(!&ns._ViewId!)" onclick="
+var fName;
+var area = document.getElementById('undefinedTab(!&ns._ViewId!)');
+switch(jQuery(this).data('actionName')) {
+    case 'Search':
+        dataViews['undefineds'].clearFilter();
+        jQuery('input,textarea', area).each(function(index,elm) {
+            var v = jQuery(elm).val();
+            var t = jQuery(elm).attr('type');
+            fName = jQuery(elm).attr('data-fieldName');
+            if (t == 'radio') {
+                 if (jQuery(elm).attr('checked')) {
+                    dataViews['undefineds'].addFilter(fName.split('.').join('|'),'*',jQuery(elm).val());
+                }
+            } else {
+                if (v != '') {
+                    if (fName) {
+                        if (jQuery(elm).hasClass('exactSearch')) {
+                            dataViews['undefineds'].addFilter(fName.split('.').join('|'),'+',jQuery(elm).val());
+                        } else {
+                            dataViews['undefineds'].addFilter(fName.split('.').join('|'),'*',jQuery(elm).val());
+                        }
+                    }  
+                }
+            }
+        });
+
+        dataViews['undefineds'].firstRow({OnComplete:function() {
+        if (dataViews['undefineds'].curRecordSet.Count > 0) {
+            var id = dataViews['undefineds'].curRecordSet.Rows[0].Id;
+            App3.Navigate2('local/Pages/undefineds/'+id,{target:'AppPages'}); 
+        } else {
+            alert('Ingen tr&auml;ff');
+        }
+        console.dir(dataViews['undefineds'].curRecordSet);
+    },NoNewPage:function() {
+        alert('Ingen tr&auml;ff');
+     }
+    });
+    break;
+    case 'New':
+        var rec = {};
+        jQuery('input,textarea',area).each(function(index,elm) {
+            if (elm.value) {
+                fName = jQuery(elm).attr('data-fieldName');
+                if (fName) {
+                    fName = fName.split('.');
+                    if (fName[0] == 'undefined') {
+                        if (fName) {
+                            rec[fName[1]] = jQuery(elm).val();
+                        }
+                    }
+                }  
+            }
+        });
+        dataViews['undefineds'].newRecord({
+            NewRecord:rec
+            ,OnComplete:function(response){
+                var r;
+                eval('r='+response);
+                dataViews['undefineds'].dataChanged();
+                if (r.Status != 'Created') {
+                    alert('Save Failed');
+                } else {
+                    //App3.Navigate2('local/Pages/undefineds/' + r.NewId,{target:'AppPages',forceRead:true });
+                    jQuery('.ChangeBut(!&ns._ViewId!)').click();
+                    jQuery('input[data-fieldname=undefined.Id]').val(r['NewId']);
+                    jQuery('#Action(!&ns._ViewId!)').data('actionName','save').html('Spara');
+                    
+                }
+            }
+        });
+    break;
+    case 'Save':
+    case undefined:
+        var rec = {};
+        jQuery('input,textarea',area).each(function(index,elm) {
+                fName = jQuery(elm).attr('data-fieldName');
+                if (fName) {
+                    fName = fName.split('.');
+                    if (fName[0] == 'undefined') {
+                        rec[fName[1]] = jQuery(elm).val();
+                    } 
+            }
+        });
+    dataViews['undefineds'].updateFields(rec,rec['Id'],function(response) {
+        jQuery('.ChangeBut(!&ns._ViewId!)').click();
+        console.info(response);
+    });
+    break; 
+}
+">Spara</button>
+<span component="Generic598" task="Project4.Task" class="TaskEdit4"> </span>
+</center>

@@ -1,0 +1,101 @@
+{#ajaxTemplate2#}<span class="EvangelistsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="protoHeader394">Evangelist</span> 
+
+<span class="EditIcons">    <span class="ListIcon EditIcon">
+        <a href="Pages/Evangelists" class="ajaxLink">Lista</a>
+    </span>
+</span><script>
+    document.title = $('<div/>').html("Evangelist s&ouml;k").text();
+</script><br/>
+<table class="EditTable" id="EvangelistEditTab(!&ns._ViewId!)">
+<tr><th colspan="5">Uppgifter</th></tr>
+<tr><td>Nummer</td><td><input id="search_Id396(!&ns._ViewId!)" type="text" tabindex=3 value="(!@-!)out.push(dataViews.Evangelists.getFilter('Id','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td></td><td></td><td rowspan="6" valign="top">Noteringar:<br/><text(!&'area'!) wrap="On" cols="40" rows="8" id="search_Notes406(!&ns._ViewId!)" tabindex=15>(!@-!)out.push(dataViews.Evangelists.getFilter('Notes','*'));(!@+!)</text(!&'area'!)></td></tr>
+<tr><td>Namn</td><td colspan="2"><input id="search_Name397(!&ns._ViewId!)" type="text" tabindex=4 value="(!@-!)out.push(dataViews.Evangelists.getFilter('Name','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td></td></tr>
+<tr><td>Omr&aring;de#:</td><td><input id="search_Area1402(!&ns._ViewId!)" type="text" tabindex=6 value="(!@-!)out.push(dataViews.Evangelists.getFilter('Area1','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td>Omr&aring;de:</td><td><input id="search_Area403(!&ns._ViewId!)" type="text" tabindex=5 value="(!@-!)out.push(dataViews.Evangelists.getFilter('Area','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td></tr>
+<tr><td>Landskod:</td><td><input id="search_CountryCode405(!&ns._ViewId!)" type="text" tabindex=7 value="(!@-!)out.push(dataViews.Evangelists.getFilter('CountryCode','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td>F&ouml;dd:</td><td><input id="search_DOB398(!&ns._ViewId!)" type="text" tabindex=8 value="(!@-!)out.push(dataViews.Evangelists.getFilter('DOB','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td></tr>
+<tr><td>Giv.nr:</td><td><input id="search_GiverId399(!&ns._ViewId!)" type="text" tabindex=9 value="(!@-!)out.push(dataViews.Evangelists.getFilter('GiverId','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td>Inkom:</td><td><input id="search_TGdt404(!&ns._ViewId!)" type="text" tabindex=10 value="(!@-!)out.push(dataViews.Evangelists.getFilter('TGdt','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td></tr>
+<tr><td>Kr/M&aring;n:</td><td><input id="search_Mkr401(!&ns._ViewId!)" type="text" tabindex=11 value="(!@-!)out.push(dataViews.Evangelists.getFilter('Mkr','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td>Reg:</td><td><input id="search_RegDate648(!&ns._ViewId!)" type="text" tabindex=12 value="(!@-!)out.push(dataViews.Evangelists.getFilter('RegDate','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td></tr>
+<tr><td>Projekt:</td><td><input id="search_ProjectId446(!&ns._ViewId!)" type="text" tabindex=13 value="(!@-!)out.push(dataViews.Evangelists.getFilter('ProjectId','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td>B&ouml;rjat:</td><td><input id="search_HelpD400(!&ns._ViewId!)" type="text" tabindex=14 value="(!@-!)out.push(dataViews.Evangelists.getFilter('HelpD','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td></td></tr>
+<tr><td>Tags:</td><td><input id="search_Tags697(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.Evangelists.getFilter('Tags','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td></td><td></td><td></td></tr>
+</table>
+<center>
+<button class="CancelBut" id="clear(!&ns._ViewId!)" onclick="
+dataViews.Evangelists.clearFilter();
+
+                jQuery('#search_Id396(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Name397(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_DOB398(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_GiverId399(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_HelpD400(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Mkr401(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Area1402(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Area403(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_TGdt404(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_CountryCode405(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Notes406(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_ProjectId446(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_RegDate648(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Tags697(!&ns._ViewId!)').val('');
+            
+//App3.Navigate2('local/Pages/Evangelist/'+id,{target:'AppPages'});
+">Rensa</button>
+|
+<input class="SearchBut" type="button" id="doSearch(!&ns._ViewId!)" tabindex=16 value="Sök"
+ onclick="
+dataViews.Evangelists.clearFilter();
+var elm;
+             dataViews.Evangelists.addFilter('Id','$',jQuery('#search_Id396(!&ns._ViewId!)').val());
+            
+             dataViews.Evangelists.addFilter('Name','*',jQuery('#search_Name397(!&ns._ViewId!)').val());
+            
+             dataViews.Evangelists.addFilter('DOB','*',jQuery('#search_DOB398(!&ns._ViewId!)').val());
+            
+             dataViews.Evangelists.addFilter('GiverId','*',jQuery('#search_GiverId399(!&ns._ViewId!)').val());
+            
+             dataViews.Evangelists.addFilter('HelpD','*',jQuery('#search_HelpD400(!&ns._ViewId!)').val());
+            
+             dataViews.Evangelists.addFilter('Mkr','*',jQuery('#search_Mkr401(!&ns._ViewId!)').val());
+            
+             dataViews.Evangelists.addFilter('Area1','*',jQuery('#search_Area1402(!&ns._ViewId!)').val());
+            
+             dataViews.Evangelists.addFilter('Area','*',jQuery('#search_Area403(!&ns._ViewId!)').val());
+            
+             dataViews.Evangelists.addFilter('TGdt','*',jQuery('#search_TGdt404(!&ns._ViewId!)').val());
+            
+             dataViews.Evangelists.addFilter('CountryCode','*',jQuery('#search_CountryCode405(!&ns._ViewId!)').val());
+            
+             dataViews.Evangelists.addFilter('Notes','*',jQuery('#search_Notes406(!&ns._ViewId!)').val());
+            
+             dataViews.Evangelists.addFilter('ProjectId','*',jQuery('#search_ProjectId446(!&ns._ViewId!)').val());
+            
+             dataViews.Evangelists.addFilter('RegDate','*',jQuery('#search_RegDate648(!&ns._ViewId!)').val());
+            
+            
+dataViews.Evangelists.addFilter('Tags','£',jQuery('#search_Tags697(!&ns._ViewId!)').val());
+            
+dataViews.Evangelists.firstRow({OnComplete:function() {
+    if (dataViews.Evangelists.curRecordSet.Hits > 0) {
+        var id = dataViews.Evangelists.curRecordSet.Rows[0]['Id'];
+        App3.Navigate2('local/Pages/Evangelist/'+id,{target:'AppPages'});
+    } else {
+        alert('Ingen träff');
+     }
+},NoNewPage:function() {
+        alert('Ingen träff');
+     }});
+"/></center>
+
+
+

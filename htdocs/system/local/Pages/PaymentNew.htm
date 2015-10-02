@@ -1,0 +1,128 @@
+{#ajaxTemplate2#}<div id="confirmClickAway"><div style="position:absolute;"><div id="confirm" style="
+z-index:99;position:absolute;background-color:grey;
+width:400px;height:260px;
+background: rgb(99, 99, 99);
+background: rgba(99, 99, 99, 0.9);
+display:none;
+"></div></div>
+<div style="float:left"><span class="PaymentsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="PaymentNew_ProtoHeader">Inbetalning</span> 
+
+<span class="EditIcons"></span><script>
+    document.title = $('<div/>').html("Inbetalning").text();
+</script><br/>
+
+
+<table class="EditTable" id='PaymentTable'>
+<thead>
+    <tr><th colspan='2'><center><span class="TaskEdit4" task="Project4.Task" component="PaymentNew_fields">Uppgifter</span></center></th></tr>
+</thead>
+<tbody>
+
+<tr><td><label>Typ</label>:</td><td>
+<select id="PaymentSource653(!&ns._ViewId!)" onchange='return window.newPaymentDate();'>
+
+<option value="postgiro">postgiro</option>
+
+<option value="bankgiro">bankgiro</option>
+
+<option value="diverse">diverse</option>
+
+<option value="autogiro">autogiro</option>
+
+</select></td></tr>
+
+<tr><td><label>Datum</label>:</td><td><input id="Payment_Date_New(!&ns._ViewId!)" type="text" onchange='return window.newPaymentDate();' pattern='[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])' value=""/></td></tr>
+
+<tr><td><label>Givare</label>:</td><td><input id="Payment_GiverId_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Projekt</label>:</td><td><input id="Payment_ProjectId_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Summa</label>:</td><td><input id="Payment_InKr_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+<tr><td><label>Användare</label>:</td><td><input type="hidden" id="Payment_AddedBy_New(!&ns._ViewId!)" value="(!&App3.LoggedInUser!)"/>(!&App3.LoggedInUser!)
+
+</td></tr>
+
+</tbody>
+
+
+<script>
+try {
+document.getElementById('PaymentSource653(!&ns._ViewId!)').focus();
+} catch(e) {
+//no problem.
+}
+</script>
+<tfoot><tr><td colspan="2"><center>
+<input type="button" class="autoClick" value="Preview" onclick="
+var dat= {};
+console.info($j('#PaymentTable input'));
+$j('#PaymentTable input').each(function(){
+    console.info(this);
+    if (this.id) {
+        var p = this.id.split('_');
+        dat[p[0]+'_'+p[1]] = $j(this).val();
+    }
+});
+$j('#PaymentTable select').each(function(){
+    dat['Payment_Source'] = $j(this).val();
+});
+$j.post('do/paymentPreview.php',dat,function(response) {
+    $j('#confirm').html(response).show();
+
+});
+"/></center></td></tr></tfoot></table>
+<br/></div><script>
+$j('#confirmClickAway').click(function(e){
+    if ($j(this).closest('#confirm').size() == 0) {
+        $j('#confirm').hide();
+    }
+});
+if (localStorage) {
+    $j('#Payment_GiverId_New(!&ns._ViewId!)').val(localStorage.getItem('NewPayment_Giver'));
+    //$j('#Payment_ProjectId_New(!&ns._ViewId!)').val(localStorage.getItem('NewPayment_Project'));
+    $j('#Payment_Date_New(!&ns._ViewId!)').addClass('isDate').val(localStorage.getItem('NewPayment_Date'));
+    if (localStorage.getItem('NewPayment_Source')) {
+        $j('#PaymentSource653(!&ns._ViewId!)').val(localStorage.getItem('NewPayment_Source'));
+    }
+}
+$j('#PaymentTable input,select').keydown( function(e) {
+        var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
+        if(key == 13) {
+            var inputs = $j(this).closest('table').find(':input:visible');
+            var next = inputs.eq( inputs.index(this)+ 1 )
+            e.preventDefault();
+            if (next.length>0) {
+                if(next.is('button')) {
+                    var next = inputs.eq( inputs.index(this)+ 2 )
+                }
+                if (next.hasClass('isDate')) {
+                    next.select();
+                } else {
+                    next.focus().select();
+                }
+                if (next.hasClass('autoClick')) {
+                    next.click();
+                }
+            } else {
+                $j(this).click();
+            }
+        }
+    });
+$j('#Payment_GiverId_New(!&ns._ViewId!)').focus().select();
+</script></div>
+<div style="float:left;padding-left:20px;" id="PaymentList">
+</div>
+<input type="hidden" id="mainPaymentViewId" value="(!&ns._ViewId!)"/>
+<script>
+window.newPaymentDate=function() {
+dataViews.PaymentInLists.clearFilter();
+dataViews.PaymentInLists.setFilter('Date','=',document.getElementById('Payment_Date_New(!&ns._ViewId!)').value);
+dataViews.PaymentInLists.addFilter('PaymentSource','=',document.getElementById('PaymentSource653(!&ns._ViewId!)').value);
+dataViews.PaymentInLists.getList({
+    OnComplete:function(data,Recordset,DataView){
+        App3.Navigate2("local/Pages/PaymentInLists",{navTarget:'PaymentList',target:'PaymentList',data:data,Recordset:Recordset,DataView:DataView,PaymentViewId:'(!&ns._ViewId!)',Date:document.getElementById('Payment_Date_New(!&ns._ViewId!)').value,PaymentSource:document.getElementById('PaymentSource653(!&ns._ViewId!)').value});
+}});
+}
+window.newPaymentDate();
+</script>

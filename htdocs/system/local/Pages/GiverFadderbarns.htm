@@ -1,0 +1,137 @@
+{#ajaxTemplate2#}<span style="margin-right:30px;" component="Generic676" task="Project4.Task" class="TaskEdit4">&nbsp;</span>    <span class="NewIcon EditIcon">
+    <a class="ajaxLink" href="/Pages/GivProjNew?GiverId=(!&ns.GiverId!)&typ=Fadderbarn">Koppla Fadderbarn</a>
+</span>
+
+(!@-!)
+if (typeof(dataViews.GiverFadderbarns.curRecordSet.Count) != 'undefined') {
+if (typeof(dataViews.GiverFadderbarns.curRecordSet.start) != 'undefined') {
+if (typeof(dataViews.GiverFadderbarns.curRecordSet.rPos) != 'undefined') {
+if (dataViews.GiverFadderbarns.filterActive) {
+    o.push(dataViews.GiverFadderbarns.curRecordSet.start + dataViews.GiverFadderbarns.curRecordSet.rPos + 1);
+    o.push(' av ');
+    o.push(dataViews.GiverFadderbarns.curRecordSet.filteredCount);
+} else {
+    o.push(dataViews.GiverFadderbarns.curRecordSet.start + dataViews.GiverFadderbarns.curRecordSet.rPos + 1);
+    o.push(' av ');
+    o.push(dataViews.GiverFadderbarns.curRecordSet.Count);
+}
+}
+}
+}
+(!@+!)
+    <a title="F&ouml;rsta" onclick="
+       $j('#Prog(!&ns.ViewId!)').addClass('ajaxLoading');dataViews.GiverFadderbarns.firstPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('local/Pages/GiverFadderbarns',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns.ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns.ViewId!)').removeClass('ajaxLoading');}});
+"><span class="RecordsetFirstIcon EditIcon"> </span></a>
+
+    <a title="F&ouml;reg&aring;ende" onclick="
+       $j('#Prog(!&ns.ViewId!)').addClass('ajaxLoading');dataViews.GiverFadderbarns.previousPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('local/Pages/GiverFadderbarns',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns.ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns.ViewId!)').removeClass('ajaxLoading');}});
+"><span class="RecordsetPreviousIcon EditIcon"> </span></a>
+
+    
+<a onclick="
+        $j('#Prog(!&ns.ViewId!)').addClass('ajaxLoading');dataViews.GiverFadderbarns.nextPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('local/Pages/GiverFadderbarns',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns.ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns.ViewId!)').removeClass('ajaxLoading');}});
+" title="N&auml;sta"><span class="RecordsetNextIcon EditIcon"> </span></a>
+    
+<a onclick="
+$j('#Prog926').addClass('ajaxLoading');dataViews.GiverFadderbarns.lastPage({OnComplete:function(data,Recordset,DataView){App3.Navigate2('local/Pages/GiverFadderbarns',{target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView});$j('#Prog(!&ns.ViewId!)').removeClass('ajaxLoading');},NoNewPage:function(){$j('#Prog(!&ns.ViewId!)').removeClass('ajaxLoading');}});
+" title="Sista"><span class="RecordsetLastIcon EditIcon">&nbsp;</span></a>
+
+    
+    <span style="padding-left: 40px;" id="Prog(!&ns.ViewId!)"> </span>
+
+(!@-!)
+if ((ns.data)&&(!ns['forceRead'])) {(!@+!)
+
+<table class="ListTable" ><tr>
+
+<th width="25" class="Col_GiverFadderbarn_Id_List"><a class="SortColumn" onclick="
+dataViews.GiverFadderbarns.setSort('Nbr');
+dataViews.GiverFadderbarns.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)'});}});"><u>#</u></a><span class="TaskEdit4" Task="Project4.Task" Component="GiverFadderbarn_Id_List"> </span></th>
+
+<th width="" class="Col_GiverFadderbarn_Name_List"><a class="SortColumn" onclick="
+dataViews.GiverFadderbarns.setSort('Name');
+dataViews.GiverFadderbarns.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)'});}});"><u>Namn</u></a><span class="TaskEdit4" Task="Project4.Task" Component="GiverFadderbarn_Name_List"> </span></th>
+
+<th width="20" class="Col_GiverFadderbarn_Mkr_List"><a class="SortColumn" onclick="
+dataViews.GiverFadderbarns.setSort('Mkr');
+dataViews.GiverFadderbarns.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)'});}});"><u>kr/m&aring;n</u></a><span class="TaskEdit4" Task="Project4.Task" Component="GiverFadderbarn_Mkr_List"> </span></th>
+
+<th width="20" class="Col_GiverFadderbarn_Area1_List"><a class="SortColumn" onclick="
+dataViews.GiverFadderbarns.setSort('Area1');
+dataViews.GiverFadderbarns.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)'});}});"><u>Omr&aring;de#</u></a><span class="TaskEdit4" Task="Project4.Task" Component="GiverFadderbarn_Area1_List"> </span></th>
+
+<th width="25" class="Col_GiverFadderbarn_Area_List"><a class="SortColumn" onclick="
+dataViews.GiverFadderbarns.setSort('Area');
+dataViews.GiverFadderbarns.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)'});}});"><u>Omr&aring;de</u></a><span class="TaskEdit4" Task="Project4.Task" Component="GiverFadderbarn_Area_List"> </span></th>
+
+<th width="25" class="Col_GiverFadderbarn_CountryCode_List"><a class="SortColumn" onclick="
+dataViews.GiverFadderbarns.setSort('CountryCode');
+dataViews.GiverFadderbarns.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)'});}});"><u>Land</u></a><span class="TaskEdit4" Task="Project4.Task" Component="GiverFadderbarn_CountryCode_List"> </span></th>
+
+<th width="25" class="Col_GiverFadderbarn_DOB_List"><a class="SortColumn" onclick="
+dataViews.GiverFadderbarns.setSort('DOB');
+dataViews.GiverFadderbarns.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)'});}});"><u>F&ouml;dd</u></a><span class="TaskEdit4" Task="Project4.Task" Component="GiverFadderbarn_DOB_List"> </span></th>
+
+<th width="25" class="Col_GiverFadderbarn_HelpD_List"><a class="SortColumn" onclick="
+dataViews.GiverFadderbarns.setSort('HelpD');
+dataViews.GiverFadderbarns.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2('(!&ns._fullurl!)',{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)'});}});"><u>B&ouml;rjat</u></a><span class="TaskEdit4" Task="Project4.Task" Component="GiverFadderbarn_HelpD_List"> </span></th>
+
+</tr><tr>
+
+<td><input id="Filter_GiverFadderbarn_Id_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.GiverFadderbarns.getFilter('Nbr','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_GiverFadderbarn_Name_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.GiverFadderbarns.getFilter('Name','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_GiverFadderbarn_Mkr_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.GiverFadderbarns.getFilter('Mkr','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_GiverFadderbarn_Area1_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.GiverFadderbarns.getFilter('Area1','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_GiverFadderbarn_Area_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.GiverFadderbarns.getFilter('Area','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_GiverFadderbarn_CountryCode_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.GiverFadderbarns.getFilter('CountryCode','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_GiverFadderbarn_DOB_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.GiverFadderbarns.getFilter('DOB','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+<td><input id="Filter_GiverFadderbarn_HelpD_List(!&ns._ViewId!)" type="text" style="width:95%" value="(!@-!)out.push(dataViews.GiverFadderbarns.getFilter('HelpD','*'));(!@+!)" onkeypress="var e = (event) ? event : window.event;char=(e.charCode)?e.charCode:e.keyCode;if(char==13){$j('#Filter_(!&ns._ViewId!)').click();}"/></td>
+
+</tr>
+(!@-!)
+var r;
+
+for(var ri=0;ri<ns.data.length;ri++) {
+r = ns.data[ri];
+
+(!@+!)
+<tr >
+
+<td ><a class=ajaxLink href=Pages/Fadderbarn/(!&r.Id!) target=AppPages>#(!&r.Nbr!)</a></td>
+
+<td ><a class=ajaxLink href=Pages/Fadderbarn/(!&r.Id!) target=AppPages>(!&r.Name!)</a></td>
+
+<td style='text-align:right'>(!@-!)out.push(dataConvert.toSEK(r['Mkr']))(!@+!)</td>
+
+<td >(!&r['Area1']!)</td>
+
+<td >(!&r['Area']!)</td>
+
+<td >(!&r['CountryCode']!)</td>
+
+<td >(!&r['DOB']!)</td>
+
+<td >(!&r['HelpD']!)</td>
+
+</tr>
+(!@-!)}
+if (ns.data.length == 0) {//no rows code.(!@+!)
+<tr><td colspan="22"><center>Ingen</center></td></tr>
+(!@-!) } (!@+!)
+
+</table>
+(!@-!)} else {
+//no data retrieved yet... load it..
+(!@+!)<script>
+dataViews.GiverFadderbarns.getList({OnComplete:function(data,Recordset,DataView){App3.Navigate2("(!&ns._fullurl!)",{navTarget:'(!&ns.target!)',target:'(!&ns.target!)',data:data,Recordset:Recordset,DataView:DataView ,GiverId:'(!&ns.GiverId!)'});}});
+
+</script><img src="img/ajaxLoading.gif"/>ladda...
+(!@-!)}(!@+!)
+

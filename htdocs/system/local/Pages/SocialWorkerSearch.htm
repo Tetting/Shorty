@@ -1,0 +1,104 @@
+{#ajaxTemplate2#}<span class="SocialWorkersBigIcon BigIcon TaskEdit4" task="Project4.Task" component="protoHeader612">Socialarbetare</span> 
+
+<span class="EditIcons">    <span class="ListIcon EditIcon">
+        <a href="Pages/SocialWorkers" class="ajaxLink">Lista</a>
+    </span>
+</span><script>
+    document.title = $('<div/>').html("Socialarbetare s&ouml;k").text();
+</script><br/>
+<table class="EditTable" id="SocialWorkerSearchTab(!&ns._ViewId!)">
+<thead><tr><th colspan="7">Socialarbetare <span component="CustomFieldDisplay65" task="Project4.Task" class="TaskEdit4"> </span></th></tr></thead>
+<tr><td>Nummer</td><td><input id="search_Id449(!&ns._ViewId!)" type="text" tabindex=3 value="(!@-!)out.push(dataViews.SocialWorkers.getFilter('Id','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td></td><td></td><td rowspan="5" valign="top">Noteringar:<br/><text(!&'area'!) wrap="On" cols="46" rows="6" id="search_Notes461(!&ns._ViewId!)" tabindex=13>(!@-!)out.push(dataViews.SocialWorkers.getFilter('Notes','*'));(!@+!)</text(!&'area'!)></td></tr>
+<tr><td>Namn</td><td colspan="3"><input id="search_Name450(!&ns._ViewId!)" type="text" tabindex=4 value="(!@-!)out.push(dataViews.SocialWorkers.getFilter('Name','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td></tr>
+<tr><td>Adress:</td><td><input id="search_Address452(!&ns._ViewId!)" type="text" tabindex=6 value="(!@-!)out.push(dataViews.SocialWorkers.getFilter('Address','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td>Landskod:</td><td><input id="search_Land455(!&ns._ViewId!)" type="text" tabindex=10 value="(!@-!)out.push(dataViews.SocialWorkers.getFilter('Land','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td></tr>
+<tr><td>ZipCode:</td><td><input id="search_ZipCode453(!&ns._ViewId!)" type="text" tabindex=7 value="(!@-!)out.push(dataViews.SocialWorkers.getFilter('ZipCode','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td>ZipTown:</td><td><input id="search_ZipTown454(!&ns._ViewId!)" type="text" tabindex=11 value="(!@-!)out.push(dataViews.SocialWorkers.getFilter('ZipTown','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td></tr>
+<tr><td>Tel:</td><td><input id="search_Tel456(!&ns._ViewId!)" type="text" tabindex=8 value="(!@-!)out.push(dataViews.SocialWorkers.getFilter('Tel','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td>Mob:</td><td><input id="search_Mob457(!&ns._ViewId!)" type="text" tabindex=12 value="(!@-!)out.push(dataViews.SocialWorkers.getFilter('Mob','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td></tr>
+<tr><td>Epost:</td><td><input id="search_Email458(!&ns._ViewId!)" type="text" tabindex=9 value="(!@-!)out.push(dataViews.SocialWorkers.getFilter('Email','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td>Tags:</td><td><input id="search_Tags699(!&ns._ViewId!)" type="text"  value="(!@-!)out.push(dataViews.SocialWorkers.getFilter('Tags','*'));(!@+!)" onkeydown="if (event.keyCode == 13) document.getElementById('doSearch(!&ns._ViewId!)').click()"/></td><td></td></tr>
+</table>
+
+<center>
+<button class="CancelBut" id="clear(!&ns._ViewId!)" onclick="
+dataViews.SocialWorkers.clearFilter();
+
+                jQuery('#search_Id449(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Name450(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_LastName451(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Address452(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_ZipCode453(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_ZipTown454(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Land455(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Tel456(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Mob457(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Email458(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_StartD459(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Status460(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Notes461(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_CoAddress462(!&ns._ViewId!)').val('');
+            
+                jQuery('#search_Tags699(!&ns._ViewId!)').val('');
+            
+//App3.Navigate2('local/Pages/SocialWorker/'+id,{target:'AppPages'});
+">Rensa</button>
+|
+<input class="SearchBut" type="button" id="doSearch(!&ns._ViewId!)" tabindex=14 value="Sök"
+ onclick="
+dataViews.SocialWorkers.clearFilter();
+var elm;
+             dataViews.SocialWorkers.addFilter('Id','$',jQuery('#search_Id449(!&ns._ViewId!)').val());
+            
+             dataViews.SocialWorkers.addFilter('Name','*',jQuery('#search_Name450(!&ns._ViewId!)').val());
+            
+             dataViews.SocialWorkers.addFilter('LastName','*',jQuery('#search_LastName451(!&ns._ViewId!)').val());
+            
+             dataViews.SocialWorkers.addFilter('Address','*',jQuery('#search_Address452(!&ns._ViewId!)').val());
+            
+             dataViews.SocialWorkers.addFilter('ZipCode','*',jQuery('#search_ZipCode453(!&ns._ViewId!)').val());
+            
+             dataViews.SocialWorkers.addFilter('ZipTown','*',jQuery('#search_ZipTown454(!&ns._ViewId!)').val());
+            
+             dataViews.SocialWorkers.addFilter('Land','*',jQuery('#search_Land455(!&ns._ViewId!)').val());
+            
+             dataViews.SocialWorkers.addFilter('Tel','*',jQuery('#search_Tel456(!&ns._ViewId!)').val());
+            
+             dataViews.SocialWorkers.addFilter('Mob','*',jQuery('#search_Mob457(!&ns._ViewId!)').val());
+            
+             dataViews.SocialWorkers.addFilter('Email','*',jQuery('#search_Email458(!&ns._ViewId!)').val());
+            
+             dataViews.SocialWorkers.addFilter('StartD','*',jQuery('#search_StartD459(!&ns._ViewId!)').val());
+            
+             dataViews.SocialWorkers.addFilter('Status','*',jQuery('#search_Status460(!&ns._ViewId!)').val());
+            
+             dataViews.SocialWorkers.addFilter('Notes','*',jQuery('#search_Notes461(!&ns._ViewId!)').val());
+            
+             dataViews.SocialWorkers.addFilter('CoAddress','*',jQuery('#search_CoAddress462(!&ns._ViewId!)').val());
+            
+            
+dataViews.SocialWorkers.addFilter('Tags','£',jQuery('#search_Tags699(!&ns._ViewId!)').val());
+            
+dataViews.SocialWorkers.firstRow({OnComplete:function() {
+    if (dataViews.SocialWorkers.curRecordSet.Hits > 0) {
+        var id = dataViews.SocialWorkers.curRecordSet.Rows[0]['Id'];
+        App3.Navigate2('local/Pages/SocialWorker/'+id,{target:'AppPages'});
+    } else {
+        alert('Ingen träff');
+     }
+},NoNewPage:function() {
+        alert('Ingen träff');
+     }});
+"/></center>
+
+
+

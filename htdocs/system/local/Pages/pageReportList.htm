@@ -1,0 +1,19 @@
+{#ajaxTemplate2#}(!@-!)(!@+!)
+<p>
+</p><div class="group"><img src="img/page_white_lightning.png"/> Rapporter</div>
+(!@-!)
+var r;
+
+for(var ri=0;ri<ns.data.length;ri++) {
+r = ns.data[ri];
+if (ri < ns.data.length-2) {
+(!@+!)
+<a class="sitemaplink ajaxLink" href="Pages/runReport/(!&r['Id']!)?id=(!&ns.entityId!)" target=AppPages>(!&r['Name']!)</a><br clear="all"/>
+(!@-!)
+} else {
+(!@+!)
+<a class="sitemaplink ajaxLink" href="Pages/runReport/(!&r['Id']!)?id=(!&ns.entityId!)" target=AppPages>(!&r['Name']!)</a><br clear="all"/>
+(!@-!)
+}
+}
+(!@+!)

@@ -1,0 +1,48 @@
+{#ajaxTemplate2#}<span class="DatabasesBigIcon BigIcon TaskEdit4" task="Project4.Task" component="DatabaseNew_ProtoHeader">Database</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/DatabaseNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/Databases" class="ajaxLink">Lista</a>
+    </span>
+</span><br/>
+
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan='2'><center><span class="TaskEdit4" task="Project4.Task" component="DatabaseNew_fields">Uppgifter</span></center></th></tr>
+</thead>
+<tbody>
+
+<tr><td><label>Name</label>:</td><td><input id="Database_Name_New(!&ns._ViewId!)" type="text"  value=""/></td></tr>
+
+</tbody>
+<tfoot><tr><td colspan="2"><center Task="Project4.Task" Component="DatabaseNew_fields" class="TaskEdit4">
+
+<input type="button" value="L&auml;gg till" onclick="
+dataViews.Databases.newRecord({
+NewRecord:{
+Name:document.getElementById('Database_Name_New(!&ns._ViewId!)').value
+
+}
+,OnComplete:function(response){
+
+//document.getElementById('NewDatabase_Name(!&ns._ViewId!)').value = '';
+//document.getElementById('NewDatabase_Name(!&ns._ViewId!)').focus();
+dataViews.Databases.dataChanged();
+App3.Navigate2('local/Pages/Databases',{target:'(!&ns.target!)',forceRead:true });
+
+}
+});
+"/></center>
+</td></tr></tfoot>
+</table>
+<script>
+try {
+document.getElementById('Database_Name_New(!&ns._ViewId!)').focus();
+} catch(e) {
+//no problem.
+}
+</script>
+

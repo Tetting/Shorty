@@ -1,0 +1,53 @@
+{#ajaxTemplate2#}<span class="SidaProjsBigIcon BigIcon TaskEdit4" task="Project4.Task" component="SidaProjProtoHeader">Sida Projekt</span> 
+
+<span class="EditIcons"><span class="NewIcon EditIcon">
+        <a href="Pages/SidaProjNew" class="ajaxLink">Ny</a>
+    </span>
+    <span class="ListIcon EditIcon">
+        <a href="Pages/SidaProjs" class="ajaxLink">Lista</a>
+    </span>
+</span><script>
+    document.title = ""+jQuery('<div/>').html("(!&ns.data['Project']!)").text()+"";
+</script><br/>
+
+(!@-!)if (ns.data) {
+var r= ns.data;
+(!@+!)
+
+<span class="EditIcon DeleteIcon" style="float:right">
+    <a onclick="dataViews.SidaProjs.deleteRecord({Id:'(!&r.Id!)',PK:'(!&r.Id!)',OnComplete:function(){App3.Navigate2('http://local/Pages/SidaProjs',{target:'(!&ns.target!)' });}});">Ta Bort</a>
+</span>
+
+<table class="EditTable" >
+<thead>
+    <tr><th colspan="2"><span class="TaskEdit4" Task="Project4.Task" Component="SidaProjEdit_fields">Uppgifter</span></th></tr>
+    <col /><col />
+
+    <tr><td><label>#:</label></td><td>(!&r.Id!)
+</td>
+
+    <tr><td><label>Projekt:</label></td><td><span id="SidaProj_Project_Edit(!&ns._ViewId!)" class="ajaxEdit3" dataView="SidaProjs.Project" dataPK="(!&r.Id!)" >(!&r['Project']||EditInPlace4.blank!)</span></td>
+
+    <tr><td><label>Status:</label></td><td><span id="SidaProj_Status_Edit(!&ns._ViewId!)" class="ajaxEdit3" dataView="SidaProjs.Status" dataPK="(!&r.Id!)" >(!&r['Status']||EditInPlace4.blank!)</span></td>
+
+    <tr><td><label>Notering:</label></td><td><text(!&'area'!) wrap='off'  class="Editable"  cols="20" rows="10" id="SidaProj_Notes_Edit(!&ns._ViewId!)" onchange="EditInPlace4.quickSave('SidaProjs.Notes','(!&r.Id!)',this.value)" data-fieldName="SidaProj.Notes">(!&r.Notes!)</text(!&'area'!)></td>
+
+</table>
+
+(!@-!)} else {
+    //no data retrieved yet... load it..
+    if(!ns.Id){ns.Id=ns.url.split("/").pop();}(!@+!)
+
+<img src="img/ajaxLoading.gif"/>ladda...<script>
+dataViews.SidaProjs.getRecord({
+    Id:'(!&ns.Id!)'
+    ,PK:'(!&ns.Id!)'
+    ,OnComplete:function(Record){
+        App3.Navigate2('(!&ns._fullurl!)',
+            {target:'(!&ns.target!)',data:Record,Id:'(!&ns.Id!)' }
+        );
+    }
+});
+</script>
+(!@-!)}(!@+!)
+
