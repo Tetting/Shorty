@@ -1,9 +1,0 @@
-{"guid":"42",
-"c":{"report":{"Name":"test 4",
-"__k":"ezpdf",
-"__c":"report",
-"status":"Test"}},
-"oi":{"report":{}},
-"uId":1,
-"deps":{"ezpdf":{}},
-"dirty":false}
